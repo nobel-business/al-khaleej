@@ -1,0 +1,2 @@
+# Python dependencies for scripts/images.py (AVIF support is bundled in Pillow wheels since 11.3)
+pillow>=11.3,<14
