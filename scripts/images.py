@@ -2,7 +2,7 @@
 
 Usage:  npm run images   (python -I scripts/images.py)
 Reads sources from src/assets/images/{ai,commons}, writes AVIF/WebP/JPEG variants to
-dist/img/ and a manifest to src/assets/images/manifest.json (consumed by src/lib/media.mjs).
+public/img/ (committed; copied into dist/ by the build) and a manifest to src/assets/images/manifest.json (consumed by src/lib/media.mjs).
 Already-generated variants are skipped, so re-runs are fast.
 """
 import json, os, sys
@@ -10,7 +10,7 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "src", "assets", "images")
-OUT = os.path.join(HERE, "..", "dist", "img")
+OUT = os.path.join(HERE, "..", "public", "img")
 os.makedirs(OUT, exist_ok=True)
 
 # name: (source, widths, focal "x% y%", kind, crop as fractions (l,t,r,b) or None)

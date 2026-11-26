@@ -1,0 +1,7 @@
+# Not needed by the Vercel build (node scripts/build.mjs) — keeps uploads small and Python out of the build
+DATA/
+docs/
+scripts/images.py
+scripts/*.txt
+src/assets/images/ai/
+src/assets/images/commons/

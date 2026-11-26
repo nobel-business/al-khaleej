@@ -1,6 +1,6 @@
 // Static site generator — `npm run build` (node scripts/build.mjs) → dist/{en,ar}/…
 import fs from "node:fs"; import path from "node:path";
-import { DIST, ASSETS } from "../src/lib/paths.mjs";
+import { DIST, ASSETS, PUBLIC } from "../src/lib/paths.mjs";
 import { JS, JS_URL } from "../src/lib/bundle.mjs";
 import { PRODUCTS } from "../src/content/content.mjs";
 import { R } from "../src/lib/routes.mjs";
@@ -24,4 +24,5 @@ for (const f of ["montserrat-latin.woff2", "cairo-arabic.woff2"]) copy(path.join
 for (const f of fs.readdirSync(path.join(ASSETS, "scene"))) copy(path.join(ASSETS, "scene", f), path.join(DIST, "assets", "scene", f));
 for (const f of fs.readdirSync(path.join(ASSETS, "spec"))) copy(path.join(ASSETS, "spec", f), path.join(DIST, "assets", "spec", f));
 for (const f of ["logo-primary.png", "logo-reversed.png", "icon-orange.png", "pattern.webp"]) copy(path.join(ASSETS, "brand", f), path.join(DIST, "assets", "brand", f));
+fs.cpSync(PUBLIC, DIST, { recursive: true });   // public/ (generated responsive images) → dist/
 console.log(`built ${n} pages + index, 404 → ${DIST}`);
