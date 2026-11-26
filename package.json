@@ -1,0 +1,16 @@
+{
+  "name": "alkhaleej-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alkhaleej Fish Manufacturing — bilingual (EN/AR) static website, built with a dependency-free Node generator.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "images": "python -I scripts/images.py",
+    "serve": "node scripts/serve.mjs",
+    "start": "npm run build && npm run serve"
+  }
+}

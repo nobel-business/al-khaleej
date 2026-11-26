@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alkhaleej — Direction C · The Line</title>
+<meta name="description" content="Phase 02 visual exploration — Direction C. Fish meal 60%, 65%, 72% and crude fish oil from Kafr El-Sheikh, Egypt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0C3048; --surface:#14435F; --abyss:#061A28; --deep:#030D15; --orange:#E38B06; --amber:#F2A93B;
+  --w:#fff; --w2:rgba(255,255,255,.74); --w3:rgba(255,255,255,.5); --line:rgba(255,255,255,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{background:var(--deep);color:#fff;font-family:Montserrat,system-ui,sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;font-variant-numeric:tabular-nums}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.ar{font-family:Cairo,sans-serif;letter-spacing:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.mono{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--w3)}
+.illus{font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.45)}
+
+#sea{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+.depth{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,var(--c1,#14435F),var(--c2,#061A28))}
+main,header,footer,.rail,.dock{position:relative;z-index:2}
+
+/* top */
+.top{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(16px,3vw,40px);pointer-events:none}
+.top>*{pointer-events:auto}
+.top::before{content:"";position:absolute;inset:0 0 -24px 0;background:linear-gradient(rgba(3,13,21,.85),rgba(3,13,21,0));opacity:var(--tb,0);transition:opacity .4s;pointer-events:none;z-index:-1}
+@media (min-width:981px){.ch{padding-right:max(150px,clamp(16px,6vw,110px))}.line .pin{padding-right:max(150px,clamp(16px,6vw,110px))}}
+.top img{height:30px;width:auto}
+.capsule{display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 18px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:.02em;background:var(--orange);color:var(--navy);transition:transform .3s var(--ease),background .3s}
+.capsule:hover{background:var(--amber);transform:translateY(-1px)}
+.capsule .dot{width:6px;height:6px;border-radius:50%;background:var(--navy);box-shadow:0 0 0 0 rgba(12,48,72,.5);animation:ping 2.4s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(12,48,72,.55)}70%{box-shadow:0 0 0 8px rgba(12,48,72,0)}100%{box-shadow:0 0 0 0 rgba(12,48,72,0)}}
+
+/* depth rail */
+.rail{position:fixed;right:clamp(14px,2.2vw,34px);top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:18px;align-items:flex-end}
+.rail::before{content:"";position:absolute;right:3px;top:4px;bottom:4px;width:1px;background:var(--line)}
+.rail .fill{position:absolute;right:3px;top:4px;width:1px;background:var(--orange);height:0}
+.rail a{position:relative;display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--w3);font-weight:500}
+.rail a span{opacity:0;transform:translateX(6px);transition:opacity .3s,transform .4s var(--ease)}
+.rail:hover a span,.rail a.on span{opacity:1;transform:none}
+.rail a i{width:7px;height:7px;border-radius:50%;border:1px solid var(--w3);background:var(--deep);transition:background .3s,border-color .3s,transform .3s}
+.rail a.on{color:#fff}.rail a.on i{background:var(--orange);border-color:var(--orange);transform:scale(1.25)}
+.dock{display:none}
+
+/* sections */
+.ch{position:relative;min-height:100svh;padding:clamp(100px,16vh,160px) clamp(16px,6vw,110px)}
+.wrap{max-width:1240px;margin:0 auto}
+.reveal{opacity:0;transform:translateY(26px);filter:blur(6px);transition:opacity 1.1s var(--ease),transform 1.2s var(--ease),filter 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none;filter:none}
+.d1{transition-delay:.1s!important}.d2{transition-delay:.2s!important}.d3{transition-delay:.3s!important}
+h2.h{font-family:Cairo;font-weight:700;font-size:clamp(34px,4.6vw,72px);line-height:1.02;letter-spacing:-.02em}
+h2.h .thin{font-family:Montserrat;font-weight:200;letter-spacing:-.03em}
+.lead{font-size:clamp(15px,1.2vw,18px);color:var(--w2);max-width:52ch;margin-top:20px}
+
+/* hero */
+.hero{display:grid;place-items:center;text-align:center;min-height:100svh;padding-top:80px}
+.hero h1{font-size:clamp(56px,10.5vw,184px);line-height:.9;letter-spacing:-.04em}
+.hero h1 .a{display:block;font-family:Montserrat;font-weight:200}
+.hero h1 .b{display:block;font-family:Cairo;font-weight:700;letter-spacing:-.03em}
+.hero h1 .a,.hero h1 .b{opacity:0;transform:translateY(30px);filter:blur(10px);transition:opacity 1.6s var(--ease),transform 1.6s var(--ease),filter 1.6s var(--ease)}
+.ready .hero h1 .a{opacity:1;transform:none;filter:none}
+.ready .hero h1 .b{opacity:1;transform:none;filter:none;transition-delay:.25s}
+.hero .arline{font-size:clamp(18px,2vw,28px);font-weight:600;margin-top:18px;color:var(--w2);opacity:0;transition:opacity 1.4s .7s}
+.ready .hero .arline{opacity:1}
+.corner{position:absolute;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--w3);line-height:1.9;opacity:0;transition:opacity 1.2s 1s}
+.ready .corner{opacity:1}
+.corner b{color:#fff;font-weight:500}
+.c-tl{top:90px;left:clamp(16px,3vw,40px);text-align:left}
+.c-bl{bottom:34px;left:clamp(16px,3vw,40px)}
+.c-br{bottom:34px;right:clamp(60px,7vw,110px);text-align:right}
+.cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--w3)}
+.cue i{width:1px;height:44px;background:linear-gradient(var(--w2),transparent);animation:cue 2.2s var(--ease) infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* origin */
+.origin .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px);align-items:center}
+.iris{position:relative;aspect-ratio:4/5;overflow:hidden;clip-path:circle(var(--ir,8%) at 50% 50%);will-change:clip-path}
+.iris img{width:100%;height:100%;object-fit:cover;object-position:70% 50%;transform:scale(calc(1.25 - var(--ip,0)*.25))}
+.iris .illus{position:absolute;left:14px;bottom:12px}
+.facts{margin-top:34px;border-top:1px solid var(--line)}
+.facts div{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}
+.facts dt{color:var(--w3);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding-top:3px}
+.facts dd{text-align:right}
+
+/* the line */
+.line{height:420vh;padding:0}
+.line .pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:90px clamp(16px,6vw,110px) 40px;overflow:hidden}
+.line .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;max-width:1240px;width:100%;margin:0 auto}
+.line .now{min-height:96px;max-width:380px;text-align:right}
+.line .now b{display:block;font-family:Cairo;font-weight:700;font-size:24px;line-height:1.2}
+.line .now span{font-size:13px;color:var(--w2)}
+.line .now .k{font-size:10px;letter-spacing:.2em;color:var(--orange);font-weight:600}
+.flow{width:100%;max-width:1160px;margin:28px auto 0;display:block;overflow:visible}
+.flow .track{fill:none;stroke:rgba(255,255,255,.12);stroke-width:1.2}
+.flow .ink{fill:none;stroke-width:2.2;stroke-linecap:round}
+.flow .ink.main{stroke:#fff}.flow .ink.meal{stroke:#E9D6B0}.flow .ink.oil{stroke:var(--orange)}
+.flow .node circle.o{fill:var(--deep);stroke:rgba(255,255,255,.3);stroke-width:1.2;transition:stroke .4s,fill .4s}
+.flow .node circle.c{fill:#fff;opacity:0;transition:opacity .4s}
+.flow .node.on circle.o{stroke:#fff}
+.flow .node.on circle.c{opacity:1}
+.flow .node.oil.on circle.o{stroke:var(--orange)}.flow .node.oil.on circle.c{fill:var(--orange)}
+.flow .node text{fill:rgba(255,255,255,.35);font-family:Montserrat;font-size:13px;font-weight:500;transition:fill .4s}
+.flow .node text.n{font-size:10px;letter-spacing:.15em}
+.flow .node.on text{fill:#fff}.flow .node.oil.on text.n{fill:var(--orange)}
+.flow .tag{font-family:Montserrat;font-size:11px;letter-spacing:.2em;fill:var(--w3);text-transform:uppercase}
+.flow .p{fill:#fff}.flow .p.oil{fill:var(--amber)}
+.line .foot{max-width:1240px;margin:26px auto 0;width:100%;display:flex;justify-content:space-between;gap:20px;font-size:12px;color:var(--w3)}
+.legend{display:flex;gap:22px}
+.legend i{display:inline-block;width:18px;height:2px;vertical-align:middle;margin-right:8px}
+
+/* instrument */
+.inst .grid{display:grid;grid-template-columns:1.05fr .9fr 1.05fr;gap:clamp(20px,3vw,50px);align-items:center;margin-top:50px}
+.readout .val{font-family:Cairo;font-weight:900;font-size:clamp(96px,13vw,210px);line-height:.85;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.9);transition:opacity .3s}
+.readout .val.oil{font-size:clamp(60px,7vw,120px);-webkit-text-stroke:1.5px var(--orange)}
+.readout .nm{font-family:Cairo;font-weight:700;font-size:26px;margin-top:16px}
+.readout .ar{color:var(--w3);font-size:17px;font-weight:600;text-align:left}
+.readout .note{font-size:12px;color:var(--w3);margin-top:14px;max-width:34ch}
+.dial{position:relative;width:100%;max-width:380px;margin:0 auto;touch-action:none;cursor:grab}
+.dial svg{width:100%;display:block;overflow:visible}
+.dial .needle{transition:transform .9s var(--ease);transform-origin:200px 200px}
+.dial .tick{stroke:rgba(255,255,255,.28)}
+.dial .tick.major{stroke:rgba(255,255,255,.7)}
+.dial .lbl{fill:var(--w3);font-family:Montserrat;font-size:13px;font-weight:500}
+.dial .lbl.on{fill:#fff}
+.dial.dim .needle,.dial.dim .arcv{opacity:.2}
+.selector{display:flex;gap:8px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.selector button{height:40px;padding:0 16px;border-radius:99px;border:1px solid var(--line);font-size:12px;font-weight:500;color:var(--w2);transition:all .3s}
+.selector button[aria-pressed=true]{background:#fff;color:var(--navy);border-color:#fff}
+.selector button.oil[aria-pressed=true]{background:var(--orange);border-color:var(--orange)}
+.specimen{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#071722}
+.specimen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;transform:scale(1.5);opacity:0;transition:opacity .8s var(--ease),transform 1.4s var(--ease)}
+.specimen img.on{opacity:1;transform:scale(1.32)}
+.specimen .illus{position:absolute;left:12px;bottom:10px}
+.datarow{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;border-top:1px solid var(--line)}
+.datarow div{padding:16px 14px 0 0}
+.datarow dt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--w3)}
+.datarow dd{font-size:14px;margin-top:6px}
+.pend{display:inline-block;font-size:10px;letter-spacing:.08em;padding:3px 9px;border:1px solid rgba(227,139,6,.55);color:var(--amber);border-radius:99px}
+.cta-row{display:flex;gap:14px;align-items:center;margin-top:34px;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:12px;height:50px;padding:0 24px;border-radius:99px;background:var(--orange);color:var(--navy);font-weight:600;font-size:13px;transition:gap .4s var(--ease),background .3s}
+.cta:hover{gap:20px;background:var(--amber)}
+.ghost{display:inline-flex;align-items:center;height:50px;padding:0 22px;border-radius:99px;border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--w2)}
+.ghost:hover{border-color:rgba(255,255,255,.4);color:#fff}
+
+/* parameters */
+.params{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,30px);margin-top:56px}
+.gauge{text-align:center}
+.gauge svg{width:100%;max-width:200px;margin:0 auto;display:block}
+.gauge .bez{stroke:rgba(255,255,255,.22)}
+.gauge .sweep{stroke:var(--orange);stroke-dasharray:6 760;stroke-dashoffset:0;transition:stroke-dashoffset 2.4s var(--ease)}
+.gauge.in .sweep{stroke-dashoffset:-560}
+.gauge b{display:block;font-family:Cairo;font-weight:700;font-size:22px;margin-top:16px}
+.gauge .ar{color:var(--w3);font-size:15px}
+.gauge p{font-size:13px;color:var(--w2);margin:10px auto 0;max-width:26ch}
+.gauge .ro{display:inline-block;margin-top:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--w3);border-top:1px solid var(--line);padding-top:8px}
+
+/* ledger */
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,60px);margin-top:50px}
+.ledger h3{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.4)}
+.ledger ul{list-style:none}
+.ledger li{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--w2)}
+.ledger li i{font-style:normal;font-size:13px;color:#9fd3b0}
+.ledger .p li i{color:var(--amber)}
+.ledger .p li{color:var(--w3)}
+
+/* inquiry console */
+.console{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,80px);margin-top:50px}
+.direct a,.direct div{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;transition:color .3s,padding .4s var(--ease)}
+.direct a:hover{color:var(--amber);padding-left:8px}
+.direct small{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--w3);margin-bottom:3px}
+.panel{border:1px solid var(--line);border-radius:4px;background:rgba(3,13,21,.6);backdrop-filter:blur(10px);padding:clamp(20px,3vw,36px)}
+.steps-h{display:flex;gap:6px;margin-bottom:26px}
+.steps-h span{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
+.steps-h span::after{content:"";position:absolute;inset:0;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.steps-h span.on::after{transform:scaleX(1)}
+.stepnm{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--w3);margin-bottom:18px}
+.pane{display:none;animation:pane .6s var(--ease)}
+.pane.on{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+@keyframes pane{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.f{display:flex;flex-direction:column;gap:6px}
+.f.w{grid-column:1/-1}
+.f label,.f .lbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--w3);font-weight:500}
+.f label i{font-style:normal;color:var(--orange)}
+.f input,.f select,.f textarea{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:3px;color:#fff;font:inherit;font-size:14px;padding:12px 13px}
+.f select option{background:var(--deep)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--orange)}
+.f .err{font-size:11px;color:var(--amber);min-height:14px}
+.f.bad input,.f.bad select{border-color:var(--orange)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0}
+.chips span{display:inline-flex;height:40px;align-items:center;padding:0 16px;border:1px solid var(--line);border-radius:99px;font-size:13px;color:var(--w2);cursor:pointer;transition:all .25s}
+.chips input:checked+span{background:#fff;color:var(--navy);border-color:#fff}
+.chips input:focus-visible+span{outline:2px solid var(--orange);outline-offset:2px}
+.review{grid-column:1/-1;font-size:13px;color:var(--w2);border-top:1px solid var(--line)}
+.review div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line)}
+.review dt{color:var(--w3)}
+.consent{grid-column:1/-1;display:flex;gap:10px;font-size:12px;color:var(--w2)}
+.consent input{accent-color:var(--orange);margin-top:3px}
+.pnav{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.fm{font-size:13px;color:var(--amber);margin-top:14px;min-height:20px}
+.fn{font-size:11px;color:var(--w3);margin-top:8px}
+
+footer{position:relative;z-index:2;background:var(--deep);border-top:1px solid var(--line);padding:56px clamp(16px,6vw,110px) 30px}
+.fg{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px;font-size:13px;color:var(--w2)}
+.fg img{height:40px;width:auto}
+.fg nav{display:flex;flex-direction:column;gap:7px}
+.fg a:hover{color:var(--amber)}
+.legal{max-width:1240px;margin:40px auto 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--w3)}
+
+@media (max-width:980px){
+  .rail{display:none}
+  .dock{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:45;justify-content:space-between;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:99px;background:rgba(3,13,21,.82);backdrop-filter:blur(12px);border:1px solid var(--line)}
+  .dock .where{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--w2)}
+  .dock .where b{color:var(--orange);font-weight:600;margin-right:8px}
+  .top .capsule{display:none}
+  .origin .grid,.console,.ledger{grid-template-columns:1fr}
+  .inst .grid{grid-template-columns:1fr}
+  .readout{text-align:center}.readout .ar{text-align:center}.readout .note{margin-inline:auto}
+  .specimen{max-width:420px;width:100%;margin:0 auto;aspect-ratio:4/3.4}
+  .params{grid-template-columns:1fr 1fr}
+  .datarow{grid-template-columns:1fr 1fr}
+  .c-br{right:16px}
+  .line{height:auto}
+  .line .pin{position:relative;height:auto;padding:110px 16px 60px}
+  .line .head{flex-direction:column;align-items:flex-start}
+  .line .now{display:none}
+  .flow{max-width:440px}
+  .flow .node text{font-size:21px}.flow .node text.n{font-size:15px}.flow .tag{font-size:16px}
+  .fg{grid-template-columns:1fr}
+  footer{padding-bottom:100px}
+}
+@media (max-width:560px){
+  .pane.on{grid-template-columns:1fr}
+  .c-tl,.c-bl,.c-br{display:none}
+  .cue{bottom:96px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .reveal{opacity:1;transform:none;filter:none}
+}
+</style>
+</head>
+<body>
+<a class="sr" href="#main">Skip to content</a>
+<div class="depth" id="depth" aria-hidden="true"></div>
+<canvas id="sea" aria-hidden="true"></canvas>
+
+<header class="top">
+  <a href="#surface" aria-label="Alkhaleej Fish Manufacturing — top"><img src="assets/logo-reversed.png" alt="الخليج لصناعة الأسماك — Alkhaleej Fish Manufacturing"></a>
+  <a class="capsule" href="#inquiry"><span class="dot" aria-hidden="true"></span>Request a quote</a>
+</header>
+
+<nav class="rail" id="rail" aria-label="Chapters">
+  <span class="fill" id="railFill"></span>
+  <a href="#surface"><span>Surface</span><i></i></a>
+  <a href="#origin"><span>Origin</span><i></i></a>
+  <a href="#line"><span>The line</span><i></i></a>
+  <a href="#instrument"><span>Products</span><i></i></a>
+  <a href="#parameters"><span>Quality</span><i></i></a>
+  <a href="#ledger"><span>Company</span><i></i></a>
+  <a href="#inquiry"><span>Inquiry</span><i></i></a>
+</nav>
+<div class="dock" id="dock"><span class="where" id="where"><b>01</b>Surface</span><a class="capsule" href="#inquiry">Request a quote</a></div>
+
+<main id="main">
+<!-- SURFACE -->
+<section class="ch hero" id="surface">
+  <div>
+    <h1><span class="a">From sea</span><span class="b">to industry.</span></h1>
+    <div class="arline ar" dir="rtl" lang="ar">من البحر إلى الصناعة</div>
+  </div>
+  <div class="corner c-tl"><b>Alkhaleej Fish Manufacturing</b><br><span class="ar" style="font-size:12px;letter-spacing:0">الخليج لصناعة الأسماك</span></div>
+  <div class="corner c-bl">Kafr El-Sheikh · Egypt<br>Est. 2025</div>
+  <div class="corner c-br">Fish meal 60 · 65 · 72%<br>Crude fish oil</div>
+  <div class="cue" aria-hidden="true">Move the light · scroll to descend<i></i></div>
+</section>
+
+<!-- ORIGIN -->
+<section class="ch origin" id="origin">
+  <div class="wrap grid">
+    <div>
+      <div class="mono reveal">01 — Origin</div>
+      <h2 class="h reveal d1" style="margin-top:16px"><span class="thin">Whole marine fish,</span><br>landed for industry.</h2>
+      <p class="lead reveal d2">We process whole marine fish, including sardines. Supply includes fishing trips by the company's own vessels — in the Mediterranean Sea, the high seas and other marine fishing grounds — and fish arriving from ports and refrigerated storage facilities.</p>
+      <dl class="facts reveal d3">
+        <div><dt>Raw material</dt><dd>Whole marine fish, incl. sardines</dd></div>
+        <div><dt>Sourcing</dt><dd>Own vessels · ports · cold storage</dd></div>
+        <div><dt>Facility</dt><dd>Kafr El-Sheikh, Egypt</dd></div>
+      </dl>
+    </div>
+    <div class="iris" id="iris"><img src="assets/vessel.jpg" alt="Illustrative visualisation of a fishing vessel at sea at blue hour" loading="lazy"><span class="illus">Illustrative visualisation</span></div>
+  </div>
+</section>
+
+<!-- THE LINE -->
+<section class="line" id="line" aria-label="Manufacturing process">
+  <div class="pin" id="linePin">
+    <div class="head">
+      <div><div class="mono">02 — The line</div><h2 class="h" style="margin-top:14px"><span class="thin">One input.</span><br>Two streams.</h2></div>
+      <div class="now" id="now" aria-live="polite"><div class="k" id="nowK">01</div><b id="nowT">Receiving</b><span id="nowD">Whole marine fish arrive from port or refrigerated storage into a receiving pit.</span></div>
+    </div>
+    <svg class="flow" id="flow" role="img" aria-labelledby="flowTitle"><title id="flowTitle">Process: receiving, conveying, indirect steam cooking, pressing; then press cake to drying, cooling, antioxidant addition and 50 kg bags; press liquor to oil–water separation, crude fish oil and drums.</title></svg>
+    <div class="foot"><div class="legend"><span><i style="background:#E9D6B0"></i>Meal stream</span><span><i style="background:#E38B06"></i>Oil stream</span></div><span>Confirmed steps only · equipment, temperatures &amp; capacity published once verified</span></div>
+  </div>
+</section>
+
+<!-- INSTRUMENT -->
+<section class="ch inst" id="instrument">
+  <div class="wrap">
+    <div class="mono reveal">03 — Products</div>
+    <h2 class="h reveal d1" style="margin-top:14px"><span class="thin">Select a grade.</span><br>Read the instrument.</h2>
+    <div class="grid">
+      <div class="readout reveal d1" aria-live="polite">
+        <div class="val" id="val">65%</div>
+        <div class="nm" id="nm">Fish Meal 65%</div>
+        <div class="ar" dir="rtl" lang="ar" id="arn" style="text-align:inherit">مسحوق أسماك 65%</div>
+        <p class="note" id="note">Grade figures are commercial protein labels, not guaranteed minimum specifications.</p>
+      </div>
+      <div class="reveal d2">
+        <div class="dial" id="dial" role="slider" tabindex="0" aria-label="Protein grade" aria-valuemin="60" aria-valuemax="72" aria-valuenow="65" aria-valuetext="Fish Meal 65%"><svg viewBox="0 0 400 400" id="dialSvg"></svg></div>
+        <div class="selector" role="group" aria-label="Product">
+          <button data-p="0" aria-pressed="false">60%</button><button data-p="1" aria-pressed="true">65%</button><button data-p="2" aria-pressed="false">72%</button><button data-p="3" class="oil" aria-pressed="false">Crude fish oil</button>
+        </div>
+      </div>
+      <div class="specimen reveal d3" id="specimen"><span class="illus">Illustrative visualisation</span></div>
+    </div>
+    <dl class="datarow reveal" id="datarow"></dl>
+    <div class="cta-row reveal"><a class="cta" href="#inquiry" id="instCta">Request a quote for this grade <span>→</span></a><span class="mono" style="letter-spacing:.1em;text-transform:none">Datasheet &amp; certificate of analysis: <span class="pend">available on request</span></span></div>
+  </div>
+</section>
+
+<!-- PARAMETERS -->
+<section class="ch" id="parameters">
+  <div class="wrap">
+    <div class="mono reveal">04 — Quality</div>
+    <h2 class="h reveal d1" style="margin-top:14px"><span class="thin">Four parameters.</span><br>Measured, then verified.</h2>
+    <p class="lead reveal d2">Protein, moisture, fat and ash are key parameters used to assess fish meal. Available sample measurements cover these indicators during production and on finished-product samples. Verified technical specifications will be provided when approved.</p>
+    <div class="params" id="params"></div>
+  </div>
+</section>
+
+<!-- LEDGER -->
+<section class="ch" id="ledger">
+  <div class="wrap">
+    <div class="mono reveal">05 — Company</div>
+    <h2 class="h reveal d1" style="margin-top:14px"><span class="thin">A transparent ledger.</span><br>What we state — and what follows.</h2>
+    <p class="lead reveal d2">Alkhaleej Fish Manufacturing was established in 2025 in Kafr El-Sheikh, Egypt, to produce fish meal and crude fish oil for feed manufacturing. We publish facts as they are verified.</p>
+    <div class="ledger">
+      <div class="reveal"><h3>Stated today</h3><ul>
+        <li><i>✓</i>Established 2025 · Kafr El-Sheikh Governorate, Egypt</li>
+        <li><i>✓</i>Fish meal in 60%, 65% and 72% commercial protein grades</li>
+        <li><i>✓</i>Crude fish oil recovered during processing</li>
+        <li><i>✓</i>Whole marine fish, including sardines</li>
+        <li><i>✓</i>Own vessels, plus port and cold-storage supply</li>
+        <li><i>✓</i>Indirect steam cooking · pressing · separation · drying</li>
+        <li><i>✓</i>50 kg bags for fish meal · drums for crude fish oil</li>
+      </ul></div>
+      <div class="reveal d1 p"><h3>Provided on request · in preparation</h3><ul>
+        <li><i>◌</i>Technical datasheets per grade</li>
+        <li><i>◌</i>Certificates of analysis</li>
+        <li><i>◌</i>Certifications and licences</li>
+        <li><i>◌</i>Port of export and Incoterms</li>
+        <li><i>◌</i>Drum capacity</li>
+        <li><i>◌</i>Full street address</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY -->
+<section class="ch" id="inquiry">
+  <div class="wrap">
+    <div class="mono reveal">06 — Inquiry</div>
+    <h2 class="h reveal d1" style="margin-top:14px"><span class="thin">Specify.</span> Request a quote.</h2>
+    <div class="console">
+      <div class="direct reveal d1">
+        <a href="mailto:alkhaleej@nobelbusinessgroup.com"><small>Email</small>alkhaleej@nobelbusinessgroup.com</a>
+        <a href="tel:+201096555525"><small>Phone</small><span dir="ltr">+20 109 655 5525</span></a>
+        <a href="tel:+201060473790"><small>Phone</small><span dir="ltr">+20 106 047 3790</span></a>
+        <div><small>Location</small>Kafr El-Sheikh, Egypt <span class="pend" style="margin-left:6px">full address pending</span></div>
+      </div>
+      <form class="panel reveal d2" id="rfq" novalidate>
+        <div class="steps-h" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+        <div class="stepnm"><span id="stepName">Step 1 of 3 · Product</span><span id="stepCount">01 / 03</span></div>
+        <div class="pane on" data-step="0">
+          <div class="f w"><span class="lbl">Product <i style="color:var(--orange);font-style:normal">*</i></span><div class="chips" role="radiogroup" aria-label="Product">
+            <label><input type="radio" name="product" value="Fish Meal 60%"><span>Fish Meal 60%</span></label>
+            <label><input type="radio" name="product" value="Fish Meal 65%"><span>Fish Meal 65%</span></label>
+            <label><input type="radio" name="product" value="Fish Meal 72%"><span>Fish Meal 72%</span></label>
+            <label><input type="radio" name="product" value="Crude Fish Oil"><span>Crude Fish Oil</span></label>
+          </div><span class="err" id="prodErr"></span></div>
+          <div class="f"><label for="c-qty">Quantity</label><input id="c-qty" name="quantity" placeholder="e.g. tonnes per shipment"></div>
+          <div class="f"><label for="c-freq">Frequency</label><select id="c-freq" name="frequency"><option value="">Select</option><option>One-off</option><option>Monthly</option><option>Contract</option></select></div>
+          <div class="f"><label for="c-country">Destination country <i>*</i></label><input id="c-country" name="country" required autocomplete="country-name"><span class="err"></span></div>
+          <div class="f"><label for="c-port">Destination port</label><input id="c-port" name="port"></div>
+        </div>
+        <div class="pane" data-step="1">
+          <div class="f"><label for="c-company">Company <i>*</i></label><input id="c-company" name="company" required autocomplete="organization"><span class="err"></span></div>
+          <div class="f"><label for="c-name">Contact name <i>*</i></label><input id="c-name" name="name" required autocomplete="name"><span class="err"></span></div>
+          <div class="f"><label for="c-email">Business email <i>*</i></label><input id="c-email" name="email" type="email" required autocomplete="email"><span class="err"></span></div>
+          <div class="f"><label for="c-phone">Phone / WhatsApp</label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="f w"><label for="c-msg">Requirements</label><textarea id="c-msg" name="message" rows="3" placeholder="Packing, documents required, delivery window…"></textarea></div>
+        </div>
+        <div class="pane" data-step="2">
+          <dl class="review" id="review"></dl>
+          <label class="consent"><input type="checkbox" name="consent"> <span>I agree that Alkhaleej Fish Manufacturing may use these details to respond to my inquiry.</span></label>
+        </div>
+        <div class="pnav"><button type="button" class="ghost" id="back" style="visibility:hidden">← Back</button><button type="button" class="cta" id="fwd">Continue <span>→</span></button></div>
+        <p class="fm" id="fm" role="status" aria-live="polite"></p>
+        <p class="fn">Prototype: no server is connected. The final step opens your email app with the inquiry addressed to alkhaleej@nobelbusinessgroup.com.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="fg">
+    <div><img src="assets/logo-reversed.png" alt="الخليج لصناعة الأسماك"><p style="margin-top:16px;max-width:36ch">Alkhaleej Fish Manufacturing — fish meal and crude fish oil for feed manufacturing. Kafr El-Sheikh, Egypt.</p></div>
+    <nav aria-label="Footer"><a href="#origin">Origin</a><a href="#line">Manufacturing</a><a href="#instrument">Products</a><a href="#parameters">Quality</a><a href="#ledger">Company</a></nav>
+    <nav aria-label="Contact"><a href="mailto:alkhaleej@nobelbusinessgroup.com">alkhaleej@nobelbusinessgroup.com</a><a href="tel:+201096555525" dir="ltr" style="text-align:left">+20 109 655 5525</a><a href="tel:+201060473790" dir="ltr" style="text-align:left">+20 106 047 3790</a></nav>
+  </div>
+  <div class="legal"><span>© <span id="yr"></span> Alkhaleej Fish Manufacturing · Legal entity details pending verification · Privacy notice pending</span><span>Phase 02 · Direction C · The fish school is a live illustration; images are illustrative visualisations.</span></div>
+</footer>
+
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SMALL=()=>matchMedia('(max-width:980px)').matches;
+document.getElementById('yr').textContent=new Date().getFullYear();
+addEventListener('load',()=>document.body.classList.add('ready'));
+setTimeout(()=>document.body.classList.add('ready'),1200);
+
+/* ============ SEA: live sardine school ============ */
+const cv=document.getElementById('sea'), ctx=cv.getContext('2d'); let W,H,DPR;
+function size(){ DPR=Math.min(devicePixelRatio||1,2); W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR; cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px'; }
+size(); addEventListener('resize',size);
+const N = SMALL()? 110 : 240; const F=[];
+for(let i=0;i<N;i++){ const a=Math.random()*6.28; F.push({x:W*(.3+Math.random()*.4),y:H*(.3+Math.random()*.4),vx:Math.cos(a)*2,vy:Math.sin(a)*2,s:(.7+Math.random()*.6),ph:Math.random()*6.28}); }
+let mx=-1e4,my=-1e4,lx=-1e4,ly=-1e4,hasPointer=false;
+addEventListener('pointermove',e=>{ mx=e.clientX*DPR; my=e.clientY*DPR; hasPointer=true; },{passive:true});
+addEventListener('pointerdown',e=>{ mx=e.clientX*DPR; my=e.clientY*DPR; hasPointer=true; },{passive:true});
+let depth=0; // 0 at surface → 1 deep
+function seaFrame(t){
+  const vis = Math.max(0, 1 - depth*1.25);
+  ctx.clearRect(0,0,W,H);
+  if(vis>0.02){
+    // light rays from the surface
+    ctx.save(); ctx.globalAlpha=.10*vis; ctx.globalCompositeOperation='lighter';
+    for(let k=0;k<5;k++){ const x0=W*(.15+k*.18)+Math.sin(t/4000+k)*W*.03; const g=ctx.createLinearGradient(0,0,0,H*.9); g.addColorStop(0,'rgba(190,225,255,.9)'); g.addColorStop(1,'rgba(190,225,255,0)'); ctx.fillStyle=g; ctx.beginPath(); ctx.moveTo(x0,0); ctx.lineTo(x0+W*.06,0); ctx.lineTo(x0+W*.16,H*.9); ctx.lineTo(x0-W*.02,H*.9); ctx.fill(); }
+    ctx.restore();
+  }
+  // lamp (cursor light) — idle sweep when no pointer
+  if(!hasPointer){ mx=W*(.5+.3*Math.sin(t/3200)); my=H*(.45+.15*Math.sin(t/2100)); }
+  lx+= (mx-lx)*(RM?1:.12); ly+=(my-ly)*(RM?1:.12);
+  const LR=Math.min(W,H)*.28;
+  if(vis>0.02){
+    const g=ctx.createRadialGradient(lx,ly,0,lx,ly,LR); g.addColorStop(0,`rgba(255,226,170,${.16*vis})`); g.addColorStop(1,'rgba(255,226,170,0)'); ctx.fillStyle=g; ctx.fillRect(lx-LR,ly-LR,LR*2,LR*2);
+  }
+  // school centre wanders
+  const cx=W*(.5+.22*Math.sin(t/5200)), cy=H*(.48+.16*Math.sin(t/3700));
+  const sep=18*DPR, view=60*DPR, maxV=(RM?0:2.6)*DPR;
+  for(let i=0;i<N;i++){ const f=F[i]; let ax=0,ay=0,cxs=0,cys=0,avx=0,avy=0,n=0;
+    for(let j=0;j<N;j++){ if(i===j) continue; const o=F[j]; const dx=o.x-f.x, dy=o.y-f.y; const d2=dx*dx+dy*dy; if(d2<view*view){ n++; cxs+=o.x; cys+=o.y; avx+=o.vx; avy+=o.vy; if(d2<sep*sep){ ax-=dx/(d2+1)*40; ay-=dy/(d2+1)*40; } } }
+    if(n){ ax+=(cxs/n-f.x)*.0009+ (avx/n-f.vx)*.06; ay+=(cys/n-f.y)*.0009+(avy/n-f.vy)*.06; }
+    ax+=(cx-f.x)*.00012; ay+=(cy-f.y)*.00012;
+    const ldx=f.x-lx, ldy=f.y-ly, ld=Math.hypot(ldx,ldy); if(ld<LR*.55){ ax+=ldx/ld*.09; ay+=ldy/ld*.09; }
+    f.vx+=ax*DPR; f.vy+=ay*DPR; const sp=Math.hypot(f.vx,f.vy)||1; const lim=maxV*(.7+.3*f.s); if(sp>lim){ f.vx=f.vx/sp*lim; f.vy=f.vy/sp*lim; } if(sp<lim*.45&&!RM){ f.vx*=1.05; f.vy*=1.05; }
+    f.x+=f.vx; f.y+=f.vy;
+    if(f.x<-50) f.x=W+50; if(f.x>W+50) f.x=-50; if(f.y<-50) f.y=H+50; if(f.y>H+50) f.y=-50;
+  }
+  if(vis>0.02){
+    for(const f of F){ const ang=Math.atan2(f.vy,f.vx); const ld=Math.hypot(f.x-lx,f.y-ly); const lit=Math.max(0,1-ld/LR); const flick=.5+.5*Math.sin(t/180+f.ph);
+      const a=(.22+lit*.75*(.6+.4*flick))*vis; const L=11*DPR*f.s, Hh=2.3*DPR*f.s;
+      ctx.save(); ctx.translate(f.x,f.y); ctx.rotate(ang);
+      ctx.fillStyle = lit>.15 ? `rgba(255,${246-lit*20|0},${230-lit*40|0},${a})` : `rgba(176,206,226,${a})`;
+      ctx.beginPath(); ctx.ellipse(0,0,L,Hh,0,0,6.283); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(-L*.85,0); ctx.lineTo(-L*1.35,-Hh*1.5); ctx.lineTo(-L*1.35,Hh*1.5); ctx.closePath(); ctx.fill();
+      ctx.restore(); }
+  }
+  requestAnimationFrame(seaFrame);
+}
+requestAnimationFrame(seaFrame);
+
+/* ============ depth, rail, iris ============ */
+const depthEl=document.getElementById('depth'), railFill=document.getElementById('railFill');
+const chapters=['surface','origin','line','instrument','parameters','ledger','inquiry'].map(id=>document.getElementById(id));
+const names=['Surface','Origin','The line','Products','Quality','Company','Inquiry'];
+const railLinks=[...document.querySelectorAll('#rail a')], where=document.getElementById('where');
+const lerpC=(a,b,t)=>'#'+[0,2,4].map(i=>Math.round(parseInt(a.substr(i,2),16)*(1-t)+parseInt(b.substr(i,2),16)*t).toString(16).padStart(2,'0')).join('');
+const iris=document.getElementById('iris');
+function onScroll(){
+  const max=document.documentElement.scrollHeight-innerHeight; const p=Math.min(1,scrollY/max);
+  depth=Math.min(1,scrollY/(innerHeight*2.2)); document.querySelector('.top').style.setProperty('--tb',scrollY>innerHeight*.5?1:0);
+  depthEl.style.setProperty('--c1',lerpC('14435F','030D15',Math.min(1,p*1.6)));
+  depthEl.style.setProperty('--c2',lerpC('0C3048','030D15',Math.min(1,p*2.2)));
+  let a=0; chapters.forEach((c,i)=>{ if(c.getBoundingClientRect().top<innerHeight*.5) a=i; });
+  railLinks.forEach((l,i)=>l.classList.toggle('on',i===a));
+  const rl=railLinks[a]; railFill.style.height=(rl.offsetTop+4)+'px';
+  where.innerHTML=`<b>0${a+1}</b>${names[a]}`;
+  const r=iris.getBoundingClientRect(); const ip=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*.9)));
+  iris.style.setProperty('--ir',(8+ip*70)+'%'); iris.style.setProperty('--ip',ip);
+  flowUpdate();
+}
+addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',()=>{buildFlow();onScroll();});
+
+/* reveals */
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ============ THE LINE (scroll-drawn flow) ============ */
+const STEPS={
+ rec:['01','Receiving','Whole marine fish arrive from port or refrigerated storage into a receiving pit.'],
+ con:['02','Conveying','Raw fish are mechanically conveyed toward the cooker.'],
+ coo:['03','Indirect steam cooking','Fish are cooked by indirect steam in a double-jacket cooker.'],
+ pre:['04','Pressing','Pressing separates press cake (solids) from press liquor (liquids). The line divides.'],
+ dry:['05','Drying','The press cake enters the dryer.'],
+ col:['06','Cooling & conditioning','A conveying belt carries the meal to cooling, aeration and mixing.'],
+ ant:['07','Antioxidant addition','Antioxidant is added to help protect fats from oxidation.'],
+ bag:['08','50 kg bags','Fish meal is packed in 50 kg bags.'],
+ sep:['05','Oil–water separation','The liquid stream is separated to recover crude fish oil.'],
+ oil:['06','Crude fish oil','Crude fish oil is recovered from the press liquor.'],
+ drm:['07','Drums','Crude fish oil is packed in drums.']
+};
+const flow=document.getElementById('flow'); const NS='http://www.w3.org/2000/svg';
+let FL=null;
+function el(n,a,p){ const e=document.createElementNS(NS,n); for(const k in a) e.setAttribute(k,a[k]); (p||flow).appendChild(e); return e; }
+function buildFlow(){
+  const V=SMALL();
+  [...flow.querySelectorAll(':scope > :not(title)')].forEach(n=>n.remove());
+  let G;
+  if(!V){
+    flow.setAttribute('viewBox','0 0 1200 420');
+    G={paths:{main:'M40 210 H450',meal:'M450 210 C520 210 520 100 590 100 H1150',oil:'M450 210 C520 210 520 320 590 320 H1150'},
+      nodes:{rec:[40,210],con:[170,210],coo:[310,210],pre:[450,210],dry:[630,100],col:[800,100],ant:[975,100],bag:[1150,100],sep:[660,320],oil:[905,320],drm:[1150,320]},
+      lab:(k,x,y)=>{ const an = (k==='bag'||k==='drm')?'end':(k==='rec'?'start':'middle'); const xx = an==='end'?x+10:(an==='start'?x-10:x); return k==='pre'||y>=210?[xx,y+40,an]:[xx,y-26,an]; }, tags:[[590,30,'Press cake → fish meal'],[590,402,'Press liquor → crude fish oil']]};
+  } else {
+    flow.setAttribute('viewBox','0 0 440 1240');
+    G={paths:{main:'M220 40 V470',meal:'M220 470 C220 540 80 520 80 600 V1180',oil:'M220 470 C220 540 360 520 360 600 V1180'},
+      nodes:{rec:[220,40],con:[220,180],coo:[220,320],pre:[220,470],dry:[80,640],col:[80,820],ant:[80,1000],bag:[80,1180],sep:[360,700],oil:[360,940],drm:[360,1180]},
+      lab:(k,x,y)=> x===220?[x+26,y+6,'start']: x<220?[x+24,y+6,'start']:[x-24,y+6,'end'], tags:[[30,575,'Meal'],[410,575,'Oil']]};
+  }
+  const tracks={}, inks={};
+  for(const k in G.paths){ tracks[k]=el('path',{d:G.paths[k],class:'track'}); }
+  for(const k in G.paths){ const p=el('path',{d:G.paths[k],class:'ink '+k}); const L=p.getTotalLength(); p.style.strokeDasharray=L; p.style.strokeDashoffset=L; inks[k]={p,L}; }
+  G.tags.forEach(t=>{ const tx=el('text',{x:t[0],y:t[1],class:'tag','text-anchor':V?(t[0]<220?'start':'end'):'start'}); tx.textContent=t[2]; });
+  const nodes={};
+  for(const k in G.nodes){ const [x,y]=G.nodes[k]; const isOil=['sep','oil','drm'].includes(k);
+    const g=el('g',{class:'node'+(isOil?' oil':'')}); el('circle',{cx:x,cy:y,r:V?13:10,class:'o'},g); el('circle',{cx:x,cy:y,r:V?5:4,class:'c'},g);
+    const [lx2,ly2,an]=G.lab(k,x,y); const t1=el('text',{x:lx2,y:ly2-(V?0:14),'text-anchor':an,class:'n'},g); t1.textContent=STEPS[k][0];
+    const t2=el('text',{x:lx2,y:ly2+(V?24:4),'text-anchor':an},g); t2.textContent=STEPS[k][1];
+    if(V){ t1.setAttribute('y',ly2-14); t2.setAttribute('y',ly2+12); }
+    nodes[k]={g,x,y,branch: ['rec','con','coo','pre'].includes(k)?'main':(isOil?'oil':'meal')};
+  }
+  // position of each node along its branch
+  for(const k in nodes){ const n=nodes[k]; const p=inks[n.branch].p, L=inks[n.branch].L; let best=0,bd=1e9; for(let s=0;s<=L;s+=4){ const pt=p.getPointAtLength(s); const d=Math.hypot(pt.x-n.x,pt.y-n.y); if(d<bd){bd=d;best=s;} } n.at=best/L; }
+  const parts=[]; for(let i=0;i<18;i++){ const br=i<6?'main':(i%2?'meal':'oil'); parts.push({br,o:Math.random(),c:el('circle',{r:V?4:2.6,class:'p'+(br==='oil'?' oil':''),opacity:0})}); }
+  FL={inks,nodes,parts,V}; flowUpdate();
+}
+let flowP=0, lastKey='';
+function flowUpdate(){
+  if(!FL) return; const sec=document.getElementById('line'); const r=sec.getBoundingClientRect();
+  let p;
+  if(!FL.V){ const total=sec.offsetHeight-innerHeight; p=Math.min(1,Math.max(0,-r.top/total)); p=Math.min(1,p*1.12); }
+  else { const fr=flow.getBoundingClientRect(); p=Math.min(1,Math.max(0,(innerHeight*.62-fr.top)/fr.height)); }
+  flowP=RM?1:p;
+  const pm=Math.min(1,flowP/.42), pb=Math.max(0,(flowP-.42)/.58);
+  const prog={main:pm,meal:pb,oil:pb};
+  for(const k in FL.inks){ const i=FL.inks[k]; i.p.style.strokeDashoffset=i.L*(1-prog[k]); }
+  let latest='rec', latestT=-1;
+  for(const k in FL.nodes){ const n=FL.nodes[k]; const on=prog[n.branch]>=n.at-0.002 && (n.branch!=='main'||pm>0||k==='rec'); n.g.classList.toggle('on',on||k==='rec');
+    const order = n.branch==='main'? n.at*.42 : .42+n.at*.58 + (n.branch==='oil'?0.0001:0);
+    if(on && order>latestT){ latestT=order; latest=k; } }
+  if(!FL.V && latest!==lastKey){ lastKey=latest; const s=STEPS[latest]; document.getElementById('nowK').textContent=s[0]+(['sep','oil','drm'].includes(latest)?' · oil stream':['dry','col','ant','bag'].includes(latest)?' · meal stream':''); document.getElementById('nowT').textContent=s[1]; document.getElementById('nowD').textContent=s[2]; }
+}
+(function partsLoop(t){
+  if(FL){ const pm=Math.min(1,flowP/.42), pb=Math.max(0,(flowP-.42)/.58); const prog={main:pm,meal:pb,oil:pb};
+    FL.parts.forEach(q=>{ const i=FL.inks[q.br]; const lim=prog[q.br]; if(lim<=0.01){ q.c.setAttribute('opacity',0); return; } q.o=(q.o+(RM?0:.0025))%1; const s=q.o*lim; const pt=i.p.getPointAtLength(s*i.L); q.c.setAttribute('cx',pt.x); q.c.setAttribute('cy',pt.y); q.c.setAttribute('opacity',(Math.sin(q.o*Math.PI)*.9).toFixed(2)); }); }
+  requestAnimationFrame(partsLoop);
+})();
+buildFlow();
+
+/* ============ INSTRUMENT ============ */
+const P=[
+ {name:'Fish Meal 60%',ar:'مسحوق أسماك 60%',val:'60%',g:60,img:'assets/jar-60.jpg',fam:'Fish meal',pack:'50 kg bags'},
+ {name:'Fish Meal 65%',ar:'مسحوق أسماك 65%',val:'65%',g:65,img:'assets/jar-65.jpg',fam:'Fish meal',pack:'50 kg bags'},
+ {name:'Fish Meal 72%',ar:'مسحوق أسماك 72%',val:'72%',g:72,img:'assets/jar-72.jpg',fam:'Fish meal',pack:'50 kg bags'},
+ {name:'Crude Fish Oil',ar:'زيت الأسماك الخام',val:'OIL',g:null,img:'assets/oil-vessel.jpg',fam:'Marine oil',pack:'Drums'}
+];
+const dsvg=document.getElementById('dialSvg'), dial=document.getElementById('dial');
+const A0=135, SPAN=270, GMIN=55, GMAX=75; const ang=g=>A0+(g-GMIN)/(GMAX-GMIN)*SPAN;
+const pol=(a,r)=>[200+r*Math.cos(a*Math.PI/180),200+r*Math.sin(a*Math.PI/180)];
+function D(n,a,p){ const e=document.createElementNS(NS,n); for(const k in a) e.setAttribute(k,a[k]); (p||dsvg).appendChild(e); return e; }
+const [sx,sy]=pol(A0,170),[ex,ey]=pol(A0+SPAN,170);
+D('path',{d:`M${sx} ${sy} A170 170 0 1 1 ${ex} ${ey}`,fill:'none',stroke:'rgba(255,255,255,.18)','stroke-width':1});
+const arcv=D('path',{d:'',fill:'none',stroke:'#E38B06','stroke-width':2.5,class:'arcv','stroke-linecap':'round'});
+for(let g=GMIN; g<=GMAX; g++){ const a=ang(g), maj=g%5===0; const [x1,y1]=pol(a,maj?146:154),[x2,y2]=pol(a,164); D('line',{x1,y1,x2,y2,class:'tick'+(maj?' major':''),'stroke-width':maj?1.5:1}); if(maj){ const [tx,ty]=pol(a,124); const t=D('text',{x:tx,y:ty+4,'text-anchor':'middle',class:'lbl','data-g':g}); t.textContent=g; } }
+[60,65,72].forEach(g=>{ const [x,y]=pol(ang(g),178); D('circle',{cx:x,cy:y,r:3.5,fill:'#fff'}); });
+const needle=D('g',{class:'needle'}); D('line',{x1:200,y1:200,x2:200+150,y2:200,stroke:'#fff','stroke-width':2,'stroke-linecap':'round'},needle); D('circle',{cx:200,cy:200,r:9,fill:'#061A28',stroke:'#fff','stroke-width':1.5},needle);
+const ctr=D('text',{x:200,y:268,'text-anchor':'middle',fill:'rgba(255,255,255,.5)','font-family':'Montserrat','font-size':11,'letter-spacing':'3'}); ctr.textContent='PROTEIN GRADE · %';
+const spec=document.getElementById('specimen');
+P.forEach((p,i)=>{ const im=document.createElement('img'); im.src=p.img; im.alt='Illustrative visualisation: '+p.name; im.loading='lazy'; spec.insertBefore(im,spec.firstChild); p.el=im; });
+let cur=1;
+function setP(i){ cur=i; const p=P[i];
+  const v=document.getElementById('val'); v.textContent=p.val; v.classList.toggle('oil',!p.g);
+  document.getElementById('nm').textContent=p.name; document.getElementById('arn').textContent=p.ar;
+  document.getElementById('note').textContent = p.g? 'Grade figures are commercial protein labels, not guaranteed minimum specifications.' : 'Recovered from the press liquor during processing. Specifications available on request.';
+  P.forEach((q,k)=>q.el.classList.toggle('on',k===i));
+  document.querySelectorAll('.selector button').forEach((b,k)=>b.setAttribute('aria-pressed',k===i));
+  dial.classList.toggle('dim',!p.g);
+  if(p.g){ needle.style.transform=`rotate(${ang(p.g)}deg)`; const [x,y]=pol(ang(p.g),170); const large=(ang(p.g)-A0)>180?1:0; arcv.setAttribute('d',`M${sx} ${sy} A170 170 0 ${large} 1 ${x} ${y}`); dial.setAttribute('aria-valuenow',p.g); }
+  dial.setAttribute('aria-valuetext',p.name);
+  dsvg.querySelectorAll('.lbl').forEach(t=>t.classList.toggle('on',p.g && Math.abs(+t.dataset.g-p.g)<3));
+  document.getElementById('datarow').innerHTML=[['Family',p.fam],[p.g?'Commercial grade':'Form',p.g?p.val+' protein':'Crude oil'],['Packing',p.pack+(p.g?'':' <span class="pend">capacity pending</span>')],['Raw material','Whole marine fish']].map(r=>`<div><dt>${r[0]}</dt><dd>${r[1]}</dd></div>`).join('');
+  document.getElementById('instCta').innerHTML=(p.g?'Request a quote for this grade':'Request a quote for crude fish oil')+' <span>→</span>';
+}
+document.querySelectorAll('.selector button').forEach(b=>b.onclick=()=>setP(+b.dataset.p));
+dial.addEventListener('keydown',e=>{ if(['ArrowRight','ArrowUp'].includes(e.key)){ e.preventDefault(); setP(Math.min(3,cur+1)); } if(['ArrowLeft','ArrowDown'].includes(e.key)){ e.preventDefault(); setP(Math.max(0,cur-1)); } });
+let drag=false;
+function fromPointer(e){ const r=dsvg.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width*400-200, y=(e.clientY-r.top)/r.height*400-200; let a=Math.atan2(y,x)*180/Math.PI; if(a<0)a+=360; if(a<A0-20) a+=360; const g=GMIN+(a-A0)/SPAN*(GMAX-GMIN); let best=0,bd=1e9; [60,65,72].forEach((v,k)=>{ if(Math.abs(v-g)<bd){bd=Math.abs(v-g);best=k;} }); if(best!==cur) setP(best); }
+dial.addEventListener('pointerdown',e=>{ drag=true; dial.setPointerCapture(e.pointerId); fromPointer(e); });
+dial.addEventListener('pointermove',e=>{ if(drag) fromPointer(e); });
+dial.addEventListener('pointerup',()=>drag=false);
+setP(1);
+document.getElementById('instCta').addEventListener('click',()=>{ const r=document.querySelector(`#rfq input[name=product][value="${P[cur].name}"]`); if(r) r.checked=true; });
+
+/* ============ PARAMETERS ============ */
+const Q=[['Protein','البروتين','The basis of each commercial grade — 60%, 65% or 72%.'],['Moisture','الرطوبة','Shaped by drying and cooling; it matters for storage and transport.'],['Fat','الدهون','Antioxidant is added to help protect fats from oxidation.'],['Ash','الرماد','The mineral fraction, read alongside protein by feed formulators.']];
+const params=document.getElementById('params');
+Q.forEach((q,i)=>{ const d=document.createElement('div'); d.className='gauge reveal'+(i?' d'+Math.min(i,3):'');
+  let ticks=''; for(let k=0;k<60;k++){ const a=k*6*Math.PI/180; const r1=k%5?84:78; ticks+=`<line x1="${100+r1*Math.cos(a)}" y1="${100+r1*Math.sin(a)}" x2="${100+90*Math.cos(a)}" y2="${100+90*Math.sin(a)}" class="bez" stroke-width="${k%5?1:1.5}"/>`; }
+  d.innerHTML=`<svg viewBox="0 0 200 200" aria-hidden="true">${ticks}<circle cx="100" cy="100" r="70" fill="none" class="bez"/><circle cx="100" cy="100" r="96" fill="none" class="sweep" stroke-width="3" stroke-linecap="round" transform="rotate(-90 100 100)"/><text x="100" y="96" text-anchor="middle" fill="#fff" font-family="Cairo" font-weight="700" font-size="26">${q[0][0]}</text><text x="100" y="122" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="Montserrat" font-size="9" letter-spacing="2">0${i+1} / 04</text></svg><b>${q[0]}</b><span class="ar" dir="rtl" lang="ar">${q[1]}</span><p>${q[2]}</p><span class="ro">Datasheet on request</span>`;
+  params.appendChild(d); io.observe(d);
+});
+
+/* ============ INQUIRY CONSOLE ============ */
+const form=document.getElementById('rfq'), panes=[...form.querySelectorAll('.pane')], bars=[...form.querySelectorAll('.steps-h span')];
+const nm=['Product','Company','Review & send']; let step=0; const fm=document.getElementById('fm');
+function show(s){ step=s; panes.forEach((p,i)=>p.classList.toggle('on',i===s)); bars.forEach((b,i)=>b.classList.toggle('on',i<=s));
+  document.getElementById('stepName').textContent=`Step ${s+1} of 3 · ${nm[s]}`; document.getElementById('stepCount').textContent=`0${s+1} / 03`;
+  document.getElementById('back').style.visibility=s?'visible':'hidden';
+  document.getElementById('fwd').innerHTML= s<2? 'Continue <span>→</span>':'Prepare inquiry email <span>→</span>'; fm.textContent='';
+  if(s===2){ const d=Object.fromEntries(new FormData(form)); document.getElementById('review').innerHTML=[['Product',d.product],['Quantity',d.quantity||'—'],['Frequency',d.frequency||'—'],['Destination',(d.country||'')+(d.port?' · '+d.port:'')],['Company',d.company],['Contact',d.name+' · '+d.email]].map(r=>`<div><dt>${r[0]}</dt><dd>${r[1]}</dd></div>`).join(''); }
+  const first=panes[s].querySelector('input,select,textarea'); first&&first.focus({preventScroll:true}); }
+function valid(s){ let ok=true; panes[s].querySelectorAll('.f').forEach(f=>{ const el=f.querySelector('input:not([type=radio]),select,textarea'); const er=f.querySelector('.err'); if(!el||!er) return; let m=''; if(el.required&&!el.value.trim()) m='Required'; else if(el.type==='email'&&el.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) m='Enter a valid email'; f.classList.toggle('bad',!!m); er.textContent=m; if(m) ok=false; });
+  if(s===0){ const p=form.querySelector('input[name=product]:checked'); document.getElementById('prodErr').textContent=p?'':'Select a product'; if(!p) ok=false; }
+  return ok; }
+document.getElementById('fwd').onclick=()=>{ if(step<2){ if(valid(step)) show(step+1); else fm.textContent='Please complete the highlighted fields.'; return; }
+  if(!form.querySelector('[name=consent]').checked){ fm.textContent='Please confirm consent to be contacted.'; return; }
+  const d=Object.fromEntries(new FormData(form));
+  const body=`Company: ${d.company}\nContact: ${d.name}\nEmail: ${d.email}\nPhone/WhatsApp: ${d.phone||'-'}\nProduct: ${d.product}\nQuantity: ${d.quantity||'-'}\nFrequency: ${d.frequency||'-'}\nDestination: ${d.country}${d.port?' / '+d.port:''}\n\n${d.message||''}`;
+  location.href=`mailto:alkhaleej@nobelbusinessgroup.com?subject=${encodeURIComponent('Quote request — '+d.product)}&body=${encodeURIComponent(body)}`;
+  fm.textContent='Your email app should now open with the inquiry addressed to alkhaleej@nobelbusinessgroup.com.'; };
+document.getElementById('back').onclick=()=>show(step-1);
+
+onScroll();
+})();
+</script>
+</body>
+</html>

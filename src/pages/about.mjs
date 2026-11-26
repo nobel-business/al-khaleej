@@ -1,0 +1,33 @@
+import { UI } from "../content/content.mjs";
+import { pic, preload } from "../lib/media.mjs";
+import { layout } from "../layouts/layout.mjs";
+import { kicker, h2, crumb, ENV, ctaBand, opBleed } from "../components/blocks.mjs";
+import { board } from "../components/spec.mjs";
+import { orbit, orbitMeanings } from "../components/orbit.mjs";
+
+export const about = (lang) => {
+  const u = UI[lang], ar = lang === "ar";
+  const body = `${opBleed(lang, { img: "boats-dusk", crumbs: crumb(lang, [u.nav.about]), kick: u.nav.about, title: ar ? "الخليج\nلصناعة الأسماك" : "Alkhaleej\nFish Manufacturing", lede: ar ? "مصنع للمكوّنات العلفية البحرية في كفر الشيخ، مصر، تأسس عام 2025." : "A marine ingredients manufacturer in Kafr El-Sheikh, Egypt, established in 2025." })}
+<section class="sec" data-env="${ENV.dawn}">
+  <div class="wrap comp comp-57">
+    ${pic(lang, "net-haul", { col: 42, mcol: 100, box: 0.8, reveal: "curtain", cls: "tall" })}
+    <div>${kicker(ar ? "من نحن" : "Who we are")}${h2(ar ? "من البحر\nإلى صناعة الأعلاف." : "From the sea\nto feed manufacturing.")}<div class="body" data-r="up"><p>${ar ? "تأسس مصنع الخليج لصناعة الأسماك عام 2025 في محافظة كفر الشيخ، مصر، لإنتاج مسحوق السمك وزيت السمك الخام." : "Alkhaleej Fish Manufacturing was established in 2025 in Kafr El-Sheikh Governorate, Egypt, to produce fish meal and crude fish oil."}</p><p>${ar ? "نعتمد على أسماك بحرية كاملة، منها السردين، من رحلات مراكب الصيد التابعة لنا ومصادر التوريد البحرية، ونحوّلها إلى مكونات تُستخدم في صناعة الأعلاف." : "We process whole marine fish, including sardines, sourced through our fishing vessel operations and other marine supply channels, into ingredients used in feed manufacturing."}</p><p>${ar ? "نرحّب باستفسارات التوريد من المشترين المحليين والدوليين." : "We welcome supply inquiries from domestic and international buyers."}</p></div></div>
+  </div>
+</section>
+<section class="sec sym" id="symbol" data-env="${ENV.paper}">
+  <div class="wrap comp comp-55" style="align-items:center">
+    ${orbit(lang)}
+    <div>${kicker(ar ? "معنى الرمز" : "Our symbol")}${h2(ar ? "ثلاث سمكات\nفي دائرة." : "Three fish\nin a circle.")}<div class="body" data-r="up"><p>${ar ? "ترمز السمكات الثلاث السابحة في دائرة إلى الوحدة والانسجام والطبيعة الدورية للحياة، وإلى الوفرة والحصاد الوفير." : "Three fish swimming in a circle symbolise unity, harmony and the cyclical nature of life — and abundance, a plentiful harvest."}</p></div>
+    ${orbitMeanings(lang)}
+    <p class="sym-note">${ar ? "اختر سمكة أو معنى. يمثل الأزرق الداكن الماء والطبيعة، ويمثل البرتقالي الدفء والطاقة — من دليل الهوية البصرية." : "Select a fish or a meaning. Deep blue represents water and nature; orange represents warmth and energy — from the brand guidelines."}</p></div>
+  </div>
+</section>
+<section class="sec" data-env="${ENV.dawn}">
+  <div class="wrap">
+    <div class="head"><div>${kicker(ar ? "الشفافية" : "Transparency")}${h2(ar ? "ما نعلنه اليوم،\nوما سيُنشر لاحقًا." : "What we state today,\nand what follows.")}</div><p class="lede" data-r="up">${ar ? "ننشر المعلومات بعد التحقق منها. البنود التالية قيد الإعداد وتُقدَّم عند الطلب." : "We publish facts as they are verified. The items below are in preparation and can be discussed on request."}</p></div>
+    <div class="ledger2"><div class="ledger-meter" data-r="up" aria-hidden="true"><i style="--w:50%"></i><span>${ar ? "6 بنود معلنة · 6 قيد الإعداد" : "6 stated · 6 in preparation"}</span></div><div class="ledger-cols">${board(lang, ar ? [["تأسست عام 2025 · كفر الشيخ، مصر"], ["مسحوق سمك بدرجات 60% و65% و72%"], ["زيت سمك خام يُستخلص أثناء التصنيع"], ["أسماك بحرية كاملة، منها السردين"], ["مراكب صيد تابعة للشركة وتوريد من الموانئ ومخازن التبريد"], ["أكياس 50 كجم للمسحوق · براميل للزيت"]] : [["Established 2025 · Kafr El-Sheikh, Egypt"], ["Fish meal in 60%, 65% and 72% grades"], ["Crude fish oil recovered during processing"], ["Whole marine fish, including sardines"], ["Own vessels, plus port and cold-storage supply"], ["50 kg bags for meal · drums for oil"]], { title: ar ? "معلن اليوم" : "Stated today", s: "stated" })}${board(lang, ar ? [["النشرات الفنية لكل درجة"], ["شهادات التحليل"], ["الشهادات والتراخيص"], ["ميناء التصدير وشروط الشحن"], ["سعة البراميل"], ["العنوان التفصيلي"]] : [["Technical datasheets per grade"], ["Certificates of analysis"], ["Certifications and licences"], ["Port of export and Incoterms"], ["Drum capacity"], ["Full street address"]], { title: ar ? "قيد الإعداد" : "In preparation", s: "pending" })}</div></div>
+  </div>
+</section>
+${ctaBand(lang)}`;
+  return layout(lang, { key: "about", over: true, title: ar ? "من نحن | الخليج لصناعة الأسماك" : "About | Alkhaleej Fish Manufacturing", desc: ar ? "مصنع مصري لمسحوق السمك وزيت السمك الخام، تأسس عام 2025 في كفر الشيخ." : "Egyptian producer of fish meal and crude fish oil, established in 2025 in Kafr El-Sheikh.", body, preloadImg: preload("boats-dusk", { fill: 1, mfill: 0.82 }) });
+};
