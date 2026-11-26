@@ -1,0 +1,585 @@
+{
+ "hero-dawn": {
+  "w": 3840,
+  "h": 2160,
+  "widths": [
+   640,
+   960,
+   1280,
+   1920,
+   2560,
+   3200,
+   3840
+  ],
+  "focal": "62% 50%",
+  "kind": "ai"
+ },
+ "hero-sea": {
+  "w": 3840,
+  "h": 2160,
+  "widths": [
+   640,
+   960,
+   1280,
+   1920,
+   2560,
+   3200,
+   3840
+  ],
+  "focal": "62% 50%",
+  "kind": "ai"
+ },
+ "jar-60": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   480,
+   720,
+   1080,
+   1536
+  ],
+  "focal": "50% 60%",
+  "kind": "ai"
+ },
+ "jar-65": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   480,
+   720,
+   1080,
+   1536
+  ],
+  "focal": "50% 60%",
+  "kind": "ai"
+ },
+ "jar-72": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   480,
+   720,
+   1080,
+   1536
+  ],
+  "focal": "50% 60%",
+  "kind": "ai"
+ },
+ "oil-flask": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   480,
+   720,
+   1080,
+   1536
+  ],
+  "focal": "50% 60%",
+  "kind": "ai"
+ },
+ "powder-pressed": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "40% 55%",
+  "kind": "ai"
+ },
+ "powder-flow": {
+  "w": 1664,
+  "h": 2080,
+  "widths": [
+   640,
+   1024,
+   1664
+  ],
+  "focal": "50% 55%",
+  "kind": "ai"
+ },
+ "powder-hall": {
+  "w": 2048,
+  "h": 1152,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "50% 60%",
+  "kind": "ai"
+ },
+ "oil-pour": {
+  "w": 1664,
+  "h": 2080,
+  "widths": [
+   640,
+   1024,
+   1664
+  ],
+  "focal": "45% 50%",
+  "kind": "ai"
+ },
+ "oil-tanks": {
+  "w": 2048,
+  "h": 1152,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "30% 55%",
+  "kind": "ai"
+ },
+ "aerial": {
+  "w": 2048,
+  "h": 1152,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "50% 50%",
+  "kind": "ai"
+ },
+ "sardine-spiral": {
+  "w": 2048,
+  "h": 1152,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "50% 45%",
+  "kind": "ai"
+ },
+ "net-haul": {
+  "w": 1664,
+  "h": 2080,
+  "widths": [
+   640,
+   1024,
+   1664
+  ],
+  "focal": "50% 50%",
+  "kind": "ai"
+ },
+ "steam": {
+  "w": 3840,
+  "h": 2160,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200,
+   3840
+  ],
+  "focal": "65% 45%",
+  "kind": "ai"
+ },
+ "sacks": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "45% 60%",
+  "kind": "ai"
+ },
+ "sardines-load": {
+  "w": 3840,
+  "h": 2880,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200,
+   3840
+  ],
+  "focal": "50% 55%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Rudolph.A.furtado",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:Trawler_filled_with_sardines_..JPG",
+   "title": "File:Trawler filled with sardines ..JPG",
+   "desc": "A fishing trawler at Rameswar port with maximum load of sardines fish catch."
+  }
+ },
+ "sardines-baskets": {
+  "w": 3840,
+  "h": 2880,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200
+  ],
+  "focal": "50% 50%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Rudolph.A.furtado",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:Tonnes_of_sardines_at_Rameswaram_fishing_port_in_India..JPG",
+   "title": "File:Tonnes of sardines at Rameswaram fishing port in India..JPG",
+   "desc": "A huge catch of Sardines being loaded into weighing baskets."
+  }
+ },
+ "sardines-stack": {
+  "w": 3840,
+  "h": 2880,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200
+  ],
+  "focal": "50% 50%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Rudolph.A.furtado",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "page": "https://commons.wikimedia.org/wiki/File:%27Baskets_of_Sardines%27_stacked_in_a_fishing_trawler_in_Rameswaram_Port_in_India..JPG",
+   "title": "File:'Baskets of Sardines' stacked in a fishing trawler in Rameswaram Port in India..JPG",
+   "desc": "Huge catch of sardines arriving at Rameswaram port."
+  }
+ },
+ "trawler": {
+  "w": 3840,
+  "h": 2880,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200,
+   3840
+  ],
+  "focal": "50% 50%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Partonez",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Brixham_Trawler_BM482_off_Berry_Head.jpg",
+   "title": "File:Brixham Trawler BM482 off Berry Head.jpg",
+   "desc": "The Brixham Trawler BM482 off Berry Head, near her port of registry."
+  }
+ },
+ "med-boats": {
+  "w": 3840,
+  "h": 2560,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200,
+   3840
+  ],
+  "focal": "50% 55%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Myousry6666",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Fishermen_Returning.jpg",
+   "title": "File:Fishermen Returning.jpg",
+   "desc": "Fishermen Returning , Mediterranean Sea Fishing Boats near Alexandria - Egypt"
+  }
+ },
+ "unloading": {
+  "w": 3840,
+  "h": 2160,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200,
+   3840
+  ],
+  "focal": "50% 60%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Tom Corser",
+   "license": "CC BY-SA 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Newlyn_Harbour_fish_market_unloading_fish.jpg",
+   "title": "File:Newlyn Harbour fish market unloading fish.jpg",
+   "desc": "Newlyn Harbour fish market unloading fish"
+  }
+ },
+ "crates": {
+  "w": 3840,
+  "h": 2762,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200
+  ],
+  "focal": "50% 50%",
+  "kind": "photo",
+  "credit": {
+   "artist": "BogTar201213",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:In_the_fishing_port.jpg",
+   "title": "File:In the fishing port.jpg",
+   "desc": "Unloading fish at the fishing port"
+  }
+ },
+ "m-receiving": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "45% 55%",
+  "kind": "ai"
+ },
+ "m-conveyor": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "55% 55%",
+  "kind": "ai"
+ },
+ "m-cooker": {
+  "w": 2048,
+  "h": 1152,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "45% 55%",
+  "kind": "ai"
+ },
+ "m-press": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "60% 55%",
+  "kind": "ai"
+ },
+ "m-separation": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "45% 50%",
+  "kind": "ai"
+ },
+ "m-cooling": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "50% 60%",
+  "kind": "ai"
+ },
+ "m-packing": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "40% 55%",
+  "kind": "ai"
+ },
+ "q-sampling": {
+  "w": 2048,
+  "h": 1360,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "50% 55%",
+  "kind": "ai"
+ },
+ "l-loading": {
+  "w": 2048,
+  "h": 1152,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "45% 55%",
+  "kind": "ai"
+ },
+ "l-drums": {
+  "w": 2048,
+  "h": 1152,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2048
+  ],
+  "focal": "55% 60%",
+  "kind": "ai"
+ },
+ "f-sieve": {
+  "w": 1664,
+  "h": 2080,
+  "widths": [
+   640,
+   1024,
+   1664
+  ],
+  "focal": "50% 50%",
+  "kind": "ai"
+ },
+ "dryer": {
+  "w": 3840,
+  "h": 2498,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200
+  ],
+  "focal": "60% 50%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Heyl &amp; Patterson Inc.",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Heyl_%26_Patterson_Renneburg_Rotary_Dryer.jpg",
+   "title": "File:Heyl & Patterson Renneburg Rotary Dryer.jpg",
+   "desc": "This photo shows a Rotary Dryer, manufactured by the Renneburg Division of Heyl &amp; Patterson of Pittsburgh, PA."
+  }
+ },
+ "lab": {
+  "w": 1920,
+  "h": 1210,
+  "widths": [
+   640,
+   1024,
+   1600,
+   1920
+  ],
+  "focal": "45% 55%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Sarka Na kopci",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Infrared_spectrometer_for_screening_for_food_adulteration,_in_CAFIA_laboratory,_Czech_Republic.png",
+   "title": "File:Infrared spectrometer for screening for food adulteration, in CAFIA laboratory, Czech Republic.png",
+   "desc": "Infrared spectrometer for screening for food adulteration, in CAFIA laboratory, Czech Republic"
+  }
+ },
+ "boats-dusk": {
+  "w": 3840,
+  "h": 2560,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200
+  ],
+  "focal": "55% 60%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Susan Bell",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:The_last_few_fishing_boats_at_sunrise._(46027382081).jpg",
+   "title": "File:The last few fishing boats at sunrise. (46027382081).jpg",
+   "desc": "The last few fishing boats at sunrise."
+  }
+ },
+ "sunrise-sea": {
+  "w": 3840,
+  "h": 2560,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200
+  ],
+  "focal": "50% 50%",
+  "kind": "photo",
+  "credit": {
+   "artist": "Timothy A. Gonsalves",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Fishing_Boat_Sunrise_Uthandi_TN_Feb21_A7C_00093.jpg",
+   "title": "File:Fishing Boat Sunrise Uthandi TN Feb21 A7C 00093.jpg",
+   "desc": "Fishing boat in sunrise, off Uthandi beach, Chennai, Tamilnadu, India."
+  }
+ },
+ "harbour-vessel": {
+  "w": 3840,
+  "h": 2276,
+  "widths": [
+   640,
+   1024,
+   1600,
+   2400,
+   3200
+  ],
+  "focal": "50% 55%",
+  "kind": "photo",
+  "credit": {
+   "artist": "ImagePerson",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Fishing_Vessel_Marie_Virginia_New_York_Harbour_2018.jpg",
+   "title": "File:Fishing Vessel Marie Virginia New York Harbour 2018.jpg",
+   "desc": "Fishing Vessel Marie Virginia New York Harbour 2018"
+  }
+ }
+}

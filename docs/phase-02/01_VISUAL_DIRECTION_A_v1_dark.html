@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alkhaleej — Direction A · The Specimen Room</title>
+<meta name="description" content="Phase 02 visual exploration — Direction A. Fish meal 60%, 65%, 72% and crude fish oil from Kafr El-Sheikh, Egypt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0C3048; --navy-900:#0A2638; --abyss:#061A28; --abyss-2:#04121D;
+  --orange:#E38B06; --orange-600:#C67A05; --white:#fff;
+  --ink-2:rgba(255,255,255,.72); --ink-3:rgba(255,255,255,.52); --line:rgba(255,255,255,.12);
+  --ease:cubic-bezier(.16,1,.3,1); --ease-io:cubic-bezier(.65,0,.35,1);
+  --cam:520ms;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--abyss);color:var(--white);font-family:Montserrat,system-ui,sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.ar{font-family:Cairo,sans-serif;font-weight:400;letter-spacing:0}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cap{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.illus{position:absolute;right:14px;bottom:12px;font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.42);z-index:3;pointer-events:none}
+
+/* ---------- chrome ---------- */
+.top{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px clamp(16px,3vw,40px);transition:background .4s var(--ease),backdrop-filter .4s}
+.top.solid{background:rgba(4,18,29,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:16px}
+.brand img{height:30px;width:auto}
+.crumb{font-size:11px;color:var(--ink-3);letter-spacing:.04em;border-left:1px solid var(--line);padding-left:16px}
+.crumb b{color:var(--ink-2);font-weight:500}
+.actions{display:flex;align-items:center;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:10px;height:38px;padding:0 16px;border-radius:999px;font-size:12px;font-weight:500;letter-spacing:.02em;transition:background .25s,color .25s,border-color .25s}
+.pill.ghost{border:1px solid var(--line);color:var(--ink-2)}
+.pill.ghost:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.pill.cta{background:var(--orange);color:var(--navy);font-weight:600}
+.pill.cta:hover{background:#f09a1a}
+.dots{display:inline-grid;grid-template-columns:repeat(2,4px);gap:3px}
+.dots i{width:4px;height:4px;border-radius:50%;background:currentColor;display:block}
+
+/* index overlay */
+.index{position:fixed;inset:0;z-index:80;background:rgba(4,18,29,.96);backdrop-filter:blur(8px);display:grid;grid-template-columns:1fr 1fr;opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility 0s .45s}
+.index.open{opacity:1;visibility:visible;transition:opacity .45s var(--ease)}
+.index nav{padding:clamp(90px,14vh,140px) clamp(20px,6vw,90px);display:flex;flex-direction:column;gap:2px}
+.index nav a{display:flex;align-items:baseline;gap:22px;font-family:Cairo;font-weight:600;font-size:clamp(28px,4.2vw,54px);line-height:1.25;color:rgba(255,255,255,.4);transform:translateY(14px);opacity:0;transition:color .25s,transform .6s var(--ease),opacity .6s var(--ease)}
+.index.open nav a{transform:none;opacity:1}
+.index nav a span{font-family:Montserrat;font-size:12px;font-weight:500;color:var(--orange);letter-spacing:.1em;width:28px}
+.index nav a:hover{color:#fff}
+.index aside{border-left:1px solid var(--line);padding:clamp(90px,14vh,140px) clamp(20px,5vw,70px);display:flex;flex-direction:column;justify-content:flex-end;gap:18px;color:var(--ink-2);font-size:14px}
+.index .close{position:absolute;top:18px;right:clamp(16px,3vw,40px)}
+
+/* ---------- HERO / ROOM ---------- */
+.room{position:relative;height:100svh;min-height:620px;overflow:hidden;background:
+  radial-gradient(120% 80% at 50% 0%,#123a55 0%,var(--navy) 38%,var(--abyss) 78%,var(--abyss-2) 100%)}
+.room::before{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.camera{position:absolute;inset:0;transform-origin:0 0;transition:transform var(--cam) var(--ease);will-change:transform}
+.shelf{position:absolute;left:50%;top:50%;width:min(1060px,min(84vw,118vh));transform:translate(-50%,-60%);display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1.4vw,22px)}
+.shelf::after{content:"";position:absolute;left:-6%;right:-6%;top:calc(100% - 13.5%);height:clamp(10px,1.1vw,16px);background:linear-gradient(#18324a,#071824);box-shadow:0 18px 40px rgba(0,0,0,.55);z-index:0;border-radius:1px}
+.spec{position:relative;aspect-ratio:3/4.1;border:0;background:none;padding:0;z-index:1;--b:.34}
+.spec .ph{position:absolute;inset:0;overflow:hidden;-webkit-mask-image:radial-gradient(closest-side at 50% 54%,#000 52%,transparent 100%);mask-image:radial-gradient(closest-side at 50% 54%,#000 52%,transparent 100%)}
+.spec img{width:100%;height:100%;object-fit:cover;object-position:50% 52%;transform:scale(1.62);transform-origin:50% 56%;filter:brightness(var(--b)) saturate(calc(.55 + var(--b)*.45)) contrast(1.04);transition:filter .12s linear}
+.spec.flash img{animation:flash .7s var(--ease)}
+@keyframes flash{0%{filter:brightness(1.05)}22%{filter:brightness(1.55) contrast(1.1)}100%{filter:brightness(var(--b))}}
+.spec .tag{position:absolute;left:0;right:0;top:calc(100% - 4%);text-align:center;opacity:0;transform:translateY(6px);transition:opacity .3s var(--ease),transform .4s var(--ease);pointer-events:none}
+.spec .tag b{display:block;font-weight:500;font-size:13px;letter-spacing:.01em}
+.spec .tag small{font-size:11px;color:var(--ink-3)}
+.spec.lit .tag{opacity:1;transform:none}
+.spec .num{position:absolute;left:8%;top:6%;font-size:11px;color:var(--ink-3);letter-spacing:.12em;opacity:.0;transition:opacity .3s}
+.spec.lit .num{opacity:1}
+.lamp{position:absolute;left:0;top:0;width:46vmax;height:46vmax;margin:-23vmax 0 0 -23vmax;border-radius:50%;pointer-events:none;z-index:2;mix-blend-mode:screen;
+  background:radial-gradient(closest-side,rgba(255,214,150,.20),rgba(255,190,110,.08) 45%,transparent 72%);will-change:transform}
+.wall-light{position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(28vmax 22vmax at var(--wx,50%) var(--wy,40%),rgba(80,130,170,.22),transparent 70%)}
+.hero-copy{position:absolute;left:clamp(16px,3vw,40px);bottom:clamp(22px,5vh,48px);z-index:5;max-width:520px;transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.hero-copy h1{font-family:Montserrat;font-weight:400;font-size:clamp(26px,3.1vw,44px);line-height:1.12;letter-spacing:-.02em}
+.hero-copy h1 em{font-style:normal;color:var(--ink-3)}
+.hero-copy p{margin-top:12px;font-size:12px;color:var(--ink-3);letter-spacing:.02em;max-width:420px}
+.hero-meta{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(22px,5vh,48px);z-index:5;text-align:right;transition:opacity .4s}
+.hero-meta .ar{font-size:15px;color:var(--ink-2)}
+.hero-meta .cap{margin-top:4px}
+.room.zoom .hero-copy,.room.zoom .hero-meta{opacity:0;transform:translateY(8px);pointer-events:none}
+.room.zoom .spec .tag,.room.zoom .spec .num{opacity:0!important}
+body.zoomed .top .actions{opacity:0;pointer-events:none}
+.top .actions{transition:opacity .3s}
+.intro-veil{position:absolute;inset:0;background:var(--abyss-2);z-index:20;pointer-events:none;animation:veil 1.6s var(--ease) .1s forwards}
+@keyframes veil{to{opacity:0}}
+
+/* drawer */
+.drawer{position:absolute;top:0;right:0;bottom:0;width:min(400px,32vw);z-index:30;background:rgba(9,22,33,.94);border-left:1px solid var(--line);backdrop-filter:blur(10px);transform:translateX(102%);transition:transform var(--cam) var(--ease);display:flex;flex-direction:column;padding:96px 32px 28px}
+.room.zoom .drawer{transform:none}
+.drawer .idx{font-size:11px;letter-spacing:.14em;color:var(--ink-3)}
+.drawer h2{font-weight:500;font-size:26px;letter-spacing:-.01em;margin-top:14px;line-height:1.2}
+.drawer .ar{font-size:16px;color:var(--ink-2);margin-top:2px}
+.drawer .desc{font-size:13px;color:var(--ink-2);margin-top:14px}
+.drawer dl{margin-top:24px;border-top:1px solid var(--line)}
+.drawer dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
+.drawer dt{color:var(--ink-3)}
+.drawer dd{text-align:right;color:#fff;font-weight:400}
+.chip{display:inline-block;font-size:10px;letter-spacing:.06em;padding:3px 8px;border-radius:99px;border:1px solid rgba(227,139,6,.5);color:#f2b552;white-space:nowrap}
+.chip.v{border-color:rgba(255,255,255,.25);color:var(--ink-2)}
+.drawer .go{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:48px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.01em;transition:background .25s,transform .25s var(--ease)}
+.btn.primary{background:var(--orange);color:var(--navy)}
+.btn.primary:hover{background:#f09a1a}
+.btn.line{border:1px solid var(--line);color:var(--ink-2);font-weight:500}
+.btn.line:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.drawer .nav{display:flex;justify-content:space-between;margin-top:18px;font-size:12px;color:var(--ink-3)}
+.drawer .nav button:hover{color:#fff}
+.drawer [data-swap]{transition:opacity .25s var(--ease),transform .35s var(--ease)}
+.drawer.swapping [data-swap]{opacity:0;transform:translateY(6px)}
+.close-x{position:absolute;top:22px;right:24px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:18px;color:var(--ink-2)}
+.close-x:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+
+/* ---------- SECTIONS ---------- */
+section{position:relative}
+.wrap{width:min(1240px,100% - 2*clamp(16px,4vw,56px));margin-inline:auto}
+.sec{padding:clamp(90px,14vh,160px) 0}
+.kicker{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.kicker::before{content:"";width:22px;height:1px;background:var(--orange)}
+h2.t{font-family:Montserrat;font-weight:400;font-size:clamp(28px,3.4vw,48px);line-height:1.12;letter-spacing:-.02em;margin-top:18px;max-width:16ch}
+h2.t .ar{display:block;font-size:.5em;color:var(--ink-3);margin-top:10px;font-weight:400}
+.lede{font-size:clamp(15px,1.15vw,17px);color:var(--ink-2);max-width:56ch;margin-top:20px}
+
+/* light-on reveal */
+.lights{--p:0}
+.lights img{filter:brightness(calc(.15 + var(--p)*.85)) saturate(calc(.4 + var(--p)*.6));transform:scale(calc(1.06 - var(--p)*.06));transition:filter 1.4s var(--ease),transform 1.8s var(--ease)}
+.lights.on{--p:1}
+.rise{opacity:0;transform:translateY(22px);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
+.rise.on{opacity:1;transform:none}
+.rise.d1{transition-delay:.08s}.rise.d2{transition-delay:.16s}.rise.d3{transition-delay:.24s}
+
+/* house */
+.house{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,100px);align-items:center}
+.house .frame{aspect-ratio:4/4.6}
+.house .frame img{object-position:62% 50%}
+.frame{position:relative;overflow:hidden;border-radius:2px;aspect-ratio:16/10}
+.frame img{width:100%;height:100%;object-fit:cover}
+.label{border-top:1px solid var(--line)}
+.label div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px}
+.label dt{color:var(--ink-3);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding-top:2px}
+.label dd{color:#fff}
+
+/* source (spotlit image) */
+.source{height:100svh;min-height:560px;overflow:hidden}
+.source img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.source .dark{position:absolute;inset:0;background:radial-gradient(24vmax 24vmax at var(--sx,60%) var(--sy,40%),rgba(4,18,29,0) 0%,rgba(4,18,29,.55) 55%,rgba(4,18,29,.9) 100%);transition:background .1s}
+.source .txt{position:absolute;left:clamp(16px,4vw,56px);bottom:clamp(40px,9vh,100px);max-width:520px;z-index:2}
+.source .hint{position:absolute;right:clamp(16px,4vw,56px);top:110px;z-index:2}
+
+/* corridor (process) */
+.corridor{height:calc(var(--n,9) * 62vh + 100vh)}
+.corridor .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.corridor .head{position:absolute;top:clamp(80px,12vh,120px);left:clamp(16px,4vw,56px);right:clamp(16px,4vw,56px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;z-index:2}
+.track{display:flex;gap:clamp(18px,2.4vw,36px);padding-left:max(clamp(16px,4vw,56px),calc(50vw - 170px));will-change:transform;align-items:flex-end;margin-top:90px}
+.station{flex:0 0 clamp(250px,24vw,340px);opacity:.28;transform:scale(.94);transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.station.lit{opacity:1;transform:none}
+.station .im{position:relative;aspect-ratio:4/3;overflow:hidden;background:#0a1d2b;border-radius:2px}
+.station .im img{width:100%;height:100%;object-fit:cover}
+.station .im .glyph{position:absolute;inset:0;display:grid;place-items:center}
+.station .no{font-size:11px;letter-spacing:.14em;color:var(--orange);margin-top:18px;font-weight:500}
+.station h3{font-weight:500;font-size:18px;margin-top:6px}
+.station p{font-size:13px;color:var(--ink-2);margin-top:6px;max-width:32ch}
+.station .stream{display:inline-flex;gap:6px;margin-top:10px}
+.prog{position:absolute;left:clamp(16px,4vw,56px);right:clamp(16px,4vw,56px);bottom:clamp(26px,6vh,56px);height:1px;background:var(--line)}
+.prog i{position:absolute;left:0;top:0;height:1px;background:var(--orange);width:0}
+.prog span{position:absolute;right:0;top:-22px;font-size:11px;color:var(--ink-3);letter-spacing:.12em}
+
+/* quality plaques */
+.plaques{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:56px;border:1px solid var(--line)}
+.plaque{position:relative;background:var(--abyss);padding:34px 26px 30px;min-height:260px;overflow:hidden;transition:background .5s var(--ease)}
+.plaque::before{content:"";position:absolute;left:50%;top:-40%;width:140%;aspect-ratio:1;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,200,120,.16),transparent);opacity:0;transition:opacity .5s var(--ease)}
+.plaque:hover::before,.plaque:focus-within::before{opacity:1}
+.plaque:hover{background:#08202f}
+.plaque b{display:block;font-weight:500;font-size:20px;position:relative}
+.plaque .ar{display:block;color:var(--ink-3);font-size:14px;position:relative}
+.plaque p{font-size:13px;color:var(--ink-2);margin-top:18px;position:relative}
+.plaque .r{position:absolute;left:26px;bottom:24px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.note{margin-top:22px;font-size:12px;color:var(--ink-3)}
+
+/* markets */
+.markets{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,90px);align-items:center}
+.ask{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.ask li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-2);display:flex;gap:12px}
+.ask li span{color:var(--orange);font-size:11px;padding-top:2px;letter-spacing:.08em}
+
+/* contact */
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,100px)}
+.cards{margin-top:34px;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line)}
+.cards a,.cards div{background:var(--abyss);padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:14px;transition:background .3s}
+.cards a:hover{background:#0a2131}
+.cards small{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.cards .arrow{color:var(--orange)}
+form.rfq{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.w{grid-column:1/-1}
+.f label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.f label i{color:var(--orange);font-style:normal}
+.f input,.f select,.f textarea{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:2px;color:#fff;font:inherit;font-size:14px;padding:13px 14px;transition:border-color .25s,background .25s}
+.f select option{background:var(--abyss)}
+.f textarea{min-height:110px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--orange);background:rgba(255,255,255,.05)}
+.f .err{font-size:11px;color:#f4b860;min-height:0}
+.f.bad input,.f.bad select{border-color:#c9822a}
+.consent{grid-column:1/-1;display:flex;gap:12px;font-size:12px;color:var(--ink-2);align-items:flex-start}
+.consent input{margin-top:3px;accent-color:var(--orange)}
+.formnote{grid-column:1/-1;font-size:12px;color:var(--ink-3)}
+.formmsg{grid-column:1/-1;font-size:13px;color:#f2c27a;min-height:20px}
+
+footer{border-top:1px solid var(--line);padding:56px 0 34px}
+.foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+.foot img{height:40px;width:auto}
+.foot p,.foot a{font-size:13px;color:var(--ink-2)}
+.foot nav{display:flex;flex-direction:column;gap:8px}
+.foot a:hover{color:#fff}
+.legal{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-3)}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .crumb{display:none}
+  .house,.markets,.contact{grid-template-columns:1fr}
+  .plaques{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .index{grid-template-columns:1fr}.index aside{display:none}
+}
+@media (max-width:760px){
+  .top{padding:14px 16px}
+  .brand img{height:26px}
+  .pill.ghost .lbl{display:none}
+  .pill{height:36px;padding:0 13px}
+  /* room becomes a snap carousel */
+  .room{height:auto;min-height:100svh;padding:96px 0 0}
+  .camera{position:relative;transform:none!important}
+  .shelf{position:relative;left:auto;top:auto;transform:none;width:auto;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:0;padding:0 11vw 64px;scrollbar-width:none}
+  .shelf::-webkit-scrollbar{display:none}
+  .shelf::after{display:none}
+  .spec{flex:0 0 78vw;scroll-snap-align:center}
+  .spec .tag{top:auto;bottom:-6px}
+  .lamp{display:none}
+  .hero-copy{position:relative;left:auto;bottom:auto;padding:8px 16px 0}
+  .hero-meta{position:relative;right:auto;bottom:auto;text-align:left;padding:14px 16px 32px}
+  .drawer{position:fixed;top:auto;left:0;right:0;bottom:0;width:auto;max-height:86svh;overflow:auto;border-left:0;border-top:1px solid var(--line);border-radius:16px 16px 0 0;padding:28px 20px 22px;transform:translateY(102%)}
+  .room.zoom .drawer{transform:none}
+  .room.zoom .hero-copy,.room.zoom .hero-meta{opacity:1;transform:none}
+  .corridor{height:auto}
+  .corridor .pin{position:relative;height:auto;padding:90px 0 40px}
+  .corridor .head{position:relative;top:auto;left:auto;right:auto;padding:0 16px;flex-direction:column;align-items:flex-start}
+  .track{flex-direction:column;padding:0 16px;margin-top:40px;transform:none!important;gap:44px}
+  .station{flex:none;width:100%}
+  .prog{display:none}
+  .plaques{grid-template-columns:1fr}
+  .ask{grid-template-columns:1fr}
+  form.rfq{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .source .hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rise{opacity:1;transform:none}
+  .lights{--p:1}
+}
+</style>
+</head>
+<body>
+<a class="sr" href="#main">Skip to content</a>
+
+<header class="top" id="top">
+  <div class="brand">
+    <a href="#room" aria-label="Alkhaleej Fish Manufacturing — home"><img src="assets/logo-reversed.png" alt="الخليج لصناعة الأسماك — Alkhaleej Fish Manufacturing"></a>
+    <span class="crumb"><b>Specimen collection</b> · Fish meal &amp; crude fish oil</span>
+  </div>
+  <div class="actions">
+    <button class="pill ghost" id="openIndex" aria-haspopup="dialog" aria-controls="index" aria-expanded="false"><span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Index</span></button>
+    <a class="pill cta" href="#contact" data-rfq="">Request a quote</a>
+  </div>
+</header>
+
+<div class="index" id="index" role="dialog" aria-modal="true" aria-label="Site index">
+  <button class="pill ghost close" id="closeIndex">Close ✕</button>
+  <nav>
+    <a href="#room"><span>01</span>Specimens</a>
+    <a href="#house"><span>02</span>The company</a>
+    <a href="#source"><span>03</span>From the sea</a>
+    <a href="#line"><span>04</span>Manufacturing</a>
+    <a href="#quality"><span>05</span>Quality</a>
+    <a href="#markets"><span>06</span>International</a>
+    <a href="#contact"><span>07</span>Contact</a>
+  </nav>
+  <aside>
+    <span class="ar" style="font-size:20px;color:#fff">من البحر إلى الصناعة</span>
+    <span>Fish meal 60% · 65% · 72% and crude fish oil, manufactured in Kafr El-Sheikh, Egypt.</span>
+    <a href="mailto:alkhaleej@nobelbusinessgroup.com" style="color:#f2b552">alkhaleej@nobelbusinessgroup.com</a>
+  </aside>
+</div>
+
+<main id="main">
+<!-- ================= ROOM ================= -->
+<section class="room" id="room" aria-label="Product specimens">
+  <div class="intro-veil" aria-hidden="true"></div>
+  <div class="wall-light" id="wallLight" aria-hidden="true"></div>
+  <div class="camera" id="camera">
+    <div class="shelf" id="shelf"></div>
+    <div class="lamp" id="lamp" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-copy">
+    <h1>Four marine ingredients.<br><em>Seen in the right light.</em></h1>
+    <p>Fish meal in 60%, 65% and 72% commercial protein grades, and crude fish oil — processed from whole marine fish in Kafr El-Sheikh, Egypt. <span id="hintTxt">Move the light across the shelf. Select a specimen for details.</span></p>
+  </div>
+  <div class="hero-meta">
+    <div class="ar" dir="rtl" lang="ar">من البحر إلى الصناعة</div>
+    <div class="cap">From sea to industry · Est. 2025</div>
+  </div>
+  <span class="illus">Illustrative visualisation</span>
+
+  <aside class="drawer" id="drawer" aria-live="polite" aria-label="Product details">
+    <button class="close-x" id="closeDrawer" aria-label="Back to the shelf">✕</button>
+    <div class="idx" data-swap id="dIdx">01 / 04</div>
+    <h2 data-swap id="dName">Fish Meal 60%</h2>
+    <div class="ar" dir="rtl" lang="ar" style="text-align:left" data-swap id="dAr">مسحوق أسماك 60%</div>
+    <p class="desc" data-swap id="dDesc"></p>
+    <dl data-swap id="dRows"></dl>
+    <div class="go">
+      <a class="btn primary" href="#contact" id="dCta">Request a quote for this grade</a>
+      <div class="nav"><button id="prev">‹ Previous</button><button id="next">Next ›</button></div>
+    </div>
+  </aside>
+</section>
+
+<!-- ================= HOUSE ================= -->
+<section class="sec" id="house">
+  <div class="wrap house">
+    <div class="frame lights" data-lights>
+      <img src="assets/vessel.jpg" alt="Illustrative visualisation of a fishing vessel at sea at blue hour" loading="lazy">
+      <span class="illus">Illustrative visualisation</span>
+    </div>
+    <div>
+      <div class="kicker rise">The company</div>
+      <h2 class="t rise d1">A new marine ingredients plant, built for feed manufacturing.<span class="ar">الخليج لصناعة الأسماك</span></h2>
+      <p class="lede rise d2">Established in 2025 in Kafr El-Sheikh, Egypt, Alkhaleej Fish Manufacturing produces fish meal and crude fish oil. We process whole marine fish, including sardines, sourced through our fishing vessel operations and other marine supply channels, into ingredients used in feed manufacturing.</p>
+      <dl class="label rise d3" style="margin-top:34px">
+        <div><dt>Established</dt><dd>2025</dd></div>
+        <div><dt>Location</dt><dd>Kafr El-Sheikh Governorate, Egypt</dd></div>
+        <div><dt>Raw material</dt><dd>Whole marine fish, including sardines</dd></div>
+        <div><dt>Output</dt><dd>Fish meal 60 · 65 · 72% &nbsp;/&nbsp; Crude fish oil</dd></div>
+        <div><dt>Certifications</dt><dd><span class="chip">Pending verification</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOURCE ================= -->
+<section class="source" id="source" aria-label="From the sea">
+  <img src="assets/sardine-school.jpg" alt="Illustrative visualisation of a school of sardines in deep blue water" loading="lazy">
+  <div class="dark" id="sourceDark" aria-hidden="true"></div>
+  <span class="cap hint">Move the light through the water</span>
+  <div class="txt">
+    <div class="kicker rise">From the sea</div>
+    <h2 class="t rise d1">Whole marine fish. Own vessels, plus port and cold-storage supply.</h2>
+    <p class="lede rise d2">Supply includes fishing trips by the company's own vessels — in the Mediterranean Sea, the high seas and other marine fishing grounds — and fish arriving from ports and refrigerated storage facilities.</p>
+  </div>
+  <span class="illus">Illustrative visualisation</span>
+</section>
+
+<!-- ================= LINE (corridor) ================= -->
+<section class="corridor" id="line" aria-label="Manufacturing process" style="--n:9">
+  <div class="pin" id="pin">
+    <div class="head">
+      <div>
+        <div class="kicker">Manufacturing</div>
+        <h2 class="t" style="max-width:22ch">One input. Two output streams.</h2>
+      </div>
+      <p class="cap" style="max-width:340px;text-transform:none;letter-spacing:.02em;font-size:12px">Confirmed process steps only. Equipment models, temperatures and capacities are published once verified.</p>
+    </div>
+    <div class="track" id="track"></div>
+    <div class="prog" aria-hidden="true"><i id="progBar"></i><span id="progTxt">01 / 09</span></div>
+  </div>
+</section>
+
+<!-- ================= QUALITY ================= -->
+<section class="sec" id="quality">
+  <div class="wrap">
+    <div class="kicker rise">Quality</div>
+    <h2 class="t rise d1" style="max-width:20ch">What the light measures.</h2>
+    <p class="lede rise d2">Protein, moisture, fat and ash are key parameters used to assess fish meal. Available sample measurements cover these indicators during production and on finished-product samples.</p>
+    <div class="plaques">
+      <div class="plaque rise" tabindex="0"><b>Protein</b><span class="ar">البروتين</span><p>The basis of the commercial grade — 60%, 65% or 72% — and the first figure a feed formulator reads.</p><span class="r">Datasheet on request</span></div>
+      <div class="plaque rise d1" tabindex="0"><b>Moisture</b><span class="ar">الرطوبة</span><p>Controlled in drying and cooling; it shapes stability in storage and transport.</p><span class="r">Datasheet on request</span></div>
+      <div class="plaque rise d2" tabindex="0"><b>Fat</b><span class="ar">الدهون</span><p>Protected by antioxidant addition after cooling, to help guard fats against oxidation.</p><span class="r">Datasheet on request</span></div>
+      <div class="plaque rise d3" tabindex="0"><b>Ash</b><span class="ar">الرماد</span><p>The mineral fraction, read alongside protein when comparing marine meals.</p><span class="r">Datasheet on request</span></div>
+    </div>
+    <p class="note">Verified technical specifications and certificates of analysis will be provided when approved. No sample readings are presented as product specifications.</p>
+  </div>
+</section>
+
+<!-- ================= MARKETS ================= -->
+<section class="sec" id="markets" style="padding-top:0">
+  <div class="wrap markets">
+    <div class="frame lights" data-lights style="aspect-ratio:4/3.4">
+      <img src="assets/meal-macro.jpg" alt="Illustrative visualisation of fish meal on a steel sampling scoop" loading="lazy">
+      <span class="illus">Illustrative visualisation</span>
+    </div>
+    <div>
+      <div class="kicker rise">International inquiries</div>
+      <h2 class="t rise d1">Egyptian manufacturing, open to international buyers.</h2>
+      <p class="lede rise d2">We aim to build supply relationships with feed manufacturers, importers and distributors across international markets. Tell us what you need and we will discuss grade, volume, destination, and technical or commercial requirements.</p>
+      <ul class="ask rise d3">
+        <li><span>01</span>Destination country &amp; port</li>
+        <li><span>02</span>Product &amp; protein grade</li>
+        <li><span>03</span>Volume &amp; frequency</li>
+        <li><span>04</span>Packing preference</li>
+        <li><span>05</span>Documents required</li>
+        <li><span>06</span>Target delivery window</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec" id="contact" style="background:linear-gradient(var(--abyss),var(--abyss-2))">
+  <div class="wrap contact">
+    <div>
+      <div class="kicker rise">Contact</div>
+      <h2 class="t rise d1">Request a quote.</h2>
+      <p class="lede rise d2">Looking for fish meal or crude fish oil for your business? Send your inquiry and our team will follow up.</p>
+      <div class="cards rise d3">
+        <a href="mailto:alkhaleej@nobelbusinessgroup.com"><span><small>Email</small>alkhaleej@nobelbusinessgroup.com</span><span class="arrow">→</span></a>
+        <a href="tel:+201096555525"><span><small>Phone</small><span dir="ltr">+20 109 655 5525</span></span><span class="arrow">→</span></a>
+        <a href="tel:+201060473790"><span><small>Phone</small><span dir="ltr">+20 106 047 3790</span></span><span class="arrow">→</span></a>
+        <div><span><small>Location</small>Kafr El-Sheikh, Egypt</span><span class="chip v">Full address pending</span></div>
+      </div>
+    </div>
+    <form class="rfq" id="rfq" novalidate>
+      <div class="f"><label for="a-company">Company <i>*</i></label><input id="a-company" name="company" autocomplete="organization" required><span class="err"></span></div>
+      <div class="f"><label for="a-name">Contact name <i>*</i></label><input id="a-name" name="name" autocomplete="name" required><span class="err"></span></div>
+      <div class="f"><label for="a-email">Business email <i>*</i></label><input id="a-email" name="email" type="email" autocomplete="email" required><span class="err"></span></div>
+      <div class="f"><label for="a-phone">Phone / WhatsApp</label><input id="a-phone" name="phone" type="tel" autocomplete="tel"><span class="err"></span></div>
+      <div class="f"><label for="a-country">Country <i>*</i></label><input id="a-country" name="country" autocomplete="country-name" required><span class="err"></span></div>
+      <div class="f"><label for="a-product">Product <i>*</i></label><select id="a-product" name="product" required><option value="">Select a product</option><option>Fish Meal 60%</option><option>Fish Meal 65%</option><option>Fish Meal 72%</option><option>Crude Fish Oil</option></select><span class="err"></span></div>
+      <div class="f"><label for="a-qty">Quantity</label><input id="a-qty" name="quantity" placeholder="e.g. tonnes per shipment"><span class="err"></span></div>
+      <div class="f"><label for="a-port">Destination port</label><input id="a-port" name="port"><span class="err"></span></div>
+      <div class="f w"><label for="a-msg">Requirements</label><textarea id="a-msg" name="message" placeholder="Frequency, packing, documents required…"></textarea></div>
+      <label class="consent"><input type="checkbox" name="consent" required> <span>I agree that Alkhaleej Fish Manufacturing may use these details to respond to my inquiry.</span></label>
+      <button class="btn primary" type="submit" style="grid-column:1/-1">Prepare inquiry email</button>
+      <p class="formnote">Prototype: no server is connected. Submitting opens your email app with the inquiry addressed to alkhaleej@nobelbusinessgroup.com.</p>
+      <p class="formmsg" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><img src="assets/logo-reversed.png" alt="الخليج لصناعة الأسماك"><p style="margin-top:18px;max-width:34ch">Alkhaleej Fish Manufacturing — marine ingredients for feed manufacturing. Kafr El-Sheikh, Egypt.</p></div>
+      <nav aria-label="Footer"><a href="#room">Products</a><a href="#house">The company</a><a href="#line">Manufacturing</a><a href="#quality">Quality</a><a href="#markets">International</a></nav>
+      <nav aria-label="Contact"><a href="mailto:alkhaleej@nobelbusinessgroup.com">alkhaleej@nobelbusinessgroup.com</a><a href="tel:+201096555525" dir="ltr" style="text-align:left">+20 109 655 5525</a><a href="tel:+201060473790" dir="ltr" style="text-align:left">+20 106 047 3790</a><a href="#contact" style="color:#f2b552">Request a quote →</a></nav>
+    </div>
+    <div class="legal"><span>© <span id="yr"></span> Alkhaleej Fish Manufacturing · Legal entity details pending verification · Privacy notice pending</span><span>Phase 02 · Direction A · Images are illustrative visualisations, not photographs of Alkhaleej facilities or products.</span></div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MOBILE = () => matchMedia('(max-width:760px)').matches;
+const P = [
+ {name:'Fish Meal 60%',ar:'مسحوق أسماك 60%',img:'assets/jar-60.jpg',grade:'60%',fam:'Fish meal',pack:'50 kg bags',desc:'Marine-origin feed ingredient offered as a 60% commercial protein grade, for feed formulations.'},
+ {name:'Fish Meal 65%',ar:'مسحوق أسماك 65%',img:'assets/jar-65.jpg',grade:'65%',fam:'Fish meal',pack:'50 kg bags',desc:'Marine-origin feed ingredient offered as a 65% commercial protein grade, for feed formulations.'},
+ {name:'Fish Meal 72%',ar:'مسحوق أسماك 72%',img:'assets/jar-72.jpg',grade:'72%',fam:'Fish meal',pack:'50 kg bags',desc:'Marine-origin feed ingredient offered as a 72% commercial protein grade, for feed formulations.'},
+ {name:'Crude Fish Oil',ar:'زيت الأسماك الخام',img:'assets/oil-vessel.jpg',grade:null,fam:'Marine oil',pack:'Drums',desc:'Oil recovered during marine fish processing and supplied in drums, for applications suited to its technical specifications.'}
+];
+const rowsFor = p => [
+  ['Family',p.fam],
+  p.grade?['Commercial protein grade',p.grade]:['Form','Crude oil'],
+  ['Packing',p.pack + (p.grade?'':' <span class="chip">Capacity pending</span>')],
+  ['Raw material','Whole marine fish, incl. sardines'],
+  ['Application','Feed manufacturing'],
+  ['Technical datasheet','<span class="chip">Available on request</span>'],
+  ['Certificate of analysis','<span class="chip">Pending verification</span>']
+].map(r=>`<div><dt>${r[0]}</dt><dd>${r[1]}</dd></div>`).join('');
+
+/* ---- build shelf ---- */
+const shelf=document.getElementById('shelf');
+P.forEach((p,i)=>{
+  const b=document.createElement('button');
+  b.className='spec'; b.type='button'; b.dataset.i=i;
+  b.setAttribute('aria-label',`${p.name} — view details`);
+  b.innerHTML=`<span class="num">0${i+1}</span><span class="ph"><img src="${p.img}" alt="Illustrative visualisation: ${p.name} specimen" ${i?'':'fetchpriority="high"'}></span><span class="tag"><b>${p.name}</b><small>${p.pack} · ${p.fam}</small></span>`;
+  shelf.appendChild(b);
+});
+const specs=[...shelf.children];
+
+/* ---- light that follows the cursor ---- */
+const room=document.getElementById('room'), lamp=document.getElementById('lamp'), wall=document.getElementById('wallLight'), camera=document.getElementById('camera');
+let tx=innerWidth*.5, ty=innerHeight*.45, lx=tx, ly=ty, idleT=0, pointerIn=false, scale=1, camX=0, camY=0, current=-1, zoomed=false;
+room.addEventListener('pointermove',e=>{ if(e.pointerType!=='mouse')return; const r=room.getBoundingClientRect(); tx=e.clientX-r.left; ty=e.clientY-r.top; pointerIn=true; idleT=0; });
+room.addEventListener('pointerleave',()=>pointerIn=false);
+function toLocal(x,y){ return [(x-camX)/scale,(y-camY)/scale]; }
+function tick(t){
+  if(!MOBILE()){
+    if(!pointerIn && !zoomed){ idleT+=1; // gentle autonomous sweep when idle (like the reel's demo cursor)
+      const w=room.clientWidth, h=room.clientHeight; tx=w*(.5+.32*Math.sin(t/2600)); ty=h*(.46+.06*Math.sin(t/1700)); }
+    if(zoomed && current>-1){ const c=centerOf(current); tx=c[0]*scale+camX; ty=c[1]*scale+camY; }
+    const k=RM?1:.12; lx+=(tx-lx)*k; ly+=(ty-ly)*k;
+    const [ox,oy]=toLocal(lx,ly);
+    lamp.style.transform=`translate(${ox}px,${oy}px)`;
+    wall.style.setProperty('--wx',lx+'px'); wall.style.setProperty('--wy',ly+'px');
+    let best=-1,bd=1e9;
+    specs.forEach((s,i)=>{
+      const [cx,cy]=centerOf(i); const sx=cx*scale+camX, sy=cy*scale+camY;
+      const d=Math.hypot(sx-lx,(sy-ly)*1.25); const R=Math.max(room.clientWidth*.16,180)*Math.max(1,scale*.8);
+      const f=Math.max(0,1-d/R); const b=.30+ f*f*.95;
+      s.style.setProperty('--b',b.toFixed(3));
+      if(d<bd){bd=d;best=i}
+    });
+    const R2=Math.max(room.clientWidth*.09,110)*scale;
+    specs.forEach((s,i)=>{ const on = zoomed? i===current : (i===best && bd<R2);
+      if(on && !s.classList.contains('lit')){ s.classList.add('lit'); if(!RM){s.classList.remove('flash'); void s.offsetWidth; s.classList.add('flash');} }
+      if(!on) s.classList.remove('lit'); });
+  }
+  requestAnimationFrame(tick);
+}
+const centerCache=[]; function measure(){ specs.forEach((s,i)=>{ centerCache[i]=[shelf.offsetLeft - shelf.offsetWidth/2 + s.offsetLeft + s.offsetWidth/2, shelf.offsetTop - shelf.offsetHeight*.46 + s.offsetTop + s.offsetHeight*.5]; }); }
+function centerOf(i){ return centerCache[i]; }
+addEventListener('resize',()=>{measure(); if(zoomed) focus(current,false)});
+measure(); requestAnimationFrame(tick);
+
+/* mobile: light the centered specimen */
+const io=new IntersectionObserver(es=>{ if(!MOBILE())return; es.forEach(e=>{ e.target.classList.toggle('lit',e.isIntersecting); e.target.style.setProperty('--b', e.isIntersecting? '1.05':'.4'); }); },{root:shelf,threshold:.6});
+specs.forEach(s=>io.observe(s));
+if(MOBILE()) document.getElementById('hintTxt').textContent='Swipe the shelf. Tap a specimen for details.';
+
+/* ---- camera dolly + drawer ---- */
+const drawer=document.getElementById('drawer');
+function fill(i){
+  const p=P[i];
+  dIdx.textContent=`0${i+1} / 04`; dName.textContent=p.name; dAr.textContent=p.ar; dDesc.textContent=p.desc; dRows.innerHTML=rowsFor(p);
+  dCta.textContent = p.grade? 'Request a quote for this grade':'Request a quote for crude fish oil';
+  dCta.dataset.product=p.name;
+}
+function focus(i,animateSwap=true){
+  current=(i+4)%4; zoomed=true; room.classList.add('zoom'); document.body.classList.add('zoomed');
+  if(animateSwap && drawer.dataset.open){ drawer.classList.add('swapping'); setTimeout(()=>{fill(current);drawer.classList.remove('swapping')},220);} else fill(current);
+  drawer.dataset.open=1;
+  if(!MOBILE()){
+    const s = innerWidth<1200?1.55:1.75;
+    const [cx,cy]=centerOf(current);
+    const drawerW=drawer.offsetWidth; const targetX=(room.clientWidth-drawerW)*.5, targetY=room.clientHeight*.5;
+    scale=s; camX=targetX-cx*s; camY=targetY-cy*s;
+    camera.style.transform=`translate(${camX}px,${camY}px) scale(${s})`;
+  }
+  document.getElementById('closeDrawer').focus({preventScroll:true});
+}
+function release(){
+  zoomed=false; room.classList.remove('zoom'); document.body.classList.remove('zoomed'); delete drawer.dataset.open; scale=1; camX=0; camY=0; camera.style.transform='';
+  if(current>-1) specs[current].focus({preventScroll:true}); current=-1;
+}
+specs.forEach((s,i)=>s.addEventListener('click',()=>{ if(zoomed && current===i) return; focus(i); }));
+closeDrawer.onclick=release; prev.onclick=()=>focus(current-1); next.onclick=()=>focus(current+1);
+addEventListener('keydown',e=>{
+  if(document.getElementById('index').classList.contains('open')){ if(e.key==='Escape') closeIdx(); return; }
+  if(!zoomed) return;
+  if(e.key==='Escape') release(); if(e.key==='ArrowRight') focus(current+1); if(e.key==='ArrowLeft') focus(current-1);
+});
+dCta.addEventListener('click',e=>{ const prod=dCta.dataset.product; release(); setProduct(prod); });
+function setProduct(name){ const sel=document.getElementById('a-product'); if(name) sel.value=name; }
+document.querySelectorAll('[data-rfq]').forEach(a=>a.addEventListener('click',()=>{ if(zoomed) release(); }));
+
+/* ---- header + index ---- */
+const top=document.getElementById('top');
+addEventListener('scroll',()=>top.classList.toggle('solid',scrollY>innerHeight*.6),{passive:true});
+const idx=document.getElementById('index'), openB=document.getElementById('openIndex');
+function openIdx(){ idx.classList.add('open'); openB.setAttribute('aria-expanded','true'); idx.querySelector('nav a').focus(); }
+function closeIdx(){ idx.classList.remove('open'); openB.setAttribute('aria-expanded','false'); openB.focus(); }
+openB.onclick=openIdx; document.getElementById('closeIndex').onclick=closeIdx;
+idx.querySelectorAll('nav a').forEach((a,k)=>{ a.style.transitionDelay=(k*40)+'ms'; a.addEventListener('click',()=>{ idx.classList.remove('open'); openB.setAttribute('aria-expanded','false'); if(zoomed) release(); }); });
+
+/* ---- reveals ---- */
+const rv=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); rv.unobserve(e.target);} }),{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rise,[data-lights]').forEach(el=>rv.observe(el));
+
+/* ---- source spotlight ---- */
+const src=document.getElementById('source'), dark=document.getElementById('sourceDark'); let sx=.62,sy=.4,stx=.62,sty=.4;
+src.addEventListener('pointermove',e=>{ const r=src.getBoundingClientRect(); stx=(e.clientX-r.left)/r.width; sty=(e.clientY-r.top)/r.height; });
+(function sl(t){ if(!src.matches(':hover')){ stx=.6+.2*Math.sin(t/3000); sty=.38+.08*Math.cos(t/2300);} sx+=(stx-sx)*.08; sy+=(sty-sy)*.08; dark.style.setProperty('--sx',(sx*100)+'%'); dark.style.setProperty('--sy',(sy*100)+'%'); requestAnimationFrame(sl); })(0);
+
+/* ---- corridor process ---- */
+const S=[
+ ['Receiving','Whole marine fish arrive from port or refrigerated storage into the receiving pit.','assets/sardines-ice.jpg'],
+ ['Conveying','Raw fish are mechanically conveyed toward the cooker.',null,'conv'],
+ ['Indirect steam cooking','Fish are cooked by indirect steam in a double-jacket cooker.','assets/steam.jpg'],
+ ['Pressing','Mechanical pressing separates press cake (solids) from press liquor (liquids).',null,'press','both'],
+ ['Oil–water separation','The liquid stream is separated to recover crude fish oil.','assets/oil-vessel.jpg',null,'oil'],
+ ['Drying','Press cake enters the dryer.','assets/meal-macro.jpg',null,'meal'],
+ ['Cooling & conditioning','A conveying belt carries the meal to cooling, aeration and mixing.',null,'cool','meal'],
+ ['Antioxidant addition','Antioxidant is added to help protect fats from oxidation.',null,'anti','meal'],
+ ['Packing','Fish meal is packed in 50 kg bags; crude fish oil in drums.','assets/sacks.jpg',null,'both']
+];
+const glyph={
+ conv:'<svg width="70%" viewBox="0 0 200 80" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2"><path d="M10 60 L190 20"/><circle cx="20" cy="58" r="6"/><circle cx="180" cy="22" r="6"/><path d="M40 52l10-2M70 46l10-2M100 39l10-2M130 33l10-2" stroke="#E38B06"/></svg>',
+ press:'<svg width="70%" viewBox="0 0 200 90" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2"><path d="M10 45h70"/><rect x="80" y="25" width="40" height="40"/><path d="M120 40c30 0 40-25 70-25" stroke="#E38B06"/><path d="M120 50c30 0 40 25 70 25"/><text x="150" y="12" fill="#E38B06" stroke="none" font-size="9" font-family="Montserrat">cake</text><text x="150" y="88" fill="rgba(255,255,255,.6)" stroke="none" font-size="9" font-family="Montserrat">liquor</text></svg>',
+ cool:'<svg width="60%" viewBox="0 0 200 80" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2"><path d="M20 60h160"/><path d="M40 50c10-20 20-20 30 0s20 20 30 0 20-20 30 0 20 20 30 0" stroke="#E38B06"/></svg>',
+ anti:'<svg width="56%" viewBox="0 0 200 90" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.2"><path d="M60 15h80v20l20 45H40l20-45z"/><circle cx="100" cy="58" r="4" fill="#E38B06" stroke="none"/><path d="M100 0v15" stroke="#E38B06"/></svg>'
+};
+const track=document.getElementById('track');
+S.forEach((s,i)=>{ const d=document.createElement('article'); d.className='station';
+  const streams = s[4]==='oil'?'<span class="chip">Oil stream</span>':s[4]==='meal'?'<span class="chip v">Meal stream</span>':s[4]==='both'?'<span class="chip v">Meal stream</span><span class="chip">Oil stream</span>':'';
+  d.innerHTML=`<div class="im">${s[2]?`<img src="${s[2]}" alt="Illustrative visualisation for ${s[0].toLowerCase()}" loading="lazy">`:`<div class="glyph">${glyph[s[3]]}</div>`}</div><div class="no">${String(i+1).padStart(2,'0')}</div><h3>${s[0]}</h3><p>${s[1]}</p><div class="stream">${streams}</div>`;
+  track.appendChild(d); });
+const stations=[...track.children], corridor=document.getElementById('line');
+function corr(){
+  if(MOBILE()){ stations.forEach(s=>s.classList.add('lit')); return; }
+  const r=corridor.getBoundingClientRect(); const total=corridor.offsetHeight-innerHeight; const p=Math.min(1,Math.max(0,-r.top/total));
+  const step=stations[0].offsetWidth+parseFloat(getComputedStyle(track).gap);
+  const x=p*(stations.length-1)*step; track.style.transform=`translateX(${-x}px)`;
+  const a=Math.round(p*(stations.length-1)); stations.forEach((s,i)=>s.classList.toggle('lit',i===a));
+  progBar.style.width=(p*100)+'%'; progTxt.textContent=`${String(a+1).padStart(2,'0')} / 09`;
+}
+addEventListener('scroll',corr,{passive:true}); addEventListener('resize',corr); corr();
+
+/* ---- form ---- */
+const form=document.getElementById('rfq'), msg=document.getElementById('formMsg');
+form.addEventListener('submit',e=>{
+  e.preventDefault(); let ok=true;
+  form.querySelectorAll('.f').forEach(f=>{ const el=f.querySelector('input,select,textarea'); const er=f.querySelector('.err'); let m='';
+    if(el.required && !el.value.trim()) m='Required'; else if(el.type==='email' && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) m='Enter a valid email';
+    f.classList.toggle('bad',!!m); if(er) er.textContent=m; if(m) ok=false; });
+  const c=form.querySelector('[name=consent]'); const fieldsOk=ok; if(!c.checked) ok=false;
+  if(!ok){ msg.textContent = !fieldsOk ? 'Please complete the highlighted fields.' : 'Please confirm consent to be contacted.'; form.querySelector('.bad input,.bad select')?.focus(); return; }
+  const d=Object.fromEntries(new FormData(form));
+  const body=`Company: ${d.company}\nContact: ${d.name}\nEmail: ${d.email}\nPhone/WhatsApp: ${d.phone||'-'}\nCountry: ${d.country}\nProduct: ${d.product}\nQuantity: ${d.quantity||'-'}\nDestination port: ${d.port||'-'}\n\n${d.message||''}`;
+  location.href=`mailto:alkhaleej@nobelbusinessgroup.com?subject=${encodeURIComponent('Quote request — '+d.product)}&body=${encodeURIComponent(body)}`;
+  msg.textContent='Your email app should now open with the inquiry addressed to alkhaleej@nobelbusinessgroup.com.';
+});
+document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
