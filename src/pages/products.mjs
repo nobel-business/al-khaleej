@@ -8,13 +8,18 @@ import { specRows, compare } from "../components/spec.mjs";
 
 export const products = (lang) => {
   const u = UI[lang], ar = lang === "ar";
-  const body = `<section class="ra hf" id="specimens" data-env="${ENV.paper}" aria-label="${ar ? "غرفة العيّنات" : "Specimen room"}">
-  <div class="ra-wall" aria-hidden="true"><span class="beam" style="--bx:6vw"></span><span class="beam b2" style="--bx:26vw"></span></div>
+  const wall = `<div class="ra-wall" aria-hidden="true"><span class="beam" style="--bx:6vw"></span><span class="beam b2" style="--bx:26vw"></span></div>`;
+  // two independent sections: the hero (copy + arched window) and the specimen room (shelf, light, camera, drawer)
+  const body = `<section class="ra ra-hero hf" data-env="${ENV.paper}" aria-label="${ar ? "المنتجات" : "Products"}">
+  ${wall}
   <div class="ra-window">${pic(lang, "hero-dawn", { eager: true, col: 46, mcol: 100, box: 1.6 })}</div>
-  <div class="ra-veil" aria-hidden="true"></div>
   <div class="ra-copy">${heroCopy(lang, { crumbs: crumb(lang, [u.nav.products]), title: ar ? "ستة منتجات بحرية،\nتحت ضوء الصباح." : "Six marine products,\nseen in first light.", size: "hero-m",
     lede: ar ? "مسحوق سمك بدرجات بروتين تجارية 60% و62% و65% و66% و72%، بنوعين عالي الدهن ومنخفض الدهن، وزيت سمك خام، من أسماك بحرية كاملة في كفر الشيخ، مصر." : "Fish meal in 60%, 62%, 65%, 66% and 72% commercial protein grades, in high-fat and low-fat types, and crude fish oil — processed from whole marine fish in Kafr El-Sheikh, Egypt.",
     actions: `<button type="button" class="btn primary" data-explore>${ar ? "استعرض العيّنات" : "View the specimens"} ${arr}</button><a class="btn line" href="#compare">${ar ? "قارن" : "Compare"}</a>` })}</div>
+</section>
+<section class="ra ra-products" id="specimens" data-env="${ENV.paper}" aria-label="${ar ? "غرفة العيّنات" : "Specimen room"}">
+  ${wall}
+  <div class="ra-veil" aria-hidden="true"></div>
   <div class="ra-band">
     <div class="ra-meta"><p class="hint"><i aria-hidden="true"></i><span>${ar ? "مرّر الضوء على الرف، واختر عيّنة لعرض تفاصيلها." : "Move the light along the shelf. Select a specimen for its details."}</span></p></div>
     <span class="ra-sill" aria-hidden="true"></span>

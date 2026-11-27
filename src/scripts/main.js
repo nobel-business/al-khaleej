@@ -310,7 +310,7 @@
       else if (e.key === "ArrowRight" || e.key === "ArrowLeft") { if (e.target.closest && e.target.closest("input,textarea,select")) return; show(cur + ((e.key === "ArrowRight") !== AR ? 1 : -1)); e.preventDefault(); }
     });
     addEventListener("resize", () => { if (cur > -1) dolly(cur); }, { passive: true });
-    const ex1 = $("[data-explore]", room); if (ex1) ex1.addEventListener("click", () => show(cur > -1 ? cur : 0));
+    const ex1 = $("[data-explore]"); if (ex1)   /* the button now lives in the hero section above the room */ ex1.addEventListener("click", () => show(cur > -1 ? cur : 0));
     const h = location.hash.slice(1), k0 = specs.findIndex((x) => x.dataset.slug === h); if (k0 > -1) setTimeout(() => show(k0), 300);
   });
 
