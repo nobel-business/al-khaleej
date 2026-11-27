@@ -44,7 +44,6 @@ ${lang === "ar" ? `<script>(function(d){var h=d.documentElement;if(!d.fonts||!d.
       <button class="burger" type="button" aria-label="${u.menu}" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button>
     </div>
   </div>
-  <span class="progress" aria-hidden="true"></span>
 </header>
 <nav class="mnav" id="mnav" aria-label="${u.menu}">
   <a href="${href(lang, "home")}"${cur("home")}>${u.home}${arr}</a>
@@ -54,7 +53,6 @@ ${lang === "ar" ? `<script>(function(d){var h=d.documentElement;if(!d.fonts||!d.
 <main id="main">
 ${body}
 </main>
-${rail ? `<div class="dock" data-ch="${esc(rail.map(([, l]) => l).join("|"))}"><span class="where"></span><a class="btn primary" href="${href(lang, "contact")}#inquiry">${UI[lang].quote}</a></div>` : ""}
 ${drawer}
 <footer class="ft">
   <span class="ft-pat" aria-hidden="true"></span><span class="ft-light" aria-hidden="true"></span><span class="ft-light l2" aria-hidden="true"></span>

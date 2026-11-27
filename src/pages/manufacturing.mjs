@@ -6,7 +6,7 @@ import { layout } from "../layouts/layout.mjs";
 import { kicker, h2, crumb, ENV, SL, ctaBand, opBleed, ML } from "../components/blocks.mjs";
 import { streamsSVG } from "../components/diagrams.mjs";
 
-export const TIMG = ["m-receiving", "m-conveyor", "m-cooker", "m-press", "m-separation", "dryer", "m-cooling", "steam", "m-packing"];
+export const TIMG = ["m-receiving", "m-conveyor", "m-cooker", "m-press", "m-centrifuge", "dryer", "m-cooling", "steam", "m-packing"];
 export const mfg = (lang) => {
   const u = UI[lang], ar = lang === "ar";
   const tag = (s) => ({ main: "", split: `<span class="chip v">${ML(lang)}</span><span class="chip">${SL(lang)}</span>`, oil: `<span class="chip">${SL(lang)}</span>`, meal: `<span class="chip v">${ML(lang)}</span>`, both: `<span class="chip v">${ML(lang)}</span><span class="chip">${SL(lang)}</span>` }[s]);

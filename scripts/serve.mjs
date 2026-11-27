@@ -13,4 +13,4 @@ http.createServer((req, res) => {
   const h = { "Content-Type": type, "Cache-Control": /\.[0-9a-f]{10}\.js$/.test(f) || /[\\/](img|fonts)[\\/]/.test(f) ? "public, max-age=31536000, immutable" : "no-cache", "X-Content-Type-Options": "nosniff" };
   if (/text|json|svg/.test(type) && /gzip/.test(req.headers["accept-encoding"] || "")) { h["Content-Encoding"] = "gzip"; buf = zlib.gzipSync(buf, { level: 9 }); }
   res.writeHead(code, h); res.end(buf);
-}).listen(PORT, "127.0.0.1", () => console.log(`Alkhaleej preview → http://127.0.0.1:${PORT}/en/`));
+}).listen(PORT, process.env.HOST || "127.0.0.1", () => console.log(`Alkhaleej preview → http://127.0.0.1:${PORT}/en/` + (process.env.HOST === "0.0.0.0" ? " (also on the local network)" : "")));

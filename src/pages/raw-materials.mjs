@@ -13,8 +13,8 @@ export const raw = (lang) => {
     : [["Whole", "Marine fish, used whole"], ["Sardines", "and other suitable marine species"], ["3", "Routes: own vessels, ports, cold storage"], ["1", "Point of entry: the plant’s receiving pit"]];
   const profiles = [
     { id: "vessels", img: "trawler", t: ar ? "مراكب الشركة" : "Company vessels", lead: ar ? "رحلات صيد تقوم بها مراكب الشركة." : "Fishing trips by the company’s own vessels.",
-      d: ar ? "تشمل الإمدادات رحلات صيد تقوم بها مراكب الشركة في البحر المتوسط وأعالي البحار ومناطق صيد بحرية أخرى." : "Supply includes fishing trips by the company’s own vessels in the Mediterranean Sea, the high seas and other marine fishing grounds.",
-      rows: [[ar ? "مناطق الصيد" : "Fishing grounds", ar ? "البحر المتوسط · أعالي البحار · مناطق أخرى" : "Mediterranean · high seas · other grounds", "stated"], [ar ? "تفاصيل الأسطول" : "Fleet details", "", "pending"]] },
+      d: ar ? "تشمل الإمدادات رحلات صيد تقوم بها مراكب الشركة في البحر الأبيض المتوسط والبحر الأحمر والخليج العربي." : "Supply includes fishing trips by the company’s own vessels in the Mediterranean Sea, the Red Sea and the Arabian Gulf.",
+      rows: [[ar ? "مناطق الصيد" : "Fishing grounds", ar ? "البحر المتوسط · البحر الأحمر · الخليج العربي" : "Mediterranean · Red Sea · Arabian Gulf", "stated"], [ar ? "تفاصيل الأسطول" : "Fleet details", "", "pending"]] },
     { id: "ports", img: "crates", t: ar ? "الموانئ ومخازن التبريد" : "Ports & cold storage", lead: ar ? "إمدادات مكمّلة من الموانئ ومخازن التبريد." : "Complementary supply from the quay and from refrigeration.",
       d: ar ? "تصل أسماك أيضًا من الموانئ ومخازن التبريد لتكمل الإمدادات، ثم تُنقل إلى حوض الاستقبال في المصنع." : "Fish also arrive from ports and refrigerated storage facilities to complete the supply, then move to the factory’s receiving pit.",
       rows: [[ar ? "المصادر" : "Sources", ar ? "الموانئ · مخازن التبريد" : "Ports · cold storage", "stated"], [ar ? "قائمة الموانئ" : "List of ports", "", "pending"]] },
@@ -23,8 +23,8 @@ export const raw = (lang) => {
       rows: [[ar ? "الشكل" : "Form", ar ? "أسماك كاملة" : "Whole fish", "stated"], [ar ? "الأنواع" : "Species", ar ? "السردين وأنواع بحرية أخرى مناسبة" : "Sardines and other suitable marine species", "stated"], [ar ? "قائمة الأنواع ومناطق الصيد" : "Species list & catch areas", "", "pending"]] },
   ];
   const route = ar
-    ? [["مناطق الصيد", "البحر المتوسط وأعالي البحار"], ["الموانئ ومخازن التبريد", "مصادر إمداد مكمّلة"], ["النقل إلى المصنع", "من الميناء أو مخازن التبريد"], ["حوض الاستقبال", "حيث يبدأ التصنيع"], ["مساران للإنتاج", "مسحوق السمك · زيت السمك الخام"]]
-    : [["Fishing grounds", "Mediterranean and the high seas"], ["Ports & cold storage", "Complementary supply"], ["Transfer to the plant", "From port or cold storage"], ["Receiving pit", "Where manufacturing begins"], ["Two streams", "Fish meal · crude fish oil"]];
+    ? [["مناطق الصيد", "المتوسط · الأحمر · الخليج العربي"], ["الموانئ ومخازن التبريد", "مصادر إمداد مكمّلة"], ["النقل إلى المصنع", "من الميناء أو مخازن التبريد"], ["حوض الاستقبال", "حيث يبدأ التصنيع"], ["مساران للإنتاج", "مسحوق السمك · زيت السمك الخام"]]
+    : [["Fishing grounds", "Mediterranean · Red Sea · Arabian Gulf"], ["Ports & cold storage", "Complementary supply"], ["Transfer to the plant", "From port or cold storage"], ["Receiving pit", "Where manufacturing begins"], ["Two streams", "Fish meal · crude fish oil"]];
   const body = `${opBleed(lang, { img: "sunrise-sea", env: ENV.mist, crumbs: crumb(lang, [u.nav.raw]), kick: u.nav.raw, title: ar ? "تبدأ القيمة\nمن البحر." : "Value begins\nat sea.",
     lede: ar ? "أسماك بحرية كاملة، منها السردين، تصل من مراكب الشركة ومن الموانئ ومخازن التبريد إلى حوض الاستقبال في المصنع." : "Whole marine fish, including sardines — from the company’s own vessels, ports and cold storage, to the plant’s receiving pit.",
     actions: `<a class="btn primary" href="#sources">${ar ? "تعرّف على المصادر" : "Explore the sources"} ${arr}</a><a class="btn line" href="${href(lang, "mfg")}">${u.nav.mfg}</a>` })}
@@ -57,10 +57,10 @@ export const raw = (lang) => {
 
 <section class="sec rm-two" data-env="${ENV.dawn}">
   <div class="wrap comp comp-75">
-    ${pic(lang, "m-press", { col: 52, mcol: 100, box: 4 / 3, reveal: "curtain" })}
+    ${pic(lang, "two-products", { col: 52, mcol: 100, box: 4 / 3, reveal: "curtain" })}
     <div class="comp-copy">${kicker(ar ? "إلى المكونات" : "Into ingredients")}${h2(ar ? "مادة خام واحدة،\nمنتجان." : "One raw material,\ntwo ingredients.")}
       <p class="body" data-r="up">${ar ? "بعد الطبخ بالبخار غير المباشر والعصر، تنقسم كل دفعة إلى مسارين: تتحول كعكة العصر إلى مسحوق سمك، ويُستخلص زيت السمك الخام من سائل العصر." : "After indirect steam cooking and pressing, every batch divides into two streams: the press cake becomes fish meal, and crude fish oil is recovered from the press liquor."}</p>
-      <div class="two-links" data-r="up"><a href="${prodHref(lang, PRODUCTS[1])}"><span class="cn" dir="ltr">60–72<small>%</small></span><b>${u.fishmeal}</b><span class="go">${arr}</span></a><a href="${prodHref(lang, PRODUCTS[3])}"><span class="cn">${ar ? "زيت" : "Oil"}</span><b>${u.oil}</b><span class="go">${arr}</span></a></div>
+      <div class="two-links" data-r="up"><a href="${prodHref(lang, PRODUCTS.find((p) => p.grade === 65))}"><span class="cn" dir="ltr">60–72<small>%</small></span><b>${u.fishmeal}</b><span class="go">${arr}</span></a><a href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}"><span class="cn">${ar ? "زيت" : "Oil"}</span><b>${u.oil}</b><span class="go">${arr}</span></a></div>
       <p style="margin-top:22px"><a class="link" href="${href(lang, "mfg")}">${ar ? "شاهد مراحل الإنتاج الخمس" : "See the five production stages"} ${arr}</a></p></div>
   </div>
 </section>

@@ -37,7 +37,7 @@ export const home = (lang) => {
     </div>
     </div>
     <span class="dv-hint mono" aria-hidden="true">${ar ? "حرّك الضوء داخل السرب" : "Move the light through the school"}</span>
-    <div class="dv-next"><div class="dv-card">${kicker(ar ? "تحت السطح" : "Beneath the surface")}<h2 class="h2">${ar ? "أسماك بحرية كاملة، منها السردين." : "Whole marine fish, including sardines."}</h2><p>${ar ? "من رحلات مراكب الشركة في البحر المتوسط وأعالي البحار، ومن الموانئ ومخازن التبريد." : "From the company’s own vessels in the Mediterranean and the high seas, and from ports and cold storage."}</p><div class="actions"><a class="link" href="${href(lang, "raw")}">${u.nav.raw} ${arr}</a></div></div></div>
+    <div class="dv-next"><div class="dv-card">${kicker(ar ? "تحت السطح" : "Beneath the surface")}<h2 class="h2">${ar ? "أسماك بحرية كاملة، منها السردين." : "Whole marine fish, including sardines."}</h2><p>${ar ? "من رحلات مراكب الشركة في البحر الأبيض المتوسط والبحر الأحمر والخليج العربي، ومن الموانئ ومخازن التبريد." : "From the company’s own vessels in the Mediterranean, the Red Sea and the Arabian Gulf, and from ports and cold storage."}</p><div class="actions"><a class="link" href="${href(lang, "raw")}">${u.nav.raw} ${arr}</a></div></div></div>
   </div>
 </section>
 
@@ -65,8 +65,8 @@ export const home = (lang) => {
 <section class="sec cv" id="meal" data-env="${ENV.sand}">
   <div class="wrap meal">
     ${loupe(lang, "powder-pressed")}
-    <div>${kicker(u.fishmeal)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "مسحوق فائق النعومة." : "Ultra-fine."}</span><span class="bold">${ar ? "بثلاث درجات." : "In three grades."}</span></h2>
-    <p class="body" data-r="up" style="margin-top:16px">${ar ? "مسحوق السمك منتج جاف ومتجانس، بدرجات بروتين تجارية 60% و65% و72%، يُعبأ في أكياس 50 كجم. أدِر المؤشر لاختيار الدرجة." : "Fish meal is a dry, homogeneous powder in 60%, 65% and 72% commercial protein grades, packed in 50 kg bags. Turn the instrument to choose a grade."}</p>
+    <div>${kicker(u.fishmeal)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "مسحوق فائق النعومة." : "Ultra-fine."}</span><span class="bold">${ar ? "بخمس درجات." : "In five grades."}</span></h2>
+    <p class="body" data-r="up" style="margin-top:16px">${ar ? "مسحوق السمك منتج جاف ومتجانس، بدرجات بروتين تجارية 60% و62% و65% و66% و72%، بنوعين عالي الدهن ومنخفض الدهن، ويُعبأ في أكياس 50 كجم. أدِر المؤشر لاختيار الدرجة." : "Fish meal is a dry, homogeneous powder in 60%, 62%, 65%, 66% and 72% commercial protein grades, in high-fat and low-fat types, packed in 50 kg bags. Turn the instrument to choose a grade."}</p>
     ${dialBlock(lang)}
     <p class="small muted" style="margin-top:14px">${ar ? "أرقام الدرجات تسميات تجارية وليست حدودًا دنيا مضمونة." : "Grade figures are commercial labels, not guaranteed minimum specifications."}</p></div>
   </div>
@@ -75,8 +75,8 @@ export const home = (lang) => {
 <section class="sec cv" id="oil" data-env="${ENV.amber}">
   <div class="wrap oilx">
     <div class="a glowable">${pic(lang, "oil-pour", { col: 50, box: 0.8, reveal: "curtain" })}<span class="glow" aria-hidden="true"></span></div>
-    <div class="copy">${kicker(u.oil)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "زيت خام،" : "Crude oil,"}</span><span class="bold">${ar ? "من الذهبي إلى الكهرماني." : "golden to amber."}</span></h2><p class="body" data-r="up" style="margin-top:16px">${ar ? "يُستخلص من سائل العصر بفصل الزيت عن الماء، ويُورَّد في براميل." : "Recovered from the liquid stream after pressing, by oil–water separation, and supplied in drums."}</p><p style="margin-top:22px"><a class="btn line" href="${prodHref(lang, PRODUCTS[3])}">${u.viewProduct} ${arr}</a></p></div>
-    <div class="b glowable" data-px="0.06">${pic(lang, "m-separation", { col: 42, box: 1.6, reveal: "fade" })}<span class="glow" aria-hidden="true"></span></div>
+    <div class="copy">${kicker(u.oil)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "زيت خام،" : "Crude oil,"}</span><span class="bold">${ar ? "من الذهبي إلى الكهرماني." : "golden to amber."}</span></h2><p class="body" data-r="up" style="margin-top:16px">${ar ? "يُستخلص من سائل العصر بفصل الزيت عن الماء بالطرد المركزي، ويُورَّد في براميل." : "Recovered from the liquid stream after pressing, by centrifugal oil–water separation, and supplied in drums."}</p><p style="margin-top:22px"><a class="btn line" href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}">${u.viewProduct} ${arr}</a></p></div>
+    <div class="b glowable" data-px="0.06">${pic(lang, "m-centrifuge", { col: 42, box: 1.6, reveal: "fade" })}<span class="glow" aria-hidden="true"></span></div>
   </div>
 </section>
 
@@ -98,7 +98,7 @@ export const home = (lang) => {
     <dl class="co-ledger">
       ${[
         ["2025", "", ar ? "سنة التأسيس" : "Established", ar ? "كفر الشيخ، مصر" : "Kafr El-Sheikh, Egypt"],
-        ["3", "", ar ? "درجات بروتين لمسحوق السمك" : "Fish meal protein grades", "60 · 65 · 72%"],
+        ["5", "", ar ? "درجات بروتين لمسحوق السمك" : "Fish meal protein grades", "60 · 62 · 65 · 66 · 72%"],
         ["1", "", ar ? "زيت سمك خام" : "Crude fish oil", ar ? "يُستخلص أثناء التصنيع ويُورَّد في براميل" : "Recovered during processing, in drums"],
         ["5", "", ar ? "مراحل إنتاج" : "Production stages", ar ? "تسع خطوات مؤكدة من الاستقبال إلى التعبئة" : "Nine confirmed steps, receiving to packing"],
         ["2", "", ar ? "مساران من مُدخل واحد" : "Streams from one input", ar ? "كعكة العصر وسائل العصر" : "Press cake and press liquor"],
@@ -118,6 +118,6 @@ export const home = (lang) => {
 </section>
 ${ctaBand(lang)}`;
   return layout(lang, { key: "home", over: true, rail, title: ar ? "الخليج لصناعة الأسماك | مسحوق السمك وزيت السمك الخام — مصر" : "Alkhaleej Fish Manufacturing | Fish meal & crude fish oil — Egypt",
-    desc: ar ? "مسحوق سمك بدرجات بروتين 60% و65% و72% وزيت سمك خام من أسماك بحرية كاملة، كفر الشيخ، مصر." : "Fish meal in 60%, 65% and 72% protein grades and crude fish oil from whole marine fish. Kafr El-Sheikh, Egypt.",
+    desc: ar ? "مسحوق سمك بدرجات بروتين 60% و62% و65% و66% و72% وزيت سمك خام من أسماك بحرية كاملة، كفر الشيخ، مصر." : "Fish meal in 60%, 62%, 65%, 66% and 72% protein grades and crude fish oil from whole marine fish. Kafr El-Sheikh, Egypt.",
     body, preloadImg: preload("hero-dawn", { fill: 1, mfill: 0.62 }) });
 };
