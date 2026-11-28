@@ -30,8 +30,8 @@ export const loupe = (lang, img, { col = 55, box = 4 / 3.4 } = {}) => { const m 
 export function dialBlock(lang, start = 2) {
   const ar = lang === "ar", G = PRODUCTS.filter((p) => !p.oil).map((p) => ({ g: p.grade, name: p.name[lang], url: prodHref(lang, p), cta: ar ? `عرض ${p.name.ar}` : `View ${p.name.en}` }));
   return `<div class="dial-wrap" data-start="${start}"><script type="application/json">${JSON.stringify(G)}</script>
-  <div class="dial" role="slider" tabindex="0" aria-label="${ar ? "درجة البروتين التجارية" : "Commercial protein grade"}" aria-valuemin="60" aria-valuemax="72" aria-valuenow="65"><svg viewBox="0 0 240 240" aria-hidden="true"></svg></div>
-  <div class="readout" aria-live="polite"><div class="mono">${ar ? "درجة البروتين التجارية" : "Commercial protein grade"}</div><div class="val">65<small>%</small></div><div class="nm"></div>
+  <div class="dial" role="slider" tabindex="0" aria-label="${ar ? "درجة البروتين" : "Protein grade"}" aria-valuemin="60" aria-valuemax="72" aria-valuenow="65"><svg viewBox="0 0 240 240" aria-hidden="true"></svg></div>
+  <div class="readout" aria-live="polite"><div class="mono">${ar ? "درجة البروتين" : "Protein grade"}</div><div class="val">65<small>%</small></div><div class="nm"></div>
   <div class="grades" role="group" aria-label="${ar ? "الدرجات" : "Grades"}">${G.map((g) => `<button type="button" aria-pressed="false">${g.g}%</button>`).join("")}</div>
   <p style="margin-top:18px"><a class="link" data-grade-link href="${G[start].url}"><span>${G[start].cta}</span> ${arr}</a></p></div></div>`;
 }
