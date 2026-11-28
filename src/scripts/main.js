@@ -268,7 +268,7 @@
     // camera dolly (Direction A: scale 1.55, the chosen specimen centred in the room beside the drawer); geometry in room space
     const dolly = (i) => {
       if (!WIDE()) { shelf.style.transform = ""; return; }
-      const R = room.getBoundingClientRect(), B = band.getBoundingClientRect(), sp = specs[i], S = 1.55;
+      const R = room.getBoundingClientRect(), B = band.getBoundingClientRect(), sp = specs[i], S = Math.max(1.1, Math.min(1.55, (Math.min(R.height || innerHeight, innerHeight) * 0.74) / sp.offsetHeight));   // larger jars zoom less, so the chosen one always fits
       const sl = B.left - R.left + shelf.offsetLeft, st = B.top - R.top + shelf.offsetTop, sw = shelf.offsetWidth;
       const px = sl + sp.offsetLeft + sp.offsetWidth / 2, py = st + sp.offsetTop + sp.offsetHeight / 2;
       const dw = drawer.offsetWidth, vh = Math.min(R.height, innerHeight), top = 72;

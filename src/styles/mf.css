@@ -209,3 +209,45 @@ div.mf-node{cursor:default}
 
 /* after the shared hero the specimen room starts on a straight edge like every other page (the arched rise belonged to the old window hero) */
 .pr-hero + .ra-products{margin-top:0!important;border-radius:0!important;box-shadow:none!important}
+
+/* =====================================================================
+   PRODUCTS — specimen shelf, larger and richer (desktop): full-width gallery shelf, jars sized to fill it exactly,
+   stone ledge, light rail, per-jar spotlight and floor shadow, labels always readable, centred hint
+   ===================================================================== */
+@media (min-width:981px){
+  .ra-products{--jh:min(54svh,560px,calc((100vw - 2 * var(--gutter) + 10vw) * .2222));--wb:calc(var(--jh) + 96px)}
+  .ra-products .ra-band{top:13svh}
+  .ra-products .ra-meta{inset-inline:0;top:calc(-1 * 9svh);bottom:auto;max-width:none;display:flex;justify-content:center}
+  .ra-products .ra-meta .hint{padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.62);border:1px solid rgba(201,154,62,.3);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    box-shadow:0 14px 30px -22px rgba(120,90,50,.5);font-weight:600;color:var(--navy)}
+  .ra-products .ra-shelf{inset-inline:var(--gutter);bottom:46px;height:var(--jh);justify-content:center}
+  .ra-products .ra-spec{margin-inline-start:-2vw}
+  .ra-products .ra-spec:first-child{margin-inline-start:0}
+  .ra-products .ra-sill{inset-inline:var(--gutter);bottom:26px;height:20px;border-radius:4px;
+    background:linear-gradient(180deg,#FFF9EE 0,#FFF9EE 3px,#EBDABE 3px,#D5BF99 100%);
+    box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 16px 28px -10px rgba(120,90,50,.38),0 46px 70px -34px rgba(120,90,50,.34)}
+  .ra-products .ra-band::before{content:"";position:absolute;z-index:1;inset-inline:calc(var(--gutter) + 4%);top:-18px;height:3px;border-radius:2px;
+    background:linear-gradient(90deg,transparent,rgba(227,184,96,.75) 12%,rgba(255,236,196,.95) 50%,rgba(227,184,96,.75) 88%,transparent);box-shadow:0 0 22px 4px rgba(255,226,170,.55)}
+}
+.ra-products .ra-spec .media{z-index:1}
+.ra-products .ra-spec::before{content:"";position:absolute;z-index:0;inset:-8% 2% 8%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(58% 52% at 50% 38%,rgba(255,241,212,.85),rgba(255,236,200,.28) 55%,transparent 75%);opacity:.55;transition:opacity .5s var(--out),transform .7s var(--out)}
+.ra-products .ra-spec::after{content:"";position:absolute;z-index:0;inset-inline:20%;bottom:1%;height:6%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(90,64,30,.38),transparent);filter:blur(2px);transition:transform .6s var(--out),opacity .6s}
+.ra-products .ra-spec.lit::before,.ra-products .ra-spec:hover::before,.ra-products .ra-spec:focus-visible::before{opacity:1;transform:scale(1.06)}
+.ra-products .ra-spec:hover .media img{transform:translateY(-6px) scale(1.035);opacity:1}
+.ra-products .ra-spec:hover::after{transform:scaleX(.88);opacity:.75}
+.ra-products .ra-spec .tag{opacity:.88;transform:none}
+.ra-products .ra-spec .num{opacity:.6}
+.ra-products .ra-spec .tag b{font-size:clamp(15px,1.1vw,18px)}
+@media (max-width:980px){.ra-products .ra-spec{flex:0 0 min(58vw,300px)}}
+@media (min-width:981px){
+  .ra-products{min-height:calc(13svh + var(--wb) + 12px)!important}
+  .ra-products .ra-shelf::before{content:"";position:absolute;z-index:2;inset-inline:0;top:-2px;height:18%;pointer-events:none;background:linear-gradient(180deg,#F5EBDB 0%,rgba(245,235,219,.6) 45%,rgba(245,235,219,0) 100%)}
+}
+.ra-products .ra-spec .tag{bottom:5%}
+.ra-products .ra-spec .tag b,.ra-products .ra-spec .tag small{text-shadow:none}
+.ra-products .ra-spec .tag b{display:inline-block;padding:5px 12px 4px;border-radius:999px;background:rgba(255,250,240,.82);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border:1px solid rgba(201,154,62,.28);box-shadow:0 8px 18px -12px rgba(90,64,30,.5);color:var(--navy)}
+.ra-products .ra-spec .tag small{display:block;margin-top:5px;font-weight:600;color:#5A4A30}
+.ra-products .ra-spec.lit .tag b,.ra-products .ra-spec:hover .tag b{background:#fff;border-color:rgba(227,139,6,.55)}
