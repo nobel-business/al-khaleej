@@ -52,7 +52,7 @@ export function oilDial(lang, url) {
   const cfg = { lo: 0, hi: 5, major: 1, step: 0.25, labels: false, hub: true, fixed: true, items };
   return `<div class="dial-wrap oil-dial" data-start="0"><script type="application/json">${JSON.stringify(cfg)}</script>
   <div class="dial" role="slider" tabindex="0" aria-label="${T("Crude fish oil specification parameter", "معيار مواصفات زيت الأسماك الخام")}" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><svg viewBox="0 0 240 240" aria-hidden="true"></svg></div>
-  <div class="readout"><div class="mono">${T("Free fatty acids (FFA)", "الأحماض الدهنية الحرة (FFA)")}</div><div class="val" dir="ltr">≤5<small>%</small></div><div class="nm">${T("Standard grade", "المعيار القياسي")}</div>
+  <div class="readout"><div class="mono">${T("Free fatty acids (FFA)", "الأحماض الدهنية الحرة (FFA)")}</div><div class="val" dir="ltr"><span class="le">≤</span>5<small>%</small></div><div class="nm">${T("Standard grade", "المعيار القياسي")}</div>
   <div class="grades" role="group" aria-label="${T("Specification", "المواصفات")}">${items.map((g) => `<button type="button" aria-pressed="false">${g.chip}</button>`).join("")}</div>
   <p style="margin-top:18px"><a class="link" href="${url}"><span>${T("Discover our products", "اكتشف منتجاتنا")}</span> ${arr}</a></p></div></div>`;
 }

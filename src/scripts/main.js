@@ -621,7 +621,7 @@ gl_FragColor=vec4(c,1.);}`;
     for (let g = LO; g <= HI + 1e-9; g += ST) { const a = ang(g), q = (g - LO) / MJ, mj = Math.abs(q - Math.round(q)) < 1e-6, [x1, y1] = pol(a, mj ? 80 : 86), [x2, y2] = pol(a, 92); el("line", { x1, y1, x2, y2, class: "tk" + (mj ? " mj" : ""), "stroke-width": mj ? 1.5 : 1 }); if (mj && CFG.labels !== false) { const [tx, ty] = pol(a, 66); const t = el("text", { x: tx, y: ty + 4, "text-anchor": "middle", class: "lb", "data-g": g }); t.textContent = g; } }
     G.filter(has).forEach((g) => { const [x, y] = pol(ang(P(g)), 101); el("circle", { cx: x, cy: y, r: 3, fill: "#0C3048" }); });
     const ndl = el("g", { class: "ndl" }); el("line", { x1: C, y1: C, x2: C + 78, y2: C, stroke: "#0C3048", "stroke-width": 2, "stroke-linecap": "round" }, ndl); el("circle", { cx: C, cy: C, r: 6, fill: "#FBF8F3", stroke: "#0C3048", "stroke-width": 1.5 }, ndl);
-    const hub = CFG.hub ? el("text", { x: C, y: C + 36, "text-anchor": "middle", class: "hub" }) : null;
+    const hub = CFG.hub ? el("text", { x: C, y: C + 80, "text-anchor": "middle", class: "hub" }) : null;
     let cur = 1;
     const set = (i) => {
       cur = (i + G.length) % G.length; const g = G[cur];
