@@ -1,7 +1,7 @@
 import { UI, PRODUCTS, STAGES } from "../content/content.mjs";
 import { arr, lines } from "../lib/html.mjs";
 import { href, prodHref } from "../lib/routes.mjs";
-import { M, pic, preload } from "../lib/media.mjs";
+import { M, pic, preload, imgUrl } from "../lib/media.mjs";
 import { layout } from "../layouts/layout.mjs";
 import { kicker, h2, ENV, SL, ctaBand, ML } from "../components/blocks.mjs";
 import { streamsSVG, gauges, loupe, dialBlock } from "../components/diagrams.mjs";
@@ -10,42 +10,27 @@ import { GULL } from "../components/gull.mjs";
 
 export const home = (lang) => {
   const u = UI[lang], ar = lang === "ar";
-  const rail = [["surface", ar ? "البحر" : "The sea"], ["catch", ar ? "الصيد" : "The catch"], ["line", ar ? "التصنيع" : "The line"], ["meal", ar ? "مسحوق السمك" : "Fish meal"], ["oil", ar ? "زيت السمك" : "Fish oil"], ["quality", u.nav.quality], ["company", ar ? "الشركة" : "Company"], ["world", u.nav.intl]];
-  const catchFrames = [["med-boats", ar ? "العودة إلى الساحل" : "Back to the coast", ar ? "قوارب صيد عائدة في البحر المتوسط قرب الإسكندرية — البحر الذي ننطلق منه." : "Fishing boats returning on the Mediterranean near Alexandria — the sea we work from."],
-    ["net-haul", ar ? "سردين طازج" : "Fresh sardines", ar ? "تشمل المادة الخام السردين وأنواعًا بحرية أخرى مناسبة، تُستخدم كاملة." : "Raw material includes sardines and other suitable marine species, used whole."],
-    ["unloading", ar ? "التفريغ في الميناء" : "Landed at port", ar ? "تصل الأسماك أيضًا من الموانئ ومخازن التبريد، إلى جانب رحلات مراكب الشركة." : "Fish also arrive from ports and cold storage, alongside the company’s own fishing trips."],
-    ["m-receiving", ar ? "حوض الاستقبال" : "The receiving pit", ar ? "تبدأ رحلة التصنيع حين تُستقبل الأسماك الكاملة في المصنع." : "Manufacturing begins when whole fish are received at the plant."]];
+  const rail = [["surface", ar ? "البحر" : "The sea"], ["line", ar ? "التصنيع" : "The line"], ["meal", ar ? "مسحوق السمك" : "Fish meal"], ["oil", ar ? "زيت السمك" : "Fish oil"], ["quality", u.nav.quality], ["company", ar ? "الشركة" : "Company"], ["world", u.nav.intl]];
   const stepsJSON = JSON.stringify(STAGES.map((s, i) => ({ k: String(i + 1).padStart(2, "0") + " · " + ({ oil: SL(lang), meal: ML(lang), main: ar ? "المُدخل" : "Input", split: ar ? "نقطة الانقسام" : "Split", both: ar ? "المساران" : "Both streams" }[s.stream]), t: s.t[lang], d: s.d[lang] })));
   const body = `
 <section class="dive" id="surface" data-env="${ENV.dawn}" aria-label="${u.brand}">
   <div class="dv-stage">
-    <div class="dv-surface"><div class="dv-scene" data-scene data-plate="/img/hero-sea-" data-plate-w="${M["hero-sea"].widths.join(",")}">${pic(lang, "hero-dawn", { eager: true, priority: true, fill: 1, mfill: 0.62, cls: "sc-still" })}<canvas class="sc-water" aria-hidden="true"></canvas><div class="sc-boat" aria-hidden="true"><span class="sc-wet"></span><picture><source type="image/webp" srcset="/assets/scene/boat-700.webp 700w, /assets/scene/boat-1340.webp 1340w" sizes="(max-width:899px) 70vw, 42vw"><img src="/assets/scene/boat-700.png" srcset="/assets/scene/boat-700.png 700w, /assets/scene/boat-1340.png 1340w" sizes="(max-width:899px) 70vw, 42vw" width="1340" height="1220" alt="" decoding="async" loading="lazy"></picture></div><div class="sc-birds" aria-hidden="true">${GULL(0)}${GULL(1)}</div></div></div>
+    <div class="dv-surface"><div class="dv-scene" data-scene data-plate="/img/hero-sea-" data-plate-v="${imgUrl("hero-sea", 0, "x").split("?v=")[1]}" data-plate-w="${M["hero-sea"].widths.join(",")}">${pic(lang, "hero-dawn", { eager: true, priority: true, fill: 1, mfill: 0.62, cls: "sc-still" })}<canvas class="sc-water" aria-hidden="true"></canvas><div class="sc-boat" aria-hidden="true"><span class="sc-wet"></span><picture><source type="image/webp" srcset="/assets/scene/boat-700.webp 700w, /assets/scene/boat-1340.webp 1340w" sizes="(max-width:899px) 70vw, 42vw"><img src="/assets/scene/boat-700.png" srcset="/assets/scene/boat-700.png 700w, /assets/scene/boat-1340.png 1340w" sizes="(max-width:899px) 70vw, 42vw" width="1340" height="1220" alt="" decoding="async" loading="lazy"></picture></div><div class="sc-birds" aria-hidden="true">${GULL(0)}${GULL(1)}</div></div></div>
     <div class="dv-wash" aria-hidden="true"></div>
     <div class="dv-under">${pic(lang, "sardine-spiral", { fill: 1, mfill: 0.66 })}<canvas aria-hidden="true"></canvas></div>
     <div class="dv-foam" aria-hidden="true"><svg viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0 23 Q 75 8 150 23 T 300 23 T 450 23 T 600 23 T 750 23 T 900 23 T 1050 23 T 1200 23"/><path class="f2" d="M0 30 Q 100 18 200 30 T 400 30 T 600 30 T 800 30 T 1000 30 T 1200 30"/></svg></div>
     <div class="dv-ui">
     <div class="dv-title">
-      <div class="eyebrow">${ar ? "الخليج لصناعة الأسماك · تأسست 2025" : "Alkhaleej Fish Manufacturing · Est. 2025"}</div>
       <h1 class="h1 split-h"><span class="ln thin"><span>${ar ? "من البحر" : "From sea"}</span></span><span class="ln bold"><span>${ar ? "إلى الصناعة." : "to industry."}</span></span></h1>
-      <p class="dv-sub">${ar ? "نحوّل الأسماك البحرية الكاملة إلى مسحوق سمك وزيت سمك خام في كفر الشيخ، مصر." : "We process whole marine fish into fish meal and crude fish oil in Kafr El-Sheikh, Egypt."}</p>
+      <p class="dv-sub">${ar ? "نصنع القيمة من الموارد البحرية، بإنتاج مسحوق الأسماك وزيت السمك الخام، من مصر إلى الأسواق العالمية." : "We create value from marine resources, producing fish meal and crude fish oil, from Egypt to global markets."}</p>
       <div class="dv-row"><a class="btn primary" href="${href(lang, "products")}">${u.explore} ${arr}</a><a class="btn line" href="${href(lang, "contact")}#inquiry">${u.quote}</a></div>
     </div>
     <div class="dv-meta">
-      <div class="dv-corner dv-c1"><b>${ar ? "الموقع" : "Location"}</b>${u.location}</div>
       <div class="dv-cue" aria-hidden="true">${ar ? "مرّر للأسفل" : "Scroll to dive"}<i></i></div>
       <span class="dv-spacer" aria-hidden="true"></span>
     </div>
     </div>
-    <span class="dv-hint mono" aria-hidden="true">${ar ? "حرّك الضوء داخل السرب" : "Move the light through the school"}</span>
-    <div class="dv-next"><div class="dv-card">${kicker(ar ? "تحت السطح" : "Beneath the surface")}<h2 class="h2">${ar ? "أسماك بحرية كاملة، منها السردين." : "Whole marine fish, including sardines."}</h2><p>${ar ? "من رحلات مراكب الشركة في البحر الأبيض المتوسط والبحر الأحمر والخليج العربي، ومن الموانئ ومخازن التبريد." : "From the company’s own vessels in the Mediterranean, the Red Sea and the Arabian Gulf, and from ports and cold storage."}</p><div class="actions"><a class="link" href="${href(lang, "raw")}">${u.nav.raw} ${arr}</a></div></div></div>
-  </div>
-</section>
-
-<section class="hz" id="catch" data-env="${ENV.mist}" aria-label="${ar ? "الصيد" : "The catch"}">
-  <div class="hz-pin">
-    <div class="hz-head"><div><div class="kicker">${ar ? "من البحر إلى المصنع" : "From the sea to the plant"}</div><h2 class="h2" data-lines>${lines(ar ? "رحلة المادة الخام." : "The journey of\nthe raw material.")}</h2></div></div>
-    <div class="hz-track">${catchFrames.map(([img, t, dsc], i) => `<article class="hz-frame${i ? " dim" : ""}">${pic(lang, img, { fill: 0.6, mfill: 0.4, sizes: "" }).replace(/sizes="[^"]*"/g, `sizes="(max-width:899px) 100vw, 1100px"`)}<div class="txt"><span class="no">0${i + 1}</span><b>${t}</b><span>${dsc}</span></div></article>`).join("")}</div>
-    <div class="hz-count mono"><span class="num">01 / 0${catchFrames.length}</span><span class="bar"><i></i></span></div>
+    <div class="dv-next"><div class="dv-card">${kicker(ar ? "تحت السطح" : "Beneath the surface")}<h2 class="h2">${ar ? "ثروة البحر، أساس صناعتنا." : "The sea’s wealth, the foundation of our industry."}</h2><p>${ar ? "من مياه البحر الأبيض المتوسط والبحر الأحمر والخليج العربي، نستمد خاماتنا من الأسماك البحرية الكاملة، عبر منظومة توريد متكاملة تجمع بين الصيد المباشر والمصادر البحرية المتنوعة." : "From the waters of the Mediterranean, the Red Sea and the Arabian Gulf, we source our raw material from whole marine fish, through an integrated supply system that combines direct fishing with diverse marine sources."}</p><div class="actions"><a class="link" href="${href(lang, "raw")}">${ar ? "اكتشف موادنا الخام" : "Discover our raw materials"} ${arr}</a></div></div></div>
   </div>
 </section>
 

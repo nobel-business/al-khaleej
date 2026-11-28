@@ -1,7 +1,7 @@
 import { PRODUCTS, STAGES, PARAMS, ALT } from "../content/content.mjs";
 import { esc, L, arr } from "../lib/html.mjs";
 import { prodHref } from "../lib/routes.mjs";
-import { M, pic } from "../lib/media.mjs";
+import { M, pic, imgUrl } from "../lib/media.mjs";
 import { SL, ML } from "./blocks.mjs";
 
 // node: [stepIndex, x, y, branch, order (0..1 of scrub), labelBelow]
@@ -26,7 +26,7 @@ export function streamsSVG(lang, { scrub = false } = {}) {
 }
 export const bezel = (k, cls = "") => { let t = ""; for (let i = 0; i < 48; i++) { const a = (i * 7.5 * Math.PI) / 180, r1 = i % 6 ? 21 : 18; t += `<line x1="${(26 + r1 * Math.cos(a)).toFixed(1)}" y1="${(26 + r1 * Math.sin(a)).toFixed(1)}" x2="${(26 + 24 * Math.cos(a)).toFixed(1)}" y2="${(26 + 24 * Math.sin(a)).toFixed(1)}" stroke="#0C3048" stroke-opacity="${i % 6 ? 0.25 : 0.6}"/>`; } return `<svg viewBox="0 0 52 52" aria-hidden="true">${t}<circle cx="26" cy="26" r="13" fill="none" stroke="#0C3048" stroke-opacity=".2"/><circle class="sw" cx="26" cy="26" r="24" fill="none" stroke-width="3" stroke-linecap="round" transform="rotate(${-90 + k * 90} 26 26)"/></svg>`; };
 export function gauges(lang) { return `<div class="gauges">${PARAMS.map((p, i) => `<div class="gauge" style="transition-delay:${i * 90}ms">${bezel(i)}<div><b>${p.t[lang]}</b><p>${p.d[lang]}</p></div></div>`).join("")}</div>`; }
-export const loupe = (lang, img, { col = 55, box = 4 / 3.4 } = {}) => { const m = M[img]; const big = m.widths[m.widths.length - 1]; return `<div class="loupe" data-src="/img/${img}-${big}.jpg" data-focal="${m.focal}" role="img" aria-label="${esc(L(ALT[img], lang))}">${pic(lang, img, { col, box })}<span class="lens" aria-hidden="true"></span><span class="tip mono">${lang === "ar" ? "مرّر المؤشر لتفحّص نعومة المسحوق" : "Move over the powder to inspect its fineness"}</span></div>`; };
+export const loupe = (lang, img, { col = 55, box = 4 / 3.4 } = {}) => { const m = M[img]; const big = m.widths[m.widths.length - 1]; return `<div class="loupe" data-src="${imgUrl(img, big, "jpg")}" data-focal="${m.focal}" role="img" aria-label="${esc(L(ALT[img], lang))}">${pic(lang, img, { col, box })}<span class="lens" aria-hidden="true"></span><span class="tip mono">${lang === "ar" ? "مرّر المؤشر لتفحّص نعومة المسحوق" : "Move over the powder to inspect its fineness"}</span></div>`; };
 export function dialBlock(lang, start = 2) {
   const ar = lang === "ar", G = PRODUCTS.filter((p) => !p.oil).map((p) => ({ g: p.grade, name: p.name[lang], url: prodHref(lang, p), cta: ar ? `عرض ${p.name.ar}` : `View ${p.name.en}` }));
   return `<div class="dial-wrap" data-start="${start}"><script type="application/json">${JSON.stringify(G)}</script>

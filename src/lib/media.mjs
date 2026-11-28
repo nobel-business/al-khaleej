@@ -1,8 +1,16 @@
-import fs from "node:fs"; import path from "node:path";
-import { ASSETS } from "./paths.mjs";
+import fs from "node:fs"; import path from "node:path"; import crypto from "node:crypto";
+import { ASSETS, PUBLIC } from "./paths.mjs";
 
 // image manifest written by scripts/images.py
 export const M = JSON.parse(fs.readFileSync(path.join(ASSETS, "images", "manifest.json"), "utf8"));
+// cache-busting: /img/ is served with a one-year immutable cache but file names carry no hash, so every image URL
+// gets ?v=<content hash of that image's largest variant>. A re-generated image (e.g. a recolour) gets a new URL.
+const VER = {};
+for (const [name, m] of Object.entries(M)) {
+  const f = path.join(PUBLIC, "img", `${name}-${m.widths[m.widths.length - 1]}.jpg`);
+  VER[name] = fs.existsSync(f) ? crypto.createHash("sha1").update(fs.readFileSync(f)).digest("hex").slice(0, 8) : "0";
+}
+export const imgUrl = (name, w, ext) => `/img/${name}-${w}.${ext}?v=${VER[name]}`;
 import { UI, ALT } from "../content/content.mjs";
 import { esc, L } from "./html.mjs";
 
@@ -17,7 +25,7 @@ export function pic(lang, name, { sizes = "100vw", fill = 0, mfill = 0, col = 0,
     const f = box ? Math.max(1, a / box) : 1;
     sizes = `(max-width:980px) ${Math.ceil(mcol * f)}vw, ${Math.ceil(col * f)}vw`;
   }
-  const set = (ext) => m.widths.map((w) => `/img/${name}-${w}.${ext} ${w}w`).join(", ");
+  const set = (ext) => m.widths.map((w) => `${imgUrl(name, w, ext)} ${w}w`).join(", ");
   const mid = m.widths[Math.min(m.widths.length - 1, Math.floor(m.widths.length / 2))];
   const h = Math.round((m.h * m.widths[m.widths.length - 1]) / m.w);
   const alt = L(ALT[name], lang) || "";
@@ -28,9 +36,9 @@ export function pic(lang, name, { sizes = "100vw", fill = 0, mfill = 0, col = 0,
   }
   return `<figure class="media ${cls}"${reveal ? ` data-r="${reveal}"` : ""}${px ? ` data-px="${px}"` : ""}${style ? ` style="${style}"` : ""}><picture>` +
     `<source type="image/avif" srcset="${set("avif")}" sizes="${sizes}"><source type="image/webp" srcset="${set("webp")}" sizes="${sizes}">` +
-    `<img src="/img/${name}-${mid}.jpg" srcset="${set("jpg")}" sizes="${sizes}" width="${m.widths[m.widths.length - 1]}" height="${h}" alt="${esc(altFull)}" style="object-position:${m.focal}" decoding="async"${eager ? "" : ' loading="lazy"'}${priority ? ' fetchpriority="high"' : ""}></picture>${capHtml}</figure>`;
+    `<img src="${imgUrl(name, mid, "jpg")}" srcset="${set("jpg")}" sizes="${sizes}" width="${m.widths[m.widths.length - 1]}" height="${h}" alt="${esc(altFull)}" style="object-position:${m.focal}" decoding="async"${eager ? "" : ' loading="lazy"'}${priority ? ' fetchpriority="high"' : ""}></picture>${capHtml}</figure>`;
 }
-export const preload = (name, sizes) => { if (typeof sizes === 'object') sizes = sizesFor(name, sizes); const m = M[name]; return `<link rel="preload" as="image" type="image/avif" fetchpriority="high" imagesrcset="${m.widths.map((w) => `/img/${name}-${w}.avif ${w}w`).join(", ")}" imagesizes="${sizes}">`; };
+export const preload = (name, sizes) => { if (typeof sizes === 'object') sizes = sizesFor(name, sizes); const m = M[name]; return `<link rel="preload" as="image" type="image/avif" fetchpriority="high" imagesrcset="${m.widths.map((w) => `${imgUrl(name, w, "avif")} ${w}w`).join(", ")}" imagesizes="${sizes}">`; };
 
 export function sizesFor(name, o) { const m = M[name], a = m.w / m.h; const mq = (f) => `(max-aspect-ratio:${Math.round(a * f * 1000)}/1000) ${Math.ceil(a * f * 100)}vh`; return `(max-width:640px) and ${mq(o.mfill || o.fill)}, (max-width:640px) 100vw, ${mq(o.fill)}, 100vw`; }
 

@@ -312,6 +312,7 @@
     addEventListener("resize", () => { if (cur > -1) dolly(cur); }, { passive: true });
     const ex1 = $("[data-explore]"); if (ex1)   /* the button now lives in the hero section above the room */ ex1.addEventListener("click", () => show(cur > -1 ? cur : 0));
     const h = location.hash.slice(1), k0 = specs.findIndex((x) => x.dataset.slug === h); if (k0 > -1) setTimeout(() => show(k0), 300);
+    addEventListener("hashchange", () => { const k = specs.findIndex((x) => x.dataset.slug === location.hash.slice(1)); if (k > -1 && k !== cur) show(k); });   // in-page links, back/forward
   });
 
   /* ================= interactive flow diagram ================= */
@@ -338,6 +339,31 @@
     btns.forEach((b) => b.addEventListener("click", () => { b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") !== "true"); upd(); }));
   });
 
+
+  /* ================= homepage hero copy mirrors the ship ================= */
+  // The ship (image px box 2140,420 1340×1220 in the 3840×2160 hero photo, mirrored in Arabic) is located through
+  // object-fit:cover exactly as the scene does; the copy block is centred on the ship's mirror point, vertically on
+  // its centre, and the one-line title is scaled down only if it would not fit that width. Desktop only.
+  { const ui = $(".dv-ui"), tt = ui && $(".dv-title", ui), ph = $(".sc-still img"), h1 = tt && $("h1", tt);
+    if (ui && tt && ph && h1) {
+      const place = () => {
+        h1.style.fontSize = "";
+        if (!WIDE()) { ui.classList.remove("mirror"); return; }
+        const q = ph.getBoundingClientRect(); if (q.width < 10) return;
+        const op = getComputedStyle(ph).objectPosition.split(" ").map((v) => parseFloat(v) / 100), fx = isNaN(op[0]) ? 0.5 : op[0], fy = isNaN(op[1]) ? 0.5 : op[1];
+        const s = Math.max(q.width / 3840, q.height / 2160), ox = (q.width - 3840 * s) * fx, oy = (q.height - 2160 * s) * fy;
+        let cx = q.left + ox + 2810 * s; if (AR) cx = 2 * (q.left + q.width / 2) - cx;   // the scene is mirrored in Arabic
+        const cy = q.top + oy + 1200 * s, u = ui.getBoundingClientRect();   // optical centre of the vessel (hull + deck), below the rigging
+        const g = parseFloat(getComputedStyle(tt).getPropertyValue("--g")) || Math.min(64, Math.max(20, innerWidth * 0.04));
+        const D = AR ? cx - u.left : u.right - cx, W = Math.max(320, 2 * (D - g));          // copy spans [gutter, mirror point × 2]
+        ui.style.setProperty("--mw", W + "px"); ui.style.setProperty("--my", cy - u.top + "px"); ui.classList.add("mirror");
+        const need = h1.scrollWidth, room = tt.clientWidth * 0.98;
+        if (need > room) h1.style.fontSize = (parseFloat(getComputedStyle(h1).fontSize) * room) / need + "px";
+      };
+      place(); (d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve()).then(place);
+      let rq = 0; addEventListener("resize", () => { cancelAnimationFrame(rq); rq = requestAnimationFrame(place); }, { passive: true });
+    }
+  }
 
   /* ================= living hero: water + boat (WebGL) · gulls ================= */
   $$("[data-scene]").forEach((sc) => {
@@ -477,10 +503,18 @@ gl_FragColor=vec4(c,1.);}`;
       geo();
       const ws = sc.dataset.plateW.split(",").map(Number), need = Math.max(W, IW * sc0) * Math.min(devicePixelRatio || 1, 1.5);
       const pw = Math.min(ws.find((w) => w >= need) || ws[ws.length - 1], 2560);
-      const plate = new Image(); plate.src = `${sc.dataset.plate}${pw}.webp`;
+      const plate = new Image(); plate.src = `${sc.dataset.plate}${pw}.webp${sc.dataset.plateV ? "?v=" + sc.dataset.plateV : ""}`;
       const bImg = new Image(); bImg.src = "/assets/scene/boat-1340.webp";
       Promise.all([plate.decode(), bImg.decode()]).then(() => {
-        if (!initGL(plate, bImg)) { sc.classList.add("no-gl"); $$(".sc-still source", sc).forEach((x) => x.remove()); still.srcset = ""; still.src = plate.src; $("img", boatEl).loading = "eager"; }
+        if (!initGL(plate, bImg)) {
+          // no WebGL: the empty-sea plate is laid over the painted hero photo as an equal-size sibling (the photo is not
+          // re-sourced, so the already-painted hero stays the page's largest paint), and the boat animates as a DOM layer
+          sc.classList.add("no-gl");
+          const im = d.createElement("img"); im.src = plate.src; im.alt = ""; im.setAttribute("aria-hidden", "true"); im.decoding = "async";
+          im.style.cssText = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:" + getComputedStyle(still).objectPosition;
+          still.after(im); im.decode().then(() => { still.style.visibility = "hidden"; }, () => im.remove());
+          $("img", boatEl).loading = "eager";
+        }
         geo(); T0 = performance.now(); sc.classList.add("live"); run();
       }).catch((e) => console.warn("[scene] assets failed:", e && e.message));
     };
@@ -630,7 +664,10 @@ gl_FragColor=vec4(c,1.);}`;
   const form = $("form.rfq");
   if (form) {
     const msg = $(".formmsg", form), T = JSON.parse($("#form-i18n").textContent), panes = $$(".cpane", form), bars = $$(".console-steps span", form), back = $("[data-back]", form), fwd = $("[data-fwd]", form);
-    let step = 0;
+    let step = 0, sentAt = 0;
+    const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+    // every field error is tied to its field for assistive technology
+    $$(".f", form).forEach((f) => { const el = $("input:not([type=radio]),select,textarea", f), er = $(".err", f); if (el && er && el.id) { er.id = el.id + "-err"; el.setAttribute("aria-describedby", er.id); } });
     const q = new URLSearchParams(location.search).get("product"), need = new URLSearchParams(location.search).get("need");
     if (need) { const ta = $("#f-msg", form); if (ta && !ta.value) ta.value = need; }
     if (q) { const r = $$("[name=product]", form).find((x) => x.value === q); if (r) r.checked = true; }
@@ -638,18 +675,19 @@ gl_FragColor=vec4(c,1.);}`;
       step = s; panes.forEach((p, i) => p.classList.toggle("on", i === s)); bars.forEach((b, i) => b.classList.toggle("on", i <= s));
       $(".stepnm", form).innerHTML = `<span>${T.stepNames[s]}</span><span>0${s + 1} / 03</span>`;
       back.style.visibility = s ? "visible" : "hidden"; fwd.firstChild.textContent = s < 2 ? T.next + " " : T.send + " "; msg.textContent = "";
-      if (s === 2) { const v = Object.fromEntries(new FormData(form)); $(".review", form).innerHTML = T.labels.map(([k, l]) => `<div><dt>${l}</dt><dd>${(v[k] || "—").replace(/</g, "&lt;")}</dd></div>`).join(""); }
+      if (s === 2) { const v = Object.fromEntries(new FormData(form)); $(".review", form).innerHTML = T.labels.map(([k, l]) => `<div><dt>${l}</dt><dd>${esc(v[k] || "—")}</dd></div>`).join(""); }
       const f = $("input,select,textarea", panes[s]); if (f && d.activeElement !== d.body) f.focus({ preventScroll: true });
     };
     const valid = (s) => {
       let ok = true;
-      $$(".f", panes[s]).forEach((f) => { const el = $("input:not([type=radio]),select,textarea", f), er = $(".err", f); if (!el || !er) return; let m = ""; if (el.required && !el.value.trim()) m = T.required; else if (el.type === "email" && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) m = T.email; f.classList.toggle("bad", !!m); er.textContent = m; if (m) ok = false; });
-      if (s === 0) { const p = $("[name=product]:checked", form), er = $("#prod-err", form); er.textContent = p ? "" : T.required; if (!p) ok = false; }
+      $$(".f", panes[s]).forEach((f) => { const el = $("input:not([type=radio]),select,textarea", f), er = $(".err", f); if (!el || !er) return; let m = ""; if (el.required && !el.value.trim()) m = T.required; else if (el.type === "email" && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())) m = T.email; else if (el.type === "tel" && el.value.trim() && !/^\+?[\d\s().-]{7,20}$/.test(el.value.trim())) m = T.phone; f.classList.toggle("bad", !!m); er.textContent = m; el.setAttribute("aria-invalid", m ? "true" : "false"); if (m) ok = false; });
+      if (s === 0) { const p = $("[name=product]:checked", form), er = $("#prod-err", form), g = $("[role=radiogroup]", form); er.textContent = p ? "" : T.required; if (g) g.setAttribute("aria-invalid", p ? "false" : "true"); if (!p) ok = false; }
       return ok;
     };
     fwd.addEventListener("click", () => {
       if (step < 2) { if (valid(step)) show(step + 1); else msg.textContent = T.fix; return; }
       if (!$("[name=consent]", form).checked) { msg.textContent = T.consent; return; }
+      if (Date.now() - sentAt < 4000) return; sentAt = Date.now();   // one mail hand-off per click burst
       const v = Object.fromEntries(new FormData(form));
       const body = T.labels.map(([k, l]) => `${l}: ${v[k] || "-"}`).join("\n") + "\n\n" + (v.message || "");
       location.href = `mailto:${form.dataset.to}?subject=${encodeURIComponent(T.subject + " — " + v.product)}&body=${encodeURIComponent(body)}`;

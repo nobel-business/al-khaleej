@@ -40,5 +40,5 @@ export const products = (lang) => {
 </section>
 <section class="bleed" data-env="${ENV.steel}">${pic(lang, "sacks", { px: 0.08, fill: 0.92, mfill: 0.62 })}<div class="card">${kicker(u.packing)}${h2(ar ? "معبّأ للتوريد\nالصناعي." : "Packed for\nindustrial supply.")}<p class="body" data-r="up">${ar ? "يُعبأ مسحوق السمك في أكياس 50 كجم، ويُعبأ زيت السمك الخام في براميل." : "Fish meal is packed in 50 kg bags; crude fish oil is packed in drums."}</p></div></section>
 ${ctaBand(lang)}`;
-  return layout(lang, { key: "products", over: true, preloadImg: preload("hero-dawn", "(max-width:980px) 100vw, 46vw"), title: ar ? "المنتجات | الخليج لصناعة الأسماك" : "Products | Alkhaleej Fish Manufacturing", desc: ar ? "مسحوق سمك 60% و65% و72% وزيت سمك خام." : "Fish meal 60%, 65%, 72% and crude fish oil.", body });
+  return layout(lang, { key: "products", over: true, preloadImg: preload("hero-dawn", "(max-width:980px) 100vw, 46vw"), title: ar ? "المنتجات | الخليج لصناعة الأسماك" : "Products | Alkhaleej Fish Manufacturing", desc: ar ? "مسحوق سمك 60% و62% و65% و66% و72% وزيت سمك خام." : "Fish meal 60%, 62%, 65%, 66%, 72% and crude fish oil.", body });
 };

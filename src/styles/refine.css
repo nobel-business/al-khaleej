@@ -411,3 +411,36 @@ body{overflow-x:clip}
   .ra-products{margin-top:-24px;padding-top:28px;border-radius:50% 50% 0 0/24px 24px 0 0}
   .ra-products .ra-band{margin-top:var(--s3)}
 }
+
+/* =====================================================================
+   AUDIT — production readiness fixes
+   ===================================================================== */
+/* products camera: the shelf moves on its own compositor layer while a specimen is open (no per-frame repaint) */
+@media (min-width:900px){.ra.zoom .ra-shelf{will-change:transform}}
+/* WCAG 2.2 · 2.5.8 target size: footer product and legal links reach a 24px tap height (no visual change) */
+.ft-prods a,.ft-legal a{display:inline-flex;align-items:center;min-height:24px}
+/* WCAG 2.2 · 2.5.8: diagram nodes keep their 14px look but get a 26px pointer target (transparent stroke is hit-testable) */
+.streams .node:not(:focus-visible){stroke:transparent;stroke-width:12px}
+/* breadcrumbs: 24px tap height */
+.crumbs a{display:inline-flex;align-items:center;min-height:24px}
+/* compare table with six products: status pills may wrap inside their column instead of overflowing it */
+.cmp-c .pill{white-space:normal;height:auto;min-height:28px;padding-block:4px;line-height:1.25;max-width:100%}
+.cmp-c{min-width:0}
+/* homepage hero title on one line (both weights kept: thin «من البحر» + bold «إلى الصناعة.») */
+.dv-ui .dv-title{max-width:none}
+.dv-ui .dv-title h1{white-space:nowrap}
+.dv-ui .dv-title h1 .ln{display:inline-block}
+.dv-ui .dv-title h1 .ln:first-child{margin-inline-end:.26em}
+@media (min-width:900px){.dv-ui .dv-title h1{font-size:clamp(40px,min(5.2vw,9.4svh),96px)}}
+@media (max-width:899px){.dv-ui .dv-title h1{font-size:clamp(26px,8.6vw,52px)}}
+/* sardine card title on one line in Arabic */
+[dir=rtl] .dv-next .dv-card h2{white-space:nowrap;font-size:clamp(22px,2.5vw,40px)}
+@media (max-width:899px){[dir=rtl] .dv-next .dv-card h2{font-size:clamp(20px,6.2vw,30px)}}
+
+/* homepage hero (desktop): the copy block mirrors the ship — centred on the ship's mirror point and height */
+@media (min-width:900px){
+  .dv-ui.mirror .dv-title{--g:clamp(20px,4vw,64px);position:absolute;inset-inline-start:var(--g);top:var(--my);width:var(--mw);transform:translateY(-50%);text-align:center}
+  .dv-ui.mirror .dv-sub{margin-inline:auto;max-width:min(40ch,100%)}
+  .dv-ui.mirror .dv-row{justify-content:center}
+  .dv-ui.mirror{justify-content:flex-end}   /* the scroll cue stays at the foot of the hero */
+}
