@@ -763,7 +763,6 @@ body{transition:background-color .9s var(--out)}
 #meal .meal .dial-wrap{margin-top:20px}
 #meal .dial-wrap p{margin-top:16px!important}
 #oil .copy .body{margin-top:20px!important}
-#oil .copy p:last-child{margin-top:24px!important}
 @media (max-width:899px){
   #meal + #oil{padding-top:44px}
   #oil .oilx{row-gap:18px}
@@ -823,3 +822,6 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 #oil .oil-dial .grades button{min-width:68px;flex:none;white-space:nowrap}
 @media (max-width:899px){#oil .oil-dial .grades{justify-content:center}}
 @media (min-width:1280px) and (max-width:1439px){#oil .oil-dial .grades button{min-width:0;padding:0 10px;font-size:12px}#oil .oil-dial .grades{gap:6px!important}}
+#oil .dial-wrap p{margin-top:16px!important}
+@media (min-width:900px) and (max-width:1279px){#meal .loupe,#oil .meal.oilm .loupe{min-height:610px}}
+#oil .meal.oilm .copy{justify-content:flex-start!important}
