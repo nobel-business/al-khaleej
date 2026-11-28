@@ -65,7 +65,7 @@ ${drawer}
         ${CONTACT.phones.map((p) => `<a class="ft-card" href="tel:${p.tel}"><span class="ft-k">${lang === "ar" ? "الهاتف" : "Phone"}</span><span class="ft-v" dir="ltr">${p.label}</span>${arr}</a>`).join("")}
       </div>
       <nav class="ft-nav" aria-label="${u.brand}">
-        <div class="ft-links"><a href="${href(lang, "home")}"${cur("home")}>${u.home}</a>${navLinks.map(([k, l]) => `<a href="${href(lang, k)}"${cur(k)}>${l}</a>`).join("")}</div>
+        <div class="ft-links"><span>${lang === "ar" ? "استكشف الخليج" : "Explore Alkhaleej"}</span><a href="${href(lang, "home")}"${cur("home")}>${u.home}</a>${navLinks.map(([k, l]) => `<a href="${href(lang, k)}"${cur(k)}>${l}</a>`).join("")}</div>
         <div class="ft-prods"><span>${u.nav.products}</span>${PRODUCTS.map((p) => `<a href="${prodHref(lang, p)}">${p.name[lang]}</a>`).join("")}</div>
       </nav>
     </div>

@@ -871,3 +871,13 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 @media (prefers-reduced-motion:reduce){.gauge.qc.in .sw,.gauge.qc.in .qi .core{animation:none}.gauge.qc .sw{opacity:0}}
 /* homepage quality photo: show the whole client image (3:2), no side crop */
 #quality .qual .media{aspect-ratio:1280/853}
+
+/* footer navigation: two vertical lists — «استكشف الخليج» and «المنتجات» */
+.ft-nav{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:0 clamp(36px,5vw,72px);align-content:start}
+.ft-links,.ft-prods{display:flex!important;flex-direction:column;flex-wrap:nowrap!important;align-items:flex-start;gap:12px!important;margin:0!important}
+.ft-links>span,.ft-prods>span{flex-basis:auto!important;font-size:13px;letter-spacing:0;color:rgba(255,255,255,.5);margin-bottom:4px}
+.ft-links a,.ft-prods a{padding:0!important;border:0!important;border-radius:0!important;background:none!important;font-size:14.5px!important;color:rgba(255,255,255,.82);min-height:24px;display:inline-flex;align-items:center;gap:8px;transition:color .3s}
+.ft-links a:hover,.ft-links a:focus-visible,.ft-prods a:hover,.ft-prods a:focus-visible{color:#F2B552}
+.ft-links a[aria-current]{color:#fff;font-weight:600}
+.ft-links a[aria-current]::before{content:"";width:6px;height:6px;border-radius:50%;background:#F2B552}
+@media (max-width:560px){.ft-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}}
