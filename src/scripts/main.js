@@ -352,11 +352,12 @@
     const hero = $(".ab-hero"); if (!hero) return;
     if (!RM) scene(hero, (p) => { const x = clamp((p - 0.5) / 0.42); hero.style.setProperty("--p", p.toFixed(4)); hero.style.setProperty("--x", x.toFixed(4)); });
     const vals = $(".ab-values");
-    if (vals) { const items = $$(".ab-val-item", vals), btns = $$(".ab-val-index button", vals), wide = matchMedia("(min-width:900px)"), n = items.length;
-      const set = (a) => { if (vals.dataset.a === String(a)) return; vals.dataset.a = String(a); btns.forEach((b, k) => b.setAttribute("aria-pressed", k === a)); };
-      scene(vals, (p) => { if (!wide.matches || RM) return; vals.style.setProperty("--vp", p.toFixed(4)); set(Math.min(n - 1, Math.floor(p * n * 0.9999))); });
-      btns.forEach((b, k) => b.addEventListener("click", () => { if (!wide.matches || RM) { set(k); return; }
-        const top = vals.getBoundingClientRect().top + scrollY, span = vals.offsetHeight - innerHeight; scrollTo({ top: Math.round(top + (span * (k + 0.5)) / n), behavior: "smooth" }); })); }
+    if (vals) { const btns = $$(".ab-val-index button", vals), wide = matchMedia("(min-width:900px)"), G = 3, per = Math.ceil(btns.length / G);
+      /* values arrive in groups (two at a time): the index lights both names of the group */
+      const set = (g) => { if (vals.dataset.g === String(g)) return; vals.dataset.g = String(g); btns.forEach((b, k) => b.setAttribute("aria-pressed", Math.floor(k / per) === g)); };
+      scene(vals, (p) => { if (!wide.matches || RM) return; vals.style.setProperty("--vp", p.toFixed(4)); set(Math.min(G - 1, Math.floor(p * G * 0.9999))); });
+      btns.forEach((b, k) => b.addEventListener("click", () => { const g = Math.floor(k / per); if (!wide.matches || RM) { set(g); return; }
+        const top = vals.getBoundingClientRect().top + scrollY, span = vals.offsetHeight - innerHeight; scrollTo({ top: Math.round(top + (span * (g + 0.5)) / G), behavior: "smooth" }); })); }
     const fut = $(".ab-fut");
     if (fut) scene(fut, (p) => { const a = RM ? 2 : p < 0.36 ? 0 : p < 0.7 ? 1 : 2; if (fut.dataset.a !== String(a)) fut.dataset.a = String(a);
       fut.style.setProperty("--f", p.toFixed(4)); fut.style.setProperty("--fr", (RM ? 1 : clamp((p - 0.02) / 0.72)).toFixed(4)); });

@@ -132,15 +132,15 @@ export const about = (lang) => {
   </div>
 </section>
 
-<section class="ab-values" data-env="#F7F2EA" data-a="0" aria-labelledby="ab-val-h">
+<section class="ab-values" data-env="#F7F2EA" data-g="0" aria-labelledby="ab-val-h">
   <div class="ab-val-stage">
     <div class="wrap ab-val-wrap">
       <div class="ab-val-head">${eye(c.values.eye)}<h2 class="ab-h2" id="ab-val-h" data-lines>${lines(c.values.h)}</h2></div>
       <div class="ab-val-body">
-        <div class="ab-val-index" role="group" aria-label="${c.values.eye}">${c.values.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}">${vi(i, "ab-val-mini")}<span>${t}</span></button>`).join("")}</div>
+        <div class="ab-val-index" role="group" aria-label="${c.values.eye}">${c.values.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i < 2}">${vi(i, "ab-val-mini")}<span>${t}</span></button>`).join("")}</div>
         <div class="ab-val-show">
           <span class="ab-val-glow" aria-hidden="true"></span>
-          ${c.values.items.map(([t, d], i) => `<article class="ab-val-item" data-i="${i}" data-r="up"><span class="ab-val-ghost" aria-hidden="true">${t}</span><span class="ab-val-badge" aria-hidden="true">${vi(i, "ab-val-ic")}</span><h3><span>${t}</span></h3><p>${d}</p></article>`).join("")}
+          ${c.values.items.map(([t, d], i) => `<article class="ab-val-item" data-i="${i}" data-g="${i >> 1}" data-r="up"><span class="ab-val-ghost" aria-hidden="true">${t}</span><span class="ab-val-badge" aria-hidden="true">${vi(i, "ab-val-ic")}</span><h3><span>${t}</span></h3><p>${d}</p></article>`).join("")}
           <span class="ab-val-progress" aria-hidden="true"><i></i></span>
         </div>
       </div>
