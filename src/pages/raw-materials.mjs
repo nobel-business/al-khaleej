@@ -201,31 +201,12 @@ export const raw = (lang) => {
   </div>
 </section>
 
-<section class="rw-mat" data-env="#FBF8F3" aria-labelledby="rw-mat-h">
+<section class="rw-mat" data-env="#F7F2EA" aria-labelledby="rw-mat-h">
   <div class="wrap rw-split">
     <div class="rw-copy">${eye(c.mat.eye)}${H2(c.mat.h, "rw-mat-h")}<div class="rw-prose" data-r="up">${c.mat.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
     <div class="rw-media">${pic(lang, "rw-fish", { col: 44, mcol: 100, box: 0.8, reveal: "curtain" })}</div>
   </div>
   <div class="wrap"><ul class="rw-els">${c.mat.els.map((t, i) => `<li data-r="up" style="transition-delay:${i * 90}ms">${ln(EL[i], "rw-ic")}<span>${t}</span></li>`).join("")}</ul></div>
-</section>
-
-<section class="rw-seas" data-env="#F7F2EA" data-s="0" aria-labelledby="rw-seas-h">
-  <div class="wrap rw-seas-grid">
-    <div class="rw-copy">${eye(c.seas.eye)}${H2(c.seas.h, "rw-seas-h")}<div class="rw-prose" data-r="up">${c.seas.p.map((t) => `<p>${t}</p>`).join("")}</div>
-      <div class="rw-sea-list" role="group" aria-label="${c.seas.mapLabel}">${c.seas.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}"><span class="rw-n">0${i + 1}</span>${t}</button>`).join("")}</div>
-      <div class="rw-sea-text" aria-live="polite">${c.seas.items.map(([t, d], i) => `<p data-i="${i}">${d}</p>`).join("")}</div>
-    </div>
-    <figure class="rw-map" data-r="fade">
-      <svg viewBox="0 0 544 432" role="img" aria-label="${c.seas.mapLabel}">
-        <defs><pattern id="rwGrid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="rgba(12,48,72,.06)"/></pattern></defs>
-        <rect width="544" height="432" class="rw-land"/><rect width="544" height="432" fill="url(#rwGrid)"/>
-        ${SEAS.map((d, i) => `<path class="rw-sea" data-i="${i}" d="${d}"><title>${c.seas.items[i][0]}</title></path>`).join("")}
-        ${SEA_LABEL.map(([x, y], i) => `<text class="rw-sea-lb" data-i="${i}" x="${x}" y="${y}" text-anchor="middle">${c.seas.items[i][0]}</text>`).join("")}
-        <text class="rw-land-lb" x="92" y="200" text-anchor="middle">${c.seas.egypt}</text>
-        <g class="rw-plant"><circle cx="111" cy="119" r="11" class="rw-pulse"/><circle cx="111" cy="119" r="4.5"/><text x="111" y="140" text-anchor="middle">${c.seas.plant}</text></g>
-      </svg>
-    </figure>
-  </div>
 </section>
 
 <section class="rw-sp" data-env="#FBF8F3" aria-labelledby="rw-sp-h">
@@ -267,35 +248,6 @@ export const raw = (lang) => {
       <p class="rw-sub">${c.vr.sub}</p>
       <div class="rw-vr-tabs" role="group" aria-label="${c.vr.sub}">${c.vr.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}">${t}</button>`).join("")}</div>
       <div class="rw-vr-board">${c.vr.items.map(([t, d], i) => `<div class="rw-vr-card" data-i="${i}"><svg class="rw-vr-art" viewBox="0 0 180 120" aria-hidden="true">${VR[i]}</svg><div><h3>${t}</h3><p>${d}</p></div></div>`).join("")}</div>
-    </div>
-  </div>
-</section>
-
-<section class="rw-q" data-env="#FBF8F3" aria-labelledby="rw-q-h">
-  <div class="wrap rw-q-grid">
-    <div class="rw-media">${pic(lang, "rw-quality", { col: 40, mcol: 100, box: 0.8, reveal: "curtain" })}</div>
-    <div class="rw-copy">${eye(c.q.eye)}${H2(c.q.h, "rw-q-h")}<div class="rw-prose" data-r="up">${c.q.p.map((t) => `<p>${t}</p>`).join("")}</div>
-      <p class="rw-sub" data-r="up">${c.q.sub}</p>
-      <dl class="rw-q-list">${c.q.items.map(([t, other, d], i) => `<div class="rw-q-row" data-r="up" style="transition-delay:${i * 80}ms"><dt>${ln(QI[i], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></dt><dd>${d}</dd></div>`).join("")}</dl>
-      <p class="rw-more" data-r="up"><a class="link" href="${href(lang, "quality")}"><span>${c.q.cta}</span> ${arrow}</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="rw-fl" data-env="#F7F2EA" aria-labelledby="rw-fl-h">
-  <div class="wrap">
-    <div class="rw-head-center">${eye(c.fl.eye)}${H2(c.fl.h, "rw-fl-h")}<p class="rw-lede" data-r="up">${c.fl.p}</p></div>
-    <div class="rw-fl-map">
-      <div class="rw-fl-src" data-r="up">${ln(FISH, "rw-fl-fish")}<b>${c.fl.src}</b></div>
-      <svg class="rw-fl-lines" viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M500 0 C500 70 250 60 250 140"/><path pathLength="1" d="M500 0 C500 70 750 60 750 140"/></svg>
-      <div class="rw-fl-prods">
-        <article class="rw-fl-prod" data-r="up"><div class="rw-fl-img">${pic(lang, "jar-65", { col: 16, mcol: 36, box: 0.75 })}</div><div><h3>${c.fl.meal.t} <small ${alt()}>${c.fl.meal.en}</small></h3><p>${c.fl.meal.d}</p>
-          <p class="rw-chips-lb">${c.fl.meal.gl}</p><div class="rw-chips">${[60, 62, 65, 66, 72].map((g) => `<span>${g}%</span>`).join("")}</div>
-          <p class="rw-chips-lb">${c.fl.meal.fl}</p><div class="rw-chips" dir="ltr"><span>High Fat</span><span>Low Fat</span></div>
-          <a class="link" href="${href(lang, "products")}"><span>${c.fl.meal.cta}</span> ${arrow}</a></div></article>
-        <article class="rw-fl-prod" data-r="up" style="transition-delay:140ms"><div class="rw-fl-img">${pic(lang, "oil-flask", { col: 16, mcol: 36, box: 0.75 })}</div><div><h3>${c.fl.oil.t} <small ${alt()}>${c.fl.oil.en}</small></h3><p>${c.fl.oil.d}</p>
-          <a class="link" href="${prodHref(lang, oil)}"><span>${c.fl.oil.cta}</span> ${arrow}</a></div></article>
-      </div>
     </div>
   </div>
 </section>

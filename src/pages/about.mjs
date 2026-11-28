@@ -107,7 +107,7 @@ export const about = (lang) => {
   <div class="wrap ab-who-grid">
     <div class="ab-who-copy">${eye(c.who.eye)}<h2 class="ab-h2" id="ab-who-h" data-lines>${lines(c.who.h)}</h2>
       <div class="ab-prose" data-r="up">${c.who.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
-    <div class="ab-who-media">${pic(lang, "ab-who", { col: 46, mcol: 100, box: 0.82, reveal: "curtain" })}</div>
+    <div class="ab-who-media">${pic(lang, "ab-site", { col: 46, mcol: 100, box: 0.82, reveal: "curtain" })}</div>
   </div>
 </section>
 

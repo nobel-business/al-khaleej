@@ -4,7 +4,7 @@
    ===================================================================================================== */
 .rw-mat,.rw-seas,.rw-sp,.rw-src,.rw-nu,.rw-vr,.rw-q,.rw-fl{--gold:#C99A3E;--gold-2:#E3B860;--line:rgba(12,48,72,.12);position:relative;padding-block:clamp(28px,6vh,75px)}
 .rw-mat,.rw-sp,.rw-nu,.rw-q{background:#FBF8F3}
-.rw-seas,.rw-src,.rw-vr,.rw-fl{background:#F7F2EA}
+.rw-mat,.rw-src,.rw-vr{background:#F7F2EA}
 @media (max-width:899px){.rw-mat,.rw-seas,.rw-sp,.rw-src,.rw-nu,.rw-vr,.rw-q,.rw-fl{padding-block:28px}}
 .rw-mat .media,.rw-sp .media,.rw-src .media,.rw-nu .media,.rw-q .media,.rw-fl .media{position:absolute;inset:0;margin:0;overflow:hidden}
 .rw-mat .media img,.rw-sp .media img,.rw-src .media img,.rw-nu .media img,.rw-q .media img,.rw-fl .media img{width:100%;height:100%;object-fit:cover;display:block}

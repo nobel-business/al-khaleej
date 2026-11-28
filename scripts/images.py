@@ -36,9 +36,9 @@ SPEC = {
     "rw-s3":          ("ai/rw-s3.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — cold storage
     "rw-s4":          ("ai/rw-s4.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — chilled transport
     "rw-s5":          ("ai/rw-s5.jpg",             [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials journey — receiving
-    "rw-quality":     ("ai/rw-quality.jpg",        [640, 1024, 1600],                 "50% 50%", "ai", None),   # Raw Materials — quality inspection
     "ab-sea":         ("ai/ab-sea.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — sea at first light
     "ab-ind":         ("ai/ab-ind.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — processing hall
+    "ab-site":        ("ai/ab-site.jpg",        [640, 1024, 1280],                        "62% 55%", "ai", None),   # About — plant by the harbour (client-supplied)
     "ab-who":         ("ai/ab-who.jpg",         [640, 1024, 1600],                        "55% 55%", "ai", None),   # About — production line
     "ab-horizon":     ("ai/ab-horizon.jpg",     [640, 1024, 1600, 2400, 3072],            "50% 60%", "ai", None),   # About — looking ahead
     "lab-qc":         ("ai/lab-qc.jpg",         [640, 1024, 1280],                        "50% 55%", "ai", None),   # client-supplied quality lab
