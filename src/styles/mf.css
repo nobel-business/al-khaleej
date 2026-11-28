@@ -274,3 +274,19 @@ div.mf-node{cursor:default}
 }
 @media (max-width:980px){.ra-space{display:none}.ra-products .ra-head{padding-top:0}.pr-lede:not(.pr-one){padding-inline:var(--gutter)}}
 @media (max-width:767px){.pr-one,[dir=ltr] .pr-one{white-space:normal;font-size:15.5px;max-width:34ch;text-align:center}}
+
+/* Products — the shared section rhythm (as the homepage, About, Raw Materials, Manufacturing):
+   clamp(28px,6vh,75px) above and below every section (28px on phones), head-to-content clamp(32px,4vw,56px) */
+#compare.sec{padding-block:clamp(28px,6vh,75px)!important}
+@media (max-width:899px){#compare.sec{padding-block:28px!important}}
+.pr-head{margin-bottom:clamp(32px,4vw,56px)}
+.ra-products .pr-head{margin-bottom:0}
+@media (min-width:981px){
+  .ra-products .ra-band{bottom:calc(clamp(28px,6vh,75px) - 20px)!important}
+  .ra-space{height:calc(var(--wb) + clamp(32px,4vw,56px) + clamp(28px,6vh,75px) - 20px)}
+}
+@media (min-width:981px){
+  .ra-space{height:calc(var(--wb) - 50px + clamp(32px,4vw,56px) + clamp(28px,6vh,75px) - 20px)}
+  .ra-products .ra-band::before{top:30px}
+}
+@media (max-width:980px){.ra-products .ra-band{margin-top:32px!important}}
