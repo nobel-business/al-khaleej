@@ -313,3 +313,9 @@ div.mf-node{cursor:default}
 .ra-products .ra-spec .num{display:inline-grid;place-items:center;min-width:28px;height:22px;padding:0 6px;border-radius:11px;background:var(--sc);color:#fff;opacity:.9;letter-spacing:.06em}
 .ra-products .ra-spec.lit .tag b,.ra-products .ra-spec:hover .tag b{border-color:var(--sc)}
 @media (max-width:980px){.ra-products .ra-spec .ghost{font-size:clamp(40px,16vw,90px)}}
+
+/* packing card: «يُعبأ مسحوق السمك في أكياس 50 كجم، ويُعبأ زيت السمك الخام في براميل.» on one line, bold */
+.pr-pack .card{width:auto;max-width:calc(100vw - 2 * var(--gutter))}
+.pr-pack .card .body{white-space:nowrap;max-width:none;font-weight:700;color:var(--navy);font-size:min(clamp(16px,1.3vw,20px),calc((100vw - 2 * var(--gutter) - 64px) / 30))}
+[dir=ltr] .pr-pack .card .body{font-size:min(clamp(15px,1.2vw,19px),calc((100vw - 2 * var(--gutter) - 64px) / 38))}
+@media (max-width:767px){.pr-pack .card .body,[dir=ltr] .pr-pack .card .body{white-space:normal;font-size:16px}}
