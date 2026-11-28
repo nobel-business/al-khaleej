@@ -5,7 +5,7 @@ import { arr } from "../lib/html.mjs";
 import { href } from "../lib/routes.mjs";
 import { kicker, h2, crumb, ENV, ctaBand, opBleed } from "../components/blocks.mjs";
 import { board } from "../components/spec.mjs";
-import { orbit, orbitMeanings } from "../components/orbit.mjs";
+import { orbit } from "../components/orbit.mjs";
 
 export const about = (lang) => {
   const u = UI[lang], ar = lang === "ar";
@@ -14,14 +14,6 @@ export const about = (lang) => {
   <div class="wrap comp comp-57">
     ${pic(lang, "net-haul", { col: 42, mcol: 100, box: 0.8, reveal: "curtain", cls: "tall" })}
     <div>${kicker(ar ? "من نحن" : "Who we are")}${h2(ar ? "من البحر\nإلى صناعة الأعلاف." : "From the sea\nto feed manufacturing.")}<div class="body" data-r="up"><p>${ar ? "تأسس مصنع الخليج لصناعة الأسماك عام 2025 في محافظة كفر الشيخ، مصر، لإنتاج مسحوق السمك وزيت السمك الخام." : "Alkhaleej Fish Manufacturing was established in 2025 in Kafr El-Sheikh Governorate, Egypt, to produce fish meal and crude fish oil."}</p><p>${ar ? "نعتمد على أسماك بحرية كاملة، منها السردين، من رحلات مراكب الصيد التابعة لنا ومصادر التوريد البحرية، ونحوّلها إلى مكونات تُستخدم في صناعة الأعلاف." : "We process whole marine fish, including sardines, sourced through our fishing vessel operations and other marine supply channels, into ingredients used in feed manufacturing."}</p><p>${ar ? "نرحّب باستفسارات التوريد من المشترين المحليين والدوليين." : "We welcome supply inquiries from domestic and international buyers."}</p></div></div>
-  </div>
-</section>
-<section class="sec sym" id="symbol" data-env="${ENV.paper}">
-  <div class="wrap comp comp-55" style="align-items:center">
-    ${orbit(lang)}
-    <div>${kicker(ar ? "معنى الرمز" : "Our symbol")}${h2(ar ? "ثلاث سمكات\nفي دائرة." : "Three fish\nin a circle.")}<div class="body" data-r="up"><p>${ar ? "ترمز السمكات الثلاث السابحة في دائرة إلى الوحدة والانسجام والطبيعة الدورية للحياة، وإلى الوفرة والحصاد الوفير." : "Three fish swimming in a circle symbolise unity, harmony and the cyclical nature of life — and abundance, a plentiful harvest."}</p></div>
-    ${orbitMeanings(lang)}
-    <p class="sym-note">${ar ? "اختر سمكة أو معنى. يمثل الأزرق الداكن الماء والطبيعة، ويمثل البرتقالي الدفء والطاقة — من دليل الهوية البصرية." : "Select a fish or a meaning. Deep blue represents water and nature; orange represents warmth and energy — from the brand guidelines."}</p></div>
   </div>
 </section>
 <section class="sec company cv" id="company" data-env="${ENV.paper}">
