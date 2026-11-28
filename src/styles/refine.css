@@ -881,9 +881,24 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 .ft-links a[aria-current]{color:#fff;font-weight:600}
 .ft-links a[aria-current]::before{content:"";width:6px;height:6px;border-radius:50%;background:#F2B552}
 @media (max-width:560px){.ft-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}}
-.ft-acts .ft-contact{display:inline-flex;align-items:center;gap:10px}
-.ft-acts .ft-contact svg{flex:none;color:#F2B552}
+.ft-acts .ft-mail{display:inline-flex;align-items:center;gap:10px}
+.ft-acts .ft-mail svg{flex:none;color:#F2B552}
 /* footer list headings: clearly visible; the two lists sit centred in their column */
 .ft-links>span,.ft-prods>span{font-size:16px!important;font-weight:700;color:#fff!important;letter-spacing:0!important;text-transform:none!important;margin-bottom:8px!important;padding-bottom:10px;position:relative}
 .ft-links>span::after,.ft-prods>span::after{content:"";position:absolute;inset-inline-start:0;bottom:0;width:28px;height:2px;border-radius:2px;background:#F2B552}
 .ft-nav{justify-content:center;justify-self:stretch}
+/* desktop footer: brand · navigation lists in the middle · contact cards */
+@media (min-width:1101px){
+  .ft-main{grid-template-columns:minmax(0,1fr) max-content minmax(0,1fr)}
+  .ft-main>.ft-brand{order:1}.ft-main>.ft-nav{order:2;grid-column:auto}.ft-main>.ft-contact{order:3}
+}
+
+/* ===== footer polish: one top line, equal column bottoms, framed middle lists ===== */
+@media (min-width:1101px){
+  .ft-main{align-items:stretch}
+  .ft-main>.ft-nav{padding-inline:clamp(28px,3.4vw,56px);border-inline:1px solid rgba(255,255,255,.09)}
+  .ft-main>.ft-contact{grid-template-rows:repeat(3,minmax(0,1fr));align-content:stretch}
+  .ft-main>.ft-contact .ft-card{height:100%;align-content:center}
+}
+.ft-links>span,.ft-prods>span{line-height:1.2;margin-top:0!important}
+.ft-brand>a{display:inline-block;line-height:0}
