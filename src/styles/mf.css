@@ -476,3 +476,7 @@ a,button,[role=button],[role=tab],summary,label{-webkit-tap-highlight-color:tran
 .ab-hero .ab-card .ab-l>span,.ab-hero .ab-card .ab-hero-eye,.ab-hero .ab-card .ab-hero-p,.ab-hero .ab-card .ab-crumbs,
 .op-bleed .in,.op-bleed .in *{animation:none!important;opacity:1!important;transform:none!important}
 .ab-hero .ab-card .ab-hero-p{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* no page-to-page fade: Safari 18.2+ (iPhone, Mac) ran the cross-document View Transition, so every new page faded and
+   rose in over the old one — pages now appear at once */
+@view-transition{navigation:none}
+::view-transition-old(root),::view-transition-new(root),::view-transition-group(*){animation:none!important}
