@@ -1,76 +1,313 @@
 import { UI, PRODUCTS } from "../content/content.mjs";
-import { arr } from "../lib/html.mjs";
-import { href, prodHref } from "../lib/routes.mjs";
 import { pic, preload } from "../lib/media.mjs";
 import { layout } from "../layouts/layout.mjs";
-import { kicker, h2, crumb, ENV, ctaBand, opBleed } from "../components/blocks.mjs";
-import { stPill, board } from "../components/spec.mjs";
+import { lines } from "../lib/html.mjs";
+import { href, prodHref } from "../lib/routes.mjs";
+import { crumb } from "../components/blocks.mjs";
+
+/* =====================================================================================================
+   Raw materials — «ثروة البحر، أساس صناعتنا.»
+   Source of truth: the client's approved Raw Materials content (Arabic, Nov 2026), used verbatim.
+   English is our translation, pending client approval. No species lists, nutrient figures, fishing sites or
+   supply ports beyond the supplied content; the map marks only the three seas and the plant's location.
+   ===================================================================================================== */
+
+const C = {
+  ar: {
+    meta: { title: "المواد الخام البحرية | الخليج لصناعة الأسماك", desc: "اكتشف مصادر وخصائص الأسماك البحرية الكاملة المستخدمة في إنتاج مسحوق الأسماك والزيوت البحرية لدى الخليج لصناعة الأسماك، وتركيبها التغذوي وعلاقتها بجودة المنتجات." },
+    hero: { eye: "المواد الخام", h: "ثروة البحر، أساس صناعتنا.", p: "تمثل الأسماك البحرية الكاملة المصدر الطبيعي لمنتجاتنا من البروتين والزيوت البحرية. ومن خلال تنوع الموارد البحرية وخصائصها التغذوية، تبدأ رحلتنا الصناعية نحو إنتاج مكونات ذات قيمة تغذوية واقتصادية.", cue: "مرّر للأسفل" },
+    mat: { eye: "طبيعة المواد الخام", h: "أسماك بحرية كاملة، بقيمتها الطبيعية.", p: [
+      "نعتمد في الخليج لصناعة الأسماك على الأسماك البحرية الكاملة باعتبارها المادة الخام الأساسية لإنتاج مسحوق الأسماك وزيت الأسماك الخام.",
+      "وتتميز هذه الخامات باحتوائها الطبيعي على البروتين الحيواني والأحماض الأمينية الأساسية والدهون البحرية والأحماض الدهنية والمعادن، مما يجعلها مصدرًا مهمًا للمكونات المستخدمة في صناعات الأعلاف والتغذية والتطبيقات الصناعية المتخصصة.",
+      "ويتيح استخدام الأسماك الكاملة الاستفادة من مكوناتها الطبيعية المختلفة، وتحويلها من خلال عمليات التصنيع إلى منتجات بروتينية وزيتية ذات مواصفات تغذوية وتجارية متنوعة."],
+      els: ["أسماك بحرية كاملة", "بروتين حيواني طبيعي", "أحماض أمينية أساسية", "أحماض دهنية بحرية", "معادن وعناصر تغذوية"] },
+    seas: { eye: "جغرافيا الموارد البحرية", h: "بحار متعددة، وموارد متنوعة.", p: [
+      "تتميز المنطقة الجغرافية التي ننطلق منها بتنوع بيئاتها البحرية، وامتدادها إلى مناطق صيد غنية بالموارد السمكية، تختلف فيها أنواع الأسماك وخصائصها الطبيعية ومواسم توافرها.",
+      "وتشمل نطاقات الموارد البحرية التي نستهدف الاستفادة منها البحر الأبيض المتوسط والبحر الأحمر والخليج العربي، بما يوفر فرصًا لتنويع مصادر الخامات والخصائص التغذوية للمنتجات."],
+      items: [["البحر الأبيض المتوسط", "بيئة بحرية غنية بأنواع متعددة من الأسماك، من بينها الأسماك السطحية الصغيرة مثل السردين، التي تمثل مصدرًا طبيعيًا للبروتين والدهون البحرية."],
+        ["البحر الأحمر", "بيئة بحرية تتميز بتنوعها البيولوجي وخصائصها الطبيعية المختلفة، وتضم موارد سمكية ذات خصائص تغذوية متنوعة."],
+        ["الخليج العربي", "منطقة بحرية تتميز بظروفها البيئية ومواردها السمكية الخاصة، وتوفر فرصًا لتنويع مصادر الخامات البحرية."]],
+      egypt: "مصر", plant: "كفر الشيخ", mapLabel: "خريطة البحار الثلاثة" },
+    sp: { eye: "التنوع الطبيعي", h: "لكل نوع خصائصه، ولكل خامة قيمتها.", p: [
+      "تختلف الأسماك البحرية في تركيبها الكيميائي والتغذوي تبعًا للنوع والعمر والحجم والبيئة البحرية والموسم ودورة التغذية.",
+      "وتنعكس هذه الاختلافات بصورة مباشرة على نسب البروتين والدهون والمعادن، وعلى خصائص الزيوت المستخلصة منها.",
+      "ويمثل فهم هذا التنوع أحد الأسس المهمة في اختيار الخامات وتحديد مواصفات المنتجات النهائية."],
+      items: [["السردين", "Sardine", "يعد السردين من الأسماك البحرية السطحية الصغيرة، ويتميز بمحتواه الطبيعي من البروتين والدهون البحرية والأحماض الدهنية، مما يجعله من الخامات المهمة في صناعة مسحوق الأسماك وزيت الأسماك."],
+        ["الأسماك البحرية السطحية", "Pelagic Fish", "مجموعة من الأسماك التي تعيش في الطبقات المائية المفتوحة، وتتميز بتنوع خصائصها التغذوية ومحتواها من البروتين والدهون."],
+        ["الأسماك البحرية الأخرى", "Other Marine Fish", "تختلف خصائصها الطبيعية باختلاف الأنواع والبيئات البحرية، ويتم تقييم ملاءمتها للتصنيع وفق تركيبها التغذوي وحالتها عند الاستقبال."]] },
+    src: { eye: "من البحر إلى المصنع", h: "العناية بالخامات تبدأ قبل التصنيع.", p: [
+      "تبدأ العملية الصناعية قبل وصول الأسماك إلى المصنع، من خلال اختيار مصادر الخامات والتعامل معها خلال مراحل الصيد والتجميع والنقل والحفظ.",
+      "وتعتمد منظومة توفير الخامات البحرية على مجموعة من المصادر والقنوات التي تتيح التعامل مع اختلاف مواسم الصيد وتنوع الموارد البحرية ومتطلبات الإنتاج."],
+      seq: ["الصيد", "التجميع", "الحفظ والتبريد", "النقل", "الاستقبال"],
+      items: [["الصيد المباشر", "الاستفادة من الأسماك البحرية التي يتم الحصول عليها من خلال مراكب الصيد التابعة للمصنع، بما يعزز ارتباط العملية الصناعية بمصادر الخامات."],
+        ["موانئ الصيد", "الحصول على الخامات البحرية من مصادر الصيد والتجميع، وفق توافر الأسماك وملاءمتها للتصنيع."],
+        ["مصادر الحفظ والتبريد", "الاستفادة من الخامات البحرية المحفوظة والمبردة، وفق حالتها وخصائصها ومدى ملاءمتها لمتطلبات الإنتاج."],
+        ["النقل والاستقبال", "الاهتمام بظروف نقل الخامات وتداولها واستقبالها داخل المصنع، باعتبارها عوامل مؤثرة في خصائص المادة الخام وجودة المنتج النهائي."]] },
+    nu: { eye: "القيمة الكامنة في الخامات", h: "أكثر من مجرد مادة خام.", p: [
+      "تحتوي الأسماك البحرية بطبيعتها على مجموعة من المكونات التغذوية التي تمنحها أهمية خاصة في صناعات الأعلاف والتغذية.",
+      "وتتكامل هذه المكونات لتشكل القيمة الطبيعية للخامات، والتي يتم الاستفادة منها خلال عمليات التصنيع وإنتاج مسحوق الأسماك والزيوت البحرية."],
+      items: [["البروتين الحيواني", "Animal Protein", "يمثل البروتين أحد المكونات الرئيسية للأسماك البحرية، ويعد أساس القيمة التغذوية لمسحوق الأسماك."],
+        ["الأحماض الأمينية", "Amino Acids", "تحتوي البروتينات البحرية على مجموعة من الأحماض الأمينية الأساسية، من بينها الليسين والميثيونين والثريونين، التي تؤدي أدوارًا مهمة في النمو وبناء الأنسجة والتغذية الحيوانية."],
+        ["الدهون البحرية", "Marine Lipids", "تمثل الدهون البحرية مصدرًا للطاقة والأحماض الدهنية، وتعد المكون الأساسي الذي يتم استخلاصه خلال إنتاج زيت الأسماك."],
+        ["أحماض أوميغا 3", "Omega-3 Fatty Acids", "تحتوي العديد من الأسماك البحرية بصورة طبيعية على أحماض دهنية متعددة غير مشبعة، من بينها EPA وDHA، بنسب تختلف وفق النوع والبيئة والموسم."],
+        ["المعادن", "Minerals", "تحتوي الأسماك الكاملة على عناصر معدنية طبيعية، من بينها الكالسيوم والفوسفور، والتي تساهم في القيمة المعدنية لمسحوق الأسماك."],
+        ["الفيتامينات", "Vitamins", "تحتوي الخامات البحرية بصورة طبيعية على مجموعة من الفيتامينات، تختلف مستوياتها باختلاف أنواع الأسماك وخصائصها وظروف المعالجة."]] },
+    vr: { eye: "فهم طبيعة الموارد البحرية", h: "البحر متنوع بطبيعته.", p: [
+      "لا تمتلك جميع الأسماك البحرية التركيب الكيميائي والتغذوي نفسه، إذ تتغير خصائصها الطبيعية نتيجة مجموعة من العوامل البيولوجية والبيئية.",
+      "ويمثل فهم هذه المتغيرات جزءًا مهمًا من المعرفة الصناعية اللازمة للتعامل مع الخامات البحرية وتطوير مواصفات المنتجات."],
+      sub: "العوامل المؤثرة في خصائص الخامات",
+      items: [["نوع الأسماك", "تختلف نسب البروتين والدهون والمعادن باختلاف الأنواع السمكية."],
+        ["موسم الصيد", "تتأثر خصائص الأسماك بتغير المواسم ودورات التغذية والتكاثر."],
+        ["البيئة البحرية", "تؤثر درجات حرارة المياه والملوحة وتوافر الغذاء الطبيعي في التركيب البيولوجي للأسماك."],
+        ["الحجم والعمر", "تختلف نسب المكونات الطبيعية تبعًا لمراحل نمو الأسماك وأحجامها."],
+        ["الحالة والطزاجة", "تؤثر ظروف التداول والحفظ والفترة الزمنية قبل التصنيع في الحالة الكيميائية والبيولوجية للخامات."]] },
+    q: { eye: "الجودة قبل التصنيع", h: "جودة المنتج تبدأ من جودة الخامة.", p: [
+      "تمثل حالة المواد الخام أحد العوامل الأساسية المؤثرة في خصائص مسحوق الأسماك والزيوت البحرية.",
+      "ولهذا نهتم بتقييم الخامات البحرية من حيث حالتها العامة وطزاجتها وخصائصها الطبيعية ومدى ملاءمتها لعمليات التصنيع.",
+      "وتساعد متابعة هذه المؤشرات على فهم طبيعة الخامات والتعامل معها بما يتناسب مع خصائصها ومتطلبات الإنتاج."],
+      sub: "مؤشرات تقييم الخامات", cta: "اكتشف معايير الجودة لدينا",
+      items: [["الطزاجة", "Freshness", "تقييم الحالة العامة للخامات والمؤشرات المرتبطة بالتغيرات الكيميائية الناتجة عن تدهور الطزاجة."],
+        ["الحالة الظاهرية", "Physical Condition", "تقييم المظهر العام وسلامة الخامات وحالتها عند الاستقبال."],
+        ["التركيب التغذوي", "Nutritional Composition", "متابعة خصائص البروتين والدهون والرطوبة والمكونات المعدنية."],
+        ["ظروف الحفظ", "Preservation Conditions", "متابعة ظروف التداول والحفظ والتبريد قبل التصنيع."],
+        ["ملاءمة التصنيع", "Processing Suitability", "تقييم مدى ملاءمة الخامات للمعالجة وإنتاج المنتجات المستهدفة."]] },
+    fl: { eye: "القيمة الصناعية للموارد البحرية", h: "مصدر واحد، ومنتجات متعددة.", p: "من خلال عمليات المعالجة الحرارية والعصر والفصل والتجفيف، يتم تحويل الأسماك البحرية الكاملة إلى مسارين إنتاجيين رئيسيين، يمثل كل منهما جانبًا من القيمة الطبيعية والتغذوية للخامات.",
+      src: "أسماك بحرية كاملة",
+      meal: { t: "مسحوق الأسماك", en: "Fish Meal", d: "منتج غني بالبروتين الحيواني والأحماض الأمينية والمعادن، يتم إنتاجه بدرجات بروتينية ومستويات دهون مختلفة، بما يتناسب مع متطلبات الاستخدام والتصنيف التجاري.", gl: "درجات البروتين", fl: "خيارات الدهون", cta: "استكشف مسحوق الأسماك" },
+      oil: { t: "زيت الأسماك الخام", en: "Crude Fish Oil", d: "زيت بحري يتم استخلاصه وفصله خلال عمليات التصنيع، ويحتوي على الدهون والأحماض الدهنية البحرية، ويستخدم في صناعة الأعلاف وكخامة لعمليات التكرير والتطبيقات الأخرى وفق مواصفاته ومدى ملاءمته للاستخدام.", cta: "استكشف زيت الأسماك" } },
+    cta: { h: "من طبيعة البحر إلى دقة التصنيع.", p: "اكتشف كيف تتحول الموارد البحرية الطبيعية إلى منتجات بروتينية وزيتية، من خلال مراحل المعالجة والفصل والتجفيف والتصنيع.", a: "اكتشف عمليات التصنيع", b: "استكشف منتجاتنا" },
+  },
+  en: {
+    meta: { title: "Marine raw materials | Alkhaleej Fish Manufacturing", desc: "Discover the sources and properties of the whole marine fish Alkhaleej Fish Manufacturing uses to produce fish meal and marine oils, their nutritional composition and how they shape product quality." },
+    hero: { eye: "Raw materials", h: "The sea’s wealth, the foundation of our industry.", p: "Whole marine fish are the natural source of our marine protein and oil products. Through the diversity of marine resources and their nutritional properties, our industrial journey begins towards ingredients of nutritional and economic value.", cue: "Scroll" },
+    mat: { eye: "The nature of our raw materials", h: "Whole marine fish, with their natural value.", p: [
+      "At Alkhaleej Fish Manufacturing we rely on whole marine fish as the main raw material for producing fish meal and crude fish oil.",
+      "These raw materials naturally contain animal protein, essential amino acids, marine fats, fatty acids and minerals, making them an important source of ingredients for the feed, nutrition and specialised industrial sectors.",
+      "Using whole fish makes the most of their different natural components, turning them through manufacturing into protein and oil products of varied nutritional and commercial specifications."],
+      els: ["Whole marine fish", "Natural animal protein", "Essential amino acids", "Marine fatty acids", "Minerals and nutrients"] },
+    seas: { eye: "The geography of marine resources", h: "Many seas, diverse resources.", p: [
+      "The region we operate from has diverse marine environments, reaching fishing grounds rich in fish resources, where species, natural properties and seasons of availability vary.",
+      "The marine resource areas we aim to draw on include the Mediterranean, the Red Sea and the Arabian Gulf, offering opportunities to diversify raw-material sources and the nutritional properties of our products."],
+      items: [["The Mediterranean", "A marine environment rich in many fish species, among them small pelagic fish such as sardines, a natural source of protein and marine fats."],
+        ["The Red Sea", "A marine environment known for its biodiversity and distinct natural properties, holding fish resources of varied nutritional character."],
+        ["The Arabian Gulf", "A marine area with its own environmental conditions and fish resources, offering opportunities to diversify marine raw-material sources."]],
+      egypt: "Egypt", plant: "Kafr El-Sheikh", mapLabel: "Map of the three seas" },
+    sp: { eye: "Natural diversity", h: "Every species has its properties, every raw material its value.", p: [
+      "Marine fish differ in chemical and nutritional composition according to species, age, size, marine environment, season and feeding cycle.",
+      "These differences show directly in the proportions of protein, fat and minerals, and in the properties of the oils extracted from them.",
+      "Understanding this diversity is one of the key foundations for selecting raw materials and setting the specifications of final products."],
+      items: [["Sardine", "السردين", "Sardines are small pelagic marine fish, naturally rich in protein, marine fats and fatty acids, which makes them an important raw material for fish meal and fish oil."],
+        ["Pelagic fish", "الأسماك البحرية السطحية", "A group of fish living in the open water column, with varied nutritional properties and protein and fat content."],
+        ["Other marine fish", "الأسماك البحرية الأخرى", "Their natural properties vary with species and marine environment; their suitability for processing is assessed by nutritional composition and condition on receipt."]] },
+    src: { eye: "From the sea to the plant", h: "Care for raw materials begins before manufacturing.", p: [
+      "The industrial process begins before the fish reach the plant, through the choice of raw-material sources and their handling during fishing, collection, transport and preservation.",
+      "Our marine raw-material supply relies on a range of sources and channels that let us respond to changing fishing seasons, diverse marine resources and production requirements."],
+      seq: ["Fishing", "Collection", "Preservation and cooling", "Transport", "Receiving"],
+      items: [["Direct fishing", "Marine fish obtained through the plant’s own fishing vessels, strengthening the link between the industrial process and its raw-material sources."],
+        ["Fishing ports", "Marine raw materials obtained from fishing and collection sources, according to fish availability and suitability for processing."],
+        ["Preservation and cold sources", "Preserved and chilled marine raw materials, used according to their condition, properties and suitability for production."],
+        ["Transport and receiving", "Attention to how raw materials are transported, handled and received at the plant, as factors that shape the raw material and the quality of the final product."]] },
+    nu: { eye: "The value within the raw material", h: "More than a raw material.", p: [
+      "Marine fish naturally contain a range of nutritional components that give them particular importance in the feed and nutrition industries.",
+      "Together these components form the natural value of the raw material, which is put to use through manufacturing and the production of fish meal and marine oils."],
+      items: [["Animal protein", "البروتين الحيواني", "Protein is one of the main components of marine fish and the basis of fish meal’s nutritional value."],
+        ["Amino acids", "الأحماض الأمينية", "Marine proteins contain essential amino acids, among them lysine, methionine and threonine, which play important roles in growth, tissue building and animal nutrition."],
+        ["Marine lipids", "الدهون البحرية", "Marine fats are a source of energy and fatty acids, and the main component extracted in the production of fish oil."],
+        ["Omega-3 fatty acids", "أحماض أوميغا 3", "Many marine fish naturally contain polyunsaturated fatty acids, among them EPA and DHA, in proportions that vary with species, environment and season."],
+        ["Minerals", "المعادن", "Whole fish contain natural minerals, among them calcium and phosphorus, which contribute to the mineral value of fish meal."],
+        ["Vitamins", "الفيتامينات", "Marine raw materials naturally contain a range of vitamins, whose levels vary with fish species, their properties and processing conditions."]] },
+    vr: { eye: "Understanding marine resources", h: "The sea is diverse by nature.", p: [
+      "Not all marine fish share the same chemical and nutritional composition; their natural properties change with a range of biological and environmental factors.",
+      "Understanding these variables is an important part of the industrial knowledge needed to work with marine raw materials and develop product specifications."],
+      sub: "Factors that shape raw-material properties",
+      items: [["Fish species", "Protein, fat and mineral proportions differ between species."],
+        ["Fishing season", "Fish properties change with the seasons and with feeding and breeding cycles."],
+        ["Marine environment", "Water temperature, salinity and natural food availability affect the fish’s biological composition."],
+        ["Size and age", "The proportions of natural components vary with the fish’s growth stage and size."],
+        ["Condition and freshness", "Handling, preservation and the time before processing affect the raw material’s chemical and biological condition."]] },
+    q: { eye: "Quality before manufacturing", h: "Product quality begins with raw-material quality.", p: [
+      "The condition of raw materials is one of the main factors shaping the properties of fish meal and marine oils.",
+      "That is why we assess marine raw materials for their general condition, freshness, natural properties and suitability for processing.",
+      "Following these indicators helps us understand the raw material and handle it according to its properties and production requirements."],
+      sub: "Raw-material assessment indicators", cta: "Discover our quality standards",
+      items: [["Freshness", "الطزاجة", "Assessing the general condition of the raw material and indicators linked to chemical changes caused by loss of freshness."],
+        ["Physical condition", "الحالة الظاهرية", "Assessing general appearance, integrity and condition on receipt."],
+        ["Nutritional composition", "التركيب التغذوي", "Following protein, fat, moisture and mineral properties."],
+        ["Preservation conditions", "ظروف الحفظ", "Following handling, preservation and cooling conditions before processing."],
+        ["Processing suitability", "ملاءمة التصنيع", "Assessing how suitable the raw material is for processing and for the target products."]] },
+    fl: { eye: "The industrial value of marine resources", h: "One source, many products.", p: "Through cooking, pressing, separation and drying, whole marine fish are turned into two main production streams, each representing one side of the raw material’s natural and nutritional value.",
+      src: "Whole marine fish",
+      meal: { t: "Fish meal", en: "مسحوق الأسماك", d: "A product rich in animal protein, amino acids and minerals, produced in different protein grades and fat levels to suit use requirements and commercial grading.", gl: "Protein grades", fl: "Fat options", cta: "Explore fish meal" },
+      oil: { t: "Crude fish oil", en: "زيت الأسماك الخام", d: "A marine oil extracted and separated during manufacturing, containing marine fats and fatty acids, used in feed manufacturing and as a raw material for refining and other applications according to its specification and suitability.", cta: "Explore fish oil" } },
+    cta: { h: "From the nature of the sea to manufacturing precision.", p: "Discover how natural marine resources become protein and oil products, through processing, separation, drying and manufacturing.", a: "Discover our manufacturing", b: "Explore our products" },
+  },
+};
+
+/* line icons (pathLength=1 so they draw themselves in) */
+const ln = (d, cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${d.replace(/<(path|circle|rect|ellipse)/g, '<$1 pathLength="1"')}</svg>`;
+const FISH = '<path d="M3 12c3.2-4.4 9.5-5.6 14-2.2l3.6-2.8v10l-3.6-2.8C12.5 17.6 6.2 16.4 3 12z"/><circle cx="7.6" cy="11.2" r=".9"/>';
+const FLASK = '<path d="M8 4.5h8M9.5 4.5v4.2L5.2 17.4A2.2 2.2 0 0 0 7.2 20.6h9.6a2.2 2.2 0 0 0 2-3.2L14.5 8.7V4.5"/><path d="M7.6 14.5h8.8"/>';
+const MOLECULE = '<circle cx="6" cy="8" r="2.2"/><circle cx="18" cy="8" r="2.2"/><circle cx="12" cy="17" r="2.2"/><path d="M8 9.2l2.6 6M16 9.2l-2.6 6M8.2 8h7.6"/>';
+const DROP = '<path d="M12 3.5c3.3 4.3 5.4 7.1 5.4 9.7a5.4 5.4 0 0 1-10.8 0c0-2.6 2.1-5.4 5.4-9.7z"/><path d="M9.6 13.6a2.6 2.6 0 0 0 2.4 2.4"/>';
+const CRYSTAL = '<path d="M12 3l7.5 4.3v9.4L12 21l-7.5-4.3V7.3z"/><path d="M12 3v18M4.5 7.3 19.5 16.7M19.5 7.3 4.5 16.7"/>';
+const EL = [FISH, FLASK, MOLECULE, DROP, CRYSTAL];
+const NU = [FLASK, MOLECULE, DROP, '<path d="M4 8.5q4-4 8 0t8 0M4 15.5q4-4 8 0t8 0"/><path d="M12 4.5v15"/>', CRYSTAL, '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M7.5 12h9"/>'];
+const QI = [
+  '<path d="M12 21c4.2-2.4 6.5-5.6 6.5-9.6V5.5L12 3 5.5 5.5v5.9c0 4 2.3 7.2 6.5 9.6z"/><path d="M8.8 11.8l2.3 2.3 4.3-4.6"/>',
+  '<circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8 20.5 20.5"/>',
+  '<path d="M5 19V9M10 19V5M15 19v-7M20 19v-11"/>',
+  '<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.5 4.5 12 6.6l2.5-2.1M9.5 19.5 12 17.4l2.5 2.1"/>',
+  '<path d="M4 12.5l5 5L20 6.5"/>',
+];
+/* the five variability factors — small scientific drawings (animate when chosen) */
+const VR = [
+  `<g class="v-sp"><path d="M14 60c10-14 30-18 44-7l11-8v31l-11-8c-14 11-34 7-44-8z"/><path d="M84 66c7-10 21-12 31-5l8-6v22l-8-6c-10 8-24 5-31-5z"/><path d="M134 70c5-7 15-9 22-4l6-4v15l-6-4c-7 6-17 4-22-3z"/></g>`,
+  `<g class="v-se"><circle cx="90" cy="64" r="40"/><path d="M90 24v10M90 94v10M50 64h10M120 64h10"/><circle class="v-dot" cx="90" cy="24" r="6"/></g>`,
+  `<g class="v-en"><path class="v-wave" d="M10 84q15-12 30 0t30 0 30 0 30 0 30 0 30 0"/><path class="v-wave w2" d="M10 100q15-12 30 0t30 0 30 0 30 0 30 0 30 0"/><rect x="82" y="14" width="16" height="50" rx="8"/><circle cx="90" cy="70" r="11"/><path class="v-merc" d="M90 66V34"/></g>`,
+  `<g class="v-sz"><path d="M20 76c4-6 11-7 16-3l4-3v12l-4-3c-5 4-12 3-16-3z"/><path d="M58 74c7-9 19-11 27-5l7-5v20l-7-5c-8 6-20 4-27-5z"/><path d="M110 72c10-13 28-16 40-7l10-7v28l-10-7c-12 9-30 6-40-7z"/></g>`,
+  `<g class="v-fr"><path d="M60 64h40M80 44v40M66 50l28 28M94 50 66 78"/><circle cx="140" cy="64" r="24"/><path class="v-hand" d="M140 64V48M140 64l10 6"/></g>`,
+];
+
+/* simplified coastlines (lon/lat → x=(lon−24)·16, y=(38−lat)·16): Mediterranean, Red Sea, Arabian Gulf */
+const SEAS = [
+  "M0 0L0 96 19.2 102.4 52.8 107.2 94.4 108.8 120 104 132.8 107.2 164.8 105.6 174.4 86.4 184 64 190.4 41.6 193.6 22.4 169.6 19.2 144 28.8 120 22.4 96 27.2 72 19.2 52.8 14.4 44.8 0Z",
+  "M136.8 128.8L153.6 166.4 166.4 192 185.6 225.6 211.2 272 217.6 299.2 233.6 321.6 251.2 358.4 275.2 380.8 297.6 400 308.8 406.4 312 401.6 300.8 371.2 297.6 345.6 278.4 313.6 259.2 284.8 241.6 260.8 225.6 230.4 209.6 204.8 195.2 185.6 179.2 161.6 164.8 164 150.4 150.4 139.2 134.4Z",
+  "M384 128L382.4 137.6 393.6 155.2 409.6 174.4 419.2 188.8 425.6 201.6 430.4 211.2 436.8 190.4 441.6 204.8 441.6 217.6 457.6 220.8 483.2 220.8 502.4 203.2 513.6 192 518.4 185.6 516.8 172.8 502.4 179.2 484.8 180.8 464 176 444.8 163.2 430.4 145.6 420.8 134.4 404.8 126.4 393.6 123.2Z",
+];
+const SEA_LABEL = [[92, 58], [236, 300], [462, 150]];
 
 export const raw = (lang) => {
-  const u = UI[lang], ar = lang === "ar";
-  const facts = ar
-    ? [["كاملة", "أسماك بحرية تُستخدم كاملة"], ["السردين", "وأنواع بحرية أخرى مناسبة"], ["3", "مصادر: مراكب الشركة والموانئ ومخازن التبريد"], ["1", "نقطة دخول: حوض الاستقبال في المصنع"]]
-    : [["Whole", "Marine fish, used whole"], ["Sardines", "and other suitable marine species"], ["3", "Routes: own vessels, ports, cold storage"], ["1", "Point of entry: the plant’s receiving pit"]];
-  const profiles = [
-    { id: "vessels", img: "trawler", t: ar ? "مراكب الشركة" : "Company vessels", lead: ar ? "رحلات صيد تقوم بها مراكب الشركة." : "Fishing trips by the company’s own vessels.",
-      d: ar ? "تشمل الإمدادات رحلات صيد تقوم بها مراكب الشركة في البحر الأبيض المتوسط والبحر الأحمر والخليج العربي." : "Supply includes fishing trips by the company’s own vessels in the Mediterranean Sea, the Red Sea and the Arabian Gulf.",
-      rows: [[ar ? "مناطق الصيد" : "Fishing grounds", ar ? "البحر المتوسط · البحر الأحمر · الخليج العربي" : "Mediterranean · Red Sea · Arabian Gulf", "stated"], [ar ? "تفاصيل الأسطول" : "Fleet details", "", "pending"]] },
-    { id: "ports", img: "crates", t: ar ? "الموانئ ومخازن التبريد" : "Ports & cold storage", lead: ar ? "إمدادات مكمّلة من الموانئ ومخازن التبريد." : "Complementary supply from the quay and from refrigeration.",
-      d: ar ? "تصل أسماك أيضًا من الموانئ ومخازن التبريد لتكمل الإمدادات، ثم تُنقل إلى حوض الاستقبال في المصنع." : "Fish also arrive from ports and refrigerated storage facilities to complete the supply, then move to the factory’s receiving pit.",
-      rows: [[ar ? "المصادر" : "Sources", ar ? "الموانئ · مخازن التبريد" : "Ports · cold storage", "stated"], [ar ? "قائمة الموانئ" : "List of ports", "", "pending"]] },
-    { id: "fish", img: "sardine-spiral", t: ar ? "المادة الخام" : "The raw material", lead: ar ? "أسماك بحرية كاملة، منها السردين." : "Whole marine fish, including sardines.",
-      d: ar ? "نعتمد على أسماك بحرية كاملة، منها السردين وأنواع أخرى مناسبة. تُنشر قائمة الأنواع ومناطق الصيد عند التحقق منها." : "We use whole marine fish, including sardines and other suitable species. The species list and catch areas will be published once verified.",
-      rows: [[ar ? "الشكل" : "Form", ar ? "أسماك كاملة" : "Whole fish", "stated"], [ar ? "الأنواع" : "Species", ar ? "السردين وأنواع بحرية أخرى مناسبة" : "Sardines and other suitable marine species", "stated"], [ar ? "قائمة الأنواع ومناطق الصيد" : "Species list & catch areas", "", "pending"]] },
-  ];
-  const route = ar
-    ? [["مناطق الصيد", "المتوسط · الأحمر · الخليج العربي"], ["الموانئ ومخازن التبريد", "مصادر إمداد مكمّلة"], ["النقل إلى المصنع", "من الميناء أو مخازن التبريد"], ["حوض الاستقبال", "حيث يبدأ التصنيع"], ["مساران للإنتاج", "مسحوق السمك · زيت السمك الخام"]]
-    : [["Fishing grounds", "Mediterranean · Red Sea · Arabian Gulf"], ["Ports & cold storage", "Complementary supply"], ["Transfer to the plant", "From port or cold storage"], ["Receiving pit", "Where manufacturing begins"], ["Two streams", "Fish meal · crude fish oil"]];
-  const body = `${opBleed(lang, { img: "sunrise-sea", env: ENV.mist, crumbs: crumb(lang, [u.nav.raw]), kick: u.nav.raw, title: ar ? "تبدأ القيمة\nمن البحر." : "Value begins\nat sea.",
-    lede: ar ? "أسماك بحرية كاملة، منها السردين، تصل من مراكب الشركة ومن الموانئ ومخازن التبريد إلى حوض الاستقبال في المصنع." : "Whole marine fish, including sardines — from the company’s own vessels, ports and cold storage, to the plant’s receiving pit.",
-    actions: `<a class="btn primary" href="#sources">${ar ? "تعرّف على المصادر" : "Explore the sources"} ${arr}</a><a class="btn line" href="${href(lang, "mfg")}">${u.nav.mfg}</a>` })}
+  const u = UI[lang], ar = lang === "ar", c = C[lang];
+  const eye = (t) => `<p class="ab-eye" data-r="up">${t}</p>`;
+  const H2 = (t, id, cls = "") => `<h2 class="ab-h2${cls ? " " + cls : ""}" id="${id}" data-lines>${lines(t)}</h2>`;
+  const arrow = `<i class="ic ic-arr" aria-hidden="true"></i>`;
+  const oil = PRODUCTS.find((p) => p.oil);
+  const alt = (s) => `dir="${ar ? "ltr" : "rtl"}"`;
 
-<section class="sec rm-intro" data-env="${ENV.mist}">
-  <div class="wrap">
-    <div class="rm-lead">${kicker(ar ? "المادة الخام في لمحة" : "Raw material at a glance")}<p class="statement" data-r="up">${ar ? "جودة <b>مسحوق السمك</b> و<b>زيت السمك الخام</b> تبدأ قبل المصنع — بالأسماك نفسها، ومن أين تأتي، وكيف تصل." : "The quality of <b>fish meal</b> and <b>crude fish oil</b> begins before the plant — with the fish itself, where it comes from, and how it arrives."}</p></div>
-    <dl class="rm-facts">${facts.map(([n, t], i) => `<div data-r="up" style="transition-delay:${i * 80}ms"><dt>${n}</dt><dd>${t}</dd></div>`).join("")}</dl>
+  const body = `
+<section class="ab-hero rw-hero" data-env="#F7F2EA" aria-labelledby="ab-h1">
+  <div class="ab-hero-stage">
+    <div class="ab-layer ab-sea">${pic(lang, "rw-hero", { fill: 1, mfill: 1, eager: true, priority: true })}</div>
+    <div class="ab-scrim" aria-hidden="true"></div>
+    <div class="wrap ab-hero-copy">
+      <div class="ab-card">
+        <nav class="crumbs ab-crumbs" aria-label="${ar ? "مسار التنقل" : "Breadcrumb"}">${crumb(lang, [u.nav.raw])}</nav>
+        <p class="ab-hero-eye">${c.hero.eye}</p>
+        <h1 class="ab-h1" id="ab-h1">${c.hero.h.split(/(?<=،|,) /).map((l, i) => `<span class="ab-l" style="--d:${i}"><span>${l}</span></span>`).join(" ")}</h1>
+        <p class="ab-hero-p">${c.hero.p}</p>
+      </div>
+    </div>
+    <span class="ab-cue" aria-hidden="true"><i></i>${c.hero.cue}</span>
   </div>
 </section>
 
-<section class="sec rm-sources" id="sources" data-env="${ENV.dawn}">
+<section class="rw-mat" data-env="#FBF8F3" aria-labelledby="rw-mat-h">
+  <div class="wrap rw-split">
+    <div class="rw-copy">${eye(c.mat.eye)}${H2(c.mat.h, "rw-mat-h")}<div class="rw-prose" data-r="up">${c.mat.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
+    <div class="rw-media">${pic(lang, "rw-fish", { col: 44, mcol: 100, box: 0.8, reveal: "curtain" })}</div>
+  </div>
+  <div class="wrap"><ul class="rw-els">${c.mat.els.map((t, i) => `<li data-r="up" style="transition-delay:${i * 90}ms">${ln(EL[i], "rw-ic")}<span>${t}</span></li>`).join("")}</ul></div>
+</section>
+
+<section class="rw-seas" data-env="#F7F2EA" data-s="0" aria-labelledby="rw-seas-h">
+  <div class="wrap rw-seas-grid">
+    <div class="rw-copy">${eye(c.seas.eye)}${H2(c.seas.h, "rw-seas-h")}<div class="rw-prose" data-r="up">${c.seas.p.map((t) => `<p>${t}</p>`).join("")}</div>
+      <div class="rw-sea-list" role="group" aria-label="${c.seas.mapLabel}">${c.seas.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}"><span class="rw-n">0${i + 1}</span>${t}</button>`).join("")}</div>
+      <div class="rw-sea-text" aria-live="polite">${c.seas.items.map(([t, d], i) => `<p data-i="${i}">${d}</p>`).join("")}</div>
+    </div>
+    <figure class="rw-map" data-r="fade">
+      <svg viewBox="0 0 544 432" role="img" aria-label="${c.seas.mapLabel}">
+        <defs><pattern id="rwGrid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="rgba(12,48,72,.06)"/></pattern></defs>
+        <rect width="544" height="432" class="rw-land"/><rect width="544" height="432" fill="url(#rwGrid)"/>
+        ${SEAS.map((d, i) => `<path class="rw-sea" data-i="${i}" d="${d}"><title>${c.seas.items[i][0]}</title></path>`).join("")}
+        ${SEA_LABEL.map(([x, y], i) => `<text class="rw-sea-lb" data-i="${i}" x="${x}" y="${y}" text-anchor="middle">${c.seas.items[i][0]}</text>`).join("")}
+        <text class="rw-land-lb" x="92" y="200" text-anchor="middle">${c.seas.egypt}</text>
+        <g class="rw-plant"><circle cx="111" cy="119" r="11" class="rw-pulse"/><circle cx="111" cy="119" r="4.5"/><text x="111" y="140" text-anchor="middle">${c.seas.plant}</text></g>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<section class="rw-sp" data-env="#FBF8F3" aria-labelledby="rw-sp-h">
+  <div class="wrap rw-head-split"><div>${eye(c.sp.eye)}${H2(c.sp.h, "rw-sp-h")}</div><div class="rw-prose" data-r="up">${c.sp.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
+  <div class="wrap rw-sp-grid">${c.sp.items.map(([t, other, d], i) => `<article class="rw-sp-item${i === 0 ? " is-lead" : ""}" data-r="up" style="transition-delay:${i * 120}ms">
+      <div class="rw-sp-img">${pic(lang, ["rw-sardine", "rw-pelagic", "rw-other"][i], { col: i ? 30 : 52, mcol: 100, box: i ? 1.3 : 0.9 })}</div>
+      <div class="rw-sp-txt"><h3>${t}</h3><p class="rw-other-name" ${alt()}>${other}</p><p>${d}</p></div></article>`).join("")}</div>
+</section>
+
+<section class="rw-src" data-env="#F7F2EA" aria-labelledby="rw-src-h">
+  <div class="rw-src-stage">
+    <div class="wrap rw-src-head">
+      <div>${eye(c.src.eye)}${H2(c.src.h, "rw-src-h")}</div>
+      <div class="rw-prose" data-r="up">${c.src.p.map((t) => `<p>${t}</p>`).join("")}</div>
+    </div>
+    <ol class="wrap rw-seq" aria-label="${ar ? "رحلة الخامات" : "The raw-material journey"}">${c.src.seq.map((t, i) => `<li data-i="${i}"><i></i><span>${t}</span></li>`).join("")}</ol>
+    <div class="rw-track-win"><div class="rw-track">${c.src.items.map(([t, d], i) => `<article class="rw-frame" data-i="${i}">
+        <div class="rw-frame-img">${pic(lang, ["rw-s1", "rw-s2", "rw-s3", "rw-s5"][i], { col: 30, mcol: 82, box: 0.86 })}${i === 3 ? `<div class="rw-frame-inset">${pic(lang, "rw-s4", { col: 12, mcol: 34, box: 1 })}</div>` : ""}</div>
+        <div class="rw-frame-txt"><span class="rw-n">0${i + 1}</span><h3>${t}</h3><p>${d}</p></div></article>`).join("")}</div></div>
+  </div>
+</section>
+
+<section class="rw-nu" data-env="#FBF8F3" data-n="0" aria-labelledby="rw-nu-h">
   <div class="wrap">
-    <div class="sec-head">${kicker(ar ? "المصادر" : "Sources")}${h2(ar ? "ثلاثة مصادر،\nمادة خام واحدة." : "Three sources,\none raw material.")}</div>
-    <div class="profiles" data-profiles>
-      <div class="pf-tabs" role="tablist" aria-label="${ar ? "مصادر المادة الخام" : "Raw material sources"}">${profiles.map((p, i) => `<button type="button" role="tab" id="pf-t-${p.id}" aria-controls="pf-p-${p.id}" aria-selected="${i ? "false" : "true"}" tabindex="${i ? "-1" : "0"}"><span class="n">0${i + 1}</span><span class="tt"><b>${p.t}</b><small>${p.lead}</small></span><i class="bar" aria-hidden="true"></i></button>`).join("")}</div>
-      <div class="pf-stage">${profiles.map((p, i) => `<div class="pf-img${i ? "" : " on"}" data-i="${i}">${pic(lang, p.img, { col: 58, mcol: 100, box: 4 / 3, eager: false })}</div>`).join("")}</div>
-      <div class="pf-panels">${profiles.map((p, i) => `<div class="pf-panel${i ? "" : " on"}" role="tabpanel" id="pf-p-${p.id}" aria-labelledby="pf-t-${p.id}"${i ? " hidden" : ""}><p class="body">${p.d}</p><div class="pf-rows">${p.rows.map(([k, v, s]) => `<div class="pf-row"><span class="sk">${k}</span><span class="sv">${v || "—"}</span>${stPill(lang, s)}</div>`).join("")}</div></div>`).join("")}</div>
+    <div class="rw-head-center">${eye(c.nu.eye)}${H2(c.nu.h, "rw-nu-h")}<div class="rw-prose" data-r="up">${c.nu.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
+    <div class="rw-nu-stage">
+      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(0, 3).map(([t, other], i) => `<button type="button" class="rw-nu-node" data-i="${i}" aria-pressed="${i === 0}">${ln(NU[i], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></button>`).join("")}</div>
+      <figure class="rw-nu-fish" data-r="fade">${pic(lang, "rw-illus", { col: 44, mcol: 100, box: 16 / 9 })}</figure>
+      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(3).map(([t, other], k) => `<button type="button" class="rw-nu-node" data-i="${k + 3}" aria-pressed="false">${ln(NU[k + 3], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></button>`).join("")}</div>
+    </div>
+    <div class="rw-nu-panel" aria-live="polite">${c.nu.items.map(([t, other, d], i) => `<div class="rw-nu-desc" data-i="${i}"><h3>${t} <small ${alt()}>${other}</small></h3><p>${d}</p></div>`).join("")}</div>
+  </div>
+</section>
+
+<section class="rw-vr" data-env="#F7F2EA" data-v="0" aria-labelledby="rw-vr-h">
+  <div class="wrap rw-vr-grid">
+    <div class="rw-copy">${eye(c.vr.eye)}${H2(c.vr.h, "rw-vr-h")}<div class="rw-prose" data-r="up">${c.vr.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
+    <div class="rw-vr-lab" data-r="up">
+      <p class="rw-sub">${c.vr.sub}</p>
+      <div class="rw-vr-tabs" role="group" aria-label="${c.vr.sub}">${c.vr.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}">${t}</button>`).join("")}</div>
+      <div class="rw-vr-board">${c.vr.items.map(([t, d], i) => `<div class="rw-vr-card" data-i="${i}"><svg class="rw-vr-art" viewBox="0 0 180 120" aria-hidden="true">${VR[i]}</svg><div><h3>${t}</h3><p>${d}</p></div></div>`).join("")}</div>
     </div>
   </div>
 </section>
 
-<section class="sec rm-journey" data-env="${ENV.steel}">
+<section class="rw-q" data-env="#FBF8F3" aria-labelledby="rw-q-h">
+  <div class="wrap rw-q-grid">
+    <div class="rw-media">${pic(lang, "rw-quality", { col: 40, mcol: 100, box: 0.8, reveal: "curtain" })}</div>
+    <div class="rw-copy">${eye(c.q.eye)}${H2(c.q.h, "rw-q-h")}<div class="rw-prose" data-r="up">${c.q.p.map((t) => `<p>${t}</p>`).join("")}</div>
+      <p class="rw-sub" data-r="up">${c.q.sub}</p>
+      <dl class="rw-q-list">${c.q.items.map(([t, other, d], i) => `<div class="rw-q-row" data-r="up" style="transition-delay:${i * 80}ms"><dt>${ln(QI[i], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></dt><dd>${d}</dd></div>`).join("")}</dl>
+      <p class="rw-more" data-r="up"><a class="link" href="${href(lang, "quality")}"><span>${c.q.cta}</span> ${arrow}</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="rw-fl" data-env="#F7F2EA" aria-labelledby="rw-fl-h">
   <div class="wrap">
-    <div class="jr-head">${h2(ar ? "من البحر\nإلى حوض الاستقبال." : "From the sea\nto the receiving pit.")}<p class="lede" data-r="up">${ar ? "خمس محطات بين الصيد وبداية التصنيع." : "Five stops between the catch and the start of manufacturing."}</p></div>
-    <div class="jr-track" aria-hidden="true"><i></i></div>
-    <ol class="journey" data-journey>${route.map(([t, d], i) => `<li class="jr" data-r="up" style="transition-delay:${i * 90}ms">${pic(lang, ["trawler", "unloading", "crates", "m-receiving", "m-press"][i], { col: 20, mcol: 70, box: 3 / 4 })}<div class="jr-t"><span class="n">0${i + 1}</span><b>${t}</b><small>${d}</small></div></li>`).join("")}</ol>
+    <div class="rw-head-center">${eye(c.fl.eye)}${H2(c.fl.h, "rw-fl-h")}<p class="rw-lede" data-r="up">${c.fl.p}</p></div>
+    <div class="rw-fl-map">
+      <div class="rw-fl-src" data-r="up">${ln(FISH, "rw-fl-fish")}<b>${c.fl.src}</b></div>
+      <svg class="rw-fl-lines" viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M500 0 C500 70 250 60 250 140"/><path pathLength="1" d="M500 0 C500 70 750 60 750 140"/></svg>
+      <div class="rw-fl-prods">
+        <article class="rw-fl-prod" data-r="up"><div class="rw-fl-img">${pic(lang, "jar-65", { col: 16, mcol: 36, box: 0.75 })}</div><div><h3>${c.fl.meal.t} <small ${alt()}>${c.fl.meal.en}</small></h3><p>${c.fl.meal.d}</p>
+          <p class="rw-chips-lb">${c.fl.meal.gl}</p><div class="rw-chips">${[60, 62, 65, 66, 72].map((g) => `<span>${g}%</span>`).join("")}</div>
+          <p class="rw-chips-lb">${c.fl.meal.fl}</p><div class="rw-chips" dir="ltr"><span>High Fat</span><span>Low Fat</span></div>
+          <a class="link" href="${href(lang, "products")}"><span>${c.fl.meal.cta}</span> ${arrow}</a></div></article>
+        <article class="rw-fl-prod" data-r="up" style="transition-delay:140ms"><div class="rw-fl-img">${pic(lang, "oil-flask", { col: 16, mcol: 36, box: 0.75 })}</div><div><h3>${c.fl.oil.t} <small ${alt()}>${c.fl.oil.en}</small></h3><p>${c.fl.oil.d}</p>
+          <a class="link" href="${prodHref(lang, oil)}"><span>${c.fl.oil.cta}</span> ${arrow}</a></div></article>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="sec rm-two" data-env="${ENV.dawn}">
-  <div class="wrap comp comp-75">
-    ${pic(lang, "two-products", { col: 52, mcol: 100, box: 4 / 3, reveal: "curtain" })}
-    <div class="comp-copy">${kicker(ar ? "إلى المكونات" : "Into ingredients")}${h2(ar ? "مادة خام واحدة،\nمنتجان." : "One raw material,\ntwo ingredients.")}
-      <p class="body" data-r="up">${ar ? "بعد الطبخ بالبخار غير المباشر والعصر، تنقسم كل دفعة إلى مسارين: تتحول كعكة العصر إلى مسحوق سمك، ويُستخلص زيت السمك الخام من سائل العصر." : "After indirect steam cooking and pressing, every batch divides into two streams: the press cake becomes fish meal, and crude fish oil is recovered from the press liquor."}</p>
-      <div class="two-links" data-r="up"><a href="${prodHref(lang, PRODUCTS.find((p) => p.grade === 65))}"><span class="cn"${ar ? "" : ' dir="ltr"'}>60–72<small>%</small></span><b>${u.fishmeal}</b><span class="go">${arr}</span></a><a href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}"><span class="cn">${ar ? "زيت" : "Oil"}</span><b>${u.oil}</b><span class="go">${arr}</span></a></div>
-      <p style="margin-top:22px"><a class="link" href="${href(lang, "mfg")}">${ar ? "شاهد مراحل الإنتاج الخمس" : "See the five production stages"} ${arr}</a></p></div>
+<section class="ab-cta" data-env="#FBF8F3" aria-labelledby="ab-cta-h">
+  <div class="wrap ab-cta-in">
+    <span class="ab-horizon" aria-hidden="true"></span>
+    <h2 class="ab-h2 ab-h2-xl" id="ab-cta-h" data-lines>${lines(c.cta.h)}</h2>
+    <p class="ab-cta-p" data-r="up">${c.cta.p}</p>
+    <div class="ab-cta-acts" data-r="up"><a class="btn primary" href="${href(lang, "mfg")}">${c.cta.a} ${arrow}</a><a class="btn line" href="${href(lang, "products")}">${c.cta.b} ${arrow}</a></div>
   </div>
-</section>
+</section>`;
 
-<section class="sec rm-close" data-env="${ENV.paper}">
-  <div class="wrap comp comp-55">
-    <div>${kicker(u.nav.quality)}<blockquote class="quote" data-r="up">${ar ? "جودة المادة الخام هي أساس جودة مسحوق السمك وزيت السمك." : "The quality of the raw material is the foundation of fish meal and fish oil quality."}</blockquote><p style="margin-top:26px"><a class="link" href="${href(lang, "quality")}">${u.nav.quality} ${arr}</a></p></div>
-    <div>${board(lang, ar ? [["قائمة الأنواع"], ["مناطق الصيد"], ["تفاصيل الأسطول"], ["قائمة الموانئ ومخازن التبريد"]] : [["Species list"], ["Catch areas"], ["Fleet details"], ["Ports and cold-storage list"]], { title: ar ? "تُنشر عند التحقق" : "Published once verified" })}</div>
-  </div>
-</section>
-${ctaBand(lang)}`;
-  return layout(lang, { key: "raw", over: true, title: ar ? "المواد الخام | الخليج لصناعة الأسماك" : "Raw materials | Alkhaleej Fish Manufacturing", desc: ar ? "أسماك بحرية كاملة منها السردين، من مراكب الشركة والموانئ ومخازن التبريد." : "Whole marine fish including sardines, from own vessels, ports and cold storage.", body, preloadImg: preload("sunrise-sea", { fill: 1, mfill: 0.62 }) });
+  return layout(lang, { key: "raw", over: true, title: c.meta.title, desc: c.meta.desc, body, preloadImg: preload("rw-hero", { fill: 1, mfill: 1 }) });
 };

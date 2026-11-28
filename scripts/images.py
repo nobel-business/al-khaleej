@@ -25,6 +25,18 @@ SPEC = {
     "jar-66":         ("ai/jar-e.png",          [480, 720, 1080],                         "50% 60%", "ai", None),
     "m-centrifuge":   ("ai/m-centrifuge.png",   [640, 1024, 1280],                        "50% 55%", "ai", None),
     "m-plant":        ("ai/m-plant.jpg",        [640, 1024, 1280],                        "30% 50%", "ai", None),   # client-supplied plant photo
+    "rw-hero":        ("ai/rw-hero.jpg",           [640, 1024, 1600, 2400, 3072],     "50% 62%", "ai", None),   # Raw Materials hero — the catch on deck at first light
+    "rw-fish":        ("ai/rw-fish.jpg",           [640, 1024, 1600],                 "50% 50%", "ai", None),   # Raw Materials — fresh fish on ice
+    "rw-sardine":     ("ai/rw-sardine.jpg",        [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials — sardine
+    "rw-pelagic":     ("ai/rw-pelagic.jpg",        [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials — pelagic school
+    "rw-other":       ("ai/rw-other.jpg",          [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials — other species
+    "rw-illus":       ("ai/rw-illus.jpg",          [640, 1024, 1600, 2400, 3072],     "50% 50%", "ai", None),   # Raw Materials — sardine illustration (nutrition)
+    "rw-s1":          ("ai/rw-s1.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — the haul
+    "rw-s2":          ("ai/rw-s2.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — the harbour
+    "rw-s3":          ("ai/rw-s3.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — cold storage
+    "rw-s4":          ("ai/rw-s4.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — chilled transport
+    "rw-s5":          ("ai/rw-s5.jpg",             [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials journey — receiving
+    "rw-quality":     ("ai/rw-quality.jpg",        [640, 1024, 1600],                 "50% 50%", "ai", None),   # Raw Materials — quality inspection
     "ab-sea":         ("ai/ab-sea.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — sea at first light
     "ab-ind":         ("ai/ab-ind.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — processing hall
     "ab-who":         ("ai/ab-who.jpg",         [640, 1024, 1600],                        "55% 55%", "ai", None),   # About — production line

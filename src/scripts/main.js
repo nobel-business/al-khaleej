@@ -364,6 +364,24 @@
     if (cta) new IntersectionObserver((es) => es.forEach((e) => cta.classList.toggle("in-view", e.isIntersecting)), { threshold: 0.3 }).observe(cta);
   })();
 
+  /* ================= Raw materials: seas map · species · pinned sourcing journey · nutrition · variability · two streams ================= */
+  (() => {
+    const pick = (root, attr, btnSel, extra) => { if (!root) return; const btns = $$(btnSel, root);
+      const set = (i) => { root.dataset[attr] = String(i); btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.i === String(i))); extra && extra(i); };
+      btns.forEach((b) => { b.addEventListener("click", () => set(+b.dataset.i)); if (FINE) b.addEventListener("pointerenter", () => set(+b.dataset.i)); b.addEventListener("focus", () => set(+b.dataset.i)); }); return set; };
+    const seas = $(".rw-seas"); const setSea = pick(seas, "s", ".rw-sea-list button");
+    if (seas) $$(".rw-sea", seas).forEach((p) => p.addEventListener("click", () => setSea(+p.dataset.i)));
+    pick($(".rw-nu"), "n", ".rw-nu-node");
+    pick($(".rw-vr"), "v", ".rw-vr-tabs button");
+    const src = $(".rw-src");
+    if (src) { const track = $(".rw-track", src), seq = $(".rw-seq", src), dots = $$(".rw-seq li", src), wide = matchMedia("(min-width:900px)");
+      scene(src, (p) => { if (!wide.matches || RM) return; const over = Math.max(0, track.scrollWidth - innerWidth + (parseFloat(getComputedStyle(track).paddingInlineStart) || 0)); const q = clamp((p - 0.06) / 0.88);
+        track.style.setProperty("--tx", ((AR ? 1 : -1) * over * q).toFixed(1)); seq.style.setProperty("--sp", q.toFixed(4));
+        dots.forEach((d, i) => d.classList.toggle("on", q >= i / (dots.length - 1) - 0.001 && q > 0.001 || i === 0)); }); }
+    const fl = $(".rw-fl-map");
+    if (fl) scene(fl, (p) => fl.style.setProperty("--fl", (RM ? 1 : clamp((p - 0.15) / 0.35)).toFixed(4)));
+  })();
+
   /* ================= homepage hero copy mirrors the ship ================= */
   // The ship (image px box 2140,420 1340×1220 in the 3840×2160 hero photo, mirrored in Arabic) is located through
   // object-fit:cover exactly as the scene does; the copy block is centred on the ship's mirror point, vertically on
