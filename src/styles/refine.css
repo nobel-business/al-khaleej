@@ -834,5 +834,5 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 /* ≤ drawn at the light weight and cap height of the figure; hub name clear of the needle */
 #oil .oil-dial .readout .val .le{font-size:.62em;font-weight:200;line-height:1;margin-inline-end:.06em;transform:translateY(-.04em);color:inherit}
 .dial .hub{font-size:13px;letter-spacing:.06em}
-[dir=rtl] #oil .oil-dial .readout .val{justify-content:flex-end}
+[dir=rtl] #oil .oil-dial .readout .val{justify-content:flex-start}
 @media (max-width:899px){#oil .oil-dial .readout .val{justify-content:center!important}}
