@@ -44,8 +44,8 @@ const C = {
         ["مصادر الحفظ والتبريد", "الاستفادة من الخامات البحرية المحفوظة والمبردة، وفق حالتها وخصائصها ومدى ملاءمتها لمتطلبات الإنتاج."],
         ["النقل والاستقبال", "الاهتمام بظروف نقل الخامات وتداولها واستقبالها داخل المصنع، باعتبارها عوامل مؤثرة في خصائص المادة الخام وجودة المنتج النهائي."]] },
     nu: { eye: "القيمة الكامنة في الخامات", h: "أكثر من مجرد مادة خام.", p: [
-      "تحتوي الأسماك البحرية بطبيعتها على مجموعة من المكونات التغذوية التي تمنحها أهمية خاصة في صناعات الأعلاف والتغذية.",
-      "وتتكامل هذه المكونات لتشكل القيمة الطبيعية للخامات، والتي يتم الاستفادة منها خلال عمليات التصنيع وإنتاج مسحوق الأسماك والزيوت البحرية."],
+      "تحتوي الأسماك البحرية على عناصر غذائية تمنحها أهمية خاصة في صناعة الأعلاف والأغذية.",
+      "وتتكامل هذه المكونات لتشكل القيمة الغذائية لمسحوق الأسماك والزيوت البحرية."],
       items: [["البروتين الحيواني", "Animal Protein", "يمثل البروتين أحد المكونات الرئيسية للأسماك البحرية، ويعد أساس القيمة التغذوية لمسحوق الأسماك."],
         ["الأحماض الأمينية", "Amino Acids", "تحتوي البروتينات البحرية على مجموعة من الأحماض الأمينية الأساسية، من بينها الليسين والميثيونين والثريونين، التي تؤدي أدوارًا مهمة في النمو وبناء الأنسجة والتغذية الحيوانية."],
         ["الدهون البحرية", "Marine Lipids", "تمثل الدهون البحرية مصدرًا للطاقة والأحماض الدهنية، وتعد المكون الأساسي الذي يتم استخلاصه خلال إنتاج زيت الأسماك."],
@@ -108,8 +108,8 @@ const C = {
         ["Preservation and cold sources", "Preserved and chilled marine raw materials, used according to their condition, properties and suitability for production."],
         ["Transport and receiving", "Attention to how raw materials are transported, handled and received at the plant, as factors that shape the raw material and the quality of the final product."]] },
     nu: { eye: "The value within the raw material", h: "More than a raw material.", p: [
-      "Marine fish naturally contain a range of nutritional components that give them particular importance in the feed and nutrition industries.",
-      "Together these components form the natural value of the raw material, which is put to use through manufacturing and the production of fish meal and marine oils."],
+      "Marine fish contain nutrients that give them particular importance in the feed and food industries.",
+      "Together these components form the nutritional value of fish meal and marine oils."],
       items: [["Animal protein", "البروتين الحيواني", "Protein is one of the main components of marine fish and the basis of fish meal’s nutritional value."],
         ["Amino acids", "الأحماض الأمينية", "Marine proteins contain essential amino acids, among them lysine, methionine and threonine, which play important roles in growth, tissue building and animal nutrition."],
         ["Marine lipids", "الدهون البحرية", "Marine fats are a source of energy and fatty acids, and the main component extracted in the production of fish oil."],
