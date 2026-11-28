@@ -7,12 +7,13 @@ import { R } from "../src/lib/routes.mjs";
 import { pages, productPage, notFound } from "../src/pages/index.mjs";
 
 // ---------- write ----------
-// Arabic: every "60%" in visible text (and in the JSON the page scripts read) is wrapped in a left-to-right isolate
-// (U+2066 … U+2069) so the percent sign always sits after the number exactly as in English, whatever surrounds it
-// (و62%، line ends, «مسحوق سمك 65%»). CSS, other scripts and attributes are left untouched.
+// Arabic percentages, Arabic convention with Western digits: every "60%" in visible text (and in the JSON the page
+// scripts read) becomes RLI 60 RLM ٪ PDI — the Arabic percent sign (U+066A) on the Arabic side of the number («٪60»),
+// identical wherever it appears (و62٪، line ends, «مسحوق سمك 65٪»). Logical order stays "60 ٪" for screen readers.
+// A lone "%" (the small sign after big figures, e.g. 65<small>%</small>) becomes RLM ٪. CSS, other scripts, attributes untouched.
 const PCT = /(\d+(?:[.,]\d+)?)\s?%/g;
 const isolatePct = (html) => html.replace(/(<style[\s\S]*?<\/style>)|(<script(?![^>]*application\/json)[\s\S]*?<\/script>)|(<[^>]+>)|([^<]+)/g,
-  (m, style, script, tag, text) => (text ? text.replace(PCT, "⁦$1%⁩") : m));
+  (m, style, script, tag, text) => (text ? (text === "%" ? "‏٪" : text.replace(PCT, "⁧$1‏٪⁩")) : m));
 function write(rel, html) { const f = path.join(DIST, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); if (/^ar[\\/]/.test(rel) && /\.html$/.test(rel)) html = isolatePct(html); fs.writeFileSync(f, html); }
 function copy(src, dst) { fs.mkdirSync(path.dirname(dst), { recursive: true }); fs.copyFileSync(src, dst); }
 const keys = ["home", "about", "products", "raw", "mfg", "quality", "intl", "contact", "privacy", "credits"];

@@ -60,7 +60,7 @@ export const raw = (lang) => {
     ${pic(lang, "two-products", { col: 52, mcol: 100, box: 4 / 3, reveal: "curtain" })}
     <div class="comp-copy">${kicker(ar ? "إلى المكونات" : "Into ingredients")}${h2(ar ? "مادة خام واحدة،\nمنتجان." : "One raw material,\ntwo ingredients.")}
       <p class="body" data-r="up">${ar ? "بعد الطبخ بالبخار غير المباشر والعصر، تنقسم كل دفعة إلى مسارين: تتحول كعكة العصر إلى مسحوق سمك، ويُستخلص زيت السمك الخام من سائل العصر." : "After indirect steam cooking and pressing, every batch divides into two streams: the press cake becomes fish meal, and crude fish oil is recovered from the press liquor."}</p>
-      <div class="two-links" data-r="up"><a href="${prodHref(lang, PRODUCTS.find((p) => p.grade === 65))}"><span class="cn" dir="ltr">60–72<small>%</small></span><b>${u.fishmeal}</b><span class="go">${arr}</span></a><a href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}"><span class="cn">${ar ? "زيت" : "Oil"}</span><b>${u.oil}</b><span class="go">${arr}</span></a></div>
+      <div class="two-links" data-r="up"><a href="${prodHref(lang, PRODUCTS.find((p) => p.grade === 65))}"><span class="cn"${ar ? "" : ' dir="ltr"'}>60–72<small>%</small></span><b>${u.fishmeal}</b><span class="go">${arr}</span></a><a href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}"><span class="cn">${ar ? "زيت" : "Oil"}</span><b>${u.oil}</b><span class="go">${arr}</span></a></div>
       <p style="margin-top:22px"><a class="link" href="${href(lang, "mfg")}">${ar ? "شاهد مراحل الإنتاج الخمس" : "See the five production stages"} ${arr}</a></p></div>
   </div>
 </section>

@@ -618,7 +618,7 @@ gl_FragColor=vec4(c,1.);}`;
     const set = (i) => {
       cur = (i + G.length) % G.length; const g = G[cur];
       ndl.style.transform = `rotate(${ang(g.g)}deg)`; const [x, y] = pol(ang(g.g), R); arc.setAttribute("d", `M${sx} ${sy} A${R} ${R} 0 ${ang(g.g) - A0 > 180 ? 1 : 0} 1 ${x} ${y}`);
-      val.innerHTML = `${g.g}<small>%</small>`; nm.textContent = g.name; if (cta) { cta.href = g.url; cta.querySelector("span").textContent = g.cta; }
+      val.innerHTML = `${g.g}<small>${AR ? "‏٪" : "%"}</small>`; nm.textContent = g.name; if (cta) { cta.href = g.url; cta.querySelector("span").textContent = g.cta; }
       btns.forEach((b, k) => b.setAttribute("aria-pressed", k === cur)); dial.setAttribute("aria-valuenow", g.g); dial.setAttribute("aria-valuetext", g.name);
       $$(".lb", svg).forEach((t) => t.classList.toggle("on", Math.abs(+t.dataset.g - g.g) < 3));
     };
