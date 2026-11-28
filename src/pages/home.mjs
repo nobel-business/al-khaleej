@@ -5,6 +5,17 @@ import { M, pic, preload, imgUrl } from "../lib/media.mjs";
 import { layout } from "../layouts/layout.mjs";
 import { kicker, h2, ENV, SL, ctaBand, ML } from "../components/blocks.mjs";
 import { streamsSVG, gauges, loupe, dialBlock, oilDial } from "../components/diagrams.mjs";
+
+/* homepage quality indicators — client copy (28 Nov 2026) */
+const QUAL_HOME = [
+  { t: { ar: "الطزاجة", en: "Freshness" }, d: { ar: "مؤشر لجودة الخامات البحرية وملاءمتها للتصنيع.", en: "Indicates the quality of the marine raw material and its suitability for processing." } },
+  { t: { ar: "البروتين", en: "Protein" }, d: { ar: "مؤشر للقيمة البروتينية والتصنيف التجاري.", en: "Indicates protein value and commercial grade." } },
+  { t: { ar: "الدهون", en: "Fat" }, d: { ar: "مؤشر لقيمة الطاقة والتغذية.", en: "Indicates energy and nutritional value." } },
+  { t: { ar: "الرماد", en: "Ash" }, d: { ar: "مؤشر للمحتوى المعدني والتركيب الكيميائي.", en: "Indicates mineral content and chemical composition." } },
+  { t: { ar: "الرطوبة", en: "Moisture" }, d: { ar: "مؤشر لثبات المنتج أثناء التخزين والنقل.", en: "Indicates product stability in storage and transport." } },
+  { t: { ar: "الحموضة", en: "Acidity" }, d: { ar: "مؤشر للتحلل الدهني وجودة الزيت.", en: "Indicates lipid breakdown and oil quality." } },
+  { t: { ar: "الأكسدة", en: "Oxidation" }, d: { ar: "مؤشر لاستقرار الدهون وثباتها التأكسدي.", en: "Indicates lipid stability and oxidative stability." } },
+];
 import { orbit } from "../components/orbit.mjs";
 import { GULL } from "../components/gull.mjs";
 
@@ -62,7 +73,7 @@ export const home = (lang) => {
 
 <section class="sec cv" id="quality" data-env="${ENV.dawn}">
   <div class="wrap qual">
-    <div>${kicker(u.nav.quality)}${h2(ar ? "ما يكشفه القياس." : "What the light\nmeasures.")}<p class="body" data-r="up" style="margin-top:16px">${ar ? "تشمل قياسات العيّنات المتاحة لدينا البروتين والرطوبة والدهون والرماد خلال التصنيع وعلى المنتج النهائي." : "Our available sample measurements cover protein, moisture, fat and ash during production and on finished product."}</p>${gauges(lang)}<p style="margin-top:24px"><a class="link" href="${href(lang, "quality")}">${u.nav.quality} ${arr}</a></p></div>
+    <div>${kicker(u.nav.quality)}${h2(ar ? "ما نقيسه في الجودة." : "What we measure\nin quality.")}<p class="body" data-r="up" style="margin-top:16px">${ar ? "تبدأ العناية بالجودة من اختيار الخامات البحرية، وتمتد عبر مراحل التصنيع إلى المنتج النهائي. ونهتم بمتابعة المؤشرات الكيميائية والتغذوية الأساسية لمنتجاتنا، بما يتناسب مع مواصفاتها ومتطلبات استخدامها." : "Quality care begins with the choice of marine raw materials and continues through manufacturing to the finished product. We monitor the key chemical and nutritional indicators of our products, in line with their specifications and the requirements of their use."}</p>${gauges(lang, QUAL_HOME)}<p style="margin-top:24px"><a class="link" href="${href(lang, "quality")}"><span>${ar ? "اكتشف معايير الجودة لدينا" : "Discover our quality standards"}</span> ${arr}</a></p></div>
     ${pic(lang, "lab", { col: 48, box: 4 / 3, reveal: "curtain" })}
   </div>
 </section>
