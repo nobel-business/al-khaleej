@@ -69,6 +69,17 @@ const C = {
   },
 };
 
+/* line icons for the six values (pathLength=1 so each draws itself in when its value arrives) */
+const VI = [
+  '<circle cx="12" cy="9" r="5.5"/><path d="M9.3 13.6 7.8 21l4.2-2.3 4.2 2.3-1.5-7.4"/><path d="M9.7 9.1l1.6 1.6 3-3.1"/>',                                  // quality — medal
+  '<path d="M12 21c-4.6-2-7.5-5.5-7.5-9.6V5.8L12 3l7.5 2.8v5.6c0 4.1-2.9 7.6-7.5 9.6z"/><path d="M9 14.4c0-3.3 2.3-5.5 6.1-5.7 0 3.7-2.4 5.9-6.1 5.7zM9 14.4l3.1-3.1"/>', // responsibility — shield with leaf
+  '<circle cx="12" cy="4.8" r="2"/><path d="M12 6.8V20.5M8 10.3h8M4.8 13.3a7.2 7.2 0 0 0 14.4 0M4.8 13.3 3.3 14.8M19.2 13.3l1.5 1.5"/>',             // reliability — anchor
+  '<path d="M3.5 17.5 9 12l4 4 7.5-7.5"/><path d="M14.8 8.5h5.7v5.7"/><path d="M3.5 21h17"/>',                                                         // continuous development — rising line
+  '<path d="M4 15.5a8 8 0 1 1 16 0"/><path d="M12 15.5l4.3-4.7"/><circle cx="12" cy="15.5" r="1.3"/><path d="M7 19.6h10"/>',                          // efficiency — gauge
+  '<circle cx="9" cy="12" r="5.6"/><circle cx="15" cy="12" r="5.6"/>',                                                                                // partnership — linked rings
+];
+const vi = (i, cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${VI[i].replace(/<(path|circle)/g, '<$1 pathLength="1"')}</svg>`;
+
 export const about = (lang) => {
   const u = UI[lang], ar = lang === "ar", c = C[lang];
   const eye = (t) => `<p class="ab-eye" data-r="up">${t}</p>`;
@@ -115,7 +126,7 @@ export const about = (lang) => {
   <div class="wrap">
     <div class="ab-head ab-center">${eye(c.vm.eye)}<h2 class="ab-h2" id="ab-vm-h" data-lines>${lines(c.vm.h)}</h2></div>
     <div class="ab-vm-grid">
-      <div class="ab-vm-orbit">${orbit(lang, { labels: c.vm.items.map(([t]) => t) })}</div>
+      <div class="ab-vm-orbit" data-r="fade">${orbit(lang, { labels: c.vm.items.map(([t]) => t) })}</div>
       <div class="ab-vm-list" role="group" aria-label="${c.vm.eye}">${c.vm.items.map(([t, d], i) => `<button type="button" class="meaning ab-vm-item" data-i="${i}" aria-pressed="false" data-r="up" style="transition-delay:${i * 120}ms"><span class="mn">0${i + 1}</span><span class="mt"><b>${t}</b><small>${d}</small></span></button>`).join("")}</div>
     </div>
   </div>
@@ -126,10 +137,10 @@ export const about = (lang) => {
     <div class="wrap ab-val-wrap">
       <div class="ab-val-head">${eye(c.values.eye)}<h2 class="ab-h2" id="ab-val-h" data-lines>${lines(c.values.h)}</h2></div>
       <div class="ab-val-body">
-        <div class="ab-val-index" role="group" aria-label="${c.values.eye}">${c.values.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}">${t}</button>`).join("")}</div>
+        <div class="ab-val-index" role="group" aria-label="${c.values.eye}">${c.values.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}">${vi(i, "ab-val-mini")}<span>${t}</span></button>`).join("")}</div>
         <div class="ab-val-show">
           <span class="ab-val-glow" aria-hidden="true"></span>
-          ${c.values.items.map(([t, d], i) => `<article class="ab-val-item" data-i="${i}" data-r="up"><span class="ab-val-ghost" aria-hidden="true">${t}</span><h3>${t}</h3><p>${d}</p></article>`).join("")}
+          ${c.values.items.map(([t, d], i) => `<article class="ab-val-item" data-i="${i}" data-r="up"><span class="ab-val-ghost" aria-hidden="true">${t}</span><span class="ab-val-badge" aria-hidden="true">${vi(i, "ab-val-ic")}</span><h3><span>${t}</span></h3><p>${d}</p></article>`).join("")}
           <span class="ab-val-progress" aria-hidden="true"><i></i></span>
         </div>
       </div>
