@@ -19,7 +19,7 @@ export const products = (lang) => {
         <nav class="crumbs ab-crumbs" aria-label="${ar ? "مسار التنقل" : "Breadcrumb"}">${crumb(lang, [u.nav.products])}</nav>
         <p class="ab-hero-eye">${u.nav.products}</p>
         <h1 class="ab-h1" id="ab-h1">${(ar ? ["قيمة البحر", "في منتجاتنا."] : ["The value of the sea", "in our products."]).map((l, i) => `<span class="ab-l" style="--d:${i}"><span>${l}</span></span>`).join(" ")}</h1>
-        <p class="ab-hero-p">${ar ? "نقدم منتجات البروتين والزيوت البحرية من الأسماك الكاملة، بمواصفات متنوعة تجمع بين القيمة التغذوية ومتطلبات صناعات الأعلاف والتغذية والصناعات المتخصصة." : "We offer protein and marine oil products made from whole fish, in a range of specifications that combine nutritional value with the requirements of the feed, nutrition and specialised industries."}</p>
+        <p class="ab-hero-p">${ar ? "نقدم منتجات البروتين والزيوت البحرية من الأسماك الكاملة، بمواصفات متنوعة تجمع بين القيمة الغذائية ومتطلبات صناعات الأعلاف والتغذية والصناعات المتخصصة." : "We offer protein and marine oil products made from whole fish, in a range of specifications that combine nutritional value with the requirements of the feed, nutrition and specialised industries."}</p>
       </div>
     </div>
     <span class="ab-cue" aria-hidden="true"><i></i>${ar ? "مرّر للأسفل" : "Scroll"}</span>
