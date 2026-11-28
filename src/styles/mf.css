@@ -182,3 +182,12 @@ button.mf-node:hover .mf-dot,a.mf-node:hover .mf-dot,.mf-node:focus-visible .mf-
   .mf-pic>*,.mf-tic>*,.mf-ic>*{stroke-dashoffset:0!important}
   .g-needle{transform:rotate(calc(var(--g) * 180deg - 90deg))!important;transition:none}
 }
+
+/* stage 04 (pressing): client image on white, shown whole so both outlets (liquor and cake) stay in frame */
+.mf-st[data-s="3"] .mf-st-img{background:#fff}
+.mf-st[data-s="3"] .mf-st-img .media img{object-fit:contain;padding:4%}
+.mf-st[data-s="3"] .mf-st-img .media,.mf-st[data-s="3"] .mf-st-img picture,.mf-st[data-s="3"] .mf-st-img img{background:#fff!important}
+
+/* flow without a details panel: stages are static markers */
+div.mf-node{cursor:default}
+.mf-board{padding-bottom:clamp(22px,2.6vw,40px)}

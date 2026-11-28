@@ -156,7 +156,7 @@ export const ALT = {
   "mf-s1": { en: "3D render of a stainless-steel receiving hopper filled with whole sardines", ar: "رسم ثلاثي الأبعاد لحوض استقبال من الصلب مملوء بأسماك السردين الكاملة" },
   "mf-s2": { en: "3D render of an inclined screw conveyor carrying whole fish", ar: "رسم ثلاثي الأبعاد لناقل لولبي مائل ينقل الأسماك الكاملة" },
   "mf-s3": { en: "3D render of a horizontal indirect-steam cooker with a double-jacket vessel", ar: "رسم ثلاثي الأبعاد لطباخ أفقي بالبخار غير المباشر بوعاء مزدوج الجدار" },
-  "mf-s4": { en: "3D render of a twin-screw press separating press cake from press liquor", ar: "رسم ثلاثي الأبعاد لمكبس لولبي مزدوج يفصل الكتلة الصلبة عن السائل" },
+  "mf-s4": { en: "3D render of a stainless-steel screw press: press liquor flows from one outlet while press cake is discharged onto a conveyor", ar: "رسم ثلاثي الأبعاد لمكبس لولبي من الصلب: يتدفق السائل من مخرج وتخرج الكتلة الصلبة على ناقل" },
   "mf-s5": { en: "3D render of a disc-stack centrifugal separator for fish oil", ar: "رسم ثلاثي الأبعاد لجهاز فصل بالطرد المركزي لزيت الأسماك" },
   "mf-s6": { en: "3D render of a steam rotary dryer for fish meal", ar: "رسم ثلاثي الأبعاد لمجفف دوّار بالبخار لمسحوق الأسماك" },
   "mf-s7": { en: "3D render of a fish meal cooler with a paddle shaft and fan", ar: "رسم ثلاثي الأبعاد لمبرّد مسحوق الأسماك بعمود تقليب ومروحة" },

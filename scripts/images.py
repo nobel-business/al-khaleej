@@ -30,7 +30,7 @@ SPEC = {
     "mf-s1":          ("ai/mf-s1.jpg",             [640, 1024, 1600, 2560],           "50% 50%", "ai", None),   # Manufacturing stage 01 — 3D equipment render
     "mf-s2":          ("ai/mf-s2.jpg",             [640, 1024, 1600, 2560],           "50% 50%", "ai", None),   # Manufacturing stage 02 — 3D equipment render
     "mf-s3":          ("ai/mf-s3.jpg",             [640, 1024, 1600, 2560],           "50% 50%", "ai", None),   # Manufacturing stage 03 — 3D equipment render
-    "mf-s4":          ("ai/mf-s4.jpg",             [640, 1024, 1600, 2560],           "50% 50%", "ai", None),   # Manufacturing stage 04 — 3D equipment render
+    "mf-s4":          ("ai/mf-s4.jpg",             [640, 1024, 1280],           "50% 50%", "ai", None),   # Manufacturing stage 04 — 3D equipment render
     "mf-s5":          ("ai/mf-s5.jpg",             [640, 1024, 1600, 2560],           "50% 50%", "ai", None),   # Manufacturing stage 05 — 3D equipment render
     "mf-s6":          ("ai/mf-s6.jpg",             [640, 1024, 1600, 2560],           "50% 50%", "ai", None),   # Manufacturing stage 06 — 3D equipment render
     "mf-s7":          ("ai/mf-s7.jpg",             [640, 1024, 1600, 2560],           "50% 50%", "ai", None),   # Manufacturing stage 07 — 3D equipment render

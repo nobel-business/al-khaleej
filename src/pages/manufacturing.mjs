@@ -163,23 +163,9 @@ export const mfg = (lang) => {
   const node = (n) => {
     const st = `style="--c:${n.c};--r:${n.r};--mc:${n.mc};--mr:${n.mr}"`;
     const dot = `<span class="mf-dot">${ic(n.icon, "mf-ic")}${n.s != null && !n.nonum ? `<b class="mf-no">${two(n.s + 1)}</b>` : ""}</span><span class="mf-lb">${f.nodes[n.k]}</span>`;
-    if (n.s != null) return `<button type="button" class="mf-node" data-k="${n.k}" data-s="${n.s}" data-lane="${n.lane}" aria-pressed="${n.s === 0}" ${st}>${dot}</button>`;
+    if (n.s != null) return `<div class="mf-node" data-k="${n.k}" data-lane="${n.lane}" ${st}>${dot}</div>`;
     if (n.end) return `<a class="mf-node is-end" data-k="${n.k}" data-lane="${n.lane}" href="${n.end === "oil" ? prodHref(lang, oil) : href(lang, "products")}" ${st}>${dot}</a>`;
     return `<div class="mf-node is-src" data-k="${n.k}" data-lane="${n.lane}" ${st}>${dot}</div>`;
-  };
-
-  const stage = (s, i) => {
-    const lane = STAGE_LANE[i];
-    const facts = s.facts ? `<dl class="mf-facts">${s.facts.map(([v, l]) => `<div><dt dir="ltr">${v}</dt><dd>${l}</dd></div>`).join("")}</dl>` : "";
-    const split = s.split ? `<ul class="mf-split">${s.split.map(([l, t, d]) => `<li data-lane="${l}"><b>${t}</b><span>${d}</span></li>`).join("")}</ul>` : "";
-    const pack = s.pack ? `<div class="mf-pack">
-        <div data-lane="pro"><h4>${s.pack.meal[0]}</h4><p class="mf-pk-lb">${s.pack.meal[1]}</p><div class="mf-chips">${[60, 62, 65, 66, 72].map((g) => `<span>${g}%</span>`).join("")}</div>
-          <p class="mf-pk-lb">${s.pack.meal[2]}</p><div class="mf-chips" dir="ltr"><span>High Fat</span><span>Low Fat</span></div><p class="mf-pk-note">${s.pack.meal[3]}</p></div>
-        <div data-lane="oil"><h4>${s.pack.oil[0]}</h4><ul>${s.pack.oil[1].map((t) => `<li>${t}</li>`).join("")}</ul></div></div>` : "";
-    return `<article class="mf-st" data-s="${i}" data-lane="${lane}" aria-hidden="${i !== 0}">
-      <div class="mf-st-img">${pic(lang, `mf-s${i + 1}`, { col: 40, mcol: 100, box: 4 / 3 })}</div>
-      <div class="mf-st-txt"><div class="mf-st-top"><span class="mf-st-no">${two(i + 1)}</span><span class="mf-tag" data-lane="${lane}">${laneName(lane)}</span></div>
-        <h3>${s.t}</h3>${s.p.map((t) => `<p>${t}</p>`).join("")}${split}${facts}${pack}</div></article>`;
   };
 
   const gauge = (v) => `<svg class="mf-gauge" viewBox="0 0 120 68" aria-hidden="true" style="--g:${v}"><path class="g-trk" d="M10 62a50 50 0 0 1 100 0"/><path class="g-band" pathLength="1" d="M10 62a50 50 0 0 1 100 0"/>${
@@ -211,7 +197,7 @@ export const mfg = (lang) => {
   </div>
 </section>
 
-<section class="mf-flow" data-env="#F7F2EA" data-s="0" aria-labelledby="mf-flow-h">
+<section class="mf-flow" data-env="#F7F2EA" aria-labelledby="mf-flow-h">
   <div class="wrap">
     <div class="mf-head">${eye(f.eye)}${H2(f.h, "mf-flow-h")}<p class="mf-lede" data-r="up">${f.p}</p></div>
     <div class="mf-board" data-r="fade">
@@ -220,11 +206,6 @@ export const mfg = (lang) => {
         <p class="mf-lane-lb" data-lane="pro" style="--c:6/11;--r:1;--mc:1;--mr:6"><i></i><b>${f.lanes.pro[0]}</b><span class="mf-branch">${f.lanes.pro[2]}</span></p>
         <p class="mf-lane-lb" data-lane="oil" style="--c:6/11;--r:5;--mc:2;--mr:6"><i></i><b>${f.lanes.oil[0]}</b><span class="mf-branch">${f.lanes.oil[2]}</span></p>
         ${NODES.map(node).join("\n        ")}
-      </div>
-      <p class="mf-hint">${f.hint}</p>
-      <div class="mf-panel" aria-live="polite">
-        <div class="mf-panel-nav"><button type="button" class="mf-prev" aria-label="${f.prev}"><i class="ic ic-arr" aria-hidden="true"></i></button><span class="mf-count"><b>01</b> ${f.of} 09</span><button type="button" class="mf-next" aria-label="${f.next}"><i class="ic ic-arr" aria-hidden="true"></i></button></div>
-        <div class="mf-stages">${f.stages.map(stage).join("")}</div>
       </div>
     </div>
   </div>

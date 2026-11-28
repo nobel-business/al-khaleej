@@ -399,17 +399,7 @@
   /* ================= Manufacturing: interactive production flow (wires drawn between stage nodes, material moving along them) ================= */
   (() => {
     const flow = $(".mf-flow"); if (!flow) return;
-    const map = $(".mf-map", flow), svg = $(".mf-wires", flow), btns = $$("button.mf-node", flow), sts = $$(".mf-st", flow), count = $(".mf-count b", flow), N = sts.length;
-    const narrow = matchMedia("(max-width:899px)");
-    const set = (s, user) => { flow.dataset.s = String(s);
-      btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.s === String(s)));
-      sts.forEach((a) => a.setAttribute("aria-hidden", a.dataset.s !== String(s)));
-      if (count) count.textContent = String(s + 1).padStart(2, "0");
-      if (user && narrow.matches) { const p = $(".mf-panel", flow), r = p.getBoundingClientRect(); if (r.top > innerHeight * 0.6 || r.bottom < 80) scrollTo({ top: scrollY + r.top - 90, behavior: RM ? "auto" : "smooth" }); } };
-    btns.forEach((b) => b.addEventListener("click", () => set(+b.dataset.s, true)));
-    const step = (d) => set((+flow.dataset.s + d + N) % N);
-    $(".mf-prev", flow)?.addEventListener("click", () => step(-1));
-    $(".mf-next", flow)?.addEventListener("click", () => step(1));
+    const map = $(".mf-map", flow), svg = $(".mf-wires", flow);
     const LINES = [["trunk", ["fish", "s1", "s2", "s3", "s4"]], ["pro", ["s4", "s6", "s7", "s8", "s9p", "meal"]], ["oil", ["s4", "o1", "o2", "o3", "s9o", "oil"]]];
     const pt = (k, m) => { const r = $(`[data-k="${k}"] .mf-dot`, map).getBoundingClientRect(); return [r.left - m.left + r.width / 2, r.top - m.top + r.height / 2]; };
     const seg = ([x1, y1], [x2, y2]) => { const dx = x2 - x1, dy = y2 - y1;
