@@ -60,7 +60,7 @@
 .mf-ic{width:48%;height:48%;stroke:var(--lc);stroke-width:1.6;transition:stroke .45s}
 .mf-no{position:absolute;top:-7px;inset-inline-end:-9px;min-width:26px;height:22px;padding:0 6px;border-radius:11px;display:grid;place-items:center;
   background:var(--lc);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.02em;border:2px solid #FBF8F3}
-.mf-lb{font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.35;max-width:12ch;transition:color .4s}
+.mf-lb{position:relative;font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.35;max-width:12ch;padding:1px 6px;border-radius:7px;background:#FBF8F3;transition:color .4s}
 [dir=ltr] .mf-lb{font-size:13px}
 button.mf-node:hover .mf-dot,a.mf-node:hover .mf-dot,.mf-node:focus-visible .mf-dot{transform:translateY(-3px);border-color:var(--lc);box-shadow:0 18px 32px -16px rgba(12,48,72,.6)}
 .mf-node:focus-visible{outline:none}.mf-node:focus-visible .mf-dot{outline:2px solid var(--lc);outline-offset:4px}

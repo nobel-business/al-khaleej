@@ -276,3 +276,116 @@
 .rw-frame{flex-basis:clamp(320px,38vw,620px)}
 @media (max-width:899px){.rw-frame-img{aspect-ratio:16/10}}
 @media (min-width:600px) and (max-width:899px){.rw-track{display:flex}.rw-frame-img{aspect-ratio:16/10}}
+
+/* =====================================================================
+   NUTRITIONAL COMPOSITION VISUALIZATION (.nv) — one persistent multilayer SVG; layers switch on .rw-nu[data-n]
+   transitions ~700ms, internal cycles 2–4s, paused when the section is off screen (.nv-live), static under reduced motion
+   ===================================================================== */
+.rw-nu-fish{isolation:isolate}
+.nv{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:hidden}
+.nv-skin{transition:opacity .7s cubic-bezier(.4,0,.2,1)}
+.rw-nu[data-n="3"] .nv-skin{opacity:.55}
+.rw-nu[data-n="4"] .nv-skin{opacity:.24}
+.nv-L{opacity:0;transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .75s cubic-bezier(.16,1,.3,1)}
+.rw-nu[data-n="0"] .nv-muscle,.rw-nu[data-n="0"] .nv-lens,.rw-nu[data-n="0"] .nv-fib,.rw-nu[data-n="0"] .lead-p,.rw-nu[data-n="0"] .mark-p,.rw-nu[data-n="1"] .nv-muscle,.rw-nu[data-n="1"] .nv-lens,.rw-nu[data-n="1"] .nv-mol,.rw-nu[data-n="1"] .lead-p,.rw-nu[data-n="1"] .mark-p,.rw-nu[data-n="2"] .nv-lipid,.rw-nu[data-n="2"] .nv-drops,.rw-nu[data-n="2"] .nv-lens,.rw-nu[data-n="2"] .nv-drop1,.rw-nu[data-n="2"] .lead-l,.rw-nu[data-n="2"] .mark-l,.rw-nu[data-n="3"] .nv-lipid,.rw-nu[data-n="3"] .nv-drops,.rw-nu[data-n="3"] .nv-omega,.rw-nu[data-n="3"] .lead-o,.rw-nu[data-n="3"] .mark-o,.rw-nu[data-n="4"] .nv-tint,.rw-nu[data-n="4"] .nv-skel,.rw-nu[data-n="4"] .nv-min,.rw-nu[data-n="5"] .nv-vit{opacity:1}
+.rw-nu[data-n="1"] .nv-muscle{opacity:.6}
+.rw-nu[data-n="3"] .nv-lipid{opacity:.5}
+.nv-lens,.nv-omega,.nv-min .nv-mi,.nv-orb{transform-box:fill-box;transform-origin:center}
+.nv-lens,.nv-omega{transform:scale(.9)}
+.rw-nu[data-n="0"] .nv-lens,.rw-nu[data-n="1"] .nv-lens,.rw-nu[data-n="2"] .nv-lens,.rw-nu[data-n="3"] .nv-omega{transform:none}
+
+/* leader lines draw in, anchors ping */
+.nv-lead{fill:none;stroke:#0C3048;stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.16,1,.3,1) .25s,opacity .5s}
+.rw-nu[data-n="0"] .lead-p,.rw-nu[data-n="1"] .lead-p,.rw-nu[data-n="2"] .lead-l,.rw-nu[data-n="3"] .lead-o,.rw-nu[data-n="4"] .nv-min .nv-lead{stroke-dashoffset:0}
+.nv-min .nv-lead{stroke:#8E7442}
+.nv-mark circle{fill:none;stroke:#0C3048;stroke-width:2}
+.nv-mark .nv-core,.nv-min .nv-core{fill:#E38B06;stroke:none}
+.nv-ping,.nv-ping2{transform-box:fill-box;transform-origin:center;fill:none;stroke:#E38B06;stroke-width:2}
+.nv-ping{animation:nvPing 2.4s ease-out infinite}
+.nv-ping2{animation:nvPing 2.4s ease-out infinite;opacity:.6}
+@keyframes nvPing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+
+/* protein — tissue revealed through a growing soft mask; fibres under the lens with a moving highlight */
+.nv-rv{r:0}
+.rw-nu[data-n="0"] .nv-rv,.rw-nu[data-n="1"] .nv-rv{animation:nvReveal .9s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes nvReveal{from{r:0}to{r:330px}}
+.nv-myo{animation:nvMyo 3.2s ease-in-out infinite}
+@keyframes nvMyo{50%{stroke-opacity:.45}}
+.nv-sweep{animation:nvSweep 3s ease-in-out infinite}
+@keyframes nvSweep{0%{transform:translateX(0)}100%{transform:translateX(330px)}}
+
+/* amino acids — tissue zooms out of the lens, the molecular chain zooms in, bonds draw, residues pulse in turn */
+.nv-fib,.nv-lens .nv-mol,.nv-drop1{transform-box:view-box;transform-origin:600px 246px}
+.rw-nu[data-n="1"] .nv-fib{animation:nvZoomOut .9s cubic-bezier(.4,0,.2,1) forwards}
+.rw-nu[data-n="1"] .nv-lens .nv-mol{animation:nvZoomIn .8s cubic-bezier(.16,1,.3,1) .35s both}
+@keyframes nvZoomOut{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.8)}}
+@keyframes nvZoomIn{0%{opacity:0;transform:scale(.55)}100%{opacity:1;transform:none}}
+.nv-chain{stroke-dasharray:1;stroke-dashoffset:1}
+.rw-nu[data-n="1"] .nv-chain{transition:stroke-dashoffset 1s cubic-bezier(.16,1,.3,1) .55s;stroke-dashoffset:0}
+.nv-aa{transform-box:fill-box;transform-origin:center;animation:nvAA 2.4s ease-in-out infinite;animation-delay:calc(var(--i) * .4s)}
+@keyframes nvAA{0%,100%{transform:none}40%{transform:scale(1.14)}}
+.nv-aa-t{font:700 13px Montserrat,Cairo,sans-serif;fill:#fff;text-anchor:middle}
+.nv-lg-a{font:700 21px Montserrat,sans-serif;fill:#0C3048}
+.nv-lg-n{font:600 23px Cairo,Montserrat,sans-serif;fill:#3A5265}
+
+/* lipids — fat tissue, floating droplets, one droplet magnified with a slow fluid wobble */
+.nv-dp{animation:nvFloat 3.4s ease-in-out infinite;animation-delay:calc(var(--i) * -.45s)}
+@keyframes nvFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.nv-wob{transform-box:fill-box;transform-origin:center;animation:nvWob 3.2s ease-in-out infinite}
+@keyframes nvWob{0%,100%{transform:scale(1,1)}33%{transform:scale(1.04,.97)}66%{transform:scale(.97,1.03)}}
+.rw-nu[data-n="2"] .nv-drop1{animation:nvZoomIn .8s cubic-bezier(.16,1,.3,1) .2s both}
+
+/* omega-3 — magnified oil droplet carrying EPA and DHA skeletal formulas with a gentle molecular drift */
+.nv-bond{fill:none;stroke:#0C3048;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.nv-dha .nv-bond{stroke:#8A4B00}
+.nv-atom{font:700 17px Montserrat,sans-serif;fill:#B0352B}
+.nv-omega-end{font:700 18px Montserrat,sans-serif;fill:#3A5265}
+.nv-fa{font:800 30px Montserrat,sans-serif;fill:#0C3048}.nv-dha .nv-fa{fill:#8A4B00}
+.nv-fa-s{font:600 16px Montserrat,sans-serif;fill:#5E6B73}
+.nv-row{animation:nvDrift 4s ease-in-out infinite alternate}.nv-dha{animation-delay:-2s}
+@keyframes nvDrift{0%{transform:translateY(-2px)}100%{transform:translateY(3px)}}
+
+/* minerals — semi-transparent body, ivory skeleton, Ca/P indicators with drawn leader lines */
+.nv-el{font:800 28px Montserrat,sans-serif;fill:#0C3048;text-anchor:middle}
+.nv-el-n{font:700 26px Cairo,Montserrat,sans-serif;fill:#0C3048}
+.nv-min .nv-mi{transform:translateY(8px);transition:transform .7s cubic-bezier(.16,1,.3,1) .2s}
+.rw-nu[data-n="4"] .nv-min .nv-mi{transform:none}
+
+/* vitamins — four indicators drifting on small orbits along a light path */
+.nv-orb{animation:nvOrbit 4s linear infinite;animation-delay:calc(var(--i) * -1s)}
+@keyframes nvOrbit{0%{transform:translate(0,-7px)}25%{transform:translate(7px,0)}50%{transform:translate(0,7px)}75%{transform:translate(-7px,0)}100%{transform:translate(0,-7px)}}
+.nv-vt-s{font:700 14px Montserrat,sans-serif;letter-spacing:.12em;fill:#A9781F;text-anchor:middle;text-transform:uppercase}
+.nv-vt{font:800 36px Montserrat,sans-serif;fill:#0C3048;text-anchor:middle}.nv-vt.sm{font-size:28px}
+
+/* autoplay control */
+.nv-play{position:absolute;bottom:12px;inset-inline-end:12px;z-index:2;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(12,48,72,.18);
+  background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);cursor:pointer;transition:background .3s,border-color .3s}
+.nv-play:hover{background:#fff;border-color:var(--navy)}
+.nv-play:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+.nv-play i{width:12px;height:12px;background:linear-gradient(90deg,#0C3048 0 35%,transparent 35% 65%,#0C3048 65%)}
+.nv-play[aria-pressed=false] i{background:#0C3048;clip-path:polygon(15% 0,100% 50%,15% 100%)}
+.rw-nu-node:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+
+/* scientific notes */
+.nv-note{margin:10px 0 0!important;font-size:13.5px!important;color:#A9781F!important}
+.nv-foot{max-width:760px;margin:14px auto 0;text-align:center;font-size:12.5px;line-height:1.7;color:var(--ink-3)}
+.rw-nu[data-n="x"] .rw-nu-desc[data-i="x"]{opacity:1;transform:none;pointer-events:auto;transition-delay:.12s}
+
+/* off screen: suspend every internal cycle */
+.rw-nu:not(.nv-live) .nv *{animation-play-state:paused!important}
+
+/* phones: selectors in a compact two-column grid under the visualization */
+@media (max-width:560px){
+  .rw-nu-stage{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rw-nu-col{display:flex;gap:6px}
+  .rw-nu-node{gap:10px;padding:9px 10px;min-height:52px}
+  .rw-nu-node b{font-size:14.5px}
+  .nv-play{width:36px;height:36px;bottom:8px;inset-inline-end:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .nv *{animation:none!important}
+  .nv-L,.nv-lens,.nv-omega{transform:none!important}.nv-rv{r:330px!important}
+  .nv-chain,.nv-lead{transition:none}
+  .rw-nu[data-n="1"] .nv-fib{opacity:0}
+  .nv-play{display:none}
+}

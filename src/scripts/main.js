@@ -372,7 +372,25 @@
       btns.forEach((b) => { b.addEventListener("click", () => set(+b.dataset.i)); if (FINE) b.addEventListener("pointerenter", () => set(+b.dataset.i)); b.addEventListener("focus", () => set(+b.dataset.i)); }); return set; };
     const seas = $(".rw-seas"); const setSea = pick(seas, "s", ".rw-sea-list button");
     if (seas) $$(".rw-sea", seas).forEach((p) => p.addEventListener("click", () => setSea(+p.dataset.i)));
-    pick($(".rw-nu"), "n", ".rw-nu-node");
+    /* nutritional composition: one state for the whole section (data-n = "x" whole fish | 0–5 components).
+       Layers, titles and descriptions all follow data-n through CSS, so rapid switching simply re-targets the
+       transitions (no timelines to cancel). Autoplay every 6s while visible; any manual choice pauses it;
+       internal cycles pause off screen (.nv-live); reduced motion → no autoplay, static layers. */
+    const nu = $(".rw-nu");
+    if (nu && $(".nv", nu)) { const nodes = $$(".rw-nu-node", nu), play = $(".nv-play", nu), ORDER = ["x", "0", "1", "2", "3", "4", "5"];
+      let auto = !RM, live = false, timer = 0;
+      const set = (n) => { nu.dataset.n = n; nodes.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.i === n))); };
+      const tick = () => { clearTimeout(timer); if (auto && live) timer = setTimeout(() => { set(ORDER[(ORDER.indexOf(nu.dataset.n) + 1) % ORDER.length]); tick(); }, 6000); };
+      const setAuto = (on) => { auto = on; if (play) { play.setAttribute("aria-pressed", String(on)); play.setAttribute("aria-label", play.dataset[on ? "on" : "off"]); } tick(); };
+      nodes.forEach((b, k) => {
+        b.addEventListener("click", () => { setAuto(false); set(nu.dataset.n === b.dataset.i ? "x" : b.dataset.i); });
+        b.addEventListener("keydown", (e) => { const d = { ArrowDown: 1, ArrowUp: -1, ArrowRight: AR ? -1 : 1, ArrowLeft: AR ? 1 : -1 }[e.key];
+          if (!d) return; e.preventDefault(); nodes[(k + d + nodes.length) % nodes.length].focus(); });
+      });
+      if (play) play.addEventListener("click", () => setAuto(!auto));
+      if (RM && play) play.hidden = true;
+      new IntersectionObserver(([e]) => { live = e.isIntersecting; nu.classList.toggle("nv-live", live); tick(); }, { threshold: 0.15 }).observe(nu);
+    }
     pick($(".rw-vr"), "v", ".rw-vr-tabs button");
     const src = $(".rw-src");
     if (src) { const track = $(".rw-track", src), seq = $(".rw-seq", src), dots = $$(".rw-seq li", src), wide = matchMedia("(min-width:900px)");

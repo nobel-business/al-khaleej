@@ -4,6 +4,8 @@ import { layout } from "../layouts/layout.mjs";
 import { lines } from "../lib/html.mjs";
 import { href, prodHref } from "../lib/routes.mjs";
 import { crumb } from "../components/blocks.mjs";
+import { nutriViz } from "../components/nutri-viz.mjs";
+import { ALT } from "../content/content.mjs";
 
 /* =====================================================================================================
    Raw materials — «ثروة البحر، أساس صناعتنا.»
@@ -42,6 +44,9 @@ const C = {
     nu: { eye: "القيمة الكامنة في الخامات", h: "أكثر من مجرد مادة خام.", p: [
       "تحتوي الأسماك البحرية على عناصر غذائية تمنحها أهمية خاصة في صناعة الأعلاف والأغذية.",
       "وتتكامل هذه المكونات لتشكل القيمة الغذائية لمسحوق الأسماك والزيوت البحرية."],
+      whole: ["الأسماك البحرية الكاملة", "Whole Marine Fish", "اختر أحد المكونات لاستكشاف القيمة الطبيعية الكامنة في الأسماك البحرية."],
+      notes: { 1: "تمثيل مفاهيمي لسلسلة الأحماض الأمينية.", 3: "صيغ هيكلية مبسطة لحمضي EPA وDHA." },
+      foot: "رسم توضيحي تعليمي للتركيب الطبيعي للأسماك البحرية، وليس تحليلًا مخبريًا لمنتجاتنا.",
       items: [["البروتين الحيواني", "Animal Protein", "يمثل البروتين أحد المكونات الرئيسية للأسماك البحرية، ويعد أساس القيمة التغذوية لمسحوق الأسماك."],
         ["الأحماض الأمينية", "Amino Acids", "تحتوي البروتينات البحرية على مجموعة من الأحماض الأمينية الأساسية، من بينها الليسين والميثيونين والثريونين، التي تؤدي أدوارًا مهمة في النمو وبناء الأنسجة والتغذية الحيوانية."],
         ["الدهون البحرية", "Marine Lipids", "تمثل الدهون البحرية مصدرًا للطاقة والأحماض الدهنية، وتعد المكون الأساسي الذي يتم استخلاصه خلال إنتاج زيت الأسماك."],
@@ -102,12 +107,15 @@ const C = {
     nu: { eye: "The value within the raw material", h: "More than a raw material.", p: [
       "Marine fish contain nutrients that give them particular importance in the feed and food industries.",
       "Together these components form the nutritional value of fish meal and marine oils."],
-      items: [["Animal protein", "البروتين الحيواني", "Protein is one of the main components of marine fish and the basis of fish meal’s nutritional value."],
-        ["Amino acids", "الأحماض الأمينية", "Marine proteins contain essential amino acids, among them lysine, methionine and threonine, which play important roles in growth, tissue building and animal nutrition."],
-        ["Marine lipids", "الدهون البحرية", "Marine fats are a source of energy and fatty acids, and the main component extracted in the production of fish oil."],
-        ["Omega-3 fatty acids", "أحماض أوميغا 3", "Many marine fish naturally contain polyunsaturated fatty acids, among them EPA and DHA, in proportions that vary with species, environment and season."],
-        ["Minerals", "المعادن", "Whole fish contain natural minerals, among them calcium and phosphorus, which contribute to the mineral value of fish meal."],
-        ["Vitamins", "الفيتامينات", "Marine raw materials naturally contain a range of vitamins, whose levels vary with fish species, their properties and processing conditions."]] },
+      whole: ["Whole marine fish", "الأسماك البحرية الكاملة", "Select a component to explore the natural value within marine fish."],
+      notes: { 1: "Conceptual representation of an amino-acid chain.", 3: "Simplified skeletal formulas of EPA and DHA." },
+      foot: "An illustrative, educational representation of the natural composition of marine fish — not a laboratory analysis of our products.",
+      items: [["Animal protein", "البروتين الحيواني", "Protein is one of the primary nutritional components of marine fish and forms the foundation of the nutritional value of fish meal."],
+        ["Amino acids", "الأحماض الأمينية", "Marine proteins contain essential amino acids, including lysine, methionine and threonine, which play important roles in growth, tissue development and animal nutrition."],
+        ["Marine lipids", "الدهون البحرية", "Marine lipids provide energy and fatty acids and represent the primary component extracted during fish oil production."],
+        ["Omega-3 fatty acids", "أحماض أوميغا 3", "Many marine fish naturally contain polyunsaturated fatty acids, including EPA and DHA, in proportions that vary according to species, marine environment and season."],
+        ["Minerals", "المعادن", "Whole fish naturally contain mineral elements, including calcium and phosphorus, which contribute to the mineral value of fish meal."],
+        ["Vitamins", "الفيتامينات", "Marine raw materials naturally contain a range of vitamins, with levels varying according to fish species, biological characteristics and processing conditions."]] },
     vr: { eye: "Understanding marine resources", h: "The sea is diverse by nature.", p: [
       "Not all marine fish share the same chemical and nutritional composition; their natural properties change with a range of biological and environmental factors.",
       "Understanding these variables is an important part of the industrial knowledge needed to work with marine raw materials and develop product specifications."],
@@ -221,15 +229,16 @@ export const raw = (lang) => {
   </div>
 </section>
 
-<section class="rw-nu" data-env="#FBF8F3" data-n="0" aria-labelledby="rw-nu-h">
+<section class="rw-nu" data-env="#FBF8F3" data-n="x" aria-labelledby="rw-nu-h">
   <div class="wrap">
     <div class="rw-head-center">${eye(c.nu.eye)}${H2(c.nu.h, "rw-nu-h")}<div class="rw-prose" data-r="up">${c.nu.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
     <div class="rw-nu-stage">
-      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(0, 3).map(([t, other], i) => `<button type="button" class="rw-nu-node" data-i="${i}" aria-pressed="${i === 0}">${ln(NU[i], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></button>`).join("")}</div>
-      <figure class="rw-nu-fish" data-r="fade">${pic(lang, "rw-illus", { col: 44, mcol: 100, box: 16 / 9 })}</figure>
+      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(0, 3).map(([t, other], i) => `<button type="button" class="rw-nu-node" data-i="${i}" aria-pressed="false">${ln(NU[i], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></button>`).join("")}</div>
+      <figure class="rw-nu-fish" data-r="fade">${nutriViz(lang, ALT["rw-illus"][lang] + (ar ? " (رسم توضيحي)" : " (illustrative)"))}</figure>
       <div class="rw-nu-col" data-r="up">${c.nu.items.slice(3).map(([t, other], k) => `<button type="button" class="rw-nu-node" data-i="${k + 3}" aria-pressed="false">${ln(NU[k + 3], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></button>`).join("")}</div>
     </div>
-    <div class="rw-nu-panel" aria-live="polite">${c.nu.items.map(([t, other, d], i) => `<div class="rw-nu-desc" data-i="${i}"><h3>${t} <small ${alt()}>${other}</small></h3><p>${d}</p></div>`).join("")}</div>
+    <div class="rw-nu-panel" aria-live="polite"><div class="rw-nu-desc" data-i="x"><h3>${c.nu.whole[0]} <small ${alt()}>${c.nu.whole[1]}</small></h3><p>${c.nu.whole[2]}</p></div>${c.nu.items.map(([t, other, d], i) => `<div class="rw-nu-desc" data-i="${i}"><h3>${t} <small ${alt()}>${other}</small></h3><p>${d}</p>${c.nu.notes[i] ? `<p class="nv-note">${c.nu.notes[i]}</p>` : ""}</div>`).join("")}</div>
+    <p class="nv-foot">${c.nu.foot}</p>
   </div>
 </section>
 
