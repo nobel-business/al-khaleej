@@ -46,10 +46,7 @@ const C = {
         { t: "التعبئة والتخزين", en: "Packaging & Storage", p: ["تُعبأ المنتجات النهائية وفق طبيعتها وخصائصها ومتطلبات تداولها."],
           pack: { meal: ["مسحوق الأسماك", "درجات البروتين", "مستويات الدهون", "التعبئة: أكياس بوزن 50 كيلوجرامًا."], oil: ["زيت الأسماك الخام", ["التعبئة في براميل.", "مراعاة ظروف الحفظ والتداول المناسبة للمنتجات الزيتية."]] } },
       ] },
-    ctl: { eye: "هندسة الجودة والكفاءة", h: "لكل مرحلة مؤشرات، ولكل عملية قيمة.", p: [
-      "ترتبط خصائص مسحوق الأسماك والزيوت البحرية بمجموعة من المتغيرات الفنية التي تبدأ من طبيعة المواد الخام وتمتد عبر مراحل المعالجة الحرارية والعصر والفصل والتجفيف والتبريد.",
-      "ونهتم بمتابعة هذه المتغيرات وفهم تأثيرها على الخصائص الكيميائية والتغذوية للمنتجات، بما يساعد على تطوير الأداء الصناعي وتحقيق المواصفات المستهدفة.",
-      "وتقوم فلسفتنا في التصنيع على تعظيم الاستفادة من المكونات الطبيعية للأسماك البحرية، وتحسين كفاءة العمليات واستخدام الموارد والطاقة، والمحافظة على القيمة الاقتصادية والتغذوية للمنتجات."],
+    ctl: { eye: "هندسة الجودة والكفاءة", h: "لكل مرحلة مؤشرات، ولكل عملية قيمة.", p: ["نهتم بمتابعة المتغيرات الفنية خلال مراحل التصنيع وتأثيرها على الخصائص الكيميائية والتغذوية للمنتجات، لتحقيق المواصفات المستهدفة وتعظيم الاستفادة من الخامات البحرية، مع تحسين كفاءة العمليات واستخدام الموارد والطاقة."],
       items: [
         ["حالة المواد الخام", "Raw Material Condition", "متابعة طبيعة الخامات وطزاجتها وملاءمتها للمعالجة الصناعية."],
         ["التحكم الحراري", "Thermal Control", "الاهتمام بدرجات الحرارة خلال مراحل الطبخ والتجفيف والتبريد وتأثيرها على خصائص المنتجات."],
@@ -91,10 +88,7 @@ const C = {
         { t: "Packaging & storage", en: "التعبئة والتخزين", p: ["Final products are packed according to their nature, properties and handling requirements."],
           pack: { meal: ["Fish meal", "Protein grades", "Fat levels", "Packing: 50 kg bags."], oil: ["Crude fish oil", ["Packed in drums.", "Storage and handling conditions suited to oil products."]] } },
       ] },
-    ctl: { eye: "Quality and efficiency engineering", h: "Every stage has its indicators; every process, its value.", p: [
-      "The properties of fish meal and marine oils depend on a set of technical variables that begin with the nature of the raw material and extend through cooking, pressing, separation, drying and cooling.",
-      "We follow these variables and how they affect the chemical and nutritional properties of our products, helping us develop industrial performance and meet target specifications.",
-      "Our manufacturing philosophy is to make the most of the natural components of marine fish, improve the efficiency of our processes and of resource and energy use, and preserve the economic and nutritional value of our products."],
+    ctl: { eye: "Quality and efficiency engineering", h: "Every stage has its indicators; every process, its value.", p: ["We follow the technical variables throughout manufacturing and their effect on the chemical and nutritional properties of our products, to meet target specifications and make the most of marine raw materials, while improving the efficiency of our processes and of resource and energy use."],
       items: [
         ["Raw material condition", "حالة المواد الخام", "Following the nature, freshness and suitability of the raw material for industrial processing."],
         ["Thermal control", "التحكم الحراري", "Attention to temperatures during cooking, drying and cooling, and their effect on product properties."],
