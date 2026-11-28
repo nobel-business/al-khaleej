@@ -251,3 +251,26 @@ div.mf-node{cursor:default}
   border:1px solid rgba(201,154,62,.28);box-shadow:0 8px 18px -12px rgba(90,64,30,.5);color:var(--navy)}
 .ra-products .ra-spec .tag small{display:block;margin-top:5px;font-weight:600;color:#5A4A30}
 .ra-products .ra-spec.lit .tag b,.ra-products .ra-spec:hover .tag b{background:#fff;border-color:rgba(227,139,6,.55)}
+
+/* =====================================================================
+   PRODUCTS — every section reads label · title · body · content (stacked, centred)
+   ===================================================================== */
+.pr-head{position:relative;z-index:4;text-align:center;margin:0 auto clamp(26px,3.2vw,44px)}
+.pr-head .ab-eye{justify-content:center}
+.pr-head .ab-h2{margin:14px 0 0;white-space:nowrap;font-size:min(clamp(30px,3.6vw,52px),calc((100vw - 48px) / 13))}
+.pr-head .ab-h2 .ln{display:inline}
+.pr-lede{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px auto 0;font-size:clamp(15.5px,1.2vw,18px);line-height:1.7;color:var(--ink-2)}
+.pr-one{white-space:nowrap;font-size:min(clamp(15.5px,1.2vw,18px),calc((100vw - 40px) / 44))}
+[dir=ltr] .pr-one{font-size:min(clamp(15px,1.15vw,17px),calc((100vw - 40px) / 52))}
+.pr-dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 5px rgba(227,139,6,.16);animation:hintPulse 2.4s ease-in-out infinite}
+/* specimen room: head in the flow, the shelf band anchored below it */
+.ra-products .ra-head{padding-top:clamp(28px,6vh,75px);margin-bottom:0;transition:opacity .4s}
+.ra-products.zoom .ra-head{opacity:0;pointer-events:none}
+@media (min-width:981px){
+  .ra-products{min-height:0!important;padding-bottom:0}
+  .ra-products.zoom{min-height:100svh!important}
+  .ra-products .ra-band{top:auto!important;bottom:0}
+  .ra-space{height:calc(var(--wb) + 34px)}
+}
+@media (max-width:980px){.ra-space{display:none}.ra-products .ra-head{padding-top:0}.pr-lede:not(.pr-one){padding-inline:var(--gutter)}}
+@media (max-width:767px){.pr-one,[dir=ltr] .pr-one{white-space:normal;font-size:15.5px;max-width:34ch;text-align:center}}

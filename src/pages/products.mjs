@@ -1,5 +1,5 @@
 import { UI, PRODUCTS } from "../content/content.mjs";
-import { arr } from "../lib/html.mjs";
+import { arr, lines } from "../lib/html.mjs";
 import { prodHref, quoteHref } from "../lib/routes.mjs";
 import { pic, preload, specPic } from "../lib/media.mjs";
 import { layout } from "../layouts/layout.mjs";
@@ -25,11 +25,12 @@ export const products = (lang) => {
     <span class="ab-cue" aria-hidden="true"><i></i>${ar ? "مرّر للأسفل" : "Scroll"}</span>
   </div>
 </section>
-<section class="ra ra-products" id="specimens" data-env="${ENV.paper}" aria-label="${ar ? "غرفة العيّنات" : "Specimen room"}">
+<section class="ra ra-products" id="specimens" data-env="${ENV.paper}" aria-labelledby="ra-h">
   ${wall}
   <div class="ra-veil" aria-hidden="true"></div>
+  <div class="wrap pr-head ra-head"><p class="ab-eye" data-r="up">${ar ? "غرفة العيّنات" : "Specimen room"}</p><h2 class="ab-h2" id="ra-h" data-lines>${lines(ar ? "استعرض العيّنات." : "View the specimens.")}</h2><p class="pr-lede" data-r="up"><i class="pr-dot" aria-hidden="true"></i>${ar ? "مرّر الضوء على الرف، واختر عيّنة لعرض تفاصيلها." : "Move the light along the shelf. Select a specimen for its details."}</p></div>
+  <div class="ra-space" aria-hidden="true"></div>
   <div class="ra-band">
-    <div class="ra-meta"><p class="hint"><i aria-hidden="true"></i><span>${ar ? "مرّر الضوء على الرف، واختر عيّنة لعرض تفاصيلها." : "Move the light along the shelf. Select a specimen for its details."}</span></p></div>
     <span class="ra-sill" aria-hidden="true"></span>
     <div class="ra-shelf" role="group" aria-label="${ar ? "رف العيّنات" : "Specimen shelf"}">${PRODUCTS.map((p, i) => `<button type="button" class="ra-spec" data-i="${i}" data-slug="${p.slug}" aria-controls="ra-drawer" aria-expanded="false" aria-label="${p.name[lang]} — ${ar ? "عرض التفاصيل" : "view details"}"><span class="num" aria-hidden="true">0${i + 1}</span>${specPic(lang, p, `view-transition-name:spec-${p.slug}`)}<span class="glint" aria-hidden="true"></span><span class="tag"><b>${p.name[lang]}</b><small>${p.oil ? u.drums : u.bags}</small></span></button>`).join("")}</div>
     <span class="sun" aria-hidden="true"></span>
@@ -40,9 +41,9 @@ export const products = (lang) => {
     <div class="ra-nav"><button type="button" class="ra-prev"><i class="ic ic-arr" aria-hidden="true"></i><span>${ar ? "السابق" : "Previous"}</span></button><span class="ra-count"><b>01</b> / ${String(PRODUCTS.length).padStart(2, "0")}</span><button type="button" class="ra-next"><span>${ar ? "التالي" : "Next"}</span><i class="ic ic-arr" aria-hidden="true"></i></button></div>
   </aside>
 </section>
-<section class="sec" id="compare" data-env="${ENV.dawn}">
+<section class="sec" id="compare" data-env="${ENV.dawn}" aria-labelledby="cmp-h">
   <div class="wrap">
-    <div class="sec-head split-head">${kicker(ar ? "مقارنة" : "Compare")}${h2(ar ? "المنتجات\nجنبًا إلى جنب." : "The range,\nside by side.")}<p class="lede" data-r="up">${ar ? "مرّر المؤشر فوق أي منتج لإبراز عموده. تُقدَّم المواصفات المعتمدة عند الطلب." : "Hover or focus a product to highlight its column. Verified specifications are provided on request."}</p></div>
+    <div class="pr-head"><p class="ab-eye" data-r="up">${ar ? "مقارنة" : "Compare"}</p><h2 class="ab-h2" id="cmp-h" data-lines>${lines(ar ? "المنتجات جنبًا إلى جنب." : "The range, side by side.")}</h2><p class="pr-lede pr-one" data-r="up">${ar ? "مرّر المؤشر فوق أي منتج لإبراز عموده. تُقدَّم المواصفات المعتمدة عند الطلب." : "Hover or focus a product to highlight its column. Verified specifications are provided on request."}</p></div>
     ${compare(lang)}
   </div>
 </section>
