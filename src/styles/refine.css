@@ -825,3 +825,9 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 #oil .dial-wrap p{margin-top:16px!important}
 @media (min-width:900px) and (max-width:1279px){#meal .loupe,#oil .meal.oilm .loupe{min-height:610px}}
 #oil .meal.oilm .copy{justify-content:flex-start!important}
+/* oil: the hint sits at the bottom so the beaker rim stays clear; ≤ 5 % centred on one line */
+#oil .loupe .tip{top:auto;bottom:calc(6% + 6px)}
+#oil .oil-dial .readout .val{display:flex;align-items:center;gap:.04em;line-height:1}
+#oil .oil-dial .readout .val small{align-self:center;margin:0}
+#oil .loupe .tip{inset-inline-start:auto;inset-inline-end:calc(7% + 6px)}
+[dir=ltr] #oil .loupe .tip{inset-inline-end:auto;inset-inline-start:calc(7% + 6px)}

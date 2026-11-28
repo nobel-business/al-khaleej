@@ -54,7 +54,7 @@ export const home = (lang) => {
 
 <section class="sec cv" id="oil" data-env="${ENV.amber}">
   <div class="wrap meal oilm">
-    ${loupe(lang, "oil-beaker", { tip: ar ? "مرّر المؤشر لتفحص خصائص الزيت" : "Move over the oil to inspect its character" })}
+    ${loupe(lang, "oil-beaker", { tip: ar ? "مرّر المؤشر لتفحص خصائص الزيت" : "Move over to inspect the oil" })}
     <div class="copy"><h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "زيت الأسماك الخام" : "Crude fish oil"}</span></h3>
     ${oilDial(lang, prodHref(lang, PRODUCTS.find((p) => p.oil)))}</div>
   </div>
