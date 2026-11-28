@@ -4,7 +4,7 @@ import { DIST, ASSETS, PUBLIC } from "../src/lib/paths.mjs";
 import { JS, JS_URL } from "../src/lib/bundle.mjs";
 import { PRODUCTS } from "../src/content/content.mjs";
 import { R } from "../src/lib/routes.mjs";
-import { pages, productPage, notFound } from "../src/pages/index.mjs";
+import { pages, notFound } from "../src/pages/index.mjs";
 
 // ---------- write ----------
 // Arabic percentages, Arabic convention with Western digits: every "60%" in visible text (and in the JSON the page
@@ -20,7 +20,10 @@ const keys = ["home", "about", "products", "raw", "mfg", "quality", "intl", "con
 let n = 0;
 for (const lang of ["en", "ar"]) {
   for (const k of keys) { write(path.join(lang, R[k], "index.html"), pages[k](lang)); n++; }
-  for (const p of PRODUCTS) { write(path.join(lang, "products", p.slug, "index.html"), productPage(p)(lang)); n++; }
+  // product detail pages are retired: their old addresses forward to the shelf with that specimen open
+  for (const p of PRODUCTS) { const to = `/${lang}/products/#${p.slug}`;
+    fs.mkdirSync(path.join(DIST, lang, "products", p.slug), { recursive: true });
+    fs.writeFileSync(path.join(DIST, lang, "products", p.slug, "index.html"), `<!DOCTYPE html><html lang="${lang}"${lang === "ar" ? ' dir="rtl"' : ""}><head><meta charset="utf-8"><title>${p.name[lang]}</title><meta name="robots" content="noindex"><link rel="canonical" href="/${lang}/products/"><meta http-equiv="refresh" content="0; url=${to}"><script>location.replace(${JSON.stringify(to)})</script></head><body><a href="${to}">${p.name[lang]}</a></body></html>`); }
 }
 write("index.html", `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Alkhaleej Fish Manufacturing</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0; url=/en/"><link rel="canonical" href="/en/"><script>location.replace((navigator.language||"").startsWith("ar")?"/ar/":"/en/")</script></head><body><a href="/en/">English</a> · <a href="/ar/">العربية</a></body></html>`);
 write("404.html", notFound());

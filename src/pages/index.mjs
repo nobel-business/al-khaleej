@@ -11,5 +11,4 @@ import { privacy } from "./privacy.mjs";
 import { credits } from "./credits.mjs";
 
 export const pages = { home, about, products, raw, mfg, quality, intl, contact, privacy, credits };
-export { productPage } from "./product.mjs";
 export { notFound } from "./not-found.mjs";
