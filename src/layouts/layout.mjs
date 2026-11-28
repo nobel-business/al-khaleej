@@ -22,7 +22,7 @@ export function layout(lang, { key, title, desc, body, over = false, preloadImg 
 <link rel="alternate" hreflang="${lang}" href="${self}"><link rel="alternate" hreflang="${o}" href="${alt}"><link rel="alternate" hreflang="x-default" href="/en/${R[key] ?? key}">
 <meta property="og:type" content="website"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:locale" content="${lang === "ar" ? "ar_EG" : "en_US"}">
 <link rel="icon" href="/assets/brand/icon-orange.png" type="image/png">
-<link rel="preload" href="/assets/fonts/${lang === "ar" ? "cairo-arabic" : "montserrat-latin"}.woff2" as="font" type="font/woff2" crossorigin>
+${(lang === "ar" ? ["cairo-arabic-400", "cairo-arabic-700"] : ["montserrat-latin-400", "montserrat-latin-600"]).map((f) => `<link rel="preload" href="/assets/fonts/${f}.woff2" as="font" type="font/woff2" crossorigin>`).join("")}
 ${preloadImg}
 <style>${CSS}</style>
 ${lang === "ar" ? `<script>(function(d){var h=d.documentElement;if(!d.fonts||!d.fonts.load)return;h.classList.add("fl");var k=function(){h.classList.remove("fl")};Promise.all([d.fonts.load("600 1em Cairo","العربية"),d.fonts.load("500 1em Montserrat","2025")]).then(k,k);setTimeout(k,900)})(document)</script>` : ""}

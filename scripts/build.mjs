@@ -30,7 +30,7 @@ write("404.html", notFound());
 write("robots.txt", "User-agent: *\nAllow: /\n");
 for (const f of fs.existsSync(path.join(DIST, "assets")) ? fs.readdirSync(path.join(DIST, "assets")) : []) if (/^main(\.[0-9a-f]+)?\.js$/.test(f)) fs.rmSync(path.join(DIST, "assets", f));
 write(JS_URL.slice(1), JS);
-for (const f of ["montserrat-latin.woff2", "cairo-arabic.woff2"]) copy(path.join(ASSETS, "fonts", f), path.join(DIST, "assets", "fonts", f));
+for (const f of fs.readdirSync(path.join(ASSETS, "fonts")).filter((f) => /-\d{3}\.woff2$/.test(f))) copy(path.join(ASSETS, "fonts", f), path.join(DIST, "assets", "fonts", f));
 for (const f of fs.readdirSync(path.join(ASSETS, "scene"))) copy(path.join(ASSETS, "scene", f), path.join(DIST, "assets", "scene", f));
 for (const f of fs.readdirSync(path.join(ASSETS, "spec"))) copy(path.join(ASSETS, "spec", f), path.join(DIST, "assets", "spec", f));
 for (const f of ["logo-primary.png", "logo-reversed.png", "icon-orange.png", "pattern.webp"]) copy(path.join(ASSETS, "brand", f), path.join(DIST, "assets", "brand", f));
