@@ -328,3 +328,6 @@
 .ab-fut-title{text-shadow:0 1px 18px rgba(255,255,255,.55)}
 .ab-fut-head .ab-eye{text-shadow:0 0 12px rgba(255,255,255,.7)}
 .ab-fut-title{font-weight:700}
+/* clean hand-over between horizon statements: the outgoing card leaves fast, the incoming one waits for it */
+.ab-fut-card{transition:opacity .28s var(--out),transform .5s var(--out)}
+.ab-fut[data-a="0"] .ab-fut-card[data-i="0"],.ab-fut[data-a="1"] .ab-fut-card[data-i="1"],.ab-fut[data-a="2"] .ab-fut-card[data-i="2"]{transition:opacity .6s var(--out) .3s,transform .9s var(--out) .26s}
