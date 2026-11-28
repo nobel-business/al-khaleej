@@ -919,3 +919,8 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
   .ft-main>.ft-brand .ft-loc{margin-top:auto!important}
   .ft-main>.ft-brand p{margin-bottom:20px}
 }
+
+/* footer contact column heading — same treatment as the list headings */
+.ft-ch{display:block;position:relative;font-size:16px;font-weight:700;line-height:1.2;color:#fff;padding-bottom:10px;margin-bottom:8px}
+.ft-ch::after{content:"";position:absolute;inset-inline-start:0;bottom:0;width:28px;height:2px;border-radius:2px;background:#F2B552}
+@media (min-width:1101px){.ft-main>.ft-contact{grid-template-rows:auto auto minmax(0,1fr)!important}}
