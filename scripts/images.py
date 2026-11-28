@@ -25,6 +25,10 @@ SPEC = {
     "jar-66":         ("ai/jar-e.png",          [480, 720, 1080],                         "50% 60%", "ai", None),
     "m-centrifuge":   ("ai/m-centrifuge.png",   [640, 1024, 1280],                        "50% 55%", "ai", None),
     "m-plant":        ("ai/m-plant.jpg",        [640, 1024, 1280],                        "30% 50%", "ai", None),   # client-supplied plant photo
+    "ab-sea":         ("ai/ab-sea.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — sea at first light
+    "ab-ind":         ("ai/ab-ind.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — processing hall
+    "ab-who":         ("ai/ab-who.jpg",         [640, 1024, 1600],                        "55% 55%", "ai", None),   # About — production line
+    "ab-horizon":     ("ai/ab-horizon.jpg",     [640, 1024, 1600, 2400, 3072],            "50% 60%", "ai", None),   # About — looking ahead
     "lab-qc":         ("ai/lab-qc.jpg",         [640, 1024, 1280],                        "50% 55%", "ai", None),   # client-supplied quality lab
     "meal-oil":       ("ai/meal-oil.png",       [640, 1024, 1536],                        "45% 58%", "ai", None),   # client-supplied
     "oil-beaker":     ("ai/oil-beaker.png",     [480, 636],                               "55% 4%", "ai", None),   # client-supplied (from mockup)

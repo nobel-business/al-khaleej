@@ -65,25 +65,6 @@
 .ab-fact dd{margin:0;font-size:clamp(15px,1.15vw,18px);font-weight:600;line-height:1.45;color:var(--ink)}
 .ab-fact:first-child dd{font-size:clamp(28px,2.6vw,40px);font-weight:300;line-height:1.05;letter-spacing:-.02em}
 
-/* ---------- 03 · our story: sticky frame, chapters scroll beside it ---------- */
-.ab-story{background:#F7F2EA;padding-block:clamp(90px,10vw,150px)}
-.ab-story-grid{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(36px,6vw,110px);align-items:start}
-.ab-story-media{position:sticky;top:max(96px,calc(50svh - min(34svh,300px)));}
-.ab-frames{position:relative;aspect-ratio:.92;max-height:68svh;border-radius:var(--shape-land,18% / 25%);overflow:hidden;corner-shape:squircle;background:#E9E2D6}
-.ab-frame{position:absolute;inset:0;opacity:0;transition:opacity .9s var(--out)}
-.ab-frame .media img{transform:scale(1.08);transition:transform 1.6s var(--out)}
-.ab-story[data-a="0"] .ab-frame[data-i="0"],.ab-story[data-a="1"] .ab-frame[data-i="1"],.ab-story[data-a="2"] .ab-frame[data-i="2"]{opacity:1}
-.ab-story[data-a="0"] .ab-frame[data-i="0"] img,.ab-story[data-a="1"] .ab-frame[data-i="1"] img,.ab-story[data-a="2"] .ab-frame[data-i="2"] img{transform:scale(1)}
-.ab-rail{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.ab-rail li{font-size:13px;color:var(--ink-3);padding-top:10px;border-top:2px solid var(--ab-line);transition:color .5s,border-color .5s}
-.ab-rail li span{display:block;font-size:11px;font-weight:700;color:var(--ab-gold);margin-bottom:2px}
-.ab-story[data-a="0"] .ab-rail li[data-i="0"],.ab-story[data-a="1"] .ab-rail li[data-i="1"],.ab-story[data-a="2"] .ab-rail li[data-i="2"]{color:var(--ink);border-color:var(--ab-gold)}
-.ab-story-text .ab-h2{margin-bottom:clamp(30px,4vw,56px)}
-.ab-chap{font-size:clamp(18px,1.5vw,23px);line-height:1.75;color:var(--ink);margin:0;padding-block:clamp(26px,7svh,80px);min-height:34svh;display:flex;align-items:center;
-  opacity:.26;transition:opacity .7s var(--out),transform .7s var(--out);transform:translateY(10px)}
-.ab-chap:last-child{min-height:44svh}
-.ab-story[data-a="0"] .ab-chap[data-i="0"],.ab-story[data-a="1"] .ab-chap[data-i="1"],.ab-story[data-a="2"] .ab-chap[data-i="2"]{opacity:1;transform:none}
-
 /* ---------- 04 · vision · mission · ambition: the three fish of the official symbol ---------- */
 .ab-vm{background:#FBF8F3;padding-block:clamp(90px,10vw,150px)}
 .ab-vm-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(30px,5vw,90px);align-items:center}
@@ -111,50 +92,6 @@
 .ab-val:hover .ab-vic{background:var(--ab-gold);stroke:#fff}
 .ab-val h3{font-size:clamp(20px,1.6vw,24px);font-weight:700;color:var(--ink);margin:0 0 10px}
 .ab-val p{font-size:15.5px;line-height:1.8;color:var(--ink-2);margin:0;max-width:40ch}
-
-/* ---------- 06 · industrial philosophy ---------- */
-.ab-phil{background:#FBF8F3;padding-block:clamp(90px,10vw,150px) clamp(80px,9vw,130px)}
-.ab-phil-band{position:relative;height:min(62svh,620px);margin-inline:auto;overflow:hidden;
-  clip-path:inset(0 calc((1 - var(--e,1)) * 9%) round calc(18px + (1 - var(--e,1)) * 40px));will-change:clip-path}
-.ab-phil-band .media img{transform:scale(calc(1.14 - var(--e,1) * .14)) translateY(calc((var(--pp,.5) - .5) * -40px))}
-.ab-phil-body{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(30px,5vw,96px);margin-top:clamp(48px,5vw,80px);align-items:start}
-.ab-lead{font-size:clamp(20px,1.7vw,27px);line-height:1.65;font-weight:300;color:var(--ink);margin:0}
-.ab-cols{display:grid;gap:18px}
-.ab-chain{list-style:none;margin:clamp(64px,7vw,110px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative}
-.ab-chain::before,.ab-chain::after{content:"";position:absolute;top:27px;inset-inline-start:10%;height:2px;border-radius:2px}
-.ab-chain::before{width:80%;background:var(--ab-line)}
-.ab-chain::after{width:calc(var(--c,0) * 80%);background:linear-gradient(90deg,var(--ab-gold),var(--ab-gold-2))}
-[dir=rtl] .ab-chain::after{background:linear-gradient(270deg,var(--ab-gold),var(--ab-gold-2))}
-.ab-chain li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;position:relative;z-index:1}
-.ab-node{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#FBF8F3;border:1.5px solid rgba(12,48,72,.22);transition:background .5s,border-color .5s,transform .5s var(--out)}
-.ab-node i{font-style:normal;font-size:13px;font-weight:700;color:var(--ink-3);transition:color .5s}
-.ab-chain li b{font-size:clamp(14px,1.15vw,17px);font-weight:600;color:var(--ink-3);transition:color .5s;max-width:14ch}
-.ab-chain li.on .ab-node{background:var(--ab-gold);border-color:var(--ab-gold);transform:scale(1.06)}
-.ab-chain li.on .ab-node i{color:#fff}
-.ab-chain li.on b{color:var(--ink)}
-.ab-chain-cta{margin:clamp(40px,4vw,60px) 0 0;text-align:center}
-
-/* ---------- 07 · foundations: four doors ---------- */
-.ab-pil{background:#F7F2EA;padding-block:clamp(90px,10vw,150px)}
-.ab-head-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(30px,5vw,96px);align-items:end;max-width:none}
-.ab-head-split .ab-eye{grid-column:1/-1}
-.ab-intro{font-size:17px;line-height:1.85;color:var(--ink-2);margin:0;max-width:52ch}
-.ab-pil-row{display:flex;gap:14px;height:clamp(460px,38vw,560px)}
-.ab-pil-item{position:relative;flex:1 1 0;min-width:0;overflow:hidden;border-radius:28px;corner-shape:squircle;cursor:pointer;transition:flex-grow .8s var(--out),opacity .9s var(--out),transform 1s var(--out)}
-.ab-pil-item.on{flex-grow:2.7;cursor:default}
-.ab-pil-item .media img{transition:transform 1.2s var(--out)}
-.ab-pil-item.on .media img{transform:scale(1.04)}
-.ab-pil-item::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,33,50,.86) 0%,rgba(9,33,50,.42) 46%,rgba(9,33,50,.08) 100%);pointer-events:none}
-.ab-pil-in{position:absolute;inset-inline:0;bottom:0;z-index:2;padding:clamp(20px,2vw,30px);color:#fff}
-.ab-pil-in .ab-num{color:#F2C979}
-.ab-pil-in h3{font-size:clamp(19px,1.6vw,25px);font-weight:700;margin:6px 0 0;line-height:1.3}
-.ab-pil-more{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .7s var(--out),opacity .5s}
-.ab-pil-more>*{overflow:hidden}
-.ab-pil-item.on .ab-pil-more{grid-template-rows:1fr;opacity:1;transition-delay:.15s}
-.ab-pil-more p{font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.9);margin:10px 0 0;max-width:46ch}
-.ab-pil-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-weight:600;font-size:15px;color:#F2C979;min-height:44px}
-.ab-pil-link:hover,.ab-pil-link:focus-visible{color:#fff}
-.ab-pil-more>div,.ab-pil-more{min-height:0}
 
 /* ---------- 08 · looking ahead ---------- */
 .ab-fut{background:#F7F2EA;padding-bottom:clamp(80px,9vw,130px)}
@@ -247,3 +184,45 @@
   .ab-scrim::after,[dir=rtl] .ab-scrim::after{background:linear-gradient(0deg,rgba(9,33,50,.7) 0%,rgba(9,33,50,.35) 55%,rgba(9,33,50,.1) 100%)}
   .ab-pil-item::after{background:linear-gradient(0deg,rgba(9,33,50,.92) 0%,rgba(9,33,50,.7) 45%,rgba(9,33,50,.12) 100%)}
 }
+
+/* =====================================================================
+   HERO CARD — the site's hero structure: one frosted milky-glass card (same surface as every page hero),
+   navy type, a short gold rule between headline and statement
+   ===================================================================== */
+.ab-card{max-width:min(1040px,100%);padding:clamp(26px,2.8vw,44px) clamp(24px,3vw,48px) clamp(26px,2.8vw,40px);border-radius:28px;
+  background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(9px) saturate(85%) brightness(1.1);backdrop-filter:blur(9px) saturate(85%) brightness(1.1);
+  border:1px solid rgba(255,255,255,.42);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.5),inset 0 0 0 1px rgba(255,255,255,.16),inset 0 0 40px rgba(255,255,255,.42),0 24px 60px -32px rgba(12,48,72,.3);
+  animation:abFade 1.1s var(--out) .1s both}
+.ab-card .ab-crumbs,.ab-card .ab-crumbs a{color:var(--navy-2,#3A5265);text-shadow:0 0 10px rgba(255,255,255,.6),0 0 1px rgba(255,255,255,.7);margin-bottom:16px}
+.ab-card .ab-hero-eye{color:#A9781F;text-shadow:0 0 10px rgba(255,255,255,.6)}
+.ab-card .ab-h1{color:var(--navy);text-shadow:none;font-size:clamp(34px,4.4vw,76px);max-width:none}
+.ab-card .ab-hero-p{background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0;border-radius:0;max-width:62ch;
+  color:var(--navy-2,#3A5265);text-shadow:0 0 10px rgba(255,255,255,.6),0 0 1px rgba(255,255,255,.7)}
+.ab-card .ab-hero-p::before{content:"";display:block;width:64px;height:2px;margin-bottom:18px;border-radius:2px;background:linear-gradient(90deg,#C99A3E,#E3B860)}
+[dir=rtl] .ab-card .ab-hero-p::before{background:linear-gradient(270deg,#C99A3E,#E3B860)}
+/* navy-on-glass needs no dark shade: keep only the light top shade under the navbar */
+.ab-scrim{background:linear-gradient(180deg,rgba(9,33,50,.28),rgba(9,33,50,0) 22%)}
+.ab-scrim::after{content:none}
+@media (max-width:899px){
+  .ab-card{padding:20px 18px 22px;border-radius:22px}
+  .ab-card .ab-h1{font-size:clamp(30px,8vw,44px)}
+  .ab-card .ab-hero-p{font-size:15px;line-height:1.75}
+  .ab-card .ab-hero-p::before{margin-bottom:12px}
+}
+
+/* hero card = the same card as every page hero (measured on International Markets): 760px wide, 34/40 padding,
+   hero-l headline on two lines, same statement measure, same distance from the bottom edge */
+@media (min-width:900px){
+  .ab-hero-copy{bottom:clamp(30px,7svh,80px)}
+  .ab-card{width:min(760px,100%);max-width:none;padding:clamp(24px,2.4vw,34px) clamp(28px,2.8vw,40px)}
+  .ab-card .ab-h1{font-size:clamp(40px,5.1vw,80px);line-height:1.12}
+  [dir=rtl] .ab-card .ab-h1{line-height:1.28}
+  .ab-card .ab-l{display:block}
+  .ab-card .ab-hero-p{font-size:clamp(16px,1.2vw,18.5px);line-height:1.85;max-width:31em}
+}
+@media (min-width:900px){[dir=ltr] .ab-card .ab-h1{font-size:clamp(36px,3.9vw,60px);line-height:1.1}[dir=ltr] .ab-card .ab-l{display:inline}}
+/* first-light haze: a warm ivory mist rises from the lower edge of both hero layers, so the glass card always sits
+   on a bright field and its navy type keeps its contrast (the card itself is unchanged) */
+.ab-layer::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(0deg,rgba(247,242,234,.78) 0%,rgba(247,242,234,.52) 26%,rgba(247,242,234,.18) 48%,rgba(247,242,234,0) 64%)}

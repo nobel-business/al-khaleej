@@ -11,8 +11,7 @@ import { orbit } from "../components/orbit.mjs";
    Source of truth: the client's approved About content (Arabic, Nov 2026). Arabic text is used verbatim.
    English is our translation of that content, pending client approval.
    Narrative: sea → industry (hero) · identity (who) · origin (story) · direction (vision, mission, ambition —
-   the three fish of the official symbol) · values · industrial philosophy (the chain from source to product) ·
-   foundations (four pillars, each a door into the site) · the horizon (looking ahead) · invitation.
+   the three fish of the official symbol) · values · the horizon (looking ahead) · invitation.
    ===================================================================================================== */
 
 const C = {
@@ -23,11 +22,6 @@ const C = {
       "نعتمد في إنتاجنا على الأسماك البحرية الكاملة، من خلال منظومة صناعية تبدأ من اختيار الخامات واستقبالها، مرورًا بمراحل المعالجة والتصنيع والفصل والتجفيف، وصولًا إلى المنتجات النهائية بمواصفاتها المختلفة.",
       "ويتمثل توجهنا في تقديم مكونات بحرية ذات قيمة تغذوية وصناعية، تخدم صناعة الأعلاف والتغذية والصناعات المتخصصة، وتلبي احتياجات العملاء في الأسواق المحلية والدولية."],
       facts: [["عام التأسيس", "2025"], ["الموقع", "كفر الشيخ، جمهورية مصر العربية"], ["القطاع", "الصناعات البحرية"], ["التخصص", "إنتاج البروتين والزيوت البحرية"], ["المنتجات", "مسحوق الأسماك وزيت الأسماك الخام"], ["الأسواق المستهدفة", "المحلية والإقليمية والدولية"]] },
-    story: { eye: "البداية والتوجه", h: "حين تتحول الموارد الطبيعية إلى فرص صناعية.", p: [
-      "تنبع فكرة الخليج لصناعة الأسماك من الإيمان بالقيمة الاقتصادية والتغذوية للموارد البحرية، وما تحمله من إمكانات لتطوير صناعات متخصصة ترتبط بقطاعات الغذاء والأعلاف والتغذية.",
-      "ومن هذا المنطلق، تأسس المصنع ليكون حلقة وصل بين الموارد البحرية الطبيعية واحتياجات الصناعات الحديثة، من خلال تحويل الأسماك البحرية إلى منتجات قابلة للاستخدام الصناعي بمواصفات تغذوية وتجارية متنوعة.",
-      "ولا يقتصر طموحنا على الإنتاج فحسب، بل يمتد إلى تطوير المعرفة الصناعية، وتحسين العمليات، وتنويع المنتجات، وبناء علاقات تجارية قائمة على الفهم المتبادل لاحتياجات الأسواق والعملاء."],
-      tags: ["الموارد البحرية", "التحويل الصناعي", "الأسواق والعملاء"] },
     vm: { eye: "توجهنا المؤسسي", h: "رؤية للمستقبل، ورسالة تقود أعمالنا.", items: [
       ["رؤيتنا", "أن نرسخ مكانة الخليج كإحدى الشركات الصناعية المصرية الرائدة في مجال البروتين والزيوت البحرية، وأن نطور حضورًا تنافسيًا ومستدامًا في الأسواق الإقليمية والدولية."],
       ["رسالتنا", "تعظيم القيمة التغذوية والاقتصادية للموارد البحرية من خلال التصنيع المتخصص، وتطوير العمليات الصناعية، والاهتمام بجودة المنتجات، وبناء علاقات تجارية تحقق قيمة مشتركة مع عملائنا وشركائنا."],
@@ -39,16 +33,6 @@ const C = {
       ["التطوير المستمر", "نؤمن بأن التطور الصناعي عملية مستمرة تقوم على المعرفة والتجربة وتحسين الأداء والاستفادة من التقنيات الحديثة."],
       ["الكفاءة", "نعمل على تحسين الاستفادة من الموارد والعمليات الصناعية، بما يعزز القيمة الاقتصادية والتغذوية للمنتجات."],
       ["الشراكة", "ننظر إلى علاقاتنا التجارية باعتبارها شراكات طويلة الأمد، تقوم على المصالح المشتركة وفهم احتياجات العملاء والأسواق."]] },
-    phil: { eye: "فلسفة التصنيع", h: "القيمة تبدأ من المصدر.", p: [
-      "نؤمن بأن القيمة الحقيقية للمنتج تبدأ من طبيعة مواده الخام، وأن التصنيع ليس مجرد عملية تحويل، بل هو منظومة متكاملة تهدف إلى الاستفادة من الخصائص الطبيعية والتغذوية للموارد البحرية.",
-      "وتقوم فلسفتنا الصناعية على فهم خصائص الأسماك البحرية، والتعامل مع تنوعها الطبيعي، والتحكم في مراحل المعالجة والتصنيع، بما يتيح إنتاج مسحوق الأسماك والزيوت البحرية بمواصفات مختلفة تتناسب مع متطلبات الاستخدام.",
-      "وننظر إلى كل مرحلة من مراحل الإنتاج باعتبارها جزءًا من سلسلة مترابطة، تؤثر في خصائص المنتج وقيمته التغذوية والاقتصادية."],
-      chain: ["الموارد البحرية", "اختيار الخامات", "التصنيع المتخصص", "مراقبة الجودة", "المنتج النهائي"], cta: "اكتشف عمليات التصنيع" },
-    pil: { eye: "منظومة أعمالنا", h: "ركائز مترابطة، تصنع القيمة.", p: "تقوم أعمال الخليج على أربع ركائز رئيسية، تمثل الأساس الذي ننطلق منه في تطوير قدراتنا الصناعية ومنتجاتنا وعلاقاتنا التجارية.", items: [
-      ["الموارد البحرية", "الاستفادة من تنوع الأسماك البحرية الكاملة ومصادرها المختلفة، باعتبارها الأساس الطبيعي لمنتجاتنا.", "اكتشف موادنا الخام", "raw"],
-      ["التصنيع المتخصص", "توظيف عمليات المعالجة الحرارية والفصل والتجفيف لاستخلاص البروتين والزيوت البحرية والاستفادة من خصائصها التغذوية.", "اكتشف عمليات التصنيع", "mfg"],
-      ["الجودة والمعرفة", "الاهتمام بفهم الخصائص الكيميائية والتغذوية للمنتجات، ومتابعة المؤشرات التي تحدد مواصفاتها وقيمتها الصناعية.", "اكتشف معايير الجودة", "quality"],
-      ["الأسواق والشراكات", "تطوير العلاقات التجارية مع مصانع الأعلاف والمستوردين والموزعين، وفهم احتياجات الأسواق المختلفة ومتطلباتها.", "اكتشف أسواقنا الدولية", "intl"]] },
     fut: { eye: "آفاق المستقبل", h: "نبني اليوم، ونتطلع إلى ما هو أبعد.", p: [
       "نتطلع إلى تطوير قدراتنا الصناعية وتوسيع نطاق منتجاتنا، بما يواكب تطور صناعة الأعلاف والتغذية والطلب على البروتين والزيوت البحرية.",
       "ونسعى إلى تعزيز حضور الصناعة المصرية في الأسواق الدولية، من خلال التخصص الصناعي، وتطوير المعرفة الفنية، وتحسين العمليات، وبناء علاقات تجارية مستدامة.",
@@ -63,11 +47,6 @@ const C = {
       "We produce from whole marine fish, through an industrial system that begins with selecting and receiving the raw material, continues through processing, manufacturing, separation and drying, and ends with finished products in their different specifications.",
       "Our direction is to supply marine ingredients of nutritional and industrial value, serving the feed, nutrition and specialised industries and meeting the needs of customers in local and international markets."],
       facts: [["Established", "2025"], ["Location", "Kafr El-Sheikh, Arab Republic of Egypt"], ["Sector", "Marine industries"], ["Specialism", "Marine protein and oils"], ["Products", "Fish meal and crude fish oil"], ["Target markets", "Local, regional and international"]] },
-    story: { eye: "Origins and direction", h: "When natural resources become industrial opportunities.", p: [
-      "The idea behind Alkhaleej Fish Manufacturing comes from a belief in the economic and nutritional value of marine resources, and in their potential to develop specialised industries linked to the food, feed and nutrition sectors.",
-      "With that in mind, the plant was established as a link between natural marine resources and the needs of modern industry, turning marine fish into industrially usable products in a range of nutritional and commercial specifications.",
-      "Our ambition goes beyond production: to developing industrial knowledge, improving processes, diversifying products and building trade relationships founded on a shared understanding of market and customer needs."],
-      tags: ["Marine resources", "Industrial transformation", "Markets and customers"] },
     vm: { eye: "Our direction", h: "A vision for the future, a mission that guides our work.", items: [
       ["Our vision", "To establish Alkhaleej as one of Egypt’s leading industrial companies in marine protein and oils, and to build a competitive, sustainable presence in regional and international markets."],
       ["Our mission", "To maximise the nutritional and economic value of marine resources through specialised manufacturing, developing industrial processes, care for product quality, and trade relationships that create shared value with our customers and partners."],
@@ -79,16 +58,6 @@ const C = {
       ["Continuous development", "We believe industrial progress is continuous, built on knowledge, experience, better performance and the use of modern technology."],
       ["Efficiency", "We work to make better use of resources and industrial processes, strengthening the economic and nutritional value of our products."],
       ["Partnership", "We see our trade relationships as long-term partnerships, founded on shared interests and an understanding of customer and market needs."]] },
-    phil: { eye: "Manufacturing philosophy", h: "Value begins at the source.", p: [
-      "We believe a product’s real value begins with the nature of its raw material, and that manufacturing is not simply a conversion but an integrated system that makes the most of the natural and nutritional properties of marine resources.",
-      "Our industrial philosophy rests on understanding the properties of marine fish, working with their natural diversity and controlling the processing and manufacturing stages, so that fish meal and marine oils can be produced in different specifications to suit each use.",
-      "We see every stage of production as part of one connected chain, shaping the product’s properties and its nutritional and economic value."],
-      chain: ["Marine resources", "Raw material selection", "Specialised manufacturing", "Quality control", "Final product"], cta: "Discover our manufacturing" },
-    pil: { eye: "Our business system", h: "Connected foundations that create value.", p: "Alkhaleej’s business rests on four main foundations, the base from which we develop our industrial capabilities, our products and our trade relationships.", items: [
-      ["Marine resources", "Drawing on the diversity of whole marine fish and their different sources, the natural basis of our products.", "Discover our raw materials", "raw"],
-      ["Specialised manufacturing", "Using thermal processing, separation and drying to extract marine protein and oils and make the most of their nutritional properties.", "Discover our manufacturing", "mfg"],
-      ["Quality and knowledge", "Understanding the chemical and nutritional properties of our products and following the indicators that define their specifications and industrial value.", "Discover our quality standards", "quality"],
-      ["Markets and partnerships", "Developing trade relationships with feed manufacturers, importers and distributors, and understanding the needs and requirements of different markets.", "Discover our international markets", "intl"]] },
     fut: { eye: "Looking ahead", h: "We build today, and look further ahead.", p: [
       "We look to develop our industrial capabilities and broaden our product range, keeping pace with the feed and nutrition industries and with demand for marine protein and oils.",
       "We aim to strengthen the presence of Egyptian industry in international markets through industrial specialisation, technical knowledge, better processes and lasting trade relationships.",
@@ -117,15 +86,17 @@ export const about = (lang) => {
   const body = `
 <section class="ab-hero" data-env="#F7F2EA" aria-labelledby="ab-h1">
   <div class="ab-hero-stage">
-    <div class="ab-layer ab-sea">${pic(lang, "sunrise-sea", { fill: 1, mfill: 1, eager: true, priority: true })}</div>
-    <div class="ab-layer ab-ind" aria-hidden="true">${pic(lang, "steam", { fill: 1, mfill: 1 })}</div>
+    <div class="ab-layer ab-sea">${pic(lang, "ab-sea", { fill: 1, mfill: 1, eager: true, priority: true })}</div>
+    <div class="ab-layer ab-ind" aria-hidden="true">${pic(lang, "ab-ind", { fill: 1, mfill: 1 })}</div>
     <span class="ab-tide" aria-hidden="true"></span>
     <div class="ab-scrim" aria-hidden="true"></div>
     <div class="wrap ab-hero-copy">
-      <nav class="crumbs ab-crumbs" aria-label="${ar ? "مسار التنقل" : "Breadcrumb"}">${crumb(lang, [u.nav.about])}</nav>
-      <p class="ab-hero-eye">${c.hero.eye}</p>
-      <h1 class="ab-h1" id="ab-h1">${c.hero.h.split(/(?<=،|,) /).map((l, i) => `<span class="ab-l" style="--d:${i}"><span>${l}</span></span>`).join(" ")}</h1>
-      <p class="ab-hero-p">${c.hero.p}</p>
+      <div class="ab-card">
+        <nav class="crumbs ab-crumbs" aria-label="${ar ? "مسار التنقل" : "Breadcrumb"}">${crumb(lang, [u.nav.about])}</nav>
+        <p class="ab-hero-eye">${c.hero.eye}</p>
+        <h1 class="ab-h1" id="ab-h1">${c.hero.h.split(/(?<=،|,) /).map((l, i) => `<span class="ab-l" style="--d:${i}"><span>${l}</span></span>`).join(" ")}</h1>
+        <p class="ab-hero-p">${c.hero.p}</p>
+      </div>
     </div>
     <span class="ab-cue" aria-hidden="true"><i></i>${c.hero.cue}</span>
   </div>
@@ -135,20 +106,9 @@ export const about = (lang) => {
   <div class="wrap ab-who-grid">
     <div class="ab-who-copy">${eye(c.who.eye)}<h2 class="ab-h2" id="ab-who-h" data-lines>${lines(c.who.h)}</h2>
       <div class="ab-prose" data-r="up">${c.who.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
-    <div class="ab-who-media">${pic(lang, "powder-hall", { col: 46, mcol: 100, box: 0.82, reveal: "curtain" })}</div>
+    <div class="ab-who-media">${pic(lang, "ab-who", { col: 46, mcol: 100, box: 0.82, reveal: "curtain" })}</div>
   </div>
   <div class="wrap"><dl class="ab-facts">${c.who.facts.map(([k, v], i) => `<div class="ab-fact" data-r="up" style="transition-delay:${i * 80}ms"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></div>
-</section>
-
-<section class="ab-story" data-env="#F7F2EA" aria-labelledby="ab-story-h">
-  <div class="wrap ab-story-grid">
-    <div class="ab-story-media" aria-hidden="true">
-      <div class="ab-frames">${["sardine-spiral", "m-separation", "sacks"].map((n, i) => `<div class="ab-frame" data-i="${i}">${pic(lang, n, { col: 46, mcol: 100, box: 0.9 })}</div>`).join("")}</div>
-      <ol class="ab-rail">${c.story.tags.map((t, i) => `<li data-i="${i}"><span>0${i + 1}</span>${t}</li>`).join("")}</ol>
-    </div>
-    <div class="ab-story-text">${eye(c.story.eye)}<h2 class="ab-h2" id="ab-story-h" data-lines>${lines(c.story.h)}</h2>
-      ${c.story.p.map((t, i) => `<p class="ab-chap" data-i="${i}">${t}</p>`).join("")}</div>
-  </div>
 </section>
 
 <section class="ab-vm" data-env="#FBF8F3" aria-labelledby="ab-vm-h">
@@ -168,29 +128,8 @@ export const about = (lang) => {
   </div>
 </section>
 
-<section class="ab-phil" data-env="#FBF8F3" aria-labelledby="ab-phil-h">
-  <div class="wrap ab-head">${eye(c.phil.eye)}<h2 class="ab-h2 ab-h2-xl" id="ab-phil-h" data-lines>${lines(c.phil.h)}</h2></div>
-  <div class="ab-phil-band">${pic(lang, "aerial", { fill: 0.62, mfill: 0.42 })}</div>
-  <div class="wrap ab-phil-body">
-    <p class="ab-lead" data-r="up">${c.phil.p[0]}</p>
-    <div class="ab-prose ab-cols" data-r="up">${c.phil.p.slice(1).map((t) => `<p>${t}</p>`).join("")}</div>
-  </div>
-  <div class="wrap">
-    <ol class="ab-chain" aria-label="${ar ? "التسلسل من المصدر إلى المنتج" : "From source to product"}">${c.phil.chain.map((t, i) => `<li data-i="${i}"><span class="ab-node"><i>0${i + 1}</i></span><b>${t}</b></li>`).join("")}</ol>
-    <p class="ab-chain-cta" data-r="up"><a class="link" href="${href(lang, "mfg")}"><span>${c.phil.cta}</span> ${arrow}</a></p>
-  </div>
-</section>
-
-<section class="ab-pil" data-env="#F7F2EA" aria-labelledby="ab-pil-h">
-  <div class="wrap ab-head ab-head-split">${eye(c.pil.eye)}<h2 class="ab-h2" id="ab-pil-h" data-lines>${lines(c.pil.h)}</h2><p class="ab-intro" data-r="up">${c.pil.p}</p></div>
-  <div class="wrap"><div class="ab-pil-row">${c.pil.items.map(([t, d, l, k], i) => `<article class="ab-pil-item${i === 0 ? " on" : ""}" data-i="${i}" data-r="up" style="transition-delay:${i * 90}ms">
-      ${pic(lang, ["crates", "m-cooker", "lab-qc", "l-loading"][i], { col: 40, mcol: 100, box: 0.8 })}
-      <div class="ab-pil-in"><span class="ab-num">0${i + 1}</span><h3>${t}</h3><div class="ab-pil-more"><p>${d}</p><a class="ab-pil-link" href="${href(lang, k)}"><span>${l}</span> ${arrow}</a></div></div>
-    </article>`).join("")}</div></div>
-</section>
-
 <section class="ab-fut" data-env="#F7F2EA" aria-labelledby="ab-fut-h">
-  <div class="ab-fut-media">${pic(lang, "boats-dusk", { fill: 0.86, mfill: 0.6 })}
+  <div class="ab-fut-media">${pic(lang, "ab-horizon", { fill: 0.86, mfill: 0.6 })}
     <div class="wrap ab-fut-title">${`<p class="ab-eye ab-eye-light">${c.fut.eye}</p>`}<h2 class="ab-h2 ab-h2-light" id="ab-fut-h" data-lines>${lines(c.fut.h)}</h2></div>
   </div>
   <div class="wrap ab-fut-text">
@@ -208,5 +147,5 @@ export const about = (lang) => {
   </div>
 </section>`;
 
-  return layout(lang, { key: "about", over: true, title: c.meta.title, desc: c.meta.desc, body, preloadImg: preload("sunrise-sea", { fill: 1, mfill: 1 }) });
+  return layout(lang, { key: "about", over: true, title: c.meta.title, desc: c.meta.desc, body, preloadImg: preload("ab-sea", { fill: 1, mfill: 1 }) });
 };
