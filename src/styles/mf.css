@@ -409,3 +409,20 @@ div.mf-node{cursor:default}
   background:linear-gradient(125deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.14) 32%,rgba(255,255,255,0) 46%),linear-gradient(180deg,rgba(255,255,255,.8) 0%,rgba(255,255,255,.72) 100%)!important;
   border:1.5px solid rgba(255,255,255,.95)!important;border-radius:32px!important}
 @media (max-width:899px){.op-bleed .in{background:transparent!important;border:0!important}}
+/* hero cards — pure clear glass: no white fill, no blur. Only the glass cues: a light sheen across the top corner,
+   a bright hairline edge, and a faint reflection at the bottom edge */
+.ab-hero .ab-card.ab-card,.op-bleed .in{
+  background:linear-gradient(125deg,rgba(255,255,255,.26) 0%,rgba(255,255,255,.06) 26%,rgba(255,255,255,0) 42%,rgba(255,255,255,0) 82%,rgba(255,255,255,.12) 100%)!important;
+  border:1.5px solid rgba(255,255,255,.8)!important}
+@media (max-width:899px){.op-bleed .in{background:transparent!important;border:0!important}}
+/* hero cards — smoked glass (no white, no blur): a transparent navy pane that darkens the photo just enough for white type,
+   with a light sheen on the top corner and a bright hairline edge */
+.ab-hero .ab-card.ab-card,.op-bleed .in{
+  background:linear-gradient(125deg,rgba(255,255,255,.2) 0%,rgba(255,255,255,.04) 24%,rgba(255,255,255,0) 40%),linear-gradient(180deg,rgba(6,28,44,.5) 0%,rgba(6,28,44,.58) 100%)!important;
+  border:1.5px solid rgba(255,255,255,.55)!important}
+.ab-hero .ab-card .ab-h1,.op-bleed .in h1{color:#fff!important}
+.ab-hero .ab-card .ab-hero-p,.op-bleed .in p{color:rgba(255,255,255,.94)!important}
+.ab-hero .ab-card .ab-crumbs,.ab-hero .ab-card .ab-crumbs a,.op-bleed .in .crumbs,.op-bleed .in .crumbs a{color:rgba(255,255,255,.85)!important}
+.ab-hero .ab-card .ab-hero-eye{color:#F4B24A!important}
+@media (max-width:899px){.op-bleed .in{background:transparent!important;border:0!important}
+  .op-bleed .in h1{color:#061F31!important}.op-bleed .in p{color:#0C2A40!important}.op-bleed .in .crumbs,.op-bleed .in .crumbs a{color:#183A54!important}}
