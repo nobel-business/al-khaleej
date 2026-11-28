@@ -496,3 +496,24 @@ body{overflow-x:clip}
 @media (min-width:900px){
   .op-bleed .in .lede,.op-bleed .in .crumbs,.dv-next .dv-card p{text-shadow:0 0 1px rgba(255,255,255,.95),0 0 7px rgba(255,255,255,.85),0 0 16px rgba(255,255,255,.65)}
 }
+/* homepage "Egyptian manufacturing" card and products "Packed for industrial supply" card — the same glass card
+   language as the hero cards: clear frosted surface, rim + inner glow, large continuous corners, navy type with halo, gold rule */
+.iris-copy,.bleed .card{border-radius:28px}
+@supports (corner-shape:squircle){.iris-copy,.bleed .card{corner-shape:squircle;border-radius:40px}}
+@media (min-width:900px){
+  .iris-copy,.bleed .card{background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(9px) saturate(85%) brightness(1.1);backdrop-filter:blur(9px) saturate(85%) brightness(1.1);
+    border:1px solid rgba(255,255,255,.42);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.5),inset 0 0 0 1px rgba(255,255,255,.16),inset 0 0 40px rgba(255,255,255,.42),0 24px 60px -32px rgba(12,48,72,.3)}
+  .iris-copy .h2,.bleed .card .h2{color:var(--navy);text-shadow:0 0 1px rgba(255,255,255,.9),0 0 10px rgba(255,255,255,.75),0 0 26px rgba(255,255,255,.6),0 0 48px rgba(255,255,255,.35)}
+  .iris-copy .body,.bleed .card .body,.iris-copy .ask-mini li{color:var(--navy-2);text-shadow:0 0 1px rgba(255,255,255,.95),0 0 7px rgba(255,255,255,.85),0 0 16px rgba(255,255,255,.65)}
+  .iris-copy .ask-mini li{border-bottom-color:rgba(255,255,255,.5)}
+  .iris-copy .h2+.body::before,.bleed .card .h2+.body::before{content:"";display:block;width:64px;height:2px;margin-bottom:20px;border-radius:2px;background:linear-gradient(90deg,#C99A3E,#E3B860)}
+  [dir=rtl] .iris-copy .h2+.body::before,[dir=rtl] .bleed .card .h2+.body::before{background:linear-gradient(270deg,#C99A3E,#E3B860)}
+  .iris-copy .h2+.body,.bleed .card .h2+.body{margin-top:22px}
+}
+/* glass over a DARK photograph (the world card sits on deep sea): a denser, milkier frost lifts the backdrop so navy
+   type keeps full contrast — still glass (the sea reads through softly), not an opaque panel */
+@media (min-width:900px){
+  .iris-copy{background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.66));-webkit-backdrop-filter:blur(16px) saturate(80%) brightness(1.45);backdrop-filter:blur(16px) saturate(80%) brightness(1.45);border-color:rgba(255,255,255,.6)}
+  .iris-copy .ask-mini li{border-bottom-color:rgba(12,48,72,.14)}
+}
