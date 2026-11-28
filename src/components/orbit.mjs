@@ -12,8 +12,8 @@ export const MEANINGS = {
   en: [["Unity", "Three fish moving together in one circle."], ["Harmony", "Equal spacing, one shared path."], ["The cycle of life", "The cyclical nature of life — and abundance, a plentiful harvest."]],
   ar: [["الوحدة", "ثلاث سمكات تتحرك معًا في دائرة واحدة."], ["الانسجام", "مسافات متساوية ومسار واحد مشترك."], ["دورة الحياة", "الطبيعة الدورية للحياة — والوفرة والحصاد الوفير."]],
 };
-export function orbit(lang, { interactive = true, size = "" } = {}) {
-  const M = MEANINGS[lang];
+export function orbit(lang, { interactive = true, size = "", labels = null } = {}) {
+  const M = labels ? labels.map((l) => [l]) : MEANINGS[lang];
   const fish = [0, 1, 2].map((i) => interactive
     ? `<button type="button" class="fish" data-i="${i}" ${FISH_DATA(i)} aria-pressed="false" aria-label="${M[i][0]}">${FISH_SVG(i)}</button>`
     : `<span class="fish" data-i="${i}" ${FISH_DATA(i)}>${FISH_SVG(i)}</span>`).join("");
