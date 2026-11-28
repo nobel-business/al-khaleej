@@ -240,3 +240,19 @@
 .rw-nu .rw-head-center .rw-prose{margin-top:14px}
 .rw-nu .rw-head-center .rw-prose p{margin-bottom:4px;line-height:1.75}
 .rw-nu .rw-head-center .rw-prose p:last-child{margin-bottom:0}
+
+/* variability · fish species — three species, each with its own protein / fat / mineral split (illustrative) */
+.rw-vr-art .v-ty rect{stroke:none}
+.v-ty .v-trk{fill:rgba(12,48,72,.07)}
+.v-ty .v-p,.rw-vr-key .k0{fill:#0C3048;background:#0C3048}.v-ty .v-f,.rw-vr-key .k1{fill:#C99A3E;background:#C99A3E}.v-ty .v-m,.rw-vr-key .k2{fill:#5E9FB0;background:#5E9FB0}
+.v-ty .v-eye{fill:#0C3048;stroke:none}
+.v-ty path{stroke-width:1.4}
+.v-ty .v-seg{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform .3s}
+.rw-vr[data-v="0"] .rw-vr-card[data-i="0"] .v-seg{transform:none;transition:transform .9s var(--out) var(--d,0s)}
+.v-ty .v-swim{transform-box:fill-box;transform-origin:center}
+.rw-vr[data-v="0"] .rw-vr-card[data-i="0"] .v-swim{animation:rwBob 3.6s ease-in-out var(--sd,0s) infinite}
+@keyframes rwBob{0%,100%{transform:translateX(0) rotate(0)}50%{transform:translateX(-2.5px) rotate(-2deg)}}
+.rw-vr-key{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;padding:0;margin:16px 0 0;font-size:13.5px;font-weight:600;color:var(--ink-3)}
+.rw-vr-key li{display:flex;align-items:center;gap:8px}
+.rw-vr-key i{width:12px;height:6px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){.v-ty .v-seg{transform:none!important}}
