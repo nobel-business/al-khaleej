@@ -538,3 +538,49 @@ body{overflow-x:clip}
 #meal .split-h{max-width:none}
 /* homepage: fish meal → oil uses the same single gap as sardine scene → fish meal (one section padding, not two) */
 #meal{padding-bottom:0}
+
+/* =====================================================================
+   HOMEPAGE — Manufacturing in brief: five verified stages as a calm photo row joined by a process line
+   ===================================================================== */
+#process{padding-bottom:0}                                   /* single gap to the next section, like the rest of the page */
+.hp-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(20px,4vw,64px);align-items:end}
+.hp-head .split-h{white-space:nowrap;margin:0}
+.hp-head .split-h .thin,.hp-head .split-h .bold{display:inline}
+.hp-aside .body{max-width:46ch}
+.hp-aside .link{margin-top:14px;display:inline-flex}
+.hp-steps{list-style:none;margin:clamp(34px,5vw,64px) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,1.6vw,26px);position:relative}
+/* the process line runs through the dots under the photos */
+.hp-steps::before{content:"";position:absolute;inset-inline:6%;top:calc(var(--hp-img-h,0px) + 23px);height:1px;background:linear-gradient(90deg,transparent,rgba(12,48,72,.28) 8%,rgba(12,48,72,.28) 92%,transparent)}
+.hp-step a{display:flex;flex-direction:column;align-items:flex-start;gap:6px;color:inherit;text-decoration:none;border-radius:20px;outline-offset:6px}
+.hp-step .hp-img{width:100%;aspect-ratio:4/5;--shape:var(--shape-port);border-radius:var(--shape);overflow:hidden;margin-bottom:12px}
+@supports (corner-shape:squircle){.hp-step .hp-img{corner-shape:squircle}}
+.hp-step .hp-img img{transition:transform .9s var(--out)}
+.hp-dot{width:11px;height:11px;border-radius:50%;background:var(--paper,#FBF8F3);border:2px solid var(--orange);position:relative;z-index:1;transition:background .3s,transform .3s var(--out)}
+.hp-no{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--chip,#B26B00);margin-top:6px}
+[dir=rtl] .hp-no{letter-spacing:0}
+.hp-t{font-size:clamp(15px,1.15vw,18px);font-weight:600;color:var(--navy);line-height:1.35}
+[dir=rtl] .hp-t{font-weight:700}
+.hp-step a:hover .hp-img img,.hp-step a:focus-visible .hp-img img{transform:scale(1.05)}
+.hp-step a:hover .hp-dot,.hp-step a:focus-visible .hp-dot{background:var(--orange);transform:scale(1.15)}
+.hp-step a:hover .hp-t{color:var(--navy-2)}
+/* phones: a compact vertical timeline — thumbnail, number, name — no sideways scrolling */
+@media (max-width:899px){
+  .hp-head{grid-template-columns:1fr;align-items:start}
+  .hp-head .split-h{white-space:normal}
+  .hp-steps{grid-template-columns:1fr;gap:14px}
+  .hp-steps::before{inset-inline:auto;inset-inline-start:calc(84px + 16px + 5px);top:12px;bottom:12px;width:1px;height:auto;background:linear-gradient(180deg,transparent,rgba(12,48,72,.25) 10%,rgba(12,48,72,.25) 90%,transparent)}
+  .hp-step a{display:grid;grid-template-columns:84px 11px 1fr;grid-template-rows:auto auto;column-gap:16px;row-gap:2px;align-items:center}
+  .hp-step .hp-img{grid-row:1/3;width:84px;aspect-ratio:1;--shape:var(--shape-square);margin:0}
+  .hp-dot{grid-row:1/3}
+  .hp-no{margin:0;align-self:end}
+  .hp-t{align-self:start}
+}
+@media (prefers-reduced-motion:reduce){.hp-step .hp-img img,.hp-dot{transition:none}}
+/* desktop process line: each stage draws its own segment from its dot to the next stage's dot */
+@media (min-width:900px){
+  .hp-steps::before{display:none}
+  .hp-rail{position:relative;display:block;width:100%;height:11px}
+  .hp-rail .hp-dot{position:absolute;inset-inline-start:0;top:0}
+  .hp-step:not(:last-child) .hp-rail::before{content:"";position:absolute;top:5px;inset-inline-start:14px;width:calc(100% + clamp(12px,1.6vw,26px) - 14px);height:1px;background:rgba(12,48,72,.26)}
+}
+@media (max-width:899px){.hp-rail{grid-row:1/3;display:flex;align-items:center;height:100%}}
