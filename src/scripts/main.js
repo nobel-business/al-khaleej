@@ -383,6 +383,34 @@
     if (fl) scene(fl, (p) => fl.style.setProperty("--fl", (RM ? 1 : clamp((p - 0.15) / 0.35)).toFixed(4)));
   })();
 
+  /* ================= Manufacturing: interactive production flow (wires drawn between stage nodes, material moving along them) ================= */
+  (() => {
+    const flow = $(".mf-flow"); if (!flow) return;
+    const map = $(".mf-map", flow), svg = $(".mf-wires", flow), btns = $$("button.mf-node", flow), sts = $$(".mf-st", flow), count = $(".mf-count b", flow), N = sts.length;
+    const narrow = matchMedia("(max-width:899px)");
+    const set = (s, user) => { flow.dataset.s = String(s);
+      btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.s === String(s)));
+      sts.forEach((a) => a.setAttribute("aria-hidden", a.dataset.s !== String(s)));
+      if (count) count.textContent = String(s + 1).padStart(2, "0");
+      if (user && narrow.matches) { const p = $(".mf-panel", flow), r = p.getBoundingClientRect(); if (r.top > innerHeight * 0.6 || r.bottom < 80) scrollTo({ top: scrollY + r.top - 90, behavior: RM ? "auto" : "smooth" }); } };
+    btns.forEach((b) => b.addEventListener("click", () => set(+b.dataset.s, true)));
+    const step = (d) => set((+flow.dataset.s + d + N) % N);
+    $(".mf-prev", flow)?.addEventListener("click", () => step(-1));
+    $(".mf-next", flow)?.addEventListener("click", () => step(1));
+    const LINES = [["trunk", ["fish", "s1", "s2", "s3", "s4"]], ["pro", ["s4", "s6", "s7", "s8", "s9p", "meal"]], ["oil", ["s4", "o1", "o2", "o3", "s9o", "oil"]]];
+    const pt = (k, m) => { const r = $(`[data-k="${k}"] .mf-dot`, map).getBoundingClientRect(); return [r.left - m.left + r.width / 2, r.top - m.top + r.height / 2]; };
+    const seg = ([x1, y1], [x2, y2]) => { const dx = x2 - x1, dy = y2 - y1;
+      return Math.abs(dx) >= Math.abs(dy) ? ` C${(x1 + dx / 2).toFixed(1)},${y1.toFixed(1)} ${(x1 + dx / 2).toFixed(1)},${y2.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`
+                                          : ` C${x1.toFixed(1)},${(y1 + dy / 2).toFixed(1)} ${x2.toFixed(1)},${(y1 + dy / 2).toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`; };
+    let last = "";
+    const draw = () => { const m = map.getBoundingClientRect(); if (!m.width) return; const key = `${Math.round(m.width)}x${Math.round(m.height)}`; if (key === last) return; last = key;
+      svg.setAttribute("viewBox", `0 0 ${m.width.toFixed(1)} ${m.height.toFixed(1)}`);
+      svg.innerHTML = LINES.map(([cls, ks]) => { const p = ks.map((k) => pt(k, m)); const d = "M" + p[0].map((v) => v.toFixed(1)).join(",") + p.slice(1).map((q, i) => seg(p[i], q)).join("");
+        const dots = RM ? "" : [0, 1, 2].map((j) => `<circle class="${cls}" r="4"><animateMotion dur="${cls === "trunk" ? 6 : 7}s" begin="${(-j * (cls === "trunk" ? 2 : 2.33)).toFixed(2)}s" repeatCount="indefinite"><mpath href="#mfw-${cls}"/></animateMotion></circle>`).join("");
+        return `<path class="w-base ${cls}" id="mfw-${cls}" d="${d}"/><path class="w-flow ${cls}" d="${d}"/>${dots}`; }).join(""); };
+    draw(); new ResizeObserver(draw).observe(map); if (document.fonts) document.fonts.ready.then(() => { last = ""; draw(); });
+  })();
+
   /* ================= homepage hero copy mirrors the ship ================= */
   // The ship (image px box 2140,420 1340×1220 in the 3840×2160 hero photo, mirrored in Arabic) is located through
   // object-fit:cover exactly as the scene does; the copy block is centred on the ship's mirror point, vertically on

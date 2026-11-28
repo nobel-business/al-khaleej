@@ -4,7 +4,7 @@ import fs from "node:fs"; import path from "node:path"; import crypto from "node
 import { SRC } from "./paths.mjs";
 
 // Order matters — later files override earlier ones.
-const STYLES = ["styles.css", "cinema.css", "system.css", "signature.css", "hero.css", "refine.css", "about.css", "raw.css"];
+const STYLES = ["styles.css", "cinema.css", "system.css", "signature.css", "hero.css", "refine.css", "about.css", "raw.css", "mf.css"];
 
 export const CSS = STYLES.map((f) => fs.readFileSync(path.join(SRC, "styles", f), "utf8")).join(" ").replace(/\.\.\/assets\/fonts\//g, "/assets/fonts/")
   .replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s*\n\s*/g, "").replace(/\s*([{};:,>])\s*/g, "$1").replace(/;}/g, "}");
