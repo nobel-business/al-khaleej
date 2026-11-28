@@ -28,10 +28,7 @@ const C = {
         ["البحر الأحمر", "بيئة بحرية تتميز بتنوعها البيولوجي وخصائصها الطبيعية المختلفة، وتضم موارد سمكية ذات خصائص تغذوية متنوعة."],
         ["الخليج العربي", "منطقة بحرية تتميز بظروفها البيئية ومواردها السمكية الخاصة، وتوفر فرصًا لتنويع مصادر الخامات البحرية."]],
       egypt: "مصر", plant: "كفر الشيخ", mapLabel: "خريطة البحار الثلاثة" },
-    sp: { eye: "التنوع الطبيعي", h: "لكل نوع خصائصه، ولكل خامة قيمتها.", p: [
-      "تختلف الأسماك البحرية في تركيبها الكيميائي والتغذوي تبعًا للنوع والعمر والحجم والبيئة البحرية والموسم ودورة التغذية.",
-      "وتنعكس هذه الاختلافات بصورة مباشرة على نسب البروتين والدهون والمعادن، وعلى خصائص الزيوت المستخلصة منها.",
-      "ويمثل فهم هذا التنوع أحد الأسس المهمة في اختيار الخامات وتحديد مواصفات المنتجات النهائية."],
+    sp: { eye: "التنوع الطبيعي", h: "لكل نوع خصائصه، ولكل خامة قيمتها.", p: ["يختلف التركيب الكيميائي الغذائي للأسماك البحرية باختلاف النوع والعمر والحجم والبيئة والموسم والتغذية، مما يؤثر في نسب البروتين والدهون والمعادن وخصائص الزيوت، ويشكل أساسًا لاختيار الخامات وتحديد مواصفات المنتجات النهائية."],
       items: [["السردين", "Sardine", "يعد السردين من الأسماك البحرية السطحية الصغيرة، ويتميز بمحتواه الطبيعي من البروتين والدهون البحرية والأحماض الدهنية، مما يجعله من الخامات المهمة في صناعة مسحوق الأسماك وزيت الأسماك."],
         ["الأسماك البحرية السطحية", "Pelagic Fish", "مجموعة من الأسماك التي تعيش في الطبقات المائية المفتوحة، وتتميز بتنوع خصائصها التغذوية ومحتواها من البروتين والدهون."],
         ["الأسماك البحرية الأخرى", "Other Marine Fish", "تختلف خصائصها الطبيعية باختلاف الأنواع والبيئات البحرية، ويتم تقييم ملاءمتها للتصنيع وفق تركيبها التغذوي وحالتها عند الاستقبال."]] },
@@ -92,10 +89,7 @@ const C = {
         ["The Red Sea", "A marine environment known for its biodiversity and distinct natural properties, holding fish resources of varied nutritional character."],
         ["The Arabian Gulf", "A marine area with its own environmental conditions and fish resources, offering opportunities to diversify marine raw-material sources."]],
       egypt: "Egypt", plant: "Kafr El-Sheikh", mapLabel: "Map of the three seas" },
-    sp: { eye: "Natural diversity", h: "Every species has its properties, every raw material its value.", p: [
-      "Marine fish differ in chemical and nutritional composition according to species, age, size, marine environment, season and feeding cycle.",
-      "These differences show directly in the proportions of protein, fat and minerals, and in the properties of the oils extracted from them.",
-      "Understanding this diversity is one of the key foundations for selecting raw materials and setting the specifications of final products."],
+    sp: { eye: "Natural diversity", h: "Every species has its properties, every raw material its value.", p: ["The chemical and nutritional composition of marine fish varies with species, age, size, environment, season and feeding, which affects the proportions of protein, fat and minerals and the properties of the oils, and forms the basis for selecting raw materials and setting the specifications of final products."],
       items: [["Sardine", "السردين", "Sardines are small pelagic marine fish, naturally rich in protein, marine fats and fatty acids, which makes them an important raw material for fish meal and fish oil."],
         ["Pelagic fish", "الأسماك البحرية السطحية", "A group of fish living in the open water column, with varied nutritional properties and protein and fat content."],
         ["Other marine fish", "الأسماك البحرية الأخرى", "Their natural properties vary with species and marine environment; their suitability for processing is assessed by nutritional composition and condition on receipt."]] },
