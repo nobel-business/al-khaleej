@@ -706,3 +706,7 @@ body{transition:background-color .9s var(--out)}
 /* fish meal and oil read as one topic: the oil part follows closely */
 #meal + #oil{padding-top:clamp(48px,6vw,84px)}
 @media (max-width:899px){.pv-head{grid-template-columns:1fr;align-items:start;gap:14px}}
+/* crude oil sub-heading on one line */
+#oil .pv-sub{white-space:nowrap!important}
+@media (min-width:900px){#oil .pv-sub{font-size:clamp(20px,2vw,32px)!important}}
+@media (max-width:899px){#oil .pv-sub{font-size:clamp(19px,5.6vw,28px)!important}}
