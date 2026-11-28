@@ -47,7 +47,7 @@ export const home = (lang) => {
     <div class="pv-t"><h2 class="h2 split-h" id="pv-title"><span class="thin">${ar ? "قيمة البحر" : "The sea’s value"}</span> <span class="bold">${ar ? "في منتجاتنا." : "in our products."}</span></h2></div>
     <div class="pv-p"><p class="body" data-r="up">${ar ? "ننتج البروتين والزيوت البحرية من أسماك بحرية كاملة، بمواصفات تغذوية متنوعة، توفر مصادر طبيعية للبروتين الحيواني والأحماض الأمينية الأساسية والأحماض الدهنية البحرية، لتلبية متطلبات صناعات الأعلاف والتغذية، وتوفير خامات لصناعات التكرير والتطبيقات الغذائية والدوائية المتخصصة." : "We produce marine proteins and oils from whole marine fish, in a range of nutritional specifications, providing natural sources of animal protein, essential amino acids and marine fatty acids, to meet the needs of the feed and nutrition industries and to supply raw materials for refining and for specialised food and pharmaceutical applications."}</p></div>
     ${loupe(lang, "meal-oil")}
-    <div><h3 class="h2 split-h pv-sub"><span class="thin">${u.fishmeal}</span></h3>
+    <div><h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "مسحوق الأسماك" : "Fish meal"}</span></h3>
     ${dialBlock(lang, 2, { url: href(lang, "products"), label: ar ? "اكتشف منتجاتنا" : "Discover our products" })}</div>
   </div>
 </section>
@@ -55,7 +55,7 @@ export const home = (lang) => {
 <section class="sec cv" id="oil" data-env="${ENV.amber}">
   <div class="wrap oilx">
     <div class="a glowable">${pic(lang, "oil-pour", { col: 50, box: 0.8, reveal: "curtain" })}<span class="glow" aria-hidden="true"></span></div>
-    <div class="copy">${kicker(u.oil)}<h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "زيت خام،" : "Crude oil,"}</span> <span class="bold">${ar ? "من الذهبي إلى الكهرماني." : "golden to amber."}</span></h3><p class="body" data-r="up" style="margin-top:16px">${ar ? "يُستخلص من سائل العصر بفصل الزيت عن الماء بالطرد المركزي، ويُورَّد في براميل." : "Recovered from the liquid stream after pressing, by centrifugal oil–water separation, and supplied in drums."}</p><p style="margin-top:22px"><a class="btn line" href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}">${u.viewProduct} ${arr}</a></p></div>
+    <div class="copy">${kicker(u.oil)}<h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "زيت الأسماك الخام" : "Crude fish oil"}</span></h3><p class="body" data-r="up" style="margin-top:16px">${ar ? "يُستخلص من سائل العصر بفصل الزيت عن الماء بالطرد المركزي، ويُورَّد في براميل." : "Recovered from the liquid stream after pressing, by centrifugal oil–water separation, and supplied in drums."}</p><p style="margin-top:22px"><a class="btn line" href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}">${u.viewProduct} ${arr}</a></p></div>
     <div class="b glowable" data-px="0.06">${pic(lang, "m-centrifuge", { col: 42, box: 1.6, reveal: "fade" })}<span class="glow" aria-hidden="true"></span></div>
   </div>
 </section>

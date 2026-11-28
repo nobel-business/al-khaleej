@@ -786,3 +786,5 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 @media (prefers-reduced-motion:reduce){
   .mfx .mfx-img{clip-path:none!important}.mfx .mfx-img img{transform:none!important;filter:none!important}.mfx-card{opacity:1!important;transform:none!important}
 }
+#oil .pv-sub .thin{font-weight:700}
+[dir=ltr] #oil .pv-sub .thin,[dir=ltr] #meal .pv-sub .thin{font-weight:600}
