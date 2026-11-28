@@ -206,3 +206,6 @@ div.mf-node{cursor:default}
 .pr-hero .ab-card .ab-h1{color:#0A2A40}
 .pr-hero .ab-card .ab-hero-p{color:#1C3A52;text-shadow:none}
 [dir=ltr] .pr-hero .ab-sea img{transform:scaleX(-1)}
+
+/* after the shared hero the specimen room starts on a straight edge like every other page (the arched rise belonged to the old window hero) */
+.pr-hero + .ra-products{margin-top:0!important;border-radius:0!important;box-shadow:none!important}
