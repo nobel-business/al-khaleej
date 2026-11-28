@@ -402,3 +402,10 @@ div.mf-node{cursor:default}
 .ab-hero .ab-card .ab-crumbs,.ab-hero .ab-card .ab-crumbs a,.op-bleed .in .crumbs,.op-bleed .in .crumbs a{color:#183A54!important;text-shadow:none!important}
 .ab-hero .ab-card .ab-hero-eye{color:#7A520C!important;text-shadow:none!important}
 @media (max-width:899px){.op-bleed .in{background:transparent!important;border:0!important}}
+/* hero cards — clear glass, NO blur: the photo stays sharp behind a smooth translucent pane with a soft sheen and a bright
+   hairline edge; contrast comes from the pane's tint and the dark type (still no fades, no shadows) */
+.ab-hero .ab-card.ab-card,.op-bleed .in{
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  background:linear-gradient(125deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.14) 32%,rgba(255,255,255,0) 46%),linear-gradient(180deg,rgba(255,255,255,.8) 0%,rgba(255,255,255,.72) 100%)!important;
+  border:1.5px solid rgba(255,255,255,.95)!important;border-radius:32px!important}
+@media (max-width:899px){.op-bleed .in{background:transparent!important;border:0!important}}
