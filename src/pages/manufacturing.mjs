@@ -203,10 +203,10 @@ export const mfg = (lang) => {
   </div>
 </section>
 
-<section class="mf-ov" data-env="#FBF8F3" aria-labelledby="mf-ov-h">
+<section class="mf-ov" data-env="#FBF8F3" aria-labelledby="mf-ov-title">
   <div class="wrap mf-ov-grid">
-    <div class="mf-ov-copy">${eye(c.ov.eye)}<div class="mf-prose" data-r="up">${c.ov.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
-    <div class="mf-pillars"><h2 class="mf-sub" id="mf-ov-h" data-r="up">${c.ov.sub}</h2>
+    <div class="mf-ov-copy">${H2(c.ov.eye, "mf-ov-title")}<div class="mf-prose" data-r="up">${c.ov.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
+    <div class="mf-pillars"><h3 class="mf-sub" id="mf-ov-h" data-r="up">${c.ov.sub}</h3>
       <ul>${c.ov.pillars.map((t, i) => `<li data-r="up" style="transition-delay:${i * 80}ms">${ic(PILLAR_IC[i], "mf-pic")}<span>${t}</span><b class="mf-pn">${two(i + 1)}</b></li>`).join("")}</ul></div>
   </div>
 </section>
