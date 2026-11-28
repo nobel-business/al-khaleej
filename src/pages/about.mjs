@@ -1,6 +1,8 @@
 import { UI } from "../content/content.mjs";
 import { pic, preload } from "../lib/media.mjs";
 import { layout } from "../layouts/layout.mjs";
+import { arr } from "../lib/html.mjs";
+import { href } from "../lib/routes.mjs";
 import { kicker, h2, crumb, ENV, ctaBand, opBleed } from "../components/blocks.mjs";
 import { board } from "../components/spec.mjs";
 import { orbit, orbitMeanings } from "../components/orbit.mjs";
@@ -20,6 +22,26 @@ export const about = (lang) => {
     <div>${kicker(ar ? "معنى الرمز" : "Our symbol")}${h2(ar ? "ثلاث سمكات\nفي دائرة." : "Three fish\nin a circle.")}<div class="body" data-r="up"><p>${ar ? "ترمز السمكات الثلاث السابحة في دائرة إلى الوحدة والانسجام والطبيعة الدورية للحياة، وإلى الوفرة والحصاد الوفير." : "Three fish swimming in a circle symbolise unity, harmony and the cyclical nature of life — and abundance, a plentiful harvest."}</p></div>
     ${orbitMeanings(lang)}
     <p class="sym-note">${ar ? "اختر سمكة أو معنى. يمثل الأزرق الداكن الماء والطبيعة، ويمثل البرتقالي الدفء والطاقة — من دليل الهوية البصرية." : "Select a fish or a meaning. Deep blue represents water and nature; orange represents warmth and energy — from the brand guidelines."}</p></div>
+  </div>
+</section>
+<section class="sec company cv" id="company" data-env="${ENV.paper}">
+  <div class="wrap co-grid">
+    <div class="co-lead">${kicker(ar ? "الشركة" : "The company")}
+      <h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "شركة مصرية حديثة" : "A new Egyptian producer"}</span><span class="bold">${ar ? "لا تُعلن إلا ما تحقّقت منه." : "stating only what is verified."}</span></h2>
+      <p class="body" data-r="up" style="margin-top:18px">${ar ? "تأسس مصنع الخليج لصناعة الأسماك عام 2025 في كفر الشيخ لإنتاج مسحوق السمك وزيت السمك الخام من أسماك بحرية كاملة. تُنشر الشهادات والسعات والمواصفات المعتمدة فور التحقق منها." : "Alkhaleej Fish Manufacturing was established in 2025 in Kafr El-Sheikh to produce fish meal and crude fish oil from whole marine fish. Certifications, capacities and approved specifications are published as soon as they are verified."}</p>
+      <div class="co-acts" data-r="up"><a class="btn line" href="${href(lang, "about")}">${u.nav.about} ${arr}</a><a class="btn line" href="${href(lang, "products")}">${u.nav.products} ${arr}</a><a class="btn line" href="${href(lang, "mfg")}">${u.nav.mfg} ${arr}</a></div>
+      <div class="co-orbit">${orbit(lang, { interactive: false, size: "sm" })}</div>
+    </div>
+    <dl class="co-ledger">
+      ${[
+        ["2025", "", ar ? "سنة التأسيس" : "Established", ar ? "كفر الشيخ، مصر" : "Kafr El-Sheikh, Egypt"],
+        ["5", "", ar ? "درجات بروتين لمسحوق السمك" : "Fish meal protein grades", "60 · 62 · 65 · 66 · 72%"],
+        ["1", "", ar ? "زيت سمك خام" : "Crude fish oil", ar ? "يُستخلص أثناء التصنيع ويُورَّد في براميل" : "Recovered during processing, in drums"],
+        ["5", "", ar ? "مراحل إنتاج" : "Production stages", ar ? "تسع خطوات مؤكدة من الاستقبال إلى التعبئة" : "Nine confirmed steps, receiving to packing"],
+        ["2", "", ar ? "مساران من مُدخل واحد" : "Streams from one input", ar ? "كعكة العصر وسائل العصر" : "Press cake and press liquor"],
+        ["50", ar ? " كجم" : " kg", ar ? "أكياس مسحوق السمك" : "Fish meal bags", ar ? "ويُورَّد الزيت الخام في براميل" : "Crude oil is supplied in drums"],
+      ].map(([n, unit, t, d], i) => `<div class="co-row" data-r="up" style="transition-delay:${i * 70}ms"><dt><span class="co-n" data-count="${n === "2025" ? "" : n}">${n}</span>${unit ? `<small>${unit}</small>` : ""}</dt><dd><b>${t}</b><span>${d}</span></dd></div>`).join("")}
+    </dl>
   </div>
 </section>
 <section class="sec" data-env="${ENV.dawn}">
