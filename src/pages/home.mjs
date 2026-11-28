@@ -8,13 +8,12 @@ import { streamsSVG, gauges, loupe, dialBlock, oilDial } from "../components/dia
 
 /* homepage quality indicators — client copy (28 Nov 2026) */
 const QUAL_HOME = [
-  { t: { ar: "الطزاجة", en: "Freshness" }, d: { ar: "مؤشر لجودة الخامات البحرية وملاءمتها للتصنيع.", en: "Indicates the quality of the marine raw material and its suitability for processing." } },
-  { t: { ar: "البروتين", en: "Protein" }, d: { ar: "مؤشر للقيمة البروتينية والتصنيف التجاري.", en: "Indicates protein value and commercial grade." } },
-  { t: { ar: "الدهون", en: "Fat" }, d: { ar: "مؤشر لقيمة الطاقة والتغذية.", en: "Indicates energy and nutritional value." } },
-  { t: { ar: "الرماد", en: "Ash" }, d: { ar: "مؤشر للمحتوى المعدني والتركيب الكيميائي.", en: "Indicates mineral content and chemical composition." } },
-  { t: { ar: "الرطوبة", en: "Moisture" }, d: { ar: "مؤشر لثبات المنتج أثناء التخزين والنقل.", en: "Indicates product stability in storage and transport." } },
-  { t: { ar: "الحموضة", en: "Acidity" }, d: { ar: "مؤشر للتحلل الدهني وجودة الزيت.", en: "Indicates lipid breakdown and oil quality." } },
-  { t: { ar: "الأكسدة", en: "Oxidation" }, d: { ar: "مؤشر لاستقرار الدهون وثباتها التأكسدي.", en: "Indicates lipid stability and oxidative stability." } },
+  { c: "#14A0A6", g: "fish", t: { ar: "الطزاجة", en: "Freshness" }, d: { ar: "مؤشر لجودة الخامات البحرية وملاءمتها للتصنيع.", en: "Indicates the quality of the marine raw material and its suitability for processing." } },
+  { c: "#E8891C", g: "molecule", t: { ar: "البروتين", en: "Protein" }, d: { ar: "مؤشر للقيمة البروتينية والتصنيف التجاري.", en: "Indicates protein value and commercial grade." } },
+  { c: "#D4A21A", g: "drop", t: { ar: "الدهون", en: "Fat" }, d: { ar: "مؤشر لقيمة الطاقة والتغذية.", en: "Indicates energy and nutritional value." } },
+  { c: "#64748B", g: "crystal", t: { ar: "الرماد", en: "Ash" }, d: { ar: "مؤشر للمحتوى المعدني والتركيب الكيميائي.", en: "Indicates mineral content and chemical composition." } },
+  { c: "#2F7FE0", g: "waves", t: { ar: "الرطوبة", en: "Moisture" }, d: { ar: "مؤشر لثبات المنتج أثناء التخزين والنقل.", en: "Indicates product stability in storage and transport." } },
+  { c: "#E2555A", g: "flask", t: { ar: "جودة الزيوت", en: "Oil quality" }, d: { ar: "مؤشرات الحموضة والأكسدة لتقييم جودة الزيوت واستقرارها الكيميائي.", en: "Acidity and oxidation indicators to assess oil quality and chemical stability." } },
 ];
 import { orbit } from "../components/orbit.mjs";
 import { GULL } from "../components/gull.mjs";

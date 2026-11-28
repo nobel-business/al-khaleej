@@ -849,3 +849,23 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 [dir=rtl] #oil .oil-dial .readout .nm{text-align:right}
 @media (max-width:899px){#oil .oil-dial .readout .nm{text-align:center!important}}
 #oil .oil-dial .readout .val.long .n{letter-spacing:-.085em}
+
+/* homepage quality indicators: one hue per indicator */
+.gauge.qc .qi{overflow:visible;transition:transform .5s var(--out)}
+.gauge.qc .qi .halo{fill:color-mix(in srgb,var(--c) 12%,transparent);stroke:color-mix(in srgb,var(--c) 22%,transparent);stroke-width:.6}
+.gauge.qc .qi .qt{stroke:var(--c);stroke-opacity:.32;stroke-width:1}
+.gauge.qc .qi .qt.mj{stroke-opacity:.85;stroke-width:1.3}
+.gauge.qc .qi .core{fill:var(--c);filter:drop-shadow(0 3px 6px color-mix(in srgb,var(--c) 45%,transparent))}
+.gauge.qc .sw{stroke:var(--c)}
+.gauge.qc b{color:color-mix(in srgb,var(--c) 70%,#0C3048)}
+.gauge.qc:hover .qi{transform:rotate(-8deg) scale(1.06)}
+@media (prefers-reduced-motion:reduce){.gauge.qc .qi{transition:none}.gauge.qc:hover .qi{transform:none}}
+
+/* indicators take turns: one sweep + pulse each, 1.2s apart, looping (6 items → 7.2s cycle) */
+.gauge.qc .sw{stroke-dasharray:16 200;stroke-dashoffset:0;transition:none;opacity:0}
+.gauge.qc .qi .core{transform-box:fill-box;transform-origin:center}
+.gauge.qc.in .sw{animation:qSweep 7.2s cubic-bezier(.65,0,.35,1) calc(var(--i,0) * 1.2s) infinite}
+.gauge.qc.in .qi .core{animation:qPulse 7.2s ease calc(var(--i,0) * 1.2s) infinite}
+@keyframes qSweep{0%{stroke-dashoffset:0;opacity:0}2%{opacity:1}15%{stroke-dashoffset:-150.8;opacity:1}17%,100%{stroke-dashoffset:-150.8;opacity:0}}
+@keyframes qPulse{0%,17%,100%{transform:scale(1)}8%{transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.gauge.qc.in .sw,.gauge.qc.in .qi .core{animation:none}.gauge.qc .sw{opacity:0}}
