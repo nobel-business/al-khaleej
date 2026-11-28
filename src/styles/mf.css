@@ -465,3 +465,14 @@ div.mf-node{cursor:default}
   [lang=ar] .ab-hero .ab-card .ab-h1{font-size:min(clamp(44px,5.2vw,80px),10.6svh)!important}
   .ab-hero .ab-card .ab-crumbs{margin-bottom:12px}
 }
+
+/* iPhone fixes (from the client's Safari recording)
+   1) no grey tap flash on links and buttons (iOS default highlight) — a soft tint on press instead
+   2) hero copy appears at once: no rise or fade on the headline, label, crumbs or paragraph inside the glass card;
+      and no extra blur box on the paragraph */
+html{-webkit-tap-highlight-color:transparent}
+a,button,[role=button],[role=tab],summary,label{-webkit-tap-highlight-color:transparent}
+.mnav a:active{background:rgba(12,48,72,.06)}
+.ab-hero .ab-card .ab-l>span,.ab-hero .ab-card .ab-hero-eye,.ab-hero .ab-card .ab-hero-p,.ab-hero .ab-card .ab-crumbs,
+.op-bleed .in,.op-bleed .in *{animation:none!important;opacity:1!important;transform:none!important}
+.ab-hero .ab-card .ab-hero-p{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
