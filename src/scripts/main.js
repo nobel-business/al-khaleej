@@ -610,30 +610,45 @@ gl_FragColor=vec4(c,1.);}`;
 
   /* ================= 4b. grade instrument (C5) ================= */
   $$(".dial-wrap").forEach((w) => once(w, () => {
+    // Config: an array of grades (protein dial, one shared scale) or { items, lo, hi, major, step, hub } where an item may
+    // carry its own scale (lo/hi/major/step), a value v (number or [from, to] range) and a pre-built readout (disp).
     const CFG = JSON.parse($("script", w).textContent), G = Array.isArray(CFG) ? CFG : CFG.items, dial = $(".dial", w), svg = $("svg", dial), btns = $$(".grades button", w);
-    const ttl = $(".readout .mono", w), sub = $(".readout .sub", w), P = (g) => g.p ?? g.g, has = (g) => P(g) != null;
-    const val = $(".readout .val", w), nm = $(".readout .nm", w), cta = $("[data-grade-link]", w), NS = "http://www.w3.org/2000/svg";
-    const A0 = 135, SPAN = 270, LO = CFG.lo ?? 55, HI = CFG.hi ?? 75, MJ = CFG.major ?? 5, ST = CFG.step ?? 1, R = 96, C = 120, ang = (g) => A0 + ((g - LO) / (HI - LO)) * SPAN, pol = (a, r) => [C + r * Math.cos((a * Math.PI) / 180), C + r * Math.sin((a * Math.PI) / 180)];
+    const ttl = $(".readout .mono", w), val = $(".readout .val", w), nm = $(".readout .nm", w), cta = $("[data-grade-link]", w), NS = "http://www.w3.org/2000/svg";
+    const A0 = 135, SPAN = 270, R = 96, C = 120, pol = (a, r) => [C + r * Math.cos((a * Math.PI) / 180), C + r * Math.sin((a * Math.PI) / 180)];
     const el = (n, a, p = svg) => { const e = d.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+    const V = (g) => g.v ?? g.g, mid = (v) => (Array.isArray(v) ? (v[0] + v[1]) / 2 : v), perItem = G.some((g) => g.lo != null);
+    const S = (g) => ({ lo: g.lo ?? CFG.lo ?? 55, hi: g.hi ?? CFG.hi ?? 75, mj: g.major ?? CFG.major ?? 5, st: g.step ?? CFG.step ?? 1 });
+    const ang = (v, s) => A0 + ((v - s.lo) / (s.hi - s.lo)) * SPAN;
     const [sx, sy] = pol(A0, R), [ex, ey] = pol(A0 + SPAN, R);
     el("path", { d: `M${sx} ${sy} A${R} ${R} 0 1 1 ${ex} ${ey}`, fill: "none", stroke: "rgba(12,48,72,.16)", "stroke-width": 1 });
-    const arc = el("path", { d: "", fill: "none", class: "arcv", "stroke-width": 2.5, "stroke-linecap": "round" });
-    for (let g = LO; g <= HI + 1e-9; g += ST) { const a = ang(g), q = (g - LO) / MJ, mj = Math.abs(q - Math.round(q)) < 1e-6, [x1, y1] = pol(a, mj ? 80 : 86), [x2, y2] = pol(a, 92); el("line", { x1, y1, x2, y2, class: "tk" + (mj ? " mj" : ""), "stroke-width": mj ? 1.5 : 1 }); if (mj && CFG.labels !== false) { const [tx, ty] = pol(a, 66); const t = el("text", { x: tx, y: ty + 4, "text-anchor": "middle", class: "lb", "data-g": g }); t.textContent = g; } }
-    G.filter(has).forEach((g) => { const [x, y] = pol(ang(P(g)), 101); el("circle", { cx: x, cy: y, r: 3, fill: "#0C3048" }); });
+    const scale = el("g", { class: "scale" }), arc = el("path", { d: "", fill: "none", class: "arcv", "stroke-width": 2.5, "stroke-linecap": "round" });
+    let drawn = "";
+    const draw = (s, dots) => {
+      const key = `${s.lo}/${s.hi}/${dots.join(",")}`; if (key === drawn) return; drawn = key; scale.replaceChildren();
+      for (let v = s.lo; v <= s.hi + 1e-9; v += s.st) { const a = ang(v, s), q = (v - s.lo) / s.mj, mj = Math.abs(q - Math.round(q)) < 1e-6, [x1, y1] = pol(a, mj ? 80 : 86), [x2, y2] = pol(a, 92);
+        el("line", { x1, y1, x2, y2, class: "tk" + (mj ? " mj" : ""), "stroke-width": mj ? 1.5 : 1 }, scale);
+        if (mj && CFG.labels !== false) { const [tx, ty] = pol(a, 66); const t = el("text", { x: tx, y: ty + 4, "text-anchor": "middle", class: "lb", "data-g": +v.toFixed(4) }, scale); t.textContent = +v.toFixed(4); } }
+      dots.forEach((v) => { const [x, y] = pol(ang(v, s), 101); el("circle", { cx: x, cy: y, r: 3, fill: "#0C3048" }, scale); });
+    };
     const ndl = el("g", { class: "ndl" }); el("line", { x1: C, y1: C, x2: C + 78, y2: C, stroke: "#0C3048", "stroke-width": 2, "stroke-linecap": "round" }, ndl); el("circle", { cx: C, cy: C, r: 6, fill: "#FBF8F3", stroke: "#0C3048", "stroke-width": 1.5 }, ndl);
     const hub = CFG.hub ? el("text", { x: C, y: C + 80, "text-anchor": "middle", class: "hub" }) : null;
-    let cur = 1;
+    let cur = 0;
     const set = (i) => {
-      cur = (i + G.length) % G.length; const g = G[cur];
-      const v = has(g) ? P(g) : LO; ndl.style.transform = `rotate(${ang(v)}deg)`; const [x, y] = pol(ang(v), R); arc.setAttribute("d", has(g) ? `M${sx} ${sy} A${R} ${R} 0 ${ang(v) - A0 > 180 ? 1 : 0} 1 ${x} ${y}` : "");
-      if (!CFG.fixed) { val.innerHTML = has(g) ? `${g.pre || ""}${g.g}<small>${AR && !CFG.ltr ? "\u200F%" : "%"}</small>` : "—"; val.classList.toggle("pending", !has(g)); nm.textContent = g.name;
-      if (g.title && ttl) ttl.textContent = g.title; if (sub) sub.textContent = g.sub || ""; } if (hub) hub.textContent = g.chip || ""; if (cta) { cta.href = g.url; cta.querySelector("span").textContent = g.cta; }
-      btns.forEach((b, k) => b.setAttribute("aria-pressed", k === cur)); if (has(g)) dial.setAttribute("aria-valuenow", P(g)); else dial.removeAttribute("aria-valuenow"); dial.setAttribute("aria-valuetext", g.title || g.name);
-      $$(".lb", svg).forEach((t) => t.classList.toggle("on", Math.abs(+t.dataset.g - g.g) < 3));
+      cur = (i + G.length) % G.length; const g = G[cur], s = S(g), v = V(g), n = mid(v);
+      draw(s, perItem ? [].concat(v) : G.map((x) => mid(V(x))));
+      ndl.style.transform = `rotate(${ang(n, s)}deg)`;
+      const rng = Array.isArray(v), from = rng ? v[0] : s.lo, to = rng ? v[1] : n, [fx, fy] = pol(ang(from, s), R), [tx, ty] = pol(ang(to, s), R);
+      arc.setAttribute("d", `M${fx} ${fy} A${R} ${R} 0 ${ang(to, s) - ang(from, s) > 180 ? 1 : 0} 1 ${tx} ${ty}`);
+      val.innerHTML = g.disp ?? `${g.g}<small>${AR ? "\u200F%" : "%"}</small>`; val.classList.toggle("long", !!g.long); nm.textContent = g.name;
+      if (g.title && ttl) ttl.textContent = g.title; if (hub) hub.textContent = g.chip || ""; if (cta) { cta.href = g.url; cta.querySelector("span").textContent = g.cta; }
+      btns.forEach((b, k) => b.setAttribute("aria-pressed", k === cur));
+      dial.setAttribute("aria-valuemin", s.lo); dial.setAttribute("aria-valuemax", s.hi); dial.setAttribute("aria-valuenow", n); dial.setAttribute("aria-valuetext", g.aria || g.name);
+      const near = (s.hi - s.lo) * 0.15; $$(".lb", svg).forEach((t) => t.classList.toggle("on", rng ? +t.dataset.g >= v[0] && +t.dataset.g <= v[1] : Math.abs(+t.dataset.g - n) < near));
     };
     btns.forEach((b, k) => b.addEventListener("click", () => set(k)));
     dial.addEventListener("keydown", (e) => { const fwd = ["ArrowRight", "ArrowUp"], back = ["ArrowLeft", "ArrowDown"]; if (fwd.includes(e.key)) { e.preventDefault(); set(Math.min(G.length - 1, cur + 1)); } if (back.includes(e.key)) { e.preventDefault(); set(Math.max(0, cur - 1)); } });
-    let drag = false; const from = (e) => { const r = svg.getBoundingClientRect(); const x = ((e.clientX - r.left) / r.width) * 240 - C, y = ((e.clientY - r.top) / r.height) * 240 - C; let a = (Math.atan2(y, x) * 180) / Math.PI; if (a < 0) a += 360; if (a < A0 - 20) a += 360; const g = LO + ((a - A0) / SPAN) * (HI - LO); let b = 0, bd = 1e9; G.forEach((x, k) => { if (has(x) && Math.abs(P(x) - g) < bd) { bd = Math.abs(P(x) - g); b = k; } }); if (b !== cur) set(b); };
+    let drag = false; const from = (e) => { const r = svg.getBoundingClientRect(); const x = ((e.clientX - r.left) / r.width) * 240 - C, y = ((e.clientY - r.top) / r.height) * 240 - C; let a = (Math.atan2(y, x) * 180) / Math.PI; if (a < 0) a += 360; if (a < A0 - 20) a += 360; const f = Math.min(1, Math.max(0, (a - A0) / SPAN));
+      let b = cur; if (perItem) b = Math.round(f * (G.length - 1)); else { const s = S(G[0]), g = s.lo + f * (s.hi - s.lo); let bd = 1e9; G.forEach((x, k) => { const dv = Math.abs(mid(V(x)) - g); if (dv < bd) { bd = dv; b = k; } }); } if (b !== cur) set(b); };
     dial.addEventListener("pointerdown", (e) => { drag = true; dial.setPointerCapture(e.pointerId); from(e); });
     dial.addEventListener("pointermove", (e) => { if (drag) from(e); });
     dial.addEventListener("pointerup", () => (drag = false));

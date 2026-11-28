@@ -839,3 +839,13 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 /* shared title centred vertically on its paragraph */
 @media (min-width:900px){.meal.pv .pv-t,.meal.pv .pv-p{align-self:center!important}}
 @media (min-width:900px){.meal.pv .pv-p{position:relative}.meal.pv .pv-p .body::before{position:absolute;top:-20px;margin:0}.meal.pv .pv-t,.meal.pv .pv-t .split-h{margin:0!important;padding:0!important}}
+
+/* oil readout: comparator, figure and unit on one centred line; long units small */
+#oil .oil-dial .readout .val .n{line-height:1;white-space:nowrap}
+#oil .oil-dial .readout .val small.u-long{font-size:.2em;letter-spacing:.02em;white-space:nowrap;margin-inline-start:.5em;align-self:center;font-weight:500;color:var(--ink-3)}
+[dir=rtl] #oil .oil-dial .readout .val small.u-long{margin-inline-start:0;margin-inline-end:.5em}
+/* long oil readings (unit text or a range) step down so they always fit the column */
+/* (long-reading shrink removed: every reading uses the full figure size) */
+[dir=rtl] #oil .oil-dial .readout .nm{text-align:right}
+@media (max-width:899px){#oil .oil-dial .readout .nm{text-align:center!important}}
+#oil .oil-dial .readout .val.long .n{letter-spacing:-.085em}

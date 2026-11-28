@@ -36,23 +36,29 @@ export function dialBlock(lang, start = 2, fixed = null) {
   <p style="margin-top:18px">${fixed ? `<a class="link" href="${fixed.url}"><span>${fixed.label}</span> ${arr}</a>` : `<a class="link" data-grade-link href="${G[start].url}"><span>${G[start].cta}</span> ${arr}</a>`}</p></div></div>`;
 }
 
-/* crude fish oil dial — same component and structure as the protein dial. The reading is fixed to the client's
-   stated value (FFA ≤5%); the needle selects one of six specification parameters (no numeric scale, so no
-   values are implied for the parameters still awaiting verified analysis). */
+/* crude fish oil dial — same component and structure as the protein dial, driven by the client's crude fish oil
+   specification (supplied 28 Nov 2026). Each parameter has its own gauge scale; EPA + DHA is a range. */
 export function oilDial(lang, url) {
   const ar = lang === "ar", T = (e, a) => (ar ? a : e);
-  const items = [
-    ["FFA", "Free fatty acids (FFA)", "الأحماض الدهنية الحرة (FFA)"],
-    ["PV", "Peroxide value (PV)", "رقم البيروكسيد (PV)"],
-    ["p-AV", "Anisidine value (p-AV)", "رقم الأنيسيدين (p-AV)"],
-    ["TOTOX", "Total oxidation (TOTOX)", "قيمة الأكسدة الكلية (TOTOX)"],
-    ["MI", "Moisture & impurities (MI)", "الرطوبة والشوائب (MI)"],
-    ["EPA+DHA", "EPA + DHA", "EPA + DHA"],
-  ].map(([chip, en, a], p) => ({ chip, p, title: T(en, a) }));
-  const cfg = { lo: 0, hi: 5, major: 1, step: 0.25, labels: false, hub: true, fixed: true, items };
+  // client references (28 Nov 2026): name above, value, code/unit below; each parameter on its own scale, needle on the value
+  // [chip, name en, name ar, comparator, value text, unit beside the figure, line below, needle value, lo, hi, major]
+  const rows = [
+    ["FFA", "Free fatty acids", "الأحماض الدهنية الحرة", "≤", "5", "%", "FFA", 5, 0, 10, 2.5],
+    ["PV", "Peroxide value", "رقم البيروكسيد", "≤", "10", "", "meq O₂/kg", 10, 0, 20, 5],
+    ["p-AV", "Anisidine value", "رقم الأنيسيدين", "≤", "30", "", "p-AV", 30, 0, 60, 15],
+    ["TOTOX", "Total oxidation", "الأكسدة الكلية", "≤", "50", "", "TOTOX", 50, 0, 100, 25],
+    ["MI", "Moisture & impurities", "الرطوبة والشوائب", "≤", "1", "%", "MI", 1, 0, 2, 0.5],
+    ["EPA+DHA", "EPA + DHA content", "محتوى EPA + DHA", "", "15–25", "%", "EPA+DHA", [15, 25], 10, 30, 5],
+  ];
+  const items = rows.map(([chip, en, a, cmp, num, unit, below, v, lo, hi, major]) => ({
+    chip, title: T(en, a), name: below, v, lo, hi, major, step: major / 5, long: Array.isArray(v),
+    disp: `${cmp ? `<span class="le">${cmp}</span>` : ""}<span class="n" dir="ltr">${num}</span>${unit ? `<small>${unit}</small>` : ""}`,
+    aria: `${T(en, a)} (${chip}): ${cmp}${num}${unit}${below.includes("/") ? " " + below : ""}` }));
+  const cfg = { hub: true, items };
+  const f = items[0];
   return `<div class="dial-wrap oil-dial" data-start="0"><script type="application/json">${JSON.stringify(cfg)}</script>
-  <div class="dial" role="slider" tabindex="0" aria-label="${T("Crude fish oil specification parameter", "معيار مواصفات زيت الأسماك الخام")}" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><svg viewBox="0 0 240 240" aria-hidden="true"></svg></div>
-  <div class="readout"><div class="mono">${T("Free fatty acids (FFA)", "الأحماض الدهنية الحرة (FFA)")}</div><div class="val" dir="${ar ? "rtl" : "ltr"}"><span class="le">≤</span>5<small>%</small></div><div class="nm">${T("Standard grade", "المعيار القياسي")}</div>
+  <div class="dial" role="slider" tabindex="0" aria-label="${T("Crude fish oil specification", "مواصفات زيت الأسماك الخام")}" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"><svg viewBox="0 0 240 240" aria-hidden="true"></svg></div>
+  <div class="readout" aria-live="polite"><div class="mono">${f.title}</div><div class="val" dir="${ar ? "rtl" : "ltr"}">${f.disp}</div><div class="nm" dir="ltr">${f.name}</div>
   <div class="grades" role="group" aria-label="${T("Specification", "المواصفات")}">${items.map((g) => `<button type="button" aria-pressed="false">${g.chip}</button>`).join("")}</div>
   <p style="margin-top:18px"><a class="link" href="${url}"><span>${T("Discover our products", "اكتشف منتجاتنا")}</span> ${arr}</a></p></div></div>`;
 }
