@@ -191,3 +191,9 @@ button.mf-node:hover .mf-dot,a.mf-node:hover .mf-dot,.mf-node:focus-visible .mf-
 /* flow without a details panel: stages are static markers */
 div.mf-node{cursor:default}
 .mf-board{padding-bottom:clamp(22px,2.6vw,40px)}
+
+/* «من الأسماك البحرية إلى المنتج النهائي.» on one line at every width (size follows the viewport on small screens) */
+.mf-head{max-width:none}
+#mf-flow-h{white-space:nowrap;max-width:none;font-size:min(48px,calc((100vw - 48px) / 18.2))}
+#mf-flow-h .ln{display:inline}
+[dir=ltr] #mf-flow-h{font-size:min(48px,calc((100vw - 48px) / 19.6))}
