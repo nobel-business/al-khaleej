@@ -574,3 +574,28 @@ body{overflow-x:clip}
   [dir=rtl] .mfx-card .h2{font-size:clamp(22px,1.95vw,34px)}
   .mfx-card .h2{font-size:clamp(24px,2.1vw,36px)}
 }
+
+/* =====================================================================
+   HOMEPAGE — smooth section transitions
+   ===================================================================== */
+/* the page tint between sections now glides instead of jumping */
+body{transition:background-color .9s var(--out)}
+/* full-width photographs melt into the page at their top and bottom edges instead of cutting off */
+.mfx .mfx-img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 13%,#000 87%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 13%,#000 87%,transparent 100%)}
+@media (max-width:899px){
+  .mfx .mfx-img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 100%);mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 100%)}
+}
+/* one even gap between every content section (the next section's top padding only) */
+#oil,#quality{padding-bottom:0}
+@media (prefers-reduced-motion:reduce){body{transition:none}}
+/* desktop: the whole layered stage (ship hero beneath the sardine dive) fades at its foot — the fade grows only
+   as the sardine scene takes over (--w: 1 → 0), so the hero's first screen is untouched */
+@media (min-width:900px){
+  .dv-stage{-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - (1 - var(--w,1)) * 18%),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - (1 - var(--w,1)) * 18%),transparent)}
+}
+/* phones: the sardine photo (inside the dive layer, whose own mask is the scroll reveal) melts into the page at its foot */
+@media (max-width:899px){.dv-under .media{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 86%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 86%,transparent 100%)}}
+/* tighter: the plant photo begins where the sardine scene fades out, and fish meal follows its fade closely */
+.mfx{margin-top:0}
+.mfx + #meal{padding-top:clamp(36px,4.5vw,64px)}
+@media (max-width:899px){.mfx{margin-top:24px}.mfx + #meal{padding-top:40px}}

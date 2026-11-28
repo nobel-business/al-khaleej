@@ -35,7 +35,7 @@ export const home = (lang) => {
 
 <section class="mfx" id="process" data-env="${ENV.paper}" aria-labelledby="mfx-title">
   ${pic(lang, "m-plant", { fill: 0.62, mfill: 0.42, cls: "mfx-img" })}
-  <div class="mfx-card">
+  <div class="mfx-card" data-r="up">
     <h2 class="h2" id="mfx-title">${ar ? "دقة التصنيع، أساس الجودة." : "Precision manufacturing, the foundation of quality."}</h2>
     <p class="body">${ar ? "نحوّل الأسماك البحرية إلى مكونات بروتينية وزيوت بحرية، عبر منظومة تصنيع متكاملة تجمع بين التقنيات الصناعية والتحكم في عمليات الإنتاج ومتطلبات الجودة والسلامة." : "We turn marine fish into protein ingredients and marine oils, through an integrated manufacturing system that brings together industrial technology, control of production processes, and quality and safety requirements."}</p>
     <a class="link" href="${href(lang, "mfg")}">${ar ? "اكتشف منظومة التصنيع" : "Explore our manufacturing system"} ${arr}</a>
