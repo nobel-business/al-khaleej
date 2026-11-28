@@ -446,9 +446,22 @@ div.mf-node{cursor:default}
 /* bug fixes (desktop): the next section rises 51px into every hero, and the scroll cue sits in the last ~85px —
    keep every card clear of both; the short Contact hero grows to fit its card under the menu */
 @media (min-width:900px){
-  .ab-hero .ab-hero-copy{bottom:clamp(112px,15svh,150px)!important}
   .op-bleed .in{bottom:clamp(84px,12svh,120px)!important}
   .op-bleed.short{height:auto!important;min-height:max(min(68svh,680px),620px)!important}
 }
 @media (max-width:899px){.op-bleed .in{box-shadow:none!important;border:0!important}}
 @media (max-width:899px){.ab-hero .ab-card.ab-card{-webkit-backdrop-filter:contrast(.32) brightness(1.55) saturate(1.1)!important;backdrop-filter:contrast(.32) brightness(1.55) saturate(1.1)!important}}
+/* About · Raw Materials · Manufacturing · Products: cards back in their original place; the scroll cue moves out from
+   under the card to the middle of the open photo side instead */
+@media (min-width:900px){
+  [dir=rtl] .ab-hero .ab-cue{left:24%}
+  [dir=ltr] .ab-hero .ab-cue{left:76%}
+}
+/* shorter laptop screens (MacBook windows ~ 650–820px tall): the hero card keeps its place but scales its headline and
+   padding with the screen height, so it never rises under the menu */
+@media (min-width:900px) and (max-height:820px){
+  .ab-hero .ab-card.ab-card{padding-block:clamp(18px,3svh,30px)!important}
+  [lang=en] .ab-hero .ab-card .ab-h1{font-size:min(clamp(40px,4.4vw,64px),7.2svh)!important}
+  [lang=ar] .ab-hero .ab-card .ab-h1{font-size:min(clamp(44px,5.2vw,80px),10.6svh)!important}
+  .ab-hero .ab-card .ab-crumbs{margin-bottom:12px}
+}
