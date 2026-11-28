@@ -912,3 +912,10 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 .ft-card .ft-ic{grid-column:2;grid-row:1/3;color:#F2B552;align-self:center}
 @media (min-width:1101px){.ft-main>.ft-contact{grid-template-rows:auto minmax(0,1fr)!important}}
 [dir=rtl] .ft-card .ft-v{text-align:right;justify-self:stretch}
+/* footer brand column spans the same height as its neighbours: logo on the top line, location pill on the bottom line */
+@media (min-width:641px){
+  .ft-main{align-items:stretch}
+  .ft-main>.ft-brand{display:flex;flex-direction:column;align-items:flex-start}
+  .ft-main>.ft-brand .ft-loc{margin-top:auto!important}
+  .ft-main>.ft-brand p{margin-bottom:20px}
+}
