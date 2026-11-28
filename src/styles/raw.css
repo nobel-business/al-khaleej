@@ -265,3 +265,9 @@
 /* split heads («لكل نوع خصائصه…», «العناية بالخامات…»): heading centred against its paragraphs */
 .rw-head-split,.rw-src-head{align-items:center}
 .rw-head-split .ab-h2,.rw-src-head .ab-h2{margin-bottom:0}
+
+/* species side cards: «الأسماك البحرية السطحية» / «الأسماك البحرية الأخرى» on one line */
+@media (min-width:900px){
+  .rw-sp-item:not(.is-lead){grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+  [dir=rtl] .rw-sp-item:not(.is-lead) .rw-sp-txt h3{white-space:nowrap;font-size:clamp(16px,1.75vw,28px)}
+}
