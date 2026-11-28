@@ -688,3 +688,21 @@ body{transition:background-color .9s var(--out)}
 }
 @media (prefers-reduced-motion:reduce){.dv-next .dv-card{transform:none;filter:none}}
 @media (min-width:900px){.dv-next .dv-card p{text-shadow:0 0 2px rgba(0,25,40,.85),0 0 10px rgba(0,25,40,.6),0 1px 18px rgba(0,25,40,.55)!important}}
+
+/* =====================================================================
+   HOMEPAGE — one topic, one title: «قيمة البحر في منتجاتنا.» heads both fish meal and crude oil
+   ===================================================================== */
+.pv-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,72px);align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.pv-head .split-h{margin:0}
+.pv-head .body{max-width:56ch;margin:0}
+.pv-head .body::before{content:"";display:block;width:64px;height:2px;margin-bottom:18px;border-radius:2px;background:linear-gradient(90deg,#C99A3E,#E3B860)}
+[dir=rtl] .pv-head .body::before{background:linear-gradient(270deg,#C99A3E,#E3B860)}
+/* the two sub-topics: same size, smaller than the shared title */
+.pv-sub{font-size:clamp(24px,2.3vw,36px)!important;margin:0 0 6px!important;white-space:normal!important}
+.pv-sub .thin,.pv-sub .bold{display:inline!important}
+#meal .pv-sub .thin{font-weight:600}
+[dir=rtl] #meal .pv-sub .thin{font-weight:700}
+#meal .meal .dial-wrap{margin-top:18px}
+/* fish meal and oil read as one topic: the oil part follows closely */
+#meal + #oil{padding-top:clamp(48px,6vw,84px)}
+@media (max-width:899px){.pv-head{grid-template-columns:1fr;align-items:start;gap:14px}}

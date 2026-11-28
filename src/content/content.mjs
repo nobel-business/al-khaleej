@@ -148,6 +148,7 @@ export const ALT = {
   "m-press": { en: "Press cake leaving a screw press while press liquor drains below", ar: "كعكة العصر تخرج من مكبس لولبي بينما يتصفّى سائل العصر أسفله" },
   "m-centrifuge": { en: "A stainless-steel disc-stack centrifuge separating crude fish oil from water", ar: "جهاز طرد مركزي من الفولاذ المقاوم للصدأ يفصل زيت السمك الخام عن الماء" },
   "m-plant": { en: "Fish meal in a steel bowl and a beaker of crude fish oil beside fresh sardines and a net, in a fish-processing plant with packed bags", ar: "مسحوق سمك في وعاء فولاذي ودورق من زيت السمك الخام بجوار سردين طازج وشبكة صيد، داخل مصنع لمعالجة الأسماك مع أكياس معبأة" },
+  "meal-oil": { en: "Brown fish meal in a steel tray with a scoop, beside fresh sardines on ice and a glass of fish oil", ar: "مسحوق سمك بني في صينية فولاذية مع مغرفة، بجوار سردين طازج على الثلج وكوب من زيت السمك" },
   "two-products": { en: "Whole sardines between a dish of brown fish meal and a flask of golden crude fish oil", ar: "أسماك سردين كاملة بين طبق من مسحوق السمك البني ودورق من زيت السمك الخام الذهبي" },
   "jar-62": { en: "Fish meal in a wide glass specimen jar in morning light", ar: "مسحوق سمك في وعاء عيّنات زجاجي عريض تحت ضوء الصباح" },
   "jar-66": { en: "Fish meal in a tall glass specimen jar in morning light", ar: "مسحوق سمك في وعاء عيّنات زجاجي طويل تحت ضوء الصباح" },
