@@ -471,3 +471,12 @@
   .ab-fut-card.is-quote p{font-size:clamp(17px,1.3vw,20px);line-height:1.65}
   .ab-fut-deck{padding-bottom:clamp(28px,6vh,75px)}
 }
+/* one composed group: heading, rail and cards centred together in the frame with balanced space above and below */
+@media (min-width:900px){
+  .ab-fut-stage{justify-content:center;gap:clamp(30px,5svh,60px);padding-block:clamp(84px,12svh,130px) clamp(48px,8svh,96px)}
+  .ab-fut-head{padding-top:0!important}
+  .ab-fut-head .ab-eye{justify-content:center;margin-bottom:12px}
+  .ab-fut-deck{padding:0!important}
+  .ab-fut-rail{margin-bottom:clamp(16px,2.4svh,24px)}
+  .ab-fut-card{display:flex;flex-direction:column;justify-content:flex-start}
+}
