@@ -59,7 +59,7 @@ export function specSheet(lang, p) {
   const groups = [
     { id: "product", t: ar ? "المنتج" : "Product", rows: [
       { k: u.family, v: p.oil ? u.oil : u.fishmeal, s: "stated" },
-      p.oil ? { k: u.form, v: u.crude, s: "stated" } : { k: u.grade, v: `${p.grade}%`, s: "stated", note: ar ? "تسمية تجارية، وليست حدًا أدنى مضمونًا" : "Commercial label, not a guaranteed minimum" },
+      p.oil ? { k: u.form, v: u.crude, s: "stated" } : { k: u.grade, v: `${p.grade}%`, s: "stated" },
       { k: u.packing, v: p.oil ? u.drums : u.bags, s: "stated", note: p.oil ? u.capacityPending : "" },
       { k: u.rawMaterial, v: u.rawValue, s: "stated" },
       { k: u.application, v: u.appValue, s: "stated" },
@@ -99,8 +99,7 @@ export function compare(lang) {
   <div class="cmp-grid" role="table" aria-label="${ar ? "مقارنة المنتجات" : "Product comparison"}">
     <div class="cmp-r cmp-h" role="row"><span class="cmp-k" role="columnheader"></span>${PRODUCTS.map((p, i) => `<span class="cmp-c cmp-top" role="columnheader" data-c="${i}"><a href="${prodHref(lang, p)}"><span class="cn">${p.oil ? (ar ? "زيت" : "Oil") : p.grade + "<small>%</small>"}</span><b>${p.name[lang]}</b><span class="go">${u.viewProduct} ${arr}</span></a></span>`).join("")}</div>
     ${rows.map(([k, f]) => `<div class="cmp-r" role="row"><span class="cmp-k" role="rowheader">${k}</span>${PRODUCTS.map((p, i) => `<span class="cmp-c" role="cell" data-c="${i}"><span class="cmp-ml">${k}</span>${f(p)}</span>`).join("")}</div>`).join("")}
-  </div>
-  <p class="cmp-note">${ar ? "أرقام الدرجات تسميات تجارية للبروتين وليست حدودًا دنيا مضمونة." : "Grade figures are commercial protein labels, not guaranteed minimum specifications."}</p>
+  </div>
 </div>`;
 }
 

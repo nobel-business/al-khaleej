@@ -517,3 +517,10 @@ body{overflow-x:clip}
   .iris-copy{background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.66));-webkit-backdrop-filter:blur(16px) saturate(80%) brightness(1.45);backdrop-filter:blur(16px) saturate(80%) brightness(1.45);border-color:rgba(255,255,255,.6)}
   .iris-copy .ask-mini li{border-bottom-color:rgba(12,48,72,.14)}
 }
+/* world card: the invitation line and the six request items in bold */
+.iris-copy .body,.iris-copy .ask-mini li{font-weight:600}
+[dir=rtl] .iris-copy .body,[dir=rtl] .iris-copy .ask-mini li{font-weight:700}
+/* homepage hero (desktop): the copy block appears once it is placed against the ship — no layout shift on load;
+   a 1.5 s fallback reveals it even if the placement script never runs */
+@keyframes dvShow{to{visibility:visible}}
+@media (min-width:900px){html:not(.js-off) .dv-ui:not(.mirror) .dv-title{visibility:hidden;animation:dvShow 0s 1.5s forwards}}

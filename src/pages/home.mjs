@@ -38,8 +38,7 @@ export const home = (lang) => {
     ${loupe(lang, "powder-pressed")}
     <div>${kicker(u.fishmeal)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "مسحوق فائق النعومة." : "Ultra-fine."}</span><span class="bold">${ar ? "بخمس درجات." : "In five grades."}</span></h2>
     <p class="body" data-r="up" style="margin-top:16px">${ar ? "مسحوق السمك منتج جاف ومتجانس، بدرجات بروتين تجارية 60% و62% و65% و66% و72%، بنوعين عالي الدهن ومنخفض الدهن، ويُعبأ في أكياس 50 كجم. أدِر المؤشر لاختيار الدرجة." : "Fish meal is a dry, homogeneous powder in 60%, 62%, 65%, 66% and 72% commercial protein grades, in high-fat and low-fat types, packed in 50 kg bags. Turn the instrument to choose a grade."}</p>
-    ${dialBlock(lang)}
-    <p class="small muted" style="margin-top:14px">${ar ? "أرقام الدرجات تسميات تجارية وليست حدودًا دنيا مضمونة." : "Grade figures are commercial labels, not guaranteed minimum specifications."}</p></div>
+    ${dialBlock(lang)}</div>
   </div>
 </section>
 
