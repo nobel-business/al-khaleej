@@ -480,3 +480,5 @@
   .ab-fut-rail{margin-bottom:clamp(16px,2.4svh,24px)}
   .ab-fut-card{display:flex;flex-direction:column;justify-content:flex-start}
 }
+/* horizon cards: number and text centred vertically inside each (equal-height) card */
+@media (min-width:900px){.ab-fut-card{justify-content:center!important}}
