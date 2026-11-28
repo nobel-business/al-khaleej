@@ -147,6 +147,7 @@ export const ALT = {
   "m-cooker": { en: "A horizontal stainless-steel steam cooker in a bright processing hall", ar: "طبّاخ بخاري أفقي من الفولاذ المقاوم للصدأ في قاعة تصنيع مضيئة" },
   "m-press": { en: "Press cake leaving a screw press while press liquor drains below", ar: "كعكة العصر تخرج من مكبس لولبي بينما يتصفّى سائل العصر أسفله" },
   "m-centrifuge": { en: "A stainless-steel disc-stack centrifuge separating crude fish oil from water", ar: "جهاز طرد مركزي من الفولاذ المقاوم للصدأ يفصل زيت السمك الخام عن الماء" },
+  "m-plant": { en: "A fish-processing plant: sardines on a steel conveyor, a cooker, a dish of fish meal and a beaker of fish oil", ar: "مصنع لمعالجة الأسماك: سردين على ناقل من الفولاذ، وطبّاخ، وطبق من مسحوق السمك، ودورق من زيت السمك" },
   "two-products": { en: "Whole sardines between a dish of brown fish meal and a flask of golden crude fish oil", ar: "أسماك سردين كاملة بين طبق من مسحوق السمك البني ودورق من زيت السمك الخام الذهبي" },
   "jar-62": { en: "Fish meal in a wide glass specimen jar in morning light", ar: "مسحوق سمك في وعاء عيّنات زجاجي عريض تحت ضوء الصباح" },
   "jar-66": { en: "Fish meal in a tall glass specimen jar in morning light", ar: "مسحوق سمك في وعاء عيّنات زجاجي طويل تحت ضوء الصباح" },

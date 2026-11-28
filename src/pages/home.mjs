@@ -33,14 +33,12 @@ export const home = (lang) => {
   </div>
 </section>
 
-<section class="sec hp" id="process" data-env="${ENV.paper}" aria-labelledby="hp-title">
-  <div class="wrap">
-    <div class="hp-head">
-      <h2 class="h2 split-h" id="hp-title"><span class="thin">${ar ? "من الاستقبال" : "From receiving"}</span> <span class="bold">${ar ? "إلى التعبئة." : "to packing."}</span></h2>
-      <div class="hp-aside"><p class="body" data-r="up">${ar ? "خمس مراحل إنتاج متكاملة في مصنعنا بكفر الشيخ، تحوّل الأسماك البحرية الكاملة إلى مسحوق سمك وزيت سمك خام." : "Five integrated production stages at our plant in Kafr El-Sheikh turn whole marine fish into fish meal and crude fish oil."}</p>
-      <a class="link" data-r="up" href="${href(lang, "mfg")}">${ar ? "اكتشف التصنيع" : "Explore manufacturing"} ${arr}</a></div>
-    </div>
-    <ol class="hp-steps">${STAGES.map((s, i) => `<li class="hp-step" data-r="up" style="transition-delay:${i * 90}ms"><a href="${href(lang, "mfg")}#stages">${pic(lang, s.img, { col: 18, mcol: 26, box: 0.8, cls: "hp-img" })}<span class="hp-rail" aria-hidden="true"><span class="hp-dot"></span></span><span class="hp-no">0${i + 1}</span><b class="hp-t">${s.t[lang]}</b></a></li>`).join("")}</ol>
+<section class="mfx" id="process" data-env="${ENV.paper}" aria-labelledby="mfx-title">
+  ${pic(lang, "m-plant", { fill: 0.62, mfill: 0.42, cls: "mfx-img" })}
+  <div class="mfx-card">
+    <h2 class="h2" id="mfx-title">${ar ? "دقة التصنيع، أساس الجودة." : "Precision manufacturing, the foundation of quality."}</h2>
+    <p class="body">${ar ? "نحوّل الأسماك البحرية إلى مكونات بروتينية وزيوت بحرية، عبر منظومة تصنيع متكاملة تجمع بين التقنيات الصناعية والتحكم في عمليات الإنتاج ومتطلبات الجودة والسلامة." : "We turn marine fish into protein ingredients and marine oils, through an integrated manufacturing system that brings together industrial technology, control of production processes, and quality and safety requirements."}</p>
+    <a class="link" href="${href(lang, "mfg")}">${ar ? "اكتشف منظومة التصنيع" : "Explore our manufacturing system"} ${arr}</a>
   </div>
 </section>
 

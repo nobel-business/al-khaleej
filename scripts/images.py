@@ -24,6 +24,7 @@ SPEC = {
     "jar-62":         ("ai/jar-d.png",          [480, 720, 1080],                         "50% 60%", "ai", None),
     "jar-66":         ("ai/jar-e.png",          [480, 720, 1080],                         "50% 60%", "ai", None),
     "m-centrifuge":   ("ai/m-centrifuge.png",   [640, 1024, 1280],                        "50% 55%", "ai", None),
+    "m-plant":        ("ai/m-plant.png",        [640, 1024, 1600, 2048],                  "50% 50%", "ai", None),
     "two-products":   ("ai/two-products.png",   [640, 1024, 1280],                        "50% 55%", "ai", None),
     "oil-flask":      ("ai/oil-flask.png",      [480, 720, 1080, 1536],                         "50% 60%", "ai", None),
     "powder-pressed": ("ai/powder-pressed.png", [640, 1024, 1600, 2048],            "40% 55%", "ai", None),
