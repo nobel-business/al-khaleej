@@ -788,3 +788,16 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 }
 #oil .pv-sub .thin{font-weight:700}
 [dir=ltr] #oil .pv-sub .thin,[dir=ltr] #meal .pv-sub .thin{font-weight:600}
+
+/* crude fish oil = twin of fish meal: one beaker photo with the loupe in the photo column, copy in the text column */
+#oil .meal.oilm .copy{display:flex;flex-direction:column;justify-content:center}
+#oil .meal.oilm .copy .body{margin-top:16px!important;max-width:44ch}
+#oil .meal.oilm .oil-cta{margin-top:24px!important}
+@media (min-width:900px){
+  #oil .meal.oilm{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:stretch}
+  #oil .meal.oilm .loupe{aspect-ratio:auto;height:100%;min-height:460px}
+}
+@media (max-width:899px){#oil .meal.oilm{row-gap:22px}}
+/* both product photos share one height */
+@media (min-width:900px){#meal .loupe,#oil .meal.oilm .loupe{min-height:460px}}
+@media (min-width:900px) and (max-width:1279px){#meal .loupe,#oil .meal.oilm .loupe{min-height:560px}}

@@ -53,10 +53,9 @@ export const home = (lang) => {
 </section>
 
 <section class="sec cv" id="oil" data-env="${ENV.amber}">
-  <div class="wrap oilx">
-    <div class="a glowable">${pic(lang, "oil-pour", { col: 50, box: 0.8, reveal: "curtain" })}<span class="glow" aria-hidden="true"></span></div>
-    <div class="copy">${kicker(u.oil)}<h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "زيت الأسماك الخام" : "Crude fish oil"}</span></h3><p class="body" data-r="up" style="margin-top:16px">${ar ? "يُستخلص من سائل العصر بفصل الزيت عن الماء بالطرد المركزي، ويُورَّد في براميل." : "Recovered from the liquid stream after pressing, by centrifugal oil–water separation, and supplied in drums."}</p><p style="margin-top:22px"><a class="btn line" href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}">${u.viewProduct} ${arr}</a></p></div>
-    <div class="b glowable" data-px="0.06">${pic(lang, "m-centrifuge", { col: 42, box: 1.6, reveal: "fade" })}<span class="glow" aria-hidden="true"></span></div>
+  <div class="wrap meal oilm">
+    ${loupe(lang, "oil-beaker", { tip: ar ? "مرّر المؤشر لتفحص خصائص الزيت" : "Move over the oil to inspect its character" })}
+    <div class="copy"><h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "زيت الأسماك الخام" : "Crude fish oil"}</span></h3><p class="body" data-r="up" style="margin-top:16px">${ar ? "يُستخلص من سائل العصر بفصل الزيت عن الماء بالطرد المركزي، ويُورَّد في براميل." : "Recovered from the liquid stream after pressing, by centrifugal oil–water separation, and supplied in drums."}</p><p class="oil-cta"><a class="link" href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}"><span>${ar ? "اكتشف منتجاتنا" : "Discover our products"}</span> ${arr}</a></p></div>
   </div>
 </section>
 

@@ -26,6 +26,7 @@ SPEC = {
     "m-centrifuge":   ("ai/m-centrifuge.png",   [640, 1024, 1280],                        "50% 55%", "ai", None),
     "m-plant":        ("ai/m-plant.jpg",        [640, 1024, 1280],                        "30% 50%", "ai", None),   # client-supplied plant photo
     "meal-oil":       ("ai/meal-oil.png",       [640, 1024, 1536],                        "45% 58%", "ai", None),   # client-supplied
+    "oil-beaker":     ("ai/oil-beaker.png",     [480, 636],                               "55% 55%", "ai", None),   # client-supplied (from mockup)
     "two-products":   ("ai/two-products.png",   [640, 1024, 1280],                        "50% 55%", "ai", None),
     "oil-flask":      ("ai/oil-flask.png",      [480, 720, 1080, 1536],                         "50% 60%", "ai", None),
     "powder-pressed": ("ai/powder-pressed.png", [640, 1024, 1600, 2048],            "40% 55%", "ai", None),

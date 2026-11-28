@@ -118,6 +118,16 @@
   "focal": "45% 58%",
   "kind": "ai"
  },
+ "oil-beaker": {
+  "w": 636,
+  "h": 516,
+  "widths": [
+   480,
+   636
+  ],
+  "focal": "55% 55%",
+  "kind": "ai"
+ },
  "two-products": {
   "w": 1280,
   "h": 720,
