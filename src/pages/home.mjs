@@ -73,7 +73,7 @@ export const home = (lang) => {
 <section class="sec cv" id="quality" data-env="${ENV.dawn}">
   <div class="wrap qual">
     <div>${kicker(u.nav.quality)}${h2(ar ? "ما نقيسه في الجودة." : "What we measure\nin quality.")}<p class="body" data-r="up" style="margin-top:16px">${ar ? "تبدأ العناية بالجودة من اختيار الخامات البحرية، وتمتد عبر مراحل التصنيع إلى المنتج النهائي. ونهتم بمتابعة المؤشرات الكيميائية والتغذوية الأساسية لمنتجاتنا، بما يتناسب مع مواصفاتها ومتطلبات استخدامها." : "Quality care begins with the choice of marine raw materials and continues through manufacturing to the finished product. We monitor the key chemical and nutritional indicators of our products, in line with their specifications and the requirements of their use."}</p>${gauges(lang, QUAL_HOME)}<p style="margin-top:24px"><a class="link" href="${href(lang, "quality")}"><span>${ar ? "اكتشف معايير الجودة لدينا" : "Discover our quality standards"}</span> ${arr}</a></p></div>
-    ${pic(lang, "lab", { col: 48, box: 4 / 3, reveal: "curtain" })}
+    ${pic(lang, "lab-qc", { col: 48, box: 1280 / 853, reveal: "curtain" })}
   </div>
 </section>
 

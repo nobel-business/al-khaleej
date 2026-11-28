@@ -869,3 +869,5 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 @keyframes qSweep{0%{stroke-dashoffset:0;opacity:0}2%{opacity:1}15%{stroke-dashoffset:-150.8;opacity:1}17%,100%{stroke-dashoffset:-150.8;opacity:0}}
 @keyframes qPulse{0%,17%,100%{transform:scale(1)}8%{transform:scale(1.12)}}
 @media (prefers-reduced-motion:reduce){.gauge.qc.in .sw,.gauge.qc.in .qi .core{animation:none}.gauge.qc .sw{opacity:0}}
+/* homepage quality photo: show the whole client image (3:2), no side crop */
+#quality .qual .media{aspect-ratio:1280/853}
