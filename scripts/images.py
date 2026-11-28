@@ -53,6 +53,7 @@ SPEC = {
     "lab-qc":         ("ai/lab-qc.jpg",         [640, 1024, 1280],                        "50% 55%", "ai", None),   # client-supplied quality lab
     "meal-oil":       ("ai/meal-oil.png",       [640, 1024, 1536],                        "45% 58%", "ai", None),   # client-supplied
     "oil-beaker":     ("ai/oil-beaker.png",     [480, 636],                               "55% 4%", "ai", None),   # client-supplied (from mockup)
+    "pr-hero":        ("ai/pr-hero.jpg",        [640, 1024, 1600, 2560],                  "50% 55%", "ai", None),   # Products hero — fish meal, sardines and crude fish oil (from two-products, enlarged)
     "two-products":   ("ai/two-products.png",   [640, 1024, 1280],                        "50% 55%", "ai", None),
     "oil-flask":      ("ai/oil-flask.png",      [480, 720, 1080, 1536],                         "50% 60%", "ai", None),
     "powder-pressed": ("ai/powder-pressed.png", [640, 1024, 1600, 2048],            "40% 55%", "ai", None),

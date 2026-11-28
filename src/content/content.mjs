@@ -177,6 +177,7 @@ export const ALT = {
   "ab-who": { en: "A fish meal production line: a screw conveyor feeding a rotary drum dryer in a sunlit hall", ar: "خط إنتاج مسحوق الأسماك: ناقل لولبي يغذي مجففًا أسطوانيًا دوّارًا في قاعة مضيئة" },
   "ab-horizon": { en: "A cargo ship on the horizon at sunrise over a calm sea", ar: "سفينة شحن في الأفق عند شروق الشمس فوق بحر هادئ" },
   "lab-qc": { en: "A quality-control laboratory bench with spectrometers, a moisture analyser, a muffle furnace, fish meal and fish oil samples", ar: "طاولة معمل ضبط الجودة مع أجهزة تحليل طيفي ومحلل رطوبة وفرن ترميد وعينات من مسحوق السمك وزيت السمك" },
+  "pr-hero": { en: "A dish of brown fish meal, whole sardines and a flask of golden crude fish oil on a stone counter in morning light", ar: "طبق من مسحوق السمك البني وأسماك سردين كاملة ودورق من زيت السمك الخام على سطح حجري في ضوء الصباح" },
   "two-products": { en: "Whole sardines between a dish of brown fish meal and a flask of golden crude fish oil", ar: "أسماك سردين كاملة بين طبق من مسحوق السمك البني ودورق من زيت السمك الخام الذهبي" },
   "jar-62": { en: "Fish meal in a wide glass specimen jar in morning light", ar: "مسحوق سمك في وعاء عيّنات زجاجي عريض تحت ضوء الصباح" },
   "jar-66": { en: "Fish meal in a tall glass specimen jar in morning light", ar: "مسحوق سمك في وعاء عيّنات زجاجي طويل تحت ضوء الصباح" },

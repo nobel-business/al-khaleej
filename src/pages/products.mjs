@@ -10,12 +10,20 @@ export const products = (lang) => {
   const u = UI[lang], ar = lang === "ar";
   const wall = `<div class="ra-wall" aria-hidden="true"><span class="beam" style="--bx:6vw"></span><span class="beam b2" style="--bx:26vw"></span></div>`;
   // two independent sections: the hero (copy + arched window) and the specimen room (shelf, light, camera, drawer)
-  const body = `<section class="ra ra-hero hf" data-env="${ENV.paper}" aria-label="${ar ? "المنتجات" : "Products"}">
-  ${wall}
-  <div class="ra-window">${pic(lang, "hero-dawn", { eager: true, col: 46, mcol: 100, box: 1.6 })}</div>
-  <div class="ra-copy">${heroCopy(lang, { crumbs: crumb(lang, [u.nav.products]), title: ar ? "ستة منتجات بحرية،\nتحت ضوء الصباح." : "Six marine products,\nseen in first light.", size: "hero-m",
-    lede: ar ? "مسحوق سمك بدرجات بروتين تجارية 60% و62% و65% و66% و72%، بنوعين عالي الدهن ومنخفض الدهن، وزيت سمك خام، من أسماك بحرية كاملة في كفر الشيخ، مصر." : "Fish meal in 60%, 62%, 65%, 66% and 72% commercial protein grades, in high-fat and low-fat types, and crude fish oil — processed from whole marine fish in Kafr El-Sheikh, Egypt.",
-    actions: `<button type="button" class="btn primary" data-explore>${ar ? "استعرض العيّنات" : "View the specimens"} ${arr}</button><a class="btn line" href="#compare">${ar ? "قارن" : "Compare"}</a>` })}</div>
+  const body = `<section class="ab-hero pr-hero" data-env="${ENV.paper}" aria-labelledby="ab-h1">
+  <div class="ab-hero-stage">
+    <div class="ab-layer ab-sea">${pic(lang, "pr-hero", { fill: 1, mfill: 1, eager: true, priority: true })}</div>
+    <div class="ab-scrim" aria-hidden="true"></div>
+    <div class="wrap ab-hero-copy">
+      <div class="ab-card">
+        <nav class="crumbs ab-crumbs" aria-label="${ar ? "مسار التنقل" : "Breadcrumb"}">${crumb(lang, [u.nav.products])}</nav>
+        <p class="ab-hero-eye">${u.nav.products}</p>
+        <h1 class="ab-h1" id="ab-h1">${(ar ? ["ستة منتجات بحرية،", "تحت ضوء الصباح."] : ["Six marine products,", "seen in first light."]).map((l, i) => `<span class="ab-l" style="--d:${i}"><span>${l}</span></span>`).join(" ")}</h1>
+        <p class="ab-hero-p">${ar ? "مسحوق سمك بدرجات بروتين تجارية 60% و62% و65% و66% و72%، بنوعين عالي الدهن ومنخفض الدهن، وزيت سمك خام، من أسماك بحرية كاملة في كفر الشيخ، مصر." : "Fish meal in 60%, 62%, 65%, 66% and 72% commercial protein grades, in high-fat and low-fat types, and crude fish oil — processed from whole marine fish in Kafr El-Sheikh, Egypt."}</p>
+      </div>
+    </div>
+    <span class="ab-cue" aria-hidden="true"><i></i>${ar ? "مرّر للأسفل" : "Scroll"}</span>
+  </div>
 </section>
 <section class="ra ra-products" id="specimens" data-env="${ENV.paper}" aria-label="${ar ? "غرفة العيّنات" : "Specimen room"}">
   ${wall}
@@ -40,5 +48,5 @@ export const products = (lang) => {
 </section>
 <section class="bleed" data-env="${ENV.steel}">${pic(lang, "sacks", { px: 0.08, fill: 0.92, mfill: 0.62 })}<div class="card">${kicker(u.packing)}${h2(ar ? "معبّأ للتوريد\nالصناعي." : "Packed for\nindustrial supply.")}<p class="body" data-r="up">${ar ? "يُعبأ مسحوق السمك في أكياس 50 كجم، ويُعبأ زيت السمك الخام في براميل." : "Fish meal is packed in 50 kg bags; crude fish oil is packed in drums."}</p></div></section>
 ${ctaBand(lang)}`;
-  return layout(lang, { key: "products", over: true, preloadImg: preload("hero-dawn", "(max-width:980px) 100vw, 46vw"), title: ar ? "المنتجات | الخليج لصناعة الأسماك" : "Products | Alkhaleej Fish Manufacturing", desc: ar ? "مسحوق سمك 60% و62% و65% و66% و72% وزيت سمك خام." : "Fish meal 60%, 62%, 65%, 66%, 72% and crude fish oil.", body });
+  return layout(lang, { key: "products", over: true, preloadImg: preload("pr-hero", { fill: 1, mfill: 1 }), title: ar ? "المنتجات | الخليج لصناعة الأسماك" : "Products | Alkhaleej Fish Manufacturing", desc: ar ? "مسحوق سمك 60% و62% و65% و66% و72% وزيت سمك خام." : "Fish meal 60%, 62%, 65%, 66%, 72% and crude fish oil.", body });
 };
