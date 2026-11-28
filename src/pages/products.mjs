@@ -32,7 +32,7 @@ export const products = (lang) => {
   <div class="ra-space" aria-hidden="true"></div>
   <div class="ra-band">
     <span class="ra-sill" aria-hidden="true"></span>
-    <div class="ra-shelf" role="group" aria-label="${ar ? "رف العيّنات" : "Specimen shelf"}">${PRODUCTS.map((p, i) => `<button type="button" class="ra-spec" data-i="${i}" data-slug="${p.slug}" aria-controls="ra-drawer" aria-expanded="false" aria-label="${p.name[lang]} — ${ar ? "عرض التفاصيل" : "view details"}"><span class="num" aria-hidden="true">0${i + 1}</span>${specPic(lang, p, `view-transition-name:spec-${p.slug}`)}<span class="glint" aria-hidden="true"></span><span class="tint" aria-hidden="true"></span><span class="ghost" aria-hidden="true">${p.oil ? (ar ? "زيت" : "OIL") : p.grade}</span><span class="tag"><b>${p.name[lang]}</b></span></button>`).join("")}</div>
+    <div class="ra-shelf" role="group" aria-label="${ar ? "رف العيّنات" : "Specimen shelf"}">${PRODUCTS.map((p, i) => `<button type="button" class="ra-spec" data-i="${i}" data-slug="${p.slug}" aria-controls="ra-drawer" aria-expanded="false" aria-label="${p.name[lang]} — ${ar ? "عرض التفاصيل" : "view details"}"><span class="num" aria-hidden="true">0${i + 1}</span>${specPic(lang, p, `view-transition-name:spec-${p.slug}`)}<span class="glint" aria-hidden="true"></span><span class="tint" aria-hidden="true"></span><span class="tag"><b>${p.name[lang]}</b></span></button>`).join("")}</div>
     <span class="sun" aria-hidden="true"></span>
   </div>
   <aside class="ra-drawer" id="ra-drawer" aria-label="${ar ? "تفاصيل العيّنة" : "Specimen details"}" inert>
