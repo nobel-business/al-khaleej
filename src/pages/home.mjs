@@ -10,8 +10,7 @@ import { GULL } from "../components/gull.mjs";
 
 export const home = (lang) => {
   const u = UI[lang], ar = lang === "ar";
-  const rail = [["surface", ar ? "البحر" : "The sea"], ["line", ar ? "التصنيع" : "The line"], ["meal", ar ? "مسحوق السمك" : "Fish meal"], ["oil", ar ? "زيت السمك" : "Fish oil"], ["quality", u.nav.quality], ["company", ar ? "الشركة" : "Company"], ["world", u.nav.intl]];
-  const stepsJSON = JSON.stringify(STAGES.map((s, i) => ({ k: String(i + 1).padStart(2, "0") + " · " + ({ oil: SL(lang), meal: ML(lang), main: ar ? "المُدخل" : "Input", split: ar ? "نقطة الانقسام" : "Split", both: ar ? "المساران" : "Both streams" }[s.stream]), t: s.t[lang], d: s.d[lang] })));
+  const rail = [["surface", ar ? "البحر" : "The sea"], ["meal", ar ? "مسحوق السمك" : "Fish meal"], ["oil", ar ? "زيت السمك" : "Fish oil"], ["quality", u.nav.quality], ["company", ar ? "الشركة" : "Company"], ["world", u.nav.intl]];
   const body = `
 <section class="dive" id="surface" data-env="${ENV.dawn}" aria-label="${u.brand}">
   <div class="dv-stage">
@@ -31,19 +30,6 @@ export const home = (lang) => {
     </div>
     </div>
     <div class="dv-next"><div class="dv-card">${kicker(ar ? "تحت السطح" : "Beneath the surface")}<h2 class="h2">${ar ? "ثروة البحر، أساس صناعتنا." : "The sea’s wealth, the foundation of our industry."}</h2><p>${ar ? "من مياه البحر الأبيض المتوسط والبحر الأحمر والخليج العربي، نستمد خاماتنا من الأسماك البحرية الكاملة، عبر منظومة توريد متكاملة تجمع بين الصيد المباشر والمصادر البحرية المتنوعة." : "From the waters of the Mediterranean, the Red Sea and the Arabian Gulf, we source our raw material from whole marine fish, through an integrated supply system that combines direct fishing with diverse marine sources."}</p><div class="actions"><a class="link" href="${href(lang, "raw")}">${ar ? "اكتشف موادنا الخام" : "Discover our raw materials"} ${arr}</a></div></div></div>
-  </div>
-</section>
-
-<section class="theline" id="line" data-env="${ENV.steel}" aria-label="${u.nav.mfg}">
-  <div class="line-pin">
-    ${pic(lang, "steam", { fill: 1, mfill: 0.56 })}
-    <div class="line-veil" aria-hidden="true"></div>
-    <div class="line-card">
-      <div class="lc-top"><div>${kicker(u.nav.mfg)}<h2 class="h2 split-h" style="margin-top:10px"><span class="thin">${ar ? "مُدخل واحد." : "One input."}</span><span class="bold">${ar ? "مساران للإنتاج." : "Two streams."}</span></h2><p class="why">${ar ? "يفصل العصر كل دفعة إلى مسارين: مسحوق سمك غني بالبروتين وزيت سمك خام. تابع الخط وهو يُرسم مع التمرير." : "Pressing separates every batch into two products — protein-rich fish meal and crude fish oil. Follow the line as it draws with your scroll."}</p></div><div class="now" aria-live="polite"></div></div>
-      ${streamsSVG(lang, { scrub: true })}
-      <script type="application/json" id="line-steps">${stepsJSON}</script>
-      <p style="margin-top:10px"><a class="link" href="${href(lang, "mfg")}">${ar ? "ادخل إلى المصنع" : "Step inside the plant"} ${arr}</a></p>
-    </div>
   </div>
 </section>
 
