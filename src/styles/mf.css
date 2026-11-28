@@ -426,3 +426,16 @@ div.mf-node{cursor:default}
 .ab-hero .ab-card .ab-hero-eye{color:#F4B24A!important}
 @media (max-width:899px){.op-bleed .in{background:transparent!important;border:0!important}
   .op-bleed .in h1{color:#061F31!important}.op-bleed .in p{color:#0C2A40!important}.op-bleed .in .crumbs,.op-bleed .in .crumbs a{color:#183A54!important}}
+/* hero cards — clear glass (no white fill, no dark smoke, no blur): the pane only softens the photo's contrast and lifts it
+   a little, the way real glass does, so the photo stays sharp and in colour while dark type reads clearly on top */
+.ab-hero .ab-card.ab-card,.op-bleed .in{
+  -webkit-backdrop-filter:contrast(.55) brightness(1.28) saturate(1.05)!important;backdrop-filter:contrast(.55) brightness(1.28) saturate(1.05)!important;
+  background:linear-gradient(125deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,.06) 26%,rgba(255,255,255,0) 42%,rgba(255,255,255,0) 84%,rgba(255,255,255,.14) 100%)!important;
+  border:1.5px solid rgba(255,255,255,.85)!important}
+.ab-hero .ab-card .ab-h1,.op-bleed .in h1{color:#061F31!important}
+.ab-hero .ab-card .ab-hero-p,.op-bleed .in p{color:#06202F!important;font-weight:500}
+.ab-hero .ab-card .ab-crumbs,.ab-hero .ab-card .ab-crumbs a,.op-bleed .in .crumbs,.op-bleed .in .crumbs a{color:#0C2A40!important}
+.ab-hero .ab-card .ab-hero-eye{color:#7A520C!important}
+@media (max-width:899px){.op-bleed .in{background:transparent!important;border:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+.ab-hero .ab-card.ab-card,.op-bleed .in{-webkit-backdrop-filter:contrast(.4) brightness(1.42) saturate(1.1)!important;backdrop-filter:contrast(.4) brightness(1.42) saturate(1.1)!important}
+@media (max-width:899px){.op-bleed .in{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
