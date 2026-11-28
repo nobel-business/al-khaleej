@@ -4,7 +4,7 @@
 
 export const CONTACT = {
   email: "alkhaleej@nobelbusinessgroup.com",
-  phones: [ { tel: "+201096555525", label: "+20 109 655 5525" }, { tel: "+201060473790", label: "+20 106 047 3790" } ],
+  phones: [ { tel: "+201096555525", label: "+20 109 655 5525" }, { tel: "+201060473790", label: "+20 106 047 3790" }, { tel: "+966541252773", label: "+966 541 252 773" } ],
 };
 
 export const UI = {

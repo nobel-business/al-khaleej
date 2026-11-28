@@ -62,7 +62,7 @@ ${drawer}
       <div class="ft-brand"><a href="${href(lang, "home")}" aria-label="${esc(u.brand)} — ${u.home}"><img src="/assets/brand/logo-reversed.png" width="635" height="169" alt="الخليج لصناعة الأسماك" loading="lazy"></a><p>${u.footerLine.split("\n").join("<br>")}</p><span class="ft-loc"><i aria-hidden="true"></i>${u.location}</span></div>
       <div class="ft-contact">
         <a class="ft-card" href="mailto:${CONTACT.email}"><span class="ft-k">${lang === "ar" ? "البريد الإلكتروني" : "Email"}</span><span class="ft-v">${CONTACT.email}</span>${arr}</a>
-        ${CONTACT.phones.map((p) => `<a class="ft-card" href="tel:${p.tel}"><span class="ft-k">${lang === "ar" ? "الهاتف" : "Phone"}</span><span class="ft-v" dir="ltr">${p.label}</span>${arr}</a>`).join("")}
+        <div class="ft-card ft-phones"><span class="ft-k">${lang === "ar" ? "الهاتف" : "Phone"}</span><span class="ft-v ft-nums">${CONTACT.phones.map((p) => `<a href="tel:${p.tel}" dir="ltr">${p.label}</a>`).join("")}</span><svg class="ft-ic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 3.5h2.6l1.4 4-2 1.3a12 12 0 0 0 6.6 6.6l1.3-2 4 1.4v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></div>
       </div>
       <nav class="ft-nav" aria-label="${u.brand}">
         <div class="ft-links"><span>${lang === "ar" ? "استكشف الخليج" : "Explore Alkhaleej"}</span>${[["about", u.nav.about], ["raw", u.nav.raw], ["mfg", lang === "ar" ? "عمليات التصنيع" : "Manufacturing processes"], ["quality", u.nav.quality], ["intl", u.nav.intl]].map(([k, l]) => `<a href="${href(lang, k)}"${cur(k)}>${l}</a>`).join("")}</div>
