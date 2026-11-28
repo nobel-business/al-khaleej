@@ -290,3 +290,26 @@ div.mf-node{cursor:default}
   .ra-products .ra-band::before{top:30px}
 }
 @media (max-width:980px){.ra-products .ra-band{margin-top:32px!important}}
+
+/* Products hero — the full composition, clear: no zoom, a light haze only at the very bottom */
+.pr-hero .ab-sea .media img{object-position:50% 42%;animation:none}
+[dir=rtl] .pr-hero .ab-sea .media img{transform:none!important}
+[dir=ltr] .pr-hero .ab-sea .media img{transform:scaleX(-1)!important}
+.pr-hero .ab-layer::after{background:linear-gradient(0deg,rgba(247,242,234,.32) 0%,rgba(247,242,234,0) 22%)!important}
+
+/* each specimen with its own identity: accent colour, grade numeral on the wall, tinted backdrop and light, coloured plate */
+.ra-spec[data-i="0"]{--sc:#B5763A}.ra-spec[data-i="1"]{--sc:#8E5A2B}.ra-spec[data-i="2"]{--sc:#2F6FA8}
+.ra-spec[data-i="3"]{--sc:#4F8A5B}.ra-spec[data-i="4"]{--sc:#0C3048}.ra-spec[data-i="5"]{--sc:#D99A2B}
+.ra-products .ra-spec .tint{position:absolute;z-index:1;inset:0 9%;pointer-events:none;mix-blend-mode:multiply;opacity:.5;transition:opacity .6s var(--out);
+  background:radial-gradient(70% 60% at 50% 22%,color-mix(in srgb,var(--sc) 30%,transparent),transparent 72%),linear-gradient(180deg,color-mix(in srgb,var(--sc) 14%,transparent),transparent 55%)}
+.ra-products .ra-spec .ghost{position:absolute;z-index:1;inset-inline:0;top:6%;text-align:center;pointer-events:none;mix-blend-mode:multiply;
+  font-size:clamp(40px,calc(var(--jh,300px) * .3),150px);font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--sc);opacity:.2;transition:opacity .6s var(--out),transform .8s var(--out)}
+.ra-products .ra-spec:nth-child(6) .ghost{font-size:clamp(30px,calc(var(--jh,300px) * .2),104px);top:9%}
+.ra-products .ra-spec.lit .ghost,.ra-products .ra-spec:hover .ghost,.ra-products .ra-spec:focus-visible .ghost{opacity:.34;transform:translateY(-4px)}
+.ra-products .ra-spec.lit .tint,.ra-products .ra-spec:hover .tint{opacity:.75}
+.ra-products .ra-spec::before{background:radial-gradient(58% 52% at 50% 38%,color-mix(in srgb,var(--sc) 30%,#FFF1D4),rgba(255,236,200,.22) 55%,transparent 75%)}
+.ra-products .ra-spec::after{background:radial-gradient(closest-side,color-mix(in srgb,var(--sc) 55%,rgba(60,40,20,.5)),transparent)}
+.ra-products .ra-spec .tag b{border-top:3px solid var(--sc);border-color:var(--sc) color-mix(in srgb,var(--sc) 30%,transparent) color-mix(in srgb,var(--sc) 30%,transparent)}
+.ra-products .ra-spec .num{display:inline-grid;place-items:center;min-width:28px;height:22px;padding:0 6px;border-radius:11px;background:var(--sc);color:#fff;opacity:.9;letter-spacing:.06em}
+.ra-products .ra-spec.lit .tag b,.ra-products .ra-spec:hover .tag b{border-color:var(--sc)}
+@media (max-width:980px){.ra-products .ra-spec .ghost{font-size:clamp(40px,16vw,90px)}}

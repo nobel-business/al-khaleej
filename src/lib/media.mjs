@@ -44,5 +44,5 @@ export function sizesFor(name, o) { const m = M[name], a = m.w / m.h; const mq =
 
 // ---------- Direction A specimen images (docs/phase-02/assets/fl/spec-*: the approved shelf photographs) ----------
 export const SPEC = { "fish-meal-60": ["spec-60", [360, 600, 604]], "fish-meal-62": ["spec-62", [360, 540]], "fish-meal-66": ["spec-66", [360, 540]], "fish-meal-65": ["spec-65", [360, 600, 754]], "fish-meal-72": ["spec-72", [360, 535]], "crude-fish-oil": ["spec-oil", [360, 600, 610]] };
-export const specPic = (lang, p, style = "") => { const [n, ws] = SPEC[p.slug], set = (e) => ws.map((w) => `/assets/spec/${n}-${w}.${e} ${w}w`).join(", "), sz = "(max-width:980px) 46vw, 27vh";
+export const specPic = (lang, p, style = "") => { const [n, ws] = SPEC[p.slug], set = (e) => ws.map((w) => `/assets/spec/${n}-${w}.${e} ${w}w`).join(", "), sz = "(max-width:980px) 60vw, 20vw";
   return `<figure class="media"${style ? ` style="${style}"` : ""}><picture><source type="image/avif" srcset="${set("avif")}" sizes="${sz}"><source type="image/webp" srcset="${set("webp")}" sizes="${sz}"><img src="/assets/spec/${n}-360.jpg" srcset="${set("jpg")}" sizes="${sz}" width="600" height="800" alt="${esc(L(ALT[p.img], lang) || p.name[lang])} (${UI[lang].illus})" decoding="async"></picture></figure>`; };
