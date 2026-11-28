@@ -256,3 +256,8 @@
 .rw-vr-key li{display:flex;align-items:center;gap:8px}
 .rw-vr-key i{width:12px;height:6px;border-radius:3px}
 @media (prefers-reduced-motion:reduce){.v-ty .v-seg{transform:none!important}}
+
+/* «أسماك بحرية كاملة، بقيمتها الطبيعية.» and «العناية بالخامات تبدأ قبل التصنيع.» stay on one line (size follows the column) */
+[dir=rtl] #rw-mat-h,[dir=rtl] #rw-src-h{white-space:nowrap;font-size:clamp(22px,2.5vw,39px)}
+[dir=rtl] #rw-mat-h .ln,[dir=rtl] #rw-src-h .ln{display:inline}
+@media (max-width:899px){[dir=rtl] #rw-mat-h,[dir=rtl] #rw-src-h{font-size:clamp(17px,5vw,30px)}}
