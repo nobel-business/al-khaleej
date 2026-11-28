@@ -836,3 +836,6 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 .dial .hub{font-size:13px;letter-spacing:.06em}
 [dir=rtl] #oil .oil-dial .readout .val{justify-content:flex-start}
 @media (max-width:899px){#oil .oil-dial .readout .val{justify-content:center!important}}
+/* shared title centred vertically on its paragraph */
+@media (min-width:900px){.meal.pv .pv-t,.meal.pv .pv-p{align-self:center!important}}
+@media (min-width:900px){.meal.pv .pv-p{position:relative}.meal.pv .pv-p .body::before{position:absolute;top:-20px;margin:0}.meal.pv .pv-t,.meal.pv .pv-t .split-h{margin:0!important;padding:0!important}}
