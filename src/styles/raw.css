@@ -261,3 +261,7 @@
 [dir=rtl] #rw-mat-h,[dir=rtl] #rw-src-h{white-space:nowrap;font-size:clamp(22px,2.5vw,39px)}
 [dir=rtl] #rw-mat-h .ln,[dir=rtl] #rw-src-h .ln{display:inline}
 @media (max-width:899px){[dir=rtl] #rw-mat-h,[dir=rtl] #rw-src-h{font-size:clamp(17px,5vw,30px)}}
+
+/* split heads («لكل نوع خصائصه…», «العناية بالخامات…»): heading centred against its paragraphs */
+.rw-head-split,.rw-src-head{align-items:center}
+.rw-head-split .ab-h2,.rw-src-head .ab-h2{margin-bottom:0}
