@@ -21,6 +21,7 @@ const C = {
       "تأسس الخليج لصناعة الأسماك عام 2025 في محافظة كفر الشيخ بجمهورية مصر العربية، كمصنع متخصص في إنتاج مسحوق الأسماك والزيوت البحرية، مستندًا إلى ما تتمتع به المنطقة من موارد بحرية متنوعة وموقع يرتبط بقطاع الصيد والصناعات السمكية.",
       "نعتمد في إنتاجنا على الأسماك البحرية الكاملة، من خلال منظومة صناعية تبدأ من اختيار الخامات واستقبالها، مرورًا بمراحل المعالجة والتصنيع والفصل والتجفيف، وصولًا إلى المنتجات النهائية بمواصفاتها المختلفة.",
       "ويتمثل توجهنا في تقديم مكونات بحرية ذات قيمة تغذوية وصناعية، تخدم صناعة الأعلاف والتغذية والصناعات المتخصصة، وتلبي احتياجات العملاء في الأسواق المحلية والدولية."],
+      factsH: "المعلومات الأساسية",
       facts: [["عام التأسيس", "2025"], ["الموقع", "كفر الشيخ، جمهورية مصر العربية"], ["القطاع", "الصناعات البحرية"], ["التخصص", "إنتاج البروتين والزيوت البحرية"], ["المنتجات", "مسحوق الأسماك وزيت الأسماك الخام"], ["الأسواق المستهدفة", "المحلية والإقليمية والدولية"]] },
     vm: { eye: "توجهنا المؤسسي", h: "رؤية للمستقبل، ورسالة تقود أعمالنا.", items: [
       ["رؤيتنا", "أن نرسخ مكانة الخليج كإحدى الشركات الصناعية المصرية الرائدة في مجال البروتين والزيوت البحرية، وأن نطور حضورًا تنافسيًا ومستدامًا في الأسواق الإقليمية والدولية."],
@@ -46,6 +47,7 @@ const C = {
       "Alkhaleej Fish Manufacturing was established in 2025 in Kafr El-Sheikh Governorate, Arab Republic of Egypt, as a plant specialised in producing fish meal and marine oils, drawing on the region’s diverse marine resources and its ties to the fishing and fish-processing sector.",
       "We produce from whole marine fish, through an industrial system that begins with selecting and receiving the raw material, continues through processing, manufacturing, separation and drying, and ends with finished products in their different specifications.",
       "Our direction is to supply marine ingredients of nutritional and industrial value, serving the feed, nutrition and specialised industries and meeting the needs of customers in local and international markets."],
+      factsH: "Key facts",
       facts: [["Established", "2025"], ["Location", "Kafr El-Sheikh, Arab Republic of Egypt"], ["Sector", "Marine industries"], ["Specialism", "Marine protein and oils"], ["Products", "Fish meal and crude fish oil"], ["Target markets", "Local, regional and international"]] },
     vm: { eye: "Our direction", h: "A vision for the future, a mission that guides our work.", items: [
       ["Our vision", "To establish Alkhaleej as one of Egypt’s leading industrial companies in marine protein and oils, and to build a competitive, sustainable presence in regional and international markets."],
@@ -77,6 +79,16 @@ const VICON = [
   '<rect x="3.5" y="8.5" width="10" height="7" rx="3.5"/><rect x="10.5" y="8.5" width="10" height="7" rx="3.5"/>',                              // partnership — linked
 ];
 
+/* line icons for the six key facts */
+const FICON = [
+  '<rect x="4" y="5.5" width="16" height="14" rx="3"/><path d="M4 10h16M9 3.5v4M15 3.5v4"/>',                                   // established — calendar
+  '<path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/>',            // location — pin
+  '<path d="M3 9.5q2.25-2.5 4.5 0t4.5 0 4.5 0 4.5 0M3 14.5q2.25-2.5 4.5 0t4.5 0 4.5 0 4.5 0"/>',                                // sector — sea
+  '<path d="M12 3.5c3.3 4.3 5.4 7.1 5.4 9.7a5.4 5.4 0 0 1-10.8 0c0-2.6 2.1-5.4 5.4-9.7z"/><path d="M9.6 13.6a2.6 2.6 0 0 0 2.4 2.4"/>', // specialism — oil drop
+  '<path d="M6 7.5h12l-1.2 12.5H7.2z"/><path d="M8.6 7.5V6a3.4 3.4 0 0 1 6.8 0v1.5"/>',                                          // products — sack
+  '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.9 5.2 3.9 8.5s-1.3 6.1-3.9 8.5c-2.6-2.4-3.9-5.2-3.9-8.5s1.3-6.1 3.9-8.5z"/>', // markets — globe
+];
+
 export const about = (lang) => {
   const u = UI[lang], ar = lang === "ar", c = C[lang];
   const eye = (t) => `<p class="ab-eye" data-r="up">${t}</p>`;
@@ -87,8 +99,6 @@ export const about = (lang) => {
 <section class="ab-hero" data-env="#F7F2EA" aria-labelledby="ab-h1">
   <div class="ab-hero-stage">
     <div class="ab-layer ab-sea">${pic(lang, "ab-sea", { fill: 1, mfill: 1, eager: true, priority: true })}</div>
-    <div class="ab-layer ab-ind" aria-hidden="true">${pic(lang, "ab-ind", { fill: 1, mfill: 1 })}</div>
-    <span class="ab-tide" aria-hidden="true"></span>
     <div class="ab-scrim" aria-hidden="true"></div>
     <div class="wrap ab-hero-copy">
       <div class="ab-card">
@@ -108,7 +118,14 @@ export const about = (lang) => {
       <div class="ab-prose" data-r="up">${c.who.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
     <div class="ab-who-media">${pic(lang, "ab-who", { col: 46, mcol: 100, box: 0.82, reveal: "curtain" })}</div>
   </div>
-  <div class="wrap"><dl class="ab-facts">${c.who.facts.map(([k, v], i) => `<div class="ab-fact" data-r="up" style="transition-delay:${i * 80}ms"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></div>
+</section>
+
+<section class="ab-band" data-env="#F7F2EA" aria-labelledby="ab-band-h">
+  <div class="ab-band-bg" aria-hidden="true">${pic(lang, "ab-ind", { fill: 1, mfill: 1 })}</div>
+  <div class="wrap ab-band-in">
+    <h2 class="ab-band-h" id="ab-band-h" data-r="up">${c.who.factsH}</h2>
+    <dl class="ab-tiles">${c.who.facts.map(([k, v], i) => `<div class="ab-tile${i === 0 ? " is-year" : ""}" data-r="up" style="transition-delay:${(i % 3) * 110 + Math.floor(i / 3) * 70}ms"><dt><span class="ab-tile-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${FICON[i]}</svg></span>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+  </div>
 </section>
 
 <section class="ab-vm" data-env="#FBF8F3" aria-labelledby="ab-vm-h">
@@ -128,13 +145,15 @@ export const about = (lang) => {
   </div>
 </section>
 
-<section class="ab-fut" data-env="#F7F2EA" aria-labelledby="ab-fut-h">
-  <div class="ab-fut-media">${pic(lang, "ab-horizon", { fill: 0.86, mfill: 0.6 })}
-    <div class="wrap ab-fut-title">${`<p class="ab-eye ab-eye-light">${c.fut.eye}</p>`}<h2 class="ab-h2 ab-h2-light" id="ab-fut-h" data-lines>${lines(c.fut.h)}</h2></div>
-  </div>
-  <div class="wrap ab-fut-text">
-    <p data-r="up">${c.fut.p[0]}</p><p data-r="up">${c.fut.p[1]}</p>
-    <blockquote class="ab-quote" data-r="up"><p>${c.fut.p[2]}</p></blockquote>
+<section class="ab-fut" data-env="#F7F2EA" data-a="0" aria-labelledby="ab-fut-h">
+  <div class="ab-fut-stage">
+    <div class="ab-fut-bg" aria-hidden="true">${pic(lang, "ab-horizon", { fill: 1, mfill: 1 })}</div>
+    <span class="ab-fut-sun" aria-hidden="true"></span>
+    <div class="wrap ab-fut-head"><p class="ab-eye" data-r="up">${c.fut.eye}</p><h2 class="ab-h2 ab-h2-xl" id="ab-fut-h" data-lines>${lines(c.fut.h)}</h2></div>
+    <div class="wrap ab-fut-deck">
+      <ol class="ab-fut-rail" aria-hidden="true">${c.fut.p.map((_, i) => `<li data-i="${i}"><i></i><span>0${i + 1}</span></li>`).join("")}</ol>
+      <div class="ab-fut-cards">${c.fut.p.map((t, i) => `<article class="ab-fut-card${i === 2 ? " is-quote" : ""}" data-i="${i}"><span class="ab-num">0${i + 1}</span><p>${t}</p></article>`).join("")}</div>
+    </div>
   </div>
 </section>
 

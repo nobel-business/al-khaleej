@@ -346,26 +346,15 @@
       mx.style.setProperty("--e", e.toFixed(4)); mx.style.setProperty("--x", x.toFixed(4)); mx.style.setProperty("--p", p.toFixed(4)); });
   });
 
-  /* ================= About: sea → industry hero · story chapters · philosophy band + chain · four doors · horizon ================= */
+  /* ================= About: hero settle/exit · key-facts band · pinned horizon (three statements) · invitation ================= */
   // Scroll-linked (so every effect plays in reverse on the way up); scenes run only while near the viewport.
   (() => {
     const hero = $(".ab-hero"); if (!hero) return;
-    if (!RM) scene(hero, (p) => { const q = clamp((p - 0.1) / 0.55), x = clamp((p - 0.8) / 0.2);
-      hero.style.setProperty("--p", p.toFixed(4)); hero.style.setProperty("--q", q.toFixed(4)); hero.style.setProperty("--x", x.toFixed(4)); });
-    const story = $(".ab-story");
-    if (story) { const chaps = $$(".ab-chap", story); story.dataset.a = "0";
-      scene(story, () => { const mid = innerHeight * 0.58; let a = 0; chaps.forEach((c, i) => { if (c.getBoundingClientRect().top < mid) a = i; }); if (story.dataset.a !== String(a)) story.dataset.a = String(a); }); }
-    const band = $(".ab-phil-band");
-    if (band && !RM) scene(band, (p) => { band.style.setProperty("--e", clamp(p / 0.45).toFixed(4)); band.style.setProperty("--pp", p.toFixed(4)); });
-    const chain = $(".ab-chain");
-    if (chain) { const items = $$("li", chain);
-      scene(chain, (p) => { const c = RM ? 1 : clamp((p - 0.18) / 0.42); chain.style.setProperty("--c", c.toFixed(4)); items.forEach((li, i) => li.classList.toggle("on", c > 0.001 && c >= i / (items.length - 1) - 0.001)); }); }
-    const row = $(".ab-pil-row");
-    if (row) { const its = $$(".ab-pil-item", row), wide = matchMedia("(min-width:900px)"), on = (el) => its.forEach((x) => x.classList.toggle("on", x === el));
-      its.forEach((it) => { if (FINE) it.addEventListener("pointerenter", () => wide.matches && on(it)); it.addEventListener("focusin", () => on(it));
-        it.addEventListener("click", (e) => { if (wide.matches && !it.classList.contains("on")) { e.preventDefault(); on(it); } }); }); }
-    const fut = $(".ab-fut-media");
-    if (fut && !RM) scene(fut, (p) => fut.style.setProperty("--f", clamp(p / 0.5).toFixed(4)));
+    if (!RM) scene(hero, (p) => { const x = clamp((p - 0.5) / 0.42); hero.style.setProperty("--p", p.toFixed(4)); hero.style.setProperty("--x", x.toFixed(4)); });
+    const band = $(".ab-band"); if (band && !RM) scene(band, (p) => band.style.setProperty("--b", p.toFixed(4)));
+    const fut = $(".ab-fut");
+    if (fut) scene(fut, (p) => { const a = RM ? 2 : p < 0.36 ? 0 : p < 0.7 ? 1 : 2; if (fut.dataset.a !== String(a)) fut.dataset.a = String(a);
+      fut.style.setProperty("--f", p.toFixed(4)); fut.style.setProperty("--fr", (RM ? 1 : clamp((p - 0.02) / 0.72)).toFixed(4)); });
     const cta = $(".ab-cta");
     if (cta) new IntersectionObserver((es) => es.forEach((e) => cta.classList.toggle("in-view", e.isIntersecting)), { threshold: 0.3 }).observe(cta);
   })();
