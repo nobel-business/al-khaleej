@@ -36,8 +36,8 @@ export const home = (lang) => {
 <section class="sec cv" id="meal" data-env="${ENV.sand}">
   <div class="wrap meal">
     ${loupe(lang, "powder-pressed")}
-    <div>${kicker(u.fishmeal)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "مسحوق فائق النعومة." : "Ultra-fine."}</span><span class="bold">${ar ? "بخمس درجات." : "In five grades."}</span></h2>
-    <p class="body" data-r="up" style="margin-top:16px">${ar ? "مسحوق السمك منتج جاف ومتجانس، بدرجات بروتين تجارية 60% و62% و65% و66% و72%، بنوعين عالي الدهن ومنخفض الدهن، ويُعبأ في أكياس 50 كجم. أدِر المؤشر لاختيار الدرجة." : "Fish meal is a dry, homogeneous powder in 60%, 62%, 65%, 66% and 72% commercial protein grades, in high-fat and low-fat types, packed in 50 kg bags. Turn the instrument to choose a grade."}</p>
+    <div>${kicker(u.fishmeal)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "بروتين بحري" : "High-quality"}</span> <span class="bold">${ar ? "عالي الجودة." : "marine protein."}</span></h2>
+    <p class="body" data-r="up" style="margin-top:16px">${ar ? "ننتج مسحوق الأسماك من أسماك بحرية كاملة، باعتباره مصدرًا طبيعيًا للبروتين الحيواني والأحماض الأمينية الأساسية والعناصر الغذائية." : "We produce fish meal from whole marine fish, as a natural source of animal protein, essential amino acids and nutrients."}</p><p class="body" data-r="up" style="margin-top:12px">${ar ? "يتوفر مسحوق الأسماك بنسب مختلفة من البروتين: 60%، 62%، 65%، 66% و72%، وتُنتج كل درجة بمواصفتين مختلفتين لمحتوى الدهون: عالي الدهن ومنخفض الدهن، لتلبية مختلف المتطلبات التغذوية وتركيبات أعلاف الاستزراع المائي والإنتاج الحيواني." : "Fish meal is available in protein levels of 60%, 62%, 65%, 66% and 72%, and every grade is produced in two fat specifications, high-fat and low-fat, to meet different nutritional requirements and aquaculture and livestock feed formulations."}</p>
     ${dialBlock(lang)}</div>
   </div>
 </section>
