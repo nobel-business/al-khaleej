@@ -35,3 +35,24 @@ export function dialBlock(lang, start = 2, fixed = null) {
   <div class="grades" role="group" aria-label="${ar ? "الدرجات" : "Grades"}">${G.map((g) => `<button type="button" aria-pressed="false">${g.g}%</button>`).join("")}</div>
   <p style="margin-top:18px">${fixed ? `<a class="link" href="${fixed.url}"><span>${fixed.label}</span> ${arr}</a>` : `<a class="link" data-grade-link href="${G[start].url}"><span>${G[start].cta}</span> ${arr}</a>`}</p></div></div>`;
 }
+
+/* crude fish oil dial — same component as the protein dial. Only values the client has supplied are shown;
+   the others read "published after certified analysis" until verified figures arrive. */
+export function oilDial(lang, url) {
+  const ar = lang === "ar", T = (e, a) => (ar ? a : e);
+  const pend = T("Published after certified analysis", "تُعلن القيمة بعد التحليل المعتمد");
+  const items = [
+    { chip: "FFA", g: 5, pre: "≤", title: T("Free fatty acids (FFA)", "الأحماض الدهنية الحرة (FFA)"), name: T("Standard grade", "المعيار القياسي") },
+    { chip: "PV", title: T("Peroxide value (PV)", "رقم البيروكسيد (PV)"), name: pend },
+    { chip: "p-AV", title: T("Anisidine value (p-AV)", "رقم الأنيسيدين (p-AV)"), name: pend },
+    { chip: "TOTOX", title: T("Total oxidation (TOTOX)", "قيمة الأكسدة الكلية (TOTOX)"), name: pend },
+    { chip: "MI", title: T("Moisture & impurities (MI)", "الرطوبة والشوائب (MI)"), name: pend },
+    { chip: "EPA+DHA", title: "EPA + DHA", name: pend },
+  ];
+  const cfg = { lo: 0, hi: 15, major: 5, hub: true, ltr: true, items };
+  return `<div class="dial-wrap oil-dial" data-start="0"><script type="application/json">${JSON.stringify(cfg)}</script>
+  <div class="dial" role="slider" tabindex="0" aria-label="${T("Crude fish oil specification", "مواصفات زيت الأسماك الخام")}" aria-valuemin="0" aria-valuemax="15" aria-valuenow="5"><svg viewBox="0 0 240 240" aria-hidden="true"></svg></div>
+  <div class="readout" aria-live="polite"><div class="mono">${items[0].title}</div><div class="val" dir="ltr">≤5<small>%</small></div><div class="nm">${items[0].name}</div>
+  <div class="grades" role="group" aria-label="${T("Specification", "المواصفات")}">${items.map((g) => `<button type="button" aria-pressed="false">${g.chip}</button>`).join("")}</div>
+  <p style="margin-top:18px"><a class="link" href="${url}"><span>${T("Discover our products", "اكتشف منتجاتنا")}</span> ${arr}</a></p></div></div>`;
+}

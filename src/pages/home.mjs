@@ -4,7 +4,7 @@ import { href, prodHref } from "../lib/routes.mjs";
 import { M, pic, preload, imgUrl } from "../lib/media.mjs";
 import { layout } from "../layouts/layout.mjs";
 import { kicker, h2, ENV, SL, ctaBand, ML } from "../components/blocks.mjs";
-import { streamsSVG, gauges, loupe, dialBlock } from "../components/diagrams.mjs";
+import { streamsSVG, gauges, loupe, dialBlock, oilDial } from "../components/diagrams.mjs";
 import { orbit } from "../components/orbit.mjs";
 import { GULL } from "../components/gull.mjs";
 
@@ -55,7 +55,8 @@ export const home = (lang) => {
 <section class="sec cv" id="oil" data-env="${ENV.amber}">
   <div class="wrap meal oilm">
     ${loupe(lang, "oil-beaker", { tip: ar ? "مرّر المؤشر لتفحص خصائص الزيت" : "Move over the oil to inspect its character" })}
-    <div class="copy"><h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "زيت الأسماك الخام" : "Crude fish oil"}</span></h3><p class="body" data-r="up" style="margin-top:16px">${ar ? "يُستخلص من سائل العصر بفصل الزيت عن الماء بالطرد المركزي، ويُورَّد في براميل." : "Recovered from the liquid stream after pressing, by centrifugal oil–water separation, and supplied in drums."}</p><p class="oil-cta"><a class="link" href="${prodHref(lang, PRODUCTS.find((p) => p.oil))}"><span>${ar ? "اكتشف منتجاتنا" : "Discover our products"}</span> ${arr}</a></p></div>
+    <div class="copy"><h3 class="h2 split-h pv-sub"><span class="thin">${ar ? "زيت الأسماك الخام" : "Crude fish oil"}</span></h3>
+    ${oilDial(lang, prodHref(lang, PRODUCTS.find((p) => p.oil)))}</div>
   </div>
 </section>
 

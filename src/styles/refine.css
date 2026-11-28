@@ -801,3 +801,25 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 /* both product photos share one height */
 @media (min-width:900px){#meal .loupe,#oil .meal.oilm .loupe{min-height:460px}}
 @media (min-width:900px) and (max-width:1279px){#meal .loupe,#oil .meal.oilm .loupe{min-height:560px}}
+
+/* crude fish oil dial — same look as the protein dial */
+.dial .hub{fill:var(--navy,#0C3048);font:700 15px var(--font);letter-spacing:.04em}
+.oil-dial .readout .val{white-space:nowrap}
+.oil-dial .readout .val.pending{color:var(--ink-3)}
+.oil-dial .readout .sub{font-size:12px;color:var(--ink-3);margin-top:2px;direction:ltr}
+.oil-dial .readout .sub:empty{display:none}
+.oil-dial .grades button{padding:0 14px;letter-spacing:.02em}
+.oil-dial .dial-note{margin-top:12px;font-size:13px;color:var(--ink-3)}
+#oil .meal.oilm .dial-wrap{margin-top:20px}
+#oil .meal.oilm .copy{justify-content:center}
+@media (min-width:900px) and (max-width:1279px){#oil .dial-wrap{grid-template-columns:1fr;justify-items:start;gap:14px}#oil .dial-wrap .dial{width:min(220px,100%)}}
+/* oil dial: identical structure to the protein dial; six chips wrap inside the reading column */
+@media (min-width:1280px){#oil .oil-dial{grid-template-columns:auto minmax(0,1fr)}}
+#oil .oil-dial .grades{gap:6px}
+#oil .oil-dial .grades button{padding:0 12px;font-size:12.5px}
+#oil .meal.oilm>*,#oil .oil-dial>*{min-width:0}
+#oil .oil-dial .grades{flex-wrap:wrap!important;max-width:100%}
+#oil .oil-dial .grades{display:grid!important;grid-template-columns:repeat(3,max-content);gap:8px!important;justify-content:start}
+#oil .oil-dial .grades button{min-width:68px;flex:none;white-space:nowrap}
+@media (max-width:899px){#oil .oil-dial .grades{justify-content:center}}
+@media (min-width:1280px) and (max-width:1439px){#oil .oil-dial .grades button{min-width:0;padding:0 10px;font-size:12px}#oil .oil-dial .grades{gap:6px!important}}
