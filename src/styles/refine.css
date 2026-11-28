@@ -768,3 +768,21 @@ body{transition:background-color .9s var(--out)}
   #meal + #oil{padding-top:44px}
   #oil .oilx{row-gap:18px}
 }
+
+/* =====================================================================
+   HOMEPAGE — plant feature scroll choreography (scroll-linked, so it plays in reverse on the way up)
+   --e 0→1 entering · --p 0→1 across the viewport · --x 0→1 leaving
+   ===================================================================== */
+html:not(.js-off) .mfx .mfx-img{clip-path:inset(calc((1 - var(--e,1)) * 9%) calc((1 - var(--e,1)) * 7%) round calc((1 - var(--e,1)) * 56px));will-change:clip-path}
+html:not(.js-off) .mfx .mfx-img img{transform:translate3d(0,calc((var(--p,.5) - .5) * -64px),0) scale(calc(1.14 - var(--e,1) * .14 + var(--x,0) * .07))!important;
+  filter:brightness(calc(1 - var(--x,0) * .28)) saturate(calc(1 - var(--x,0) * .2));will-change:transform}
+html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x,0) * 1.1))!important;
+  transform:translate3d(0,calc((1 - var(--e,1)) * 56px - var(--x,0) * 64px),0)!important;transition:none}
+@media (max-width:899px){
+  html:not(.js-off) .mfx .mfx-img{clip-path:inset(calc((1 - var(--e,1)) * 6%) calc((1 - var(--e,1)) * 5%) round calc((1 - var(--e,1)) * 28px))}
+  html:not(.js-off) .mfx .mfx-img img{transform:translate3d(0,calc((var(--p,.5) - .5) * -28px),0) scale(calc(1.08 - var(--e,1) * .08))!important;filter:none}
+  html:not(.js-off) .mfx-card{opacity:1!important;transform:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .mfx .mfx-img{clip-path:none!important}.mfx .mfx-img img{transform:none!important;filter:none!important}.mfx-card{opacity:1!important;transform:none!important}
+}

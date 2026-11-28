@@ -340,6 +340,12 @@
   });
 
 
+  /* ================= homepage plant feature: scroll-linked opening, parallax, exit (reverses on scroll up) ================= */
+  $$(".mfx").forEach((mx) => { if (RM) return;
+    scene(mx, (p) => { const e = clamp(p / 0.42), x = clamp((p - 0.68) / 0.32);
+      mx.style.setProperty("--e", e.toFixed(4)); mx.style.setProperty("--x", x.toFixed(4)); mx.style.setProperty("--p", p.toFixed(4)); });
+  });
+
   /* ================= homepage hero copy mirrors the ship ================= */
   // The ship (image px box 2140,420 1340×1220 in the 3840×2160 hero photo, mirrored in Arabic) is located through
   // object-fit:cover exactly as the scene does; the copy block is centred on the ship's mirror point, vertically on
