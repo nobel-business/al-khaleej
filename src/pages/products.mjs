@@ -18,7 +18,7 @@ export const products = (lang) => {
       <div class="ab-card">
         <nav class="crumbs ab-crumbs" aria-label="${ar ? "مسار التنقل" : "Breadcrumb"}">${crumb(lang, [u.nav.products])}</nav>
         <p class="ab-hero-eye">${u.nav.products}</p>
-        <h1 class="ab-h1" id="ab-h1">${(ar ? ["ستة منتجات بحرية،", "تحت ضوء الصباح."] : ["Six marine products,", "seen in first light."]).map((l, i) => `<span class="ab-l" style="--d:${i}"><span>${l}</span></span>`).join(" ")}</h1>
+        <h1 class="ab-h1" id="ab-h1">${(ar ? ["قيمة البحر", "في منتجاتنا."] : ["The value of the sea", "in our products."]).map((l, i) => `<span class="ab-l" style="--d:${i}"><span>${l}</span></span>`).join(" ")}</h1>
         <p class="ab-hero-p">${ar ? "مسحوق سمك بدرجات بروتين تجارية 60% و62% و65% و66% و72%، بنوعين عالي الدهن ومنخفض الدهن، وزيت سمك خام، من أسماك بحرية كاملة في كفر الشيخ، مصر." : "Fish meal in 60%, 62%, 65%, 66% and 72% commercial protein grades, in high-fat and low-fat types, and crude fish oil — processed from whole marine fish in Kafr El-Sheikh, Egypt."}</p>
       </div>
     </div>
