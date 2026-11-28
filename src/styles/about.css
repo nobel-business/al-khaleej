@@ -306,3 +306,25 @@
   .ab-tile dd{font-size:15px;line-height:1.45}
   .ab-tile.is-year dd{font-size:38px}
 }
+
+/* =====================================================================
+   VISION · MISSION · AMBITION — fish stay on the right; balanced size; exact vertical middle of the three items
+   ===================================================================== */
+@media (min-width:900px){
+  .ab-vm-grid{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(36px,4.4vw,80px);align-items:center}
+  .ab-vm-orbit{align-self:center;display:flex;justify-content:center;align-items:center}
+  .ab-vm-orbit .orbit{width:min(100%,460px);max-width:460px;margin:0}
+}
+@media (min-width:900px) and (max-width:1180px){.ab-vm-orbit .orbit{max-width:380px}}
+@media (max-width:899px){
+  .ab-vm-grid{gap:8px}
+  .ab-vm-orbit .orbit{max-width:270px;margin-inline:auto}
+}
+
+/* =====================================================================
+   LOOKING AHEAD — no fading: the headline is static and the sky is shown clear (only a whisper of light at the top)
+   ===================================================================== */
+.ab-fut-bg::after{background:linear-gradient(180deg,rgba(247,242,234,.32) 0%,rgba(247,242,234,0) 26%,rgba(247,242,234,0) 70%,rgba(247,242,234,.5) 100%)}
+.ab-fut-title{text-shadow:0 1px 18px rgba(255,255,255,.55)}
+.ab-fut-head .ab-eye{text-shadow:0 0 12px rgba(255,255,255,.7)}
+.ab-fut-title{font-weight:700}

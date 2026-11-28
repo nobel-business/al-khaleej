@@ -149,7 +149,7 @@ export const about = (lang) => {
   <div class="ab-fut-stage">
     <div class="ab-fut-bg" aria-hidden="true">${pic(lang, "ab-horizon", { fill: 1, mfill: 1 })}</div>
     <span class="ab-fut-sun" aria-hidden="true"></span>
-    <div class="wrap ab-fut-head"><p class="ab-eye" data-r="up">${c.fut.eye}</p><h2 class="ab-h2 ab-h2-xl" id="ab-fut-h" data-lines>${lines(c.fut.h)}</h2></div>
+    <div class="wrap ab-fut-head"><p class="ab-eye">${c.fut.eye}</p><h2 class="ab-h2 ab-h2-xl ab-fut-title" id="ab-fut-h">${c.fut.h}</h2></div>
     <div class="wrap ab-fut-deck">
       <ol class="ab-fut-rail" aria-hidden="true">${c.fut.p.map((_, i) => `<li data-i="${i}"><i></i><span>0${i + 1}</span></li>`).join("")}</ol>
       <div class="ab-fut-cards">${c.fut.p.map((t, i) => `<article class="ab-fut-card${i === 2 ? " is-quote" : ""}" data-i="${i}"><span class="ab-num">0${i + 1}</span><p>${t}</p></article>`).join("")}</div>
