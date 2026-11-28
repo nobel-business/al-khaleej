@@ -456,3 +456,36 @@ body{overflow-x:clip}
 .dv-row .btn.line:hover,.dv-row .btn.line:focus-visible{background:rgba(255,255,255,.66);border-color:#fff;color:var(--navy)}
 }
 @media (max-width:899px){.dv-row .btn.line{border-color:rgba(12,48,72,.55);color:var(--navy);font-weight:600}}
+
+/* =====================================================================
+   ORGANIC IMAGE SHAPES — one shape language for every in-content image
+   Oversized, soft corners (~¼ of the short side, expressed per proportion so the curve stays round at any size),
+   with Apple-style continuous curvature where the browser supports corner-shape. Full-bleed scenes (page heroes,
+   home stage, sardine dive, iris, sacks banner) stay edge-to-edge: the next section's curved sheet shapes them.
+   ===================================================================== */
+:root{
+  --shape-wide:15% / 26%;      /* ≈ 1.5–1.8 : 1  — elongated, pill-like */
+  --shape-land:18% / 25%;      /* ≈ 1.15–1.5 : 1 */
+  --shape-port:25% / 20%;      /* portrait — vertical oval feel */
+  --shape-square:26%;          /* ≈ 1 : 1 */
+}
+.org,.pf-stage,.loupe,.mf-media,.mf-inset,.jr .media,.mf-m .media,.pph-img .media,.comp>.media,.qual>.media,.credit .media,.oilx>.a,.oilx>.b{border-radius:var(--shape,var(--shape-land));overflow:hidden}
+@supports (corner-shape:squircle){
+  .org,.pf-stage,.loupe,.mf-media,.mf-inset,.jr .media,.mf-m .media,.pph-img .media,.comp>.media,.qual>.media,.credit .media,.oilx>.a,.oilx>.b{corner-shape:squircle}
+}
+/* the image (and its reveal curtain / glow) follows the wrapper's curve */
+.oilx>.a>.media,.oilx>.b>.media{border-radius:inherit}
+/* families */
+.pf-stage,.oilx>.b{--shape:var(--shape-wide)}
+.comp>.media,.qual>.media,.loupe,.credit .media,.mf-m .media{--shape:var(--shape-land)}
+.comp>.media.tall,.pph-img .media,.oilx>.a,.mf-media,.jr .media{--shape:var(--shape-port)}
+.mf-inset{--shape:var(--shape-square)}
+/* phones: product heroes become 4:3 */
+@media (max-width:980px){.pph-img .media{--shape:var(--shape-land)}}
+/* products window: the approved arch keeps its round top; its foot softens into the same language */
+.ra-window{border-radius:999px 999px 9% 9% / 999px 999px 14% 14%}
+/* overlays inside shaped images keep clear of the large corners (offsets scale with the curve) */
+.mf-media .mf-num{inset-inline-start:calc(8% + 6px);top:calc(5% + 6px)}
+.mf-media .mf-prog{inset-inline-end:calc(8% + 6px);top:calc(5% + 14px)}
+.mf-media .mf-inset{inset-inline-end:calc(7% + 6px);bottom:calc(6% + 6px)}
+.loupe .tip{inset-inline-start:calc(7% + 6px);top:calc(6% + 6px)}
