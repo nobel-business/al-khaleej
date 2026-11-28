@@ -536,3 +536,5 @@ body{overflow-x:clip}
 @media (min-width:900px){[dir=ltr] #meal .split-h{font-size:clamp(24px,2.55vw,42px)}}
 @media (max-width:899px){[dir=ltr] #meal .split-h{font-size:clamp(22px,6.2vw,34px)}}
 #meal .split-h{max-width:none}
+/* homepage: fish meal → oil uses the same single gap as sardine scene → fish meal (one section padding, not two) */
+#meal{padding-bottom:0}
