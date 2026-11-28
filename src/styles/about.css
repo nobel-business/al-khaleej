@@ -441,3 +441,33 @@
   .ab-values[data-g="0"] .ab-val-item[data-g="0"] p,.ab-values[data-g="1"] .ab-val-item[data-g="1"] p,.ab-values[data-g="2"] .ab-val-item[data-g="2"] p{opacity:1;transform:none;transition:opacity .8s var(--out) calc(.62s + var(--d,0s)),transform 1s var(--out) calc(.62s + var(--d,0s))}
   .ab-values[data-g="0"] .ab-val-item[data-g="0"] .ab-val-ghost,.ab-values[data-g="1"] .ab-val-item[data-g="1"] .ab-val-ghost,.ab-values[data-g="2"] .ab-val-item[data-g="2"] .ab-val-ghost{transform:translate(0,-58%);opacity:.07;transition:transform 1.6s var(--out) calc(.2s + var(--d,0s)),opacity 1s calc(.2s + var(--d,0s))}
 }
+
+/* =====================================================================
+   «نبني اليوم، ونتطلع إلى ما هو أبعد.» — one view: the three horizons side by side (no pinned hand-off);
+   the rail spans the three cards and still fills as the section scrolls by
+   ===================================================================== */
+@media (min-width:900px){
+  .ab-fut{height:auto!important}
+  .ab-fut-stage{position:relative;top:auto;height:auto;min-height:100svh;justify-content:space-between}
+  .ab-fut-deck{padding-top:clamp(28px,4svh,48px)}
+  .ab-fut-rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));justify-items:center;width:min(1200px,100%)}
+  .ab-fut-rail::before{inset-inline:16.66%!important}
+  .ab-fut-rail::after{inset-inline-start:16.66%!important;width:calc(66.67% * var(--fr,0))}
+  .ab-fut-cards{width:min(1200px,100%);grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,1.8vw,24px);align-items:stretch}
+  .ab-fut .ab-fut-card{grid-area:auto!important;opacity:1!important;transform:none!important;pointer-events:auto;height:100%}
+  .ab-fut .ab-fut-card:hover{transform:translateY(-4px)!important;transition:transform .5s var(--out)}
+}
+@media (max-width:899px){
+  .ab-fut{height:auto!important}
+  .ab-fut-stage{position:relative;top:auto;height:auto;min-height:0;padding-bottom:28px}
+  .ab-fut-cards{gap:12px}
+  .ab-fut .ab-fut-card{grid-area:auto!important;opacity:1!important;transform:none!important;pointer-events:auto}
+}
+@media (min-width:900px){
+  .ab-fut-head{padding-top:clamp(72px,11svh,120px)}
+  .ab-fut-title{white-space:nowrap;font-size:min(clamp(34px,3.8vw,62px),calc((100vw - 64px) / 17))}
+  .ab-fut-card{padding:clamp(20px,2vw,30px) clamp(22px,2.2vw,32px)}
+  .ab-fut-card p{font-size:clamp(15.5px,1.15vw,18px);line-height:1.75}
+  .ab-fut-card.is-quote p{font-size:clamp(17px,1.3vw,20px);line-height:1.65}
+  .ab-fut-deck{padding-bottom:clamp(28px,6vh,75px)}
+}
