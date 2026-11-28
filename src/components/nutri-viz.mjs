@@ -54,9 +54,9 @@ const fattyAcid = (x0, y, n, db, dx = 30, h = 17) => {
     <text class="nv-omega-end" x="${wx + 8}" y="${wy + (n % 2 ? 6 : -4)}">ω</text>`;
 };
 
-export const nutriViz = (lang, alt) => {
+export const nutriViz = (lang, alt, names = []) => {
   const ar = lang === "ar";
-  const T = ar ? { lys: "الليسين", met: "الميثيونين", thr: "الثريونين", ca: "الكالسيوم", p: "الفوسفور", vit: "Vit", play: "إيقاف العرض التلقائي", epa: "حمض إيكوسابنتاينويك", dha: "حمض دوكوساهيكسانويك" }
+  const T = ar ? { lys: "الليسين", met: "الميثيونين", thr: "الثريونين", ca: "الكالسيوم", p: "الفوسفور", vit: "فيتامين", play: "إيقاف العرض التلقائي", epa: "حمض إيكوسابنتاينويك", dha: "حمض دوكوساهيكسانويك" }
                : { lys: "Lysine", met: "Methionine", thr: "Threonine", ca: "Calcium", p: "Phosphorus", vit: "Vit", play: "Pause autoplay", epa: "Eicosapentaenoic acid", dha: "Docosahexaenoic acid" };
 
   /* muscle: myomeres (W-shaped myosepta) pointing toward the head */
@@ -89,11 +89,23 @@ export const nutriViz = (lang, alt) => {
   /* vitamins: four indicators on a light orbital path above the fish */
   const VIT = [["A", 430, 300, 1], ["D", 660, 214, 0.9], ["E", 990, 222, 1], ["B12", 1236, 326, 0.92]];
 
+  /* ambient drifting particles (deterministic positions) */
+  let seed = 7; const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+  const MOTES = Array.from({ length: 16 }, (_, i) => { const x = VB.x + 40 + rnd() * (VB.w - 80), y = VB.y + 30 + rnd() * (VB.h - 60), r = 1.6 + rnd() * 2.6;
+    return `<circle class="nv-mote" style="--i:${i};--d:${(5 + rnd() * 5).toFixed(1)}s" cx="${r1(x)}" cy="${r1(y)}" r="${r1(r)}"/>`; }).join("");
+  const RAY = [[560, spine(560) - 20], [700, top(700) + 14], [940, top(940) + 12], [1150, top(1150) + 22]];
   const bodyClip = `clip-path="url(#nvBody)"`;
   return `<svg class="nv" viewBox="${VB.x} ${VB.y} ${VB.w} ${VB.h}" direction="ltr" role="img" aria-label="${alt}" focusable="false">
   <defs>
     <clipPath id="nvBody"><path d="${GEO.body}"/></clipPath>
     <clipPath id="nvTrunk"><rect x="380" y="0" width="694" height="900"/></clipPath>
+    <clipPath id="nvOutline"><path d="${GEO.outline}"/></clipPath>
+    <clipPath id="nvCap"><rect x="330" y="128" width="940" height="236" rx="118"/></clipPath>
+    <pattern id="nvGrid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#B9862F" stroke-width=".9"/></pattern>
+    <mask id="nvPaper" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><rect width="1600" height="900" fill="#fff"/><path d="${GEO.outline}" fill="#000" stroke="#000" stroke-width="22" stroke-linejoin="round"/></mask>
+    <linearGradient id="nvSheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="nvHalo"><stop offset="0" stop-color="#F6D27A" stop-opacity=".6"/><stop offset="1" stop-color="#F6D27A" stop-opacity="0"/></radialGradient>
+    <radialGradient id="nvVign" cx=".5" cy=".5" r=".72"><stop offset=".62" stop-color="#EFE0C2" stop-opacity="0"/><stop offset="1" stop-color="#E2CB9C" stop-opacity=".5"/></radialGradient>
     <clipPath id="nvLens"><circle cx="${LENS.cx}" cy="${LENS.cy}" r="${LENS.r - 4}"/></clipPath>
     <linearGradient id="nvMuscle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C3B35"/><stop offset=".45" stop-color="#C85E52"/><stop offset="1" stop-color="#E49A86"/></linearGradient>
     <radialGradient id="nvSoft"><stop offset=".45" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
@@ -106,6 +118,10 @@ export const nutriViz = (lang, alt) => {
   </defs>
 
   <image class="nv-skin" href="/img/rw-illus-1600.webp" x="0" y="0" width="1600" height="900" preserveAspectRatio="none"/>
+  <g class="nv-plate" mask="url(#nvPaper)"><rect x="0" y="0" width="1600" height="900" fill="url(#nvGrid)" opacity=".17"/></g>
+  <path class="nv-reg" d="M${VB.x + 28} ${VB.y + 74}V${VB.y + 28}H${VB.x + 74}M${VB.x + VB.w - 74} ${VB.y + 28}H${VB.x + VB.w - 28}V${VB.y + 74}M${VB.x + 28} ${r1(VB.y + VB.h - 74)}V${r1(VB.y + VB.h - 28)}H${VB.x + 74}M${VB.x + VB.w - 74} ${r1(VB.y + VB.h - 28)}H${VB.x + VB.w - 28}V${r1(VB.y + VB.h - 74)}" fill="none" stroke="#B9862F" stroke-width="2.2" opacity=".55"/>
+  <g class="nv-L nv-sheen" clip-path="url(#nvOutline)"><rect class="nv-sheen-b" x="120" y="300" width="150" height="440" fill="url(#nvSheen)"/></g>
+  <g class="nv-motes" fill="#C99A3E">${MOTES}</g>
 
   <g class="nv-L nv-tint"><path d="${GEO.body}" fill="rgba(251,248,243,.55)" stroke="rgba(12,48,72,.45)" stroke-width="2"/><path d="${GEO.outline}" fill="none" stroke="rgba(12,48,72,.28)" stroke-width="1.5" stroke-dasharray="5 6"/></g>
 
@@ -127,6 +143,7 @@ export const nutriViz = (lang, alt) => {
     <circle cx="${eye[0]}" cy="${eye[1]}" r="21" fill="none" stroke="#B49A6A" stroke-width="2"/>
     <path d="${rays}" fill="none" stroke="#C8B183" stroke-width="1.5" stroke-linecap="round"/>
     <g class="nv-vert" fill="#F6EDD8" stroke="#A88E5E" stroke-width="1.6">${vert}</g>
+    <path class="nv-spglow" pathLength="1" d="M440 ${r1(spine(440))}${[500, 560, 620, 680, 740, 800, 860, 920, 980, 1040, 1066].map((x) => `L${x} ${r1(spine(x))}`).join("")}" fill="none" stroke="#FFE3A0" stroke-width="12" stroke-linecap="round" stroke-dasharray=".07 1"/>
   </g>
 
   <g class="nv-L nv-drops">${DROPS.map(([x, y, r], i) => `<g class="nv-dp" style="--i:${i}"><circle cx="${x}" cy="${y}" r="${r}" fill="url(#nvAmber)"/><circle cx="${x - r * 0.35}" cy="${y - r * 0.38}" r="${r1(r * 0.28)}" fill="#fff" opacity=".75"/></g>`).join("")}</g>
@@ -135,10 +152,11 @@ export const nutriViz = (lang, alt) => {
   ${mark("mark-p", 690, 506)}${mark("mark-l", 800, 576)}${mark("mark-o", 860, 562)}
 
   <g class="nv-L nv-lens">
-    <circle cx="${LENS.cx}" cy="${LENS.cy}" r="${LENS.r + 10}" fill="#fff" opacity=".9"/>
+    <circle cx="${LENS.cx}" cy="${LENS.cy + 10}" r="${LENS.r + 14}" fill="#0C3048" opacity=".1"/><circle cx="${LENS.cx}" cy="${LENS.cy}" r="${LENS.r + 12}" fill="#fff" opacity=".92"/>
     <g clip-path="url(#nvLens)">
       <circle cx="${LENS.cx}" cy="${LENS.cy}" r="${LENS.r}" fill="#FBF6EC"/>
       <g class="nv-L nv-fib"><rect x="${LENS.cx - LENS.r}" y="${LENS.cy - LENS.r}" width="${LENS.r * 2}" height="${LENS.r * 2}" fill="url(#nvFibP)"/>
+        ${Array.from({ length: 16 }, (_, i) => `<ellipse cx="${r1(LENS.cx - 100 + ((i * 53) % 200))}" cy="${r1(LENS.cy - 96 + ((i * 37) % 192))}" rx="5" ry="2.6" fill="#6E2420" opacity=".55" transform="rotate(-8)"/>`).join("")}
         <rect class="nv-sweep" x="${LENS.cx - LENS.r - 90}" y="${LENS.cy - LENS.r}" width="90" height="${LENS.r * 2}" fill="url(#nvSweep)"/></g>
       <g class="nv-L nv-mol">
         <path class="nv-chain" pathLength="1" d="${chain}${side}" fill="none" stroke="#0C3048" stroke-width="3" stroke-linecap="round"/>
@@ -148,7 +166,9 @@ export const nutriViz = (lang, alt) => {
       <g class="nv-L nv-drop1"><g class="nv-wob"><circle cx="${LENS.cx}" cy="${LENS.cy}" r="80" fill="url(#nvAmber)"/><ellipse cx="${LENS.cx - 26}" cy="${LENS.cy - 34}" rx="24" ry="13" fill="#fff" opacity=".7" transform="rotate(-24 ${LENS.cx - 26} ${LENS.cy - 34})"/>
         <circle cx="${LENS.cx + 28}" cy="${LENS.cy + 22}" r="12" fill="#FFF3CF" opacity=".55"/><circle cx="${LENS.cx - 18}" cy="${LENS.cy + 36}" r="7" fill="#FFF3CF" opacity=".5"/></g></g>
     </g>
+    <circle class="nv-ticks" cx="${LENS.cx}" cy="${LENS.cy}" r="${LENS.r + 6}" fill="none" stroke="#C99A3E" stroke-width="9" stroke-dasharray="1.4 5.2"/>
     <circle cx="${LENS.cx}" cy="${LENS.cy}" r="${LENS.r}" fill="none" stroke="#0C3048" stroke-width="4"/>
+    <path d="M${r1(LENS.cx - LENS.r * 0.72)} ${r1(LENS.cy - LENS.r * 0.42)}A${r1(LENS.r * 0.84)} ${r1(LENS.r * 0.84)} 0 0 1 ${r1(LENS.cx + LENS.r * 0.12)} ${r1(LENS.cy - LENS.r * 0.8)}" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".75"/>
     <circle cx="${LENS.cx}" cy="${LENS.cy}" r="${LENS.r - 7}" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/>
     <g class="nv-L nv-mol nv-legend">${[1, 3, 5].map((k, j) => `<g transform="translate(748 ${172 + j * 44})"><circle r="9" fill="${key[k][2]}"/><text x="20" y="7" class="nv-lg-a">${key[k][0]}</text><text x="74" y="7" class="nv-lg-n">${T[key[k][1]]}</text></g>`).join("")}</g>
   </g>
@@ -156,6 +176,7 @@ export const nutriViz = (lang, alt) => {
   <g class="nv-L nv-omega">
     <rect x="330" y="128" width="940" height="236" rx="118" fill="url(#nvAmberCap)" stroke="#D9A23F" stroke-width="2.5"/>
     <ellipse cx="470" cy="160" rx="110" ry="14" fill="#fff" opacity=".45"/>
+    <g clip-path="url(#nvCap)"><rect class="nv-cap-sweep" x="200" y="120" width="140" height="260" fill="url(#nvSheen)"/>${[[420, 340, 6], [520, 352, 4], [690, 346, 5], [880, 354, 4], [1040, 342, 6], [1180, 350, 4]].map(([x, y, r], i) => `<circle class="nv-bub" style="--i:${i}" cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity=".7"/>`).join("")}</g>
     <g class="nv-row nv-epa"><text x="372" y="200" class="nv-fa">EPA</text><text x="372" y="222" class="nv-fa-s">C20:5 ω-3</text>${fattyAcid(600, 214, 20, [5, 8, 11, 14, 17])}</g>
     <g class="nv-row nv-dha"><text x="372" y="292" class="nv-fa">DHA</text><text x="372" y="314" class="nv-fa-s">C22:6 ω-3</text>${fattyAcid(600, 306, 22, [4, 7, 10, 13, 16, 19])}</g>
   </g>
@@ -168,9 +189,12 @@ export const nutriViz = (lang, alt) => {
 
   <g class="nv-L nv-vit">
     <path d="M330 420C340 250 560 150 800 150S1250 210 1330 400" fill="none" stroke="#C99A3E" stroke-width="1.6" stroke-dasharray="3 9" opacity=".6"/>
+    ${VIT.map(([, x, y], i) => `<path class="nv-ray" style="--i:${i}" d="M${x} ${y + 44}L${r1(RAY[i][0])} ${r1(RAY[i][1])}" fill="none" stroke="#E3B860" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/><circle class="nv-halo" style="--i:${i}" cx="${x}" cy="${y}" r="80" fill="url(#nvHalo)"/>`).join("")}
     ${VIT.map(([v, x, y, s], i) => `<g transform="translate(${x} ${y}) scale(${s})" opacity="${s < 1 ? 0.82 : 1}"><g class="nv-orb" style="--i:${i}"><circle r="48" fill="#fff" stroke="#E3B860" stroke-width="3"/><circle r="40" fill="none" stroke="#F3E2BF" stroke-width="1.5"/>
       <text y="-14" class="nv-vt-s">${T.vit}</text><text y="${v.length > 1 ? 20 : 24}" class="nv-vt${v.length > 1 ? " sm" : ""}">${v}</text></g></g>`).join("")}
   </g>
+  <rect x="${VB.x}" y="${VB.y}" width="${VB.w}" height="${VB.h}" fill="url(#nvVign)" pointer-events="none"/>
 </svg>
-<button type="button" class="nv-play" aria-pressed="true" data-on="${T.play}" data-off="${ar ? "تشغيل العرض التلقائي" : "Play autoplay"}" aria-label="${T.play}"><i aria-hidden="true"></i></button>`;
+<div class="nv-cap" aria-hidden="true">${names.map((t, i) => `<span data-i="${i === 0 ? "x" : i - 1}">${i ? `<b>${String(i).padStart(2, "0")}</b>` : "<b></b>"}${t}</span>`).join("")}</div>
+<button type="button" class="nv-play" aria-pressed="true" data-on="${T.play}" data-off="${ar ? "تشغيل العرض التلقائي" : "Play autoplay"}" aria-label="${T.play}"><svg class="nv-prog" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" pathLength="1"/></svg><i aria-hidden="true"></i></button>`;
 };

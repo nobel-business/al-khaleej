@@ -34,9 +34,7 @@ const C = {
       items: [["السردين", "Sardine", "يعد السردين من الأسماك البحرية السطحية الصغيرة، ويتميز بمحتواه الطبيعي من البروتين والدهون البحرية والأحماض الدهنية، مما يجعله من الخامات المهمة في صناعة مسحوق الأسماك وزيت الأسماك."],
         ["الأسماك البحرية السطحية", "Pelagic Fish", "مجموعة من الأسماك التي تعيش في الطبقات المائية المفتوحة، وتتميز بتنوع خصائصها التغذوية ومحتواها من البروتين والدهون."],
         ["الأسماك البحرية الأخرى", "Other Marine Fish", "تختلف خصائصها الطبيعية باختلاف الأنواع والبيئات البحرية، ويتم تقييم ملاءمتها للتصنيع وفق تركيبها التغذوي وحالتها عند الاستقبال."]] },
-    src: { eye: "من البحر إلى المصنع", h: "العناية بالخامات تبدأ قبل التصنيع.", p: [
-      "تبدأ العملية الصناعية قبل وصول الأسماك إلى المصنع، من خلال اختيار مصادر الخامات والتعامل معها خلال مراحل الصيد والتجميع والنقل والحفظ.",
-      "وتعتمد منظومة توفير الخامات البحرية على مجموعة من المصادر والقنوات التي تتيح التعامل مع اختلاف مواسم الصيد وتنوع الموارد البحرية ومتطلبات الإنتاج."],
+    src: { eye: "من البحر إلى المصنع", h: "العناية بالخامات تبدأ قبل التصنيع.", p: ["تبدأ العملية الصناعية باختيار مصادر الخامات البحرية والعناية بها خلال مراحل الصيد والتجميع والنقل والحفظ، عبر منظومة توريد تراعي تنوع الموارد البحرية ومواسم الصيد ومتطلبات الإنتاج."],
       seq: ["الصيد والتجميع", "الحفظ والتبريد", "النقل والاستقبال"],
       items: [["الصيد والتجميع", "الاستفادة من الأسماك البحرية التي يتم الحصول عليها من خلال مراكب الصيد التابعة للمصنع، ومن مصادر الصيد والتجميع وفق توافر الأسماك وملاءمتها للتصنيع، بما يعزز ارتباط العملية الصناعية بمصادر الخامات."],
         ["الحفظ والتبريد", "الاستفادة من الخامات البحرية المحفوظة والمبردة، وفق حالتها وخصائصها ومدى ملاءمتها لمتطلبات الإنتاج."],
@@ -97,9 +95,7 @@ const C = {
       items: [["Sardine", "السردين", "Sardines are small pelagic marine fish, naturally rich in protein, marine fats and fatty acids, which makes them an important raw material for fish meal and fish oil."],
         ["Pelagic fish", "الأسماك البحرية السطحية", "A group of fish living in the open water column, with varied nutritional properties and protein and fat content."],
         ["Other marine fish", "الأسماك البحرية الأخرى", "Their natural properties vary with species and marine environment; their suitability for processing is assessed by nutritional composition and condition on receipt."]] },
-    src: { eye: "From the sea to the plant", h: "Care for raw materials begins before manufacturing.", p: [
-      "The industrial process begins before the fish reach the plant, through the choice of raw-material sources and their handling during fishing, collection, transport and preservation.",
-      "Our marine raw-material supply relies on a range of sources and channels that let us respond to changing fishing seasons, diverse marine resources and production requirements."],
+    src: { eye: "From the sea to the plant", h: "Care for raw materials begins before manufacturing.", p: ["The industrial process begins with selecting marine raw-material sources and caring for them through fishing, collection, transport and preservation, within a supply system that accounts for the diversity of marine resources, fishing seasons and production requirements."],
       seq: ["Fishing and collection", "Preservation and cooling", "Transport and receiving"],
       items: [["Fishing and collection", "Marine fish obtained through the plant’s own fishing vessels and from fishing and collection sources, according to fish availability and suitability for processing, strengthening the link between the industrial process and its raw-material sources."],
         ["Preservation and cooling", "Preserved and chilled marine raw materials, used according to their condition, properties and suitability for production."],
@@ -182,7 +178,6 @@ export const raw = (lang) => {
   const H2 = (t, id, cls = "") => `<h2 class="ab-h2${cls ? " " + cls : ""}" id="${id}" data-lines>${lines(t)}</h2>`;
   const arrow = `<i class="ic ic-arr" aria-hidden="true"></i>`;
   const oil = PRODUCTS.find((p) => p.oil);
-  const alt = (s) => `dir="${ar ? "ltr" : "rtl"}"`;
 
   const body = `
 <section class="ab-hero rw-hero" data-env="#F7F2EA" aria-labelledby="ab-h1">
@@ -213,7 +208,7 @@ export const raw = (lang) => {
   <div class="wrap rw-head-split"><div>${eye(c.sp.eye)}${H2(c.sp.h, "rw-sp-h")}</div><div class="rw-prose" data-r="up">${c.sp.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
   <div class="wrap rw-sp-grid">${c.sp.items.map(([t, other, d], i) => `<article class="rw-sp-item${i === 0 ? " is-lead" : ""}" data-r="up" style="transition-delay:${i * 120}ms">
       <div class="rw-sp-img">${pic(lang, ["rw-sardine", "rw-pelagic", "rw-other"][i], { col: i ? 30 : 52, mcol: 100, box: i ? 1.3 : 0.9 })}</div>
-      <div class="rw-sp-txt"><h3>${t}</h3><p class="rw-other-name" ${alt()}>${other}</p><p>${d}</p></div></article>`).join("")}</div>
+      <div class="rw-sp-txt"><h3>${t}</h3><p>${d}</p></div></article>`).join("")}</div>
 </section>
 
 <section class="rw-src" data-env="#F7F2EA" aria-labelledby="rw-src-h">
@@ -222,8 +217,8 @@ export const raw = (lang) => {
       <div>${eye(c.src.eye)}${H2(c.src.h, "rw-src-h")}</div>
       <div class="rw-prose" data-r="up">${c.src.p.map((t) => `<p>${t}</p>`).join("")}</div>
     </div>
-    <ol class="wrap rw-seq" aria-label="${ar ? "رحلة الخامات" : "The raw-material journey"}">${c.src.seq.map((t, i) => `<li data-i="${i}"><i></i><span>${t}</span></li>`).join("")}</ol>
-    <div class="rw-track-win"><div class="rw-track">${c.src.items.map(([t, d], i) => `<article class="rw-frame" data-i="${i}">
+    <ol class="wrap rw-seq" data-r="up" aria-label="${ar ? "رحلة الخامات" : "The raw-material journey"}">${c.src.seq.map((t, i) => `<li data-i="${i}" style="--k:${i}"><i></i><span>${t}</span></li>`).join("")}</ol>
+    <div class="rw-track-win"><div class="rw-track">${c.src.items.map(([t, d], i) => `<article class="rw-frame" data-i="${i}" data-r="up" style="transition-delay:${i * 120}ms">
         <div class="rw-frame-img">${pic(lang, ["rw-j1", "rw-j2", "rw-j3"][i], { col: 40, mcol: 100, box: 1.6 })}</div>
         <div class="rw-frame-txt"><span class="rw-n">0${i + 1}</span><h3>${t}</h3><p>${d}</p></div></article>`).join("")}</div></div>
   </div>
@@ -233,11 +228,11 @@ export const raw = (lang) => {
   <div class="wrap">
     <div class="rw-head-center">${eye(c.nu.eye)}${H2(c.nu.h, "rw-nu-h")}<div class="rw-prose" data-r="up">${c.nu.p.map((t) => `<p>${t}</p>`).join("")}</div></div>
     <div class="rw-nu-stage">
-      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(0, 3).map(([t, other], i) => `<button type="button" class="rw-nu-node" data-i="${i}" aria-pressed="false">${ln(NU[i], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></button>`).join("")}</div>
-      <figure class="rw-nu-fish" data-r="fade">${nutriViz(lang, ALT["rw-illus"][lang] + (ar ? " (رسم توضيحي)" : " (illustrative)"))}</figure>
-      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(3).map(([t, other], k) => `<button type="button" class="rw-nu-node" data-i="${k + 3}" aria-pressed="false">${ln(NU[k + 3], "rw-ic")}<span><b>${t}</b><small ${alt()}>${other}</small></span></button>`).join("")}</div>
+      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(0, 3).map(([t, other], i) => `<button type="button" class="rw-nu-node" data-i="${i}" aria-pressed="false">${ln(NU[i], "rw-ic")}<span><b>${t}</b></span></button>`).join("")}</div>
+      <figure class="rw-nu-fish" data-r="fade">${nutriViz(lang, ALT["rw-illus"][lang] + (ar ? " (رسم توضيحي)" : " (illustrative)"), [c.nu.whole[0], ...c.nu.items.map(([t]) => t)])}</figure>
+      <div class="rw-nu-col" data-r="up">${c.nu.items.slice(3).map(([t, other], k) => `<button type="button" class="rw-nu-node" data-i="${k + 3}" aria-pressed="false">${ln(NU[k + 3], "rw-ic")}<span><b>${t}</b></span></button>`).join("")}</div>
     </div>
-    <div class="rw-nu-panel" aria-live="polite"><div class="rw-nu-desc" data-i="x"><h3>${c.nu.whole[0]} <small ${alt()}>${c.nu.whole[1]}</small></h3><p>${c.nu.whole[2]}</p></div>${c.nu.items.map(([t, other, d], i) => `<div class="rw-nu-desc" data-i="${i}"><h3>${t} <small ${alt()}>${other}</small></h3><p>${d}</p>${c.nu.notes[i] ? `<p class="nv-note">${c.nu.notes[i]}</p>` : ""}</div>`).join("")}</div>
+    <div class="rw-nu-panel" aria-live="polite"><div class="rw-nu-desc" data-i="x"><h3>${c.nu.whole[0]}</h3><p>${c.nu.whole[2]}</p></div>${c.nu.items.map(([t, other, d], i) => `<div class="rw-nu-desc" data-i="${i}"><h3>${t}</h3><p>${d}</p>${c.nu.notes[i] ? `<p class="nv-note">${c.nu.notes[i]}</p>` : ""}</div>`).join("")}</div>
     <p class="nv-foot">${c.nu.foot}</p>
   </div>
 </section>

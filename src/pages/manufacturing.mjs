@@ -157,7 +157,6 @@ export const mfg = (lang) => {
   const H2 = (t, id, cls = "") => `<h2 class="ab-h2${cls ? " " + cls : ""}" id="${id}" data-lines>${lines(t)}</h2>`;
   const arrow = `<i class="ic ic-arr" aria-hidden="true"></i>`;
   const oil = PRODUCTS.find((p) => p.oil);
-  const alt = `dir="${ar ? "ltr" : "rtl"}"`;
   const two = (n) => String(n).padStart(2, "0");
   const laneName = (l) => (l === "main" ? f.main : l === "both" ? f.both : f.lanes[l][0]);
 
@@ -180,7 +179,7 @@ export const mfg = (lang) => {
     return `<article class="mf-st" data-s="${i}" data-lane="${lane}" aria-hidden="${i !== 0}">
       <div class="mf-st-img">${pic(lang, `mf-s${i + 1}`, { col: 40, mcol: 100, box: 4 / 3 })}</div>
       <div class="mf-st-txt"><div class="mf-st-top"><span class="mf-st-no">${two(i + 1)}</span><span class="mf-tag" data-lane="${lane}">${laneName(lane)}</span></div>
-        <h3>${s.t}</h3><p class="mf-st-en" ${alt}>${s.en}</p>${s.p.map((t) => `<p>${t}</p>`).join("")}${split}${facts}${pack}</div></article>`;
+        <h3>${s.t}</h3>${s.p.map((t) => `<p>${t}</p>`).join("")}${split}${facts}${pack}</div></article>`;
   };
 
   const gauge = (v) => `<svg class="mf-gauge" viewBox="0 0 120 68" aria-hidden="true" style="--g:${v}"><path class="g-trk" d="M10 62a50 50 0 0 1 100 0"/><path class="g-band" pathLength="1" d="M10 62a50 50 0 0 1 100 0"/>${
@@ -218,8 +217,8 @@ export const mfg = (lang) => {
     <div class="mf-board" data-r="fade">
       <div class="mf-map" role="group" aria-label="${f.h}">
         <svg class="mf-wires" aria-hidden="true"></svg>
-        <p class="mf-lane-lb" data-lane="pro" style="--c:6/11;--r:1;--mc:1;--mr:6"><i></i><b>${f.lanes.pro[0]}</b><small ${alt}>${f.lanes.pro[1]}</small><span class="mf-branch">${f.lanes.pro[2]}</span></p>
-        <p class="mf-lane-lb" data-lane="oil" style="--c:6/11;--r:5;--mc:2;--mr:6"><i></i><b>${f.lanes.oil[0]}</b><small ${alt}>${f.lanes.oil[1]}</small><span class="mf-branch">${f.lanes.oil[2]}</span></p>
+        <p class="mf-lane-lb" data-lane="pro" style="--c:6/11;--r:1;--mc:1;--mr:6"><i></i><b>${f.lanes.pro[0]}</b><span class="mf-branch">${f.lanes.pro[2]}</span></p>
+        <p class="mf-lane-lb" data-lane="oil" style="--c:6/11;--r:5;--mc:2;--mr:6"><i></i><b>${f.lanes.oil[0]}</b><span class="mf-branch">${f.lanes.oil[2]}</span></p>
         ${NODES.map(node).join("\n        ")}
       </div>
       <p class="mf-hint">${f.hint}</p>
@@ -240,7 +239,7 @@ export const mfg = (lang) => {
       <div class="mf-console-img" data-r="fade">${pic(lang, "mf-control", { col: 30, mcol: 100, box: 0.75 })}<span class="mf-live" aria-hidden="true"><i></i>${c.ctl.live}</span></div>
       <ul class="mf-tiles">${c.ctl.items.map(([t, other, d], i) => `<li class="mf-tile" data-r="up" style="transition-delay:${i * 90}ms">
         <div class="mf-tile-top">${ic(CTL_IC[i], "mf-tic")}<span class="mf-tn">${two(i + 1)}</span></div>
-        <h3>${t}</h3><p class="mf-tile-en" ${alt}>${other}</p><p>${d}</p>${gauge(GAUGE[i])}</li>`).join("")}</ul>
+        <h3>${t}</h3><p>${d}</p>${gauge(GAUGE[i])}</li>`).join("")}</ul>
     </div>
   </div>
 </section>`;

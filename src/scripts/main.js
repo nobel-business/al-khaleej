@@ -380,7 +380,7 @@
     if (nu && $(".nv", nu)) { const nodes = $$(".rw-nu-node", nu), play = $(".nv-play", nu), ORDER = ["x", "0", "1", "2", "3", "4", "5"];
       let auto = !RM, live = false, timer = 0;
       const set = (n) => { nu.dataset.n = n; nodes.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.i === n))); };
-      const tick = () => { clearTimeout(timer); if (auto && live) timer = setTimeout(() => { set(ORDER[(ORDER.indexOf(nu.dataset.n) + 1) % ORDER.length]); tick(); }, 6000); };
+      const tick = () => { clearTimeout(timer); nu.classList.remove("nv-run"); if (auto && live) { void nu.offsetWidth; nu.classList.add("nv-run"); timer = setTimeout(() => { set(ORDER[(ORDER.indexOf(nu.dataset.n) + 1) % ORDER.length]); tick(); }, 6000); } };
       const setAuto = (on) => { auto = on; if (play) { play.setAttribute("aria-pressed", String(on)); play.setAttribute("aria-label", play.dataset[on ? "on" : "off"]); } tick(); };
       nodes.forEach((b, k) => {
         b.addEventListener("click", () => { setAuto(false); set(nu.dataset.n === b.dataset.i ? "x" : b.dataset.i); });
@@ -392,11 +392,6 @@
       new IntersectionObserver(([e]) => { live = e.isIntersecting; nu.classList.toggle("nv-live", live); tick(); }, { threshold: 0.15 }).observe(nu);
     }
     pick($(".rw-vr"), "v", ".rw-vr-tabs button");
-    const src = $(".rw-src");
-    if (src) { const track = $(".rw-track", src), seq = $(".rw-seq", src), dots = $$(".rw-seq li", src), wide = matchMedia("(min-width:900px)");
-      scene(src, (p) => { if (!wide.matches || RM) return; const over = Math.max(0, track.scrollWidth - innerWidth + (parseFloat(getComputedStyle(track).paddingInlineStart) || 0)); const q = clamp((p - 0.06) / 0.88);
-        track.style.setProperty("--tx", ((AR ? 1 : -1) * over * q).toFixed(1)); seq.style.setProperty("--sp", q.toFixed(4));
-        dots.forEach((d, i) => d.classList.toggle("on", q >= i / (dots.length - 1) - 0.001 && q > 0.001 || i === 0)); }); }
     const fl = $(".rw-fl-map");
     if (fl) scene(fl, (p) => fl.style.setProperty("--fl", (RM ? 1 : clamp((p - 0.15) / 0.35)).toFixed(4)));
   })();
