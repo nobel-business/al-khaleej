@@ -327,3 +327,8 @@ div.mf-node{cursor:default}
 /* the soft top fade now lives inside each jar photo, so the badge and numeral sit cleanly above it */
 .ra-products .ra-shelf::before{display:none}
 .ra-products .ra-spec .media::after{content:"";position:absolute;inset:0 0 auto;height:18%;pointer-events:none;background:linear-gradient(180deg,#F5EBDB 0%,rgba(245,235,219,.6) 45%,rgba(245,235,219,0) 100%)}
+/* 66% — the tallest jar reaches the top, so its badge and numeral move into the free wall beside it */
+.ra-products .ra-spec[data-i="3"] .num{inset-inline:auto!important;inset-inline-start:15%!important;margin:0;top:9%!important}
+.ra-products .ra-spec[data-i="3"] .ghost{inset-inline:auto;inset-inline-start:9%;width:25%;text-align:center;top:17%;font-size:clamp(28px,calc(var(--jh,300px) * .16),78px)}
+.ra-products .ra-spec[data-i="3"] .ghost{inset-inline-start:7%;font-size:clamp(26px,calc(var(--jh,300px) * .14),70px)}
+.ra-products .ra-spec[data-i="3"] .num{inset-inline-start:13%!important}
