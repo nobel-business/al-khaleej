@@ -227,3 +227,16 @@
 /* phones: nutrition nodes as one readable list under the illustration · tablets: journey in two columns */
 @media (max-width:560px){.rw-nu-stage{grid-template-columns:minmax(0,1fr)}.rw-nu-col{display:grid;gap:4px}}
 @media (min-width:600px) and (max-width:899px){.rw-track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.rw-frame-img{aspect-ratio:1}}
+
+/* hero card — the catch-on-deck photo is busy, so this card gets a denser ivory glass for contrast */
+.rw-hero .ab-card{background:linear-gradient(160deg,rgba(251,248,243,.86),rgba(247,242,234,.78));-webkit-backdrop-filter:blur(20px) saturate(110%);backdrop-filter:blur(20px) saturate(110%);
+  border-color:rgba(255,255,255,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 30px 70px -34px rgba(12,48,72,.45)}
+.rw-hero .ab-card .ab-crumbs,.rw-hero .ab-card .ab-crumbs a{color:#2A4459;text-shadow:none}
+.rw-hero .ab-card .ab-hero-eye{color:#9A6B16;text-shadow:none}
+.rw-hero .ab-card .ab-h1{color:#0A2A40}
+.rw-hero .ab-card .ab-hero-p{color:#1C3A52;text-shadow:none}
+
+/* nutrition intro — the two sentences sit close together, just under the heading */
+.rw-nu .rw-head-center .rw-prose{margin-top:14px}
+.rw-nu .rw-head-center .rw-prose p{margin-bottom:4px;line-height:1.75}
+.rw-nu .rw-head-center .rw-prose p:last-child{margin-bottom:0}
