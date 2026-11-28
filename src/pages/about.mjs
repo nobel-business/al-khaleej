@@ -21,7 +21,7 @@ const C = {
       "تأسس الخليج لصناعة الأسماك عام 2025 في محافظة كفر الشيخ بجمهورية مصر العربية، كمصنع متخصص في إنتاج مسحوق الأسماك والزيوت البحرية، مستندًا إلى ما تتمتع به المنطقة من موارد بحرية متنوعة وموقع يرتبط بقطاع الصيد والصناعات السمكية.",
       "نعتمد في إنتاجنا على الأسماك البحرية الكاملة، من خلال منظومة صناعية تبدأ من اختيار الخامات واستقبالها، مرورًا بمراحل المعالجة والتصنيع والفصل والتجفيف، وصولًا إلى المنتجات النهائية بمواصفاتها المختلفة.",
       "ويتمثل توجهنا في تقديم مكونات بحرية ذات قيمة تغذوية وصناعية، تخدم صناعة الأعلاف والتغذية والصناعات المتخصصة، وتلبي احتياجات العملاء في الأسواق المحلية والدولية."],
-      factsH: "المعلومات الأساسية",
+      factsH: "نبذة مختصرة عنا",
       facts: [["عام التأسيس", "2025"], ["الموقع", "كفر الشيخ، جمهورية مصر العربية"], ["القطاع", "الصناعات البحرية"], ["التخصص", "إنتاج البروتين والزيوت البحرية"], ["المنتجات", "مسحوق الأسماك وزيت الأسماك الخام"], ["الأسواق المستهدفة", "المحلية والإقليمية والدولية"]] },
     vm: { eye: "توجهنا المؤسسي", h: "رؤية للمستقبل، ورسالة تقود أعمالنا.", items: [
       ["رؤيتنا", "أن نرسخ مكانة الخليج كإحدى الشركات الصناعية المصرية الرائدة في مجال البروتين والزيوت البحرية، وأن نطور حضورًا تنافسيًا ومستدامًا في الأسواق الإقليمية والدولية."],
@@ -47,7 +47,7 @@ const C = {
       "Alkhaleej Fish Manufacturing was established in 2025 in Kafr El-Sheikh Governorate, Arab Republic of Egypt, as a plant specialised in producing fish meal and marine oils, drawing on the region’s diverse marine resources and its ties to the fishing and fish-processing sector.",
       "We produce from whole marine fish, through an industrial system that begins with selecting and receiving the raw material, continues through processing, manufacturing, separation and drying, and ends with finished products in their different specifications.",
       "Our direction is to supply marine ingredients of nutritional and industrial value, serving the feed, nutrition and specialised industries and meeting the needs of customers in local and international markets."],
-      factsH: "Key facts",
+      factsH: "About us in brief",
       facts: [["Established", "2025"], ["Location", "Kafr El-Sheikh, Arab Republic of Egypt"], ["Sector", "Marine industries"], ["Specialism", "Marine protein and oils"], ["Products", "Fish meal and crude fish oil"], ["Target markets", "Local, regional and international"]] },
     vm: { eye: "Our direction", h: "A vision for the future, a mission that guides our work.", items: [
       ["Our vision", "To establish Alkhaleej as one of Egypt’s leading industrial companies in marine protein and oils, and to build a competitive, sustainable presence in regional and international markets."],
@@ -68,26 +68,6 @@ const C = {
     meta: { title: "About | Alkhaleej Fish Manufacturing", desc: "Alkhaleej Fish Manufacturing: from the sea’s wealth, we build industrial value. An Egyptian plant established in 2025 in Kafr El-Sheikh, producing marine protein and oils from whole marine fish." },
   },
 };
-
-/* line icons for the six values — drawn on reveal (stroke) */
-const VICON = [
-  '<path d="M12 3l7 3v5.2c0 4.4-3 8.3-7 9.8-4-1.5-7-5.4-7-9.8V6z"/><path d="M8.6 12.2l2.4 2.4 4.6-4.8"/>',                                        // quality — seal
-  '<path d="M5 19c7.5 0 14-5.6 14-14C11 5 5 10.2 5 19z"/><path d="M5 19c2.2-4.8 5.4-8.2 9.4-10.4"/>',                                          // responsibility — leaf
-  '<circle cx="12" cy="12" r="8.5"/><path d="M8.4 12.3l2.5 2.5 4.8-5"/>',                                                                      // reliability — confirmed
-  '<path d="M4.5 13.5a7.6 7.6 0 0 1 13-5.4L19.5 10"/><path d="M19.5 5v5h-5"/><path d="M19.5 10.5a7.6 7.6 0 0 1-13 5.4L4.5 14"/><path d="M4.5 19v-5h5"/>', // continuous development — cycle
-  '<path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.4"/>',                                                    // efficiency — gauge
-  '<rect x="3.5" y="8.5" width="10" height="7" rx="3.5"/><rect x="10.5" y="8.5" width="10" height="7" rx="3.5"/>',                              // partnership — linked
-];
-
-/* line icons for the six key facts */
-const FICON = [
-  '<rect x="4" y="5.5" width="16" height="14" rx="3"/><path d="M4 10h16M9 3.5v4M15 3.5v4"/>',                                   // established — calendar
-  '<path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/>',            // location — pin
-  '<path d="M3 9.5q2.25-2.5 4.5 0t4.5 0 4.5 0 4.5 0M3 14.5q2.25-2.5 4.5 0t4.5 0 4.5 0 4.5 0"/>',                                // sector — sea
-  '<path d="M12 3.5c3.3 4.3 5.4 7.1 5.4 9.7a5.4 5.4 0 0 1-10.8 0c0-2.6 2.1-5.4 5.4-9.7z"/><path d="M9.6 13.6a2.6 2.6 0 0 0 2.4 2.4"/>', // specialism — oil drop
-  '<path d="M6 7.5h12l-1.2 12.5H7.2z"/><path d="M8.6 7.5V6a3.4 3.4 0 0 1 6.8 0v1.5"/>',                                          // products — sack
-  '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.9 5.2 3.9 8.5s-1.3 6.1-3.9 8.5c-2.6-2.4-3.9-5.2-3.9-8.5s1.3-6.1 3.9-8.5z"/>', // markets — globe
-];
 
 export const about = (lang) => {
   const u = UI[lang], ar = lang === "ar", c = C[lang];
@@ -120,11 +100,14 @@ export const about = (lang) => {
   </div>
 </section>
 
-<section class="ab-band" data-env="#F7F2EA" aria-labelledby="ab-band-h">
-  <div class="ab-band-bg" aria-hidden="true">${pic(lang, "ab-ind", { fill: 1, mfill: 1 })}</div>
-  <div class="wrap ab-band-in">
-    <h2 class="ab-band-h" id="ab-band-h" data-r="up">${c.who.factsH}</h2>
-    <dl class="ab-tiles">${c.who.facts.map(([k, v], i) => `<div class="ab-tile${i === 0 ? " is-year" : ""}" data-r="up" style="transition-delay:${(i % 3) * 110 + Math.floor(i / 3) * 70}ms"><dt><span class="ab-tile-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${FICON[i]}</svg></span>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+<section class="ab-brief" data-env="#F7F2EA" aria-labelledby="ab-brief-h">
+  <div class="wrap ab-brief-grid">
+    <div class="ab-brief-lead">
+      <h2 class="ab-h2 ab-brief-h" id="ab-brief-h" data-lines>${lines(c.who.factsH)}</h2>
+      <p class="ab-brief-year" data-r="up"><span>${c.who.facts[0][0]}</span><b>${c.who.facts[0][1]}</b></p>
+      <div class="ab-brief-media">${pic(lang, "ab-ind", { col: 42, mcol: 100, box: 1.5, reveal: "curtain" })}</div>
+    </div>
+    <dl class="ab-brief-list">${c.who.facts.slice(1).map(([k, v], i) => `<div class="ab-brief-row" data-r="up" style="transition-delay:${i * 90}ms"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
   </div>
 </section>
 
@@ -138,10 +121,19 @@ export const about = (lang) => {
   </div>
 </section>
 
-<section class="ab-values" data-env="#F7F2EA" aria-labelledby="ab-val-h">
-  <div class="wrap">
-    <div class="ab-head">${eye(c.values.eye)}<h2 class="ab-h2" id="ab-val-h" data-lines>${lines(c.values.h)}</h2></div>
-    <ul class="ab-val-grid">${c.values.items.map(([t, d], i) => `<li class="ab-val" data-r="up" style="transition-delay:${(i % 3) * 110 + Math.floor(i / 3) * 60}ms"><div class="ab-val-top"><span class="ab-num">0${i + 1}</span><svg class="ab-vic" viewBox="0 0 24 24" aria-hidden="true">${VICON[i]}</svg></div><h3>${t}</h3><p>${d}</p></li>`).join("")}</ul>
+<section class="ab-values" data-env="#F7F2EA" data-a="0" aria-labelledby="ab-val-h">
+  <div class="ab-val-stage">
+    <div class="wrap ab-val-wrap">
+      <div class="ab-val-head">${eye(c.values.eye)}<h2 class="ab-h2" id="ab-val-h" data-lines>${lines(c.values.h)}</h2></div>
+      <div class="ab-val-body">
+        <div class="ab-val-index" role="group" aria-label="${c.values.eye}">${c.values.items.map(([t], i) => `<button type="button" data-i="${i}" aria-pressed="${i === 0}">${t}</button>`).join("")}</div>
+        <div class="ab-val-show">
+          <span class="ab-val-glow" aria-hidden="true"></span>
+          ${c.values.items.map(([t, d], i) => `<article class="ab-val-item" data-i="${i}" data-r="up"><span class="ab-val-ghost" aria-hidden="true">${t}</span><h3>${t}</h3><p>${d}</p></article>`).join("")}
+          <span class="ab-val-progress" aria-hidden="true"><i></i></span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

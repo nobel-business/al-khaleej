@@ -346,12 +346,17 @@
       mx.style.setProperty("--e", e.toFixed(4)); mx.style.setProperty("--x", x.toFixed(4)); mx.style.setProperty("--p", p.toFixed(4)); });
   });
 
-  /* ================= About: hero settle/exit · key-facts band · pinned horizon (three statements) · invitation ================= */
+  /* ================= About: hero settle/exit · pinned values stage · pinned horizon (three statements) · invitation ================= */
   // Scroll-linked (so every effect plays in reverse on the way up); scenes run only while near the viewport.
   (() => {
     const hero = $(".ab-hero"); if (!hero) return;
     if (!RM) scene(hero, (p) => { const x = clamp((p - 0.5) / 0.42); hero.style.setProperty("--p", p.toFixed(4)); hero.style.setProperty("--x", x.toFixed(4)); });
-    const band = $(".ab-band"); if (band && !RM) scene(band, (p) => band.style.setProperty("--b", p.toFixed(4)));
+    const vals = $(".ab-values");
+    if (vals) { const items = $$(".ab-val-item", vals), btns = $$(".ab-val-index button", vals), wide = matchMedia("(min-width:900px)"), n = items.length;
+      const set = (a) => { if (vals.dataset.a === String(a)) return; vals.dataset.a = String(a); btns.forEach((b, k) => b.setAttribute("aria-pressed", k === a)); };
+      scene(vals, (p) => { if (!wide.matches || RM) return; vals.style.setProperty("--vp", p.toFixed(4)); set(Math.min(n - 1, Math.floor(p * n * 0.9999))); });
+      btns.forEach((b, k) => b.addEventListener("click", () => { if (!wide.matches || RM) { set(k); return; }
+        const top = vals.getBoundingClientRect().top + scrollY, span = vals.offsetHeight - innerHeight; scrollTo({ top: Math.round(top + (span * (k + 0.5)) / n), behavior: "smooth" }); })); }
     const fut = $(".ab-fut");
     if (fut) scene(fut, (p) => { const a = RM ? 2 : p < 0.36 ? 0 : p < 0.7 ? 1 : 2; if (fut.dataset.a !== String(a)) fut.dataset.a = String(a);
       fut.style.setProperty("--f", p.toFixed(4)); fut.style.setProperty("--fr", (RM ? 1 : clamp((p - 0.02) / 0.72)).toFixed(4)); });
