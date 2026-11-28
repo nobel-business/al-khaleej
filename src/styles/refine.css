@@ -489,3 +489,10 @@ body{overflow-x:clip}
 .mf-media .mf-prog{inset-inline-end:calc(8% + 6px);top:calc(5% + 14px)}
 .mf-media .mf-inset{inset-inline-end:calc(7% + 6px);bottom:calc(6% + 6px)}
 .loupe .tip{inset-inline-start:calc(7% + 6px);top:calc(6% + 6px)}
+/* glass hero titles: a soft light halo hugging the letters (not the card) keeps them crisp over dark parts of the photo */
+@media (min-width:900px){
+  .op-bleed .in .h1{text-shadow:0 0 1px rgba(255,255,255,.9),0 0 10px rgba(255,255,255,.75),0 0 26px rgba(255,255,255,.6),0 0 48px rgba(255,255,255,.35)}
+}
+@media (min-width:900px){
+  .op-bleed .in .lede,.op-bleed .in .crumbs,.dv-next .dv-card p{text-shadow:0 0 1px rgba(255,255,255,.95),0 0 7px rgba(255,255,255,.85),0 0 16px rgba(255,255,255,.65)}
+}
