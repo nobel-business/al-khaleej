@@ -319,3 +319,11 @@ div.mf-node{cursor:default}
 .pr-pack .card .body{white-space:nowrap;max-width:none;font-weight:700;color:var(--navy);font-size:min(clamp(16px,1.3vw,20px),calc((100vw - 2 * var(--gutter) - 64px) / 30))}
 [dir=ltr] .pr-pack .card .body{font-size:min(clamp(15px,1.2vw,19px),calc((100vw - 2 * var(--gutter) - 64px) / 38))}
 @media (max-width:767px){.pr-pack .card .body,[dir=ltr] .pr-pack .card .body{white-space:normal;font-size:16px}}
+/* badge and grade numeral no longer collide: badge centred on top, numeral below it */
+.ra-products .ra-spec .num{inset-inline:0!important;margin-inline:auto;width:max-content;top:3%!important}
+.ra-products .ra-spec .ghost{top:13%}
+.ra-products .ra-spec:nth-child(6) .ghost{top:15%}
+.ra-products .ra-spec .num{z-index:4!important;opacity:1!important;box-shadow:0 4px 10px -4px rgba(12,48,72,.45)}
+/* the soft top fade now lives inside each jar photo, so the badge and numeral sit cleanly above it */
+.ra-products .ra-shelf::before{display:none}
+.ra-products .ra-spec .media::after{content:"";position:absolute;inset:0 0 auto;height:18%;pointer-events:none;background:linear-gradient(180deg,#F5EBDB 0%,rgba(245,235,219,.6) 45%,rgba(245,235,219,0) 100%)}
