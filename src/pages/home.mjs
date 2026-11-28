@@ -45,9 +45,9 @@ export const home = (lang) => {
 <section class="sec cv" id="meal" data-env="${ENV.sand}">
   <div class="wrap meal">
     ${loupe(lang, "powder-pressed")}
-    <div>${kicker(u.fishmeal)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "بروتين بحري" : "High-quality"}</span> <span class="bold">${ar ? "عالي الجودة." : "marine protein."}</span></h2>
-    <p class="body" data-r="up" style="margin-top:16px">${ar ? "ننتج مسحوق الأسماك من أسماك بحرية كاملة، باعتباره مصدرًا طبيعيًا للبروتين الحيواني والأحماض الأمينية الأساسية والعناصر الغذائية." : "We produce fish meal from whole marine fish, as a natural source of animal protein, essential amino acids and nutrients."}</p><p class="body" data-r="up" style="margin-top:12px">${ar ? "يتوفر مسحوق الأسماك بنسب مختلفة من البروتين: 60%، 62%، 65%، 66% و72%، وتُنتج كل درجة بمواصفتين مختلفتين لمحتوى الدهون: عالي الدهن ومنخفض الدهن، لتلبية مختلف المتطلبات التغذوية وتركيبات أعلاف الاستزراع المائي والإنتاج الحيواني." : "Fish meal is available in protein levels of 60%, 62%, 65%, 66% and 72%, and every grade is produced in two fat specifications, high-fat and low-fat, to meet different nutritional requirements and aquaculture and livestock feed formulations."}</p>
-    ${dialBlock(lang)}</div>
+    <div>${kicker(u.fishmeal)}<h2 class="h2 split-h" style="margin-top:14px"><span class="thin">${ar ? "قيمة البحر" : "The sea’s value"}</span> <span class="bold">${ar ? "في منتجاتنا." : "in our products."}</span></h2>
+    <p class="body" data-r="up" style="margin-top:16px">${ar ? "ننتج البروتين والزيوت البحرية من أسماك بحرية كاملة، بمواصفات تغذوية متنوعة، توفر مصادر طبيعية للبروتين الحيواني والأحماض الأمينية الأساسية والأحماض الدهنية البحرية، لتلبية متطلبات صناعات الأعلاف والتغذية، وتوفير خامات لصناعات التكرير والتطبيقات الغذائية والدوائية المتخصصة." : "We produce marine proteins and oils from whole marine fish, in a range of nutritional specifications, providing natural sources of animal protein, essential amino acids and marine fatty acids, to meet the needs of the feed and nutrition industries and to supply raw materials for refining and for specialised food and pharmaceutical applications."}</p>
+    ${dialBlock(lang, 2, { url: href(lang, "products"), label: ar ? "اكتشف منتجاتنا" : "Discover our products" })}</div>
   </div>
 </section>
 

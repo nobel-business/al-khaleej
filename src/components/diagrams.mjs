@@ -1,6 +1,6 @@
 import { PRODUCTS, STAGES, PARAMS, ALT } from "../content/content.mjs";
 import { esc, L, arr } from "../lib/html.mjs";
-import { prodHref } from "../lib/routes.mjs";
+import { prodHref, href } from "../lib/routes.mjs";
 import { M, pic, imgUrl } from "../lib/media.mjs";
 import { SL, ML } from "./blocks.mjs";
 
@@ -27,11 +27,11 @@ export function streamsSVG(lang, { scrub = false } = {}) {
 export const bezel = (k, cls = "") => { let t = ""; for (let i = 0; i < 48; i++) { const a = (i * 7.5 * Math.PI) / 180, r1 = i % 6 ? 21 : 18; t += `<line x1="${(26 + r1 * Math.cos(a)).toFixed(1)}" y1="${(26 + r1 * Math.sin(a)).toFixed(1)}" x2="${(26 + 24 * Math.cos(a)).toFixed(1)}" y2="${(26 + 24 * Math.sin(a)).toFixed(1)}" stroke="#0C3048" stroke-opacity="${i % 6 ? 0.25 : 0.6}"/>`; } return `<svg viewBox="0 0 52 52" aria-hidden="true">${t}<circle cx="26" cy="26" r="13" fill="none" stroke="#0C3048" stroke-opacity=".2"/><circle class="sw" cx="26" cy="26" r="24" fill="none" stroke-width="3" stroke-linecap="round" transform="rotate(${-90 + k * 90} 26 26)"/></svg>`; };
 export function gauges(lang) { return `<div class="gauges">${PARAMS.map((p, i) => `<div class="gauge" style="transition-delay:${i * 90}ms">${bezel(i)}<div><b>${p.t[lang]}</b><p>${p.d[lang]}</p></div></div>`).join("")}</div>`; }
 export const loupe = (lang, img, { col = 55, box = 4 / 3.4 } = {}) => { const m = M[img]; const big = m.widths[m.widths.length - 1]; return `<div class="loupe" data-src="${imgUrl(img, big, "jpg")}" data-focal="${m.focal}" role="img" aria-label="${esc(L(ALT[img], lang))}">${pic(lang, img, { col, box })}<span class="lens" aria-hidden="true"></span><span class="tip mono">${lang === "ar" ? "مرّر المؤشر لتفحّص نعومة المسحوق" : "Move over the powder to inspect its fineness"}</span></div>`; };
-export function dialBlock(lang, start = 2) {
+export function dialBlock(lang, start = 2, fixed = null) {
   const ar = lang === "ar", G = PRODUCTS.filter((p) => !p.oil).map((p) => ({ g: p.grade, name: p.name[lang], url: prodHref(lang, p), cta: ar ? `عرض ${p.name.ar}` : `View ${p.name.en}` }));
   return `<div class="dial-wrap" data-start="${start}"><script type="application/json">${JSON.stringify(G)}</script>
   <div class="dial" role="slider" tabindex="0" aria-label="${ar ? "درجة البروتين" : "Protein grade"}" aria-valuemin="60" aria-valuemax="72" aria-valuenow="65"><svg viewBox="0 0 240 240" aria-hidden="true"></svg></div>
   <div class="readout" aria-live="polite"><div class="mono">${ar ? "درجة البروتين" : "Protein grade"}</div><div class="val">65<small>%</small></div><div class="nm"></div>
   <div class="grades" role="group" aria-label="${ar ? "الدرجات" : "Grades"}">${G.map((g) => `<button type="button" aria-pressed="false">${g.g}%</button>`).join("")}</div>
-  <p style="margin-top:18px"><a class="link" data-grade-link href="${G[start].url}"><span>${G[start].cta}</span> ${arr}</a></p></div></div>`;
+  <p style="margin-top:18px">${fixed ? `<a class="link" href="${fixed.url}"><span>${fixed.label}</span> ${arr}</a>` : `<a class="link" data-grade-link href="${G[start].url}"><span>${G[start].cta}</span> ${arr}</a>`}</p></div></div>`;
 }
