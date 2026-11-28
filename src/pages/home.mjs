@@ -43,11 +43,9 @@ export const home = (lang) => {
 </section>
 
 <section class="sec cv" id="meal" data-env="${ENV.sand}" aria-labelledby="pv-title">
-  <div class="wrap pv-head">
-    <h2 class="h2 split-h" id="pv-title"><span class="thin">${ar ? "قيمة البحر" : "The sea’s value"}</span> <span class="bold">${ar ? "في منتجاتنا." : "in our products."}</span></h2>
-    <p class="body" data-r="up">${ar ? "ننتج البروتين والزيوت البحرية من أسماك بحرية كاملة، بمواصفات تغذوية متنوعة، توفر مصادر طبيعية للبروتين الحيواني والأحماض الأمينية الأساسية والأحماض الدهنية البحرية، لتلبية متطلبات صناعات الأعلاف والتغذية، وتوفير خامات لصناعات التكرير والتطبيقات الغذائية والدوائية المتخصصة." : "We produce marine proteins and oils from whole marine fish, in a range of nutritional specifications, providing natural sources of animal protein, essential amino acids and marine fatty acids, to meet the needs of the feed and nutrition industries and to supply raw materials for refining and for specialised food and pharmaceutical applications."}</p>
-  </div>
-  <div class="wrap meal">
+  <div class="wrap meal pv">
+    <div class="pv-t"><h2 class="h2 split-h" id="pv-title"><span class="thin">${ar ? "قيمة البحر" : "The sea’s value"}</span> <span class="bold">${ar ? "في منتجاتنا." : "in our products."}</span></h2></div>
+    <div class="pv-p"><p class="body" data-r="up">${ar ? "ننتج البروتين والزيوت البحرية من أسماك بحرية كاملة، بمواصفات تغذوية متنوعة، توفر مصادر طبيعية للبروتين الحيواني والأحماض الأمينية الأساسية والأحماض الدهنية البحرية، لتلبية متطلبات صناعات الأعلاف والتغذية، وتوفير خامات لصناعات التكرير والتطبيقات الغذائية والدوائية المتخصصة." : "We produce marine proteins and oils from whole marine fish, in a range of nutritional specifications, providing natural sources of animal protein, essential amino acids and marine fatty acids, to meet the needs of the feed and nutrition industries and to supply raw materials for refining and for specialised food and pharmaceutical applications."}</p></div>
     ${loupe(lang, "meal-oil")}
     <div><h3 class="h2 split-h pv-sub"><span class="thin">${u.fishmeal}</span></h3>
     ${dialBlock(lang, 2, { url: href(lang, "products"), label: ar ? "اكتشف منتجاتنا" : "Discover our products" })}</div>

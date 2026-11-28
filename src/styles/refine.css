@@ -710,3 +710,61 @@ body{transition:background-color .9s var(--out)}
 #oil .pv-sub{white-space:nowrap!important}
 @media (min-width:900px){#oil .pv-sub{font-size:clamp(20px,2vw,32px)!important}}
 @media (max-width:899px){#oil .pv-sub{font-size:clamp(19px,5.6vw,28px)!important}}
+/* shared header on the same grid as the content below: title over the photo column, text over the dial column */
+@media (min-width:900px){
+  .pv-head{grid-template-columns:1.25fr 1fr;gap:clamp(28px,4vw,72px);align-items:start}
+  .pv-head .split-h{line-height:1.15}
+  .pv-head .body{max-width:none}
+}
+/* breathing room from the plant photo above: the standard section gap again */
+.mfx + #meal{padding-top:var(--sec,clamp(80px,12vh,150px))}
+@media (max-width:899px){.mfx + #meal{padding-top:56px}}
+/* the shared header lives in the content grid itself: title shares the photo column, text shares the dial column */
+.meal.pv{row-gap:clamp(30px,4vw,56px)}
+.meal.pv .pv-t,.meal.pv .pv-p{align-self:start}
+.meal.pv .pv-t .split-h{margin:0;line-height:1.15}
+.meal.pv .pv-p .body{margin:0;max-width:none}
+.meal.pv .pv-p .body::before{content:"";display:block;width:64px;height:2px;margin-bottom:18px;border-radius:2px;background:linear-gradient(90deg,#C99A3E,#E3B860)}
+[dir=rtl] .meal.pv .pv-p .body::before{background:linear-gradient(270deg,#C99A3E,#E3B860)}
+@media (max-width:899px){.meal.pv{row-gap:18px}.meal.pv .loupe{margin-top:12px}}
+/* crude oil on the same grid as fish meal above: pour photo in the photo column (full height), text and the
+   centrifuge photo stacked in the text column — tops and bottoms aligned, no empty gap */
+@media (min-width:900px){
+  #oil .oilx{grid-template-columns:1.25fr 1fr;column-gap:clamp(28px,4vw,72px);row-gap:clamp(22px,2.4vw,36px);align-items:stretch}
+  #oil .oilx .a{grid-column:1;grid-row:1 / span 2;align-self:stretch;margin:0}
+  #oil .oilx .a .media{aspect-ratio:auto;height:100%;min-height:440px}
+  #oil .oilx .copy{grid-column:2;grid-row:1;align-self:start;margin:0}
+  #oil .oilx .b{grid-column:2;grid-row:2;align-self:end;margin:0;transform:none!important}
+}
+@media (min-width:900px){
+  #oil .oilx .a{position:relative;min-height:420px}
+  #oil .oilx .a .media{position:absolute;inset:0;height:auto;min-height:0}
+  #oil .oilx .a .glow{inset:0}
+  /* both blocks split their columns identically at every desktop width */
+  #meal .meal,#oil .oilx{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+}
+/* narrow desktops: the dial stacks (gauge over readout) so it fits its column */
+@media (min-width:900px) and (max-width:1199px){#meal .dial-wrap{grid-template-columns:1fr;justify-items:start;gap:14px}#meal .dial-wrap .dial{width:min(220px,100%)}}
+
+/* =====================================================================
+   HOMEPAGE — «قيمة البحر في منتجاتنا.» block: one spacing scale for fish meal + crude oil
+   section gap (var(--sec)) · header→content 56 · meal→oil 72 · copy→centrifuge 32 · sub-heading→next 20 · text→button 24
+   ===================================================================== */
+@media (min-width:900px) and (max-width:1279px){#meal .dial-wrap{grid-template-columns:1fr;justify-items:start;gap:14px}#meal .dial-wrap .dial{width:min(220px,100%)}}
+@media (min-width:900px){
+  #meal .meal.pv{row-gap:clamp(36px,3.9vw,56px)}
+  #meal + #oil{padding-top:clamp(48px,5vw,72px)}
+  #oil .oilx{row-gap:clamp(22px,2.2vw,32px)}
+}
+/* both sub-topics share one heading size, weight and rhythm */
+#meal .pv-sub,#oil .pv-sub{font-size:clamp(22px,2vw,32px)!important;line-height:1.3!important;margin:0!important}
+#meal .pv-sub .thin{font-weight:700}
+#oil .pv-sub .thin{font-weight:300}
+#meal .meal .dial-wrap{margin-top:20px}
+#meal .dial-wrap p{margin-top:16px!important}
+#oil .copy .body{margin-top:20px!important}
+#oil .copy p:last-child{margin-top:24px!important}
+@media (max-width:899px){
+  #meal + #oil{padding-top:44px}
+  #oil .oilx{row-gap:18px}
+}
