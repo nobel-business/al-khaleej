@@ -881,3 +881,5 @@ html:not(.js-off) .mfx-card{opacity:calc((var(--e,1) - .35) * 1.6 * (1 - var(--x
 .ft-links a[aria-current]{color:#fff;font-weight:600}
 .ft-links a[aria-current]::before{content:"";width:6px;height:6px;border-radius:50%;background:#F2B552}
 @media (max-width:560px){.ft-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}}
+.ft-acts .ft-contact{display:inline-flex;align-items:center;gap:10px}
+.ft-acts .ft-contact svg{flex:none;color:#F2B552}
