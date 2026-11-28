@@ -6,6 +6,14 @@ import { layout } from "../layouts/layout.mjs";
 import { kicker, h2, crumb, ENV, ctaBand, heroCopy } from "../components/blocks.mjs";
 import { specRows, compare } from "../components/spec.mjs";
 
+/* uses — fish meal: the client's list; crude fish oil: the client's Raw Materials wording */
+const USES = {
+  meal: { ar: ["أعلاف الاستزراع المائي.", "أعلاف الدواجن.", "التغذية الحيوانية.", "التركيبات التغذوية المتخصصة."],
+          en: ["Aquaculture feed.", "Poultry feed.", "Animal nutrition.", "Specialised nutritional formulations."] },
+  oil: { ar: ["صناعة الأعلاف.", "خامة لعمليات التكرير.", "التطبيقات الأخرى وفق مواصفاته ومدى ملاءمته للاستخدام."],
+         en: ["Feed manufacturing.", "A raw material for refining.", "Other applications, according to its specifications and suitability for use."] },
+};
+
 export const products = (lang) => {
   const u = UI[lang], ar = lang === "ar";
   const wall = `<div class="ra-wall" aria-hidden="true"><span class="beam" style="--bx:6vw"></span><span class="beam b2" style="--bx:26vw"></span></div>`;
@@ -37,7 +45,7 @@ export const products = (lang) => {
   </div>
   <aside class="ra-drawer" id="ra-drawer" aria-label="${ar ? "تفاصيل العيّنة" : "Specimen details"}" inert>
     <button type="button" class="ra-x" aria-label="${u.close}"><i class="ic ic-x" aria-hidden="true"></i></button>
-    <div class="ra-dcs" aria-live="polite">${PRODUCTS.map((p, i) => `<div class="ra-dc${i ? "" : " on"}" data-i="${i}"><p class="ra-idx">0${i + 1} / ${String(PRODUCTS.length).padStart(2, "0")} · ${p.oil ? u.oil : u.fishmeal}</p><h2 class="ra-name">${p.name[lang]}</h2><p class="ra-desc">${p.desc[lang]}</p><dl class="ra-rows">${specRows(lang, p).slice(0, 5).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl><div class="ra-acts"><a class="btn primary" href="${quoteHref(lang, p)}">${p.oil ? (ar ? "اطلب عرض سعر لزيت السمك" : "Request a quote for crude fish oil") : (ar ? "اطلب عرض سعر لهذه الدرجة" : "Request a quote for this grade")} ${arr}</a></div></div>`).join("")}</div>
+    <div class="ra-dcs" aria-live="polite">${PRODUCTS.map((p, i) => `<div class="ra-dc${i ? "" : " on"}" data-i="${i}"><p class="ra-idx">0${i + 1} / ${String(PRODUCTS.length).padStart(2, "0")} · ${p.oil ? u.oil : u.fishmeal}</p><h2 class="ra-name">${p.name[lang]}</h2><p class="ra-desc">${p.desc[lang]}</p><div class="ra-tabs" role="tablist" aria-label="${p.name[lang]}"><button type="button" role="tab" id="t-spec-${i}" aria-controls="p-spec-${i}" aria-selected="true" data-tab="spec">${ar ? "المواصفات" : "Specifications"}</button><button type="button" role="tab" id="t-use-${i}" aria-controls="p-use-${i}" aria-selected="false" data-tab="use" tabindex="-1">${ar ? "الاستخدامات" : "Uses"}</button></div><div class="ra-panel" role="tabpanel" id="p-spec-${i}" aria-labelledby="t-spec-${i}" data-panel="spec"><dl class="ra-rows">${specRows(lang, p).slice(0, 3).map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}${p.oil ? "" : `<div><dt>${ar ? "تصنيف الدهون" : "Fat classification"}</dt><dd><span class="ra-fat" dir="ltr"><span>High Fat</span><span>Low Fat</span></span></dd></div>`}</dl></div><div class="ra-panel" role="tabpanel" id="p-use-${i}" aria-labelledby="t-use-${i}" data-panel="use" hidden><ul class="ra-uses">${USES[p.oil ? "oil" : "meal"][lang].map((t) => `<li>${t}</li>`).join("")}</ul></div><div class="ra-acts"><a class="btn primary" href="${quoteHref(lang, p)}">${p.oil ? (ar ? "اطلب عرض سعر لزيت السمك" : "Request a quote for crude fish oil") : (ar ? "اطلب عرض سعر لهذه الدرجة" : "Request a quote for this grade")} ${arr}</a></div></div>`).join("")}</div>
     <div class="ra-nav"><button type="button" class="ra-prev"><i class="ic ic-arr" aria-hidden="true"></i><span>${ar ? "السابق" : "Previous"}</span></button><span class="ra-count"><b>01</b> / ${String(PRODUCTS.length).padStart(2, "0")}</span><button type="button" class="ra-next"><span>${ar ? "التالي" : "Next"}</span><i class="ic ic-arr" aria-hidden="true"></i></button></div>
   </aside>
 </section>

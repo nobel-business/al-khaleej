@@ -358,3 +358,15 @@ div.mf-node{cursor:default}
   .ra-products .ra-band::before{top:30px}
 }
 @media (max-width:980px){.ra-products .ra-shelf{padding-top:0}}
+
+/* specimen drawer: المواصفات / الاستخدامات tabs */
+.ra-tabs{display:flex;gap:6px;margin:16px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+.ra-tabs button{min-height:40px;padding:8px 18px;border:0;border-radius:999px;background:none;font:inherit;font-size:15px;font-weight:600;color:var(--ink-3);cursor:pointer;transition:background .3s,color .3s}
+.ra-tabs button:hover{color:var(--navy)}
+.ra-tabs button[aria-selected=true]{background:#EFE8DC;color:var(--navy)}
+.ra-tabs button:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.ra-panel[hidden]{display:none}
+.ra-uses{margin:4px 0 0;padding-inline-start:22px;display:grid;gap:8px;font-size:16px;line-height:1.6;color:var(--navy)}
+.ra-uses li::marker{color:var(--orange)}
+.ra-fat{display:inline-flex;gap:6px}
+.ra-fat span{padding:2px 10px;border-radius:999px;border:1px solid rgba(12,48,72,.16);font-size:13px;font-weight:600}

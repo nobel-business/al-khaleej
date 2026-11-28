@@ -414,6 +414,13 @@
     draw(); new ResizeObserver(draw).observe(map); if (document.fonts) document.fonts.ready.then(() => { last = ""; draw(); });
   })();
 
+  /* ================= specimen drawer tabs: المواصفات · الاستخدامات ================= */
+  d.addEventListener("click", (e) => { const t = e.target.closest(".ra-tabs [data-tab]"); if (!t) return; const dc = t.closest(".ra-dc");
+    $$(".ra-tabs [data-tab]", dc).forEach((b) => { const on = b === t; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; });
+    $$(".ra-panel", dc).forEach((p) => { p.hidden = p.dataset.panel !== t.dataset.tab; }); });
+  d.addEventListener("keydown", (e) => { const t = e.target.closest(".ra-tabs [data-tab]"); if (!t || !["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+    const o = t.parentElement.querySelector(`[data-tab]:not([data-tab="${t.dataset.tab}"])`); if (o) { e.preventDefault(); o.focus(); o.click(); } });
+
   /* ================= homepage hero copy mirrors the ship ================= */
   // The ship (image px box 2140,420 1340×1220 in the 3840×2160 hero photo, mirrored in Arabic) is located through
   // object-fit:cover exactly as the scene does; the copy block is centred on the ship's mirror point, vertically on
