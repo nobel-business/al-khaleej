@@ -13,7 +13,7 @@ The site builds cleanly. Every route, in English and Arabic, was crawled and che
   - a late LCP on mobile without WebGL;
   - the compare table cut off at tablet widths;
   - form errors not announced to screen readers.
-- **9 minor issues** were found and fixed.
+- **11 minor issues** were found and fixed.
 - **0 critical issues.**
 
 **After the fixes**
@@ -61,7 +61,7 @@ Interactive features inventoried and tested:
 - the loupe and the manufacturing stage engine;
 - the reveal and scroll effects.
 
-## 3. Issues discovered: 13 (all fixed)
+## 3. Issues discovered: 15 (all fixed)
 
 | # | Severity | Area | Issue → root cause | Fix |
 |---|---|---|---|---|
@@ -78,6 +78,8 @@ Interactive features inventoried and tested:
 | 11 | Minor | Content consistency | The About fact list and the Products meta description still listed three grades. | They now list all five (60/62/65/66/72 %). |
 | 12 | Minor | Homepage hero | After the copy edits, the scroll cue sat at the corner and the outline quote button was hard to see on the bright sky. | Cue centred; quote button in frosted glass with navy text. |
 | 13 | Minor | Readability on glass | Navy text over dark patches of hero photos (About boat, Raw Materials wave) and the dark-sea world card was hard to read. | Letter halo on glass text; denser frost on the dark-sea card. |
+| 14 | Minor | Arabic typography | The % sign in Arabic text flipped or shifted («%65», «و62%», line ends) because of how the browser orders Western digits in right-to-left text. | The build wraps every Arabic "NN%" (text and page-script data) in a left-to-right isolate. Measured: 103 of 103 signs now follow their number on the pages checked. |
+| 15 | Minor | Homepage hero | The mirrored placement of the hero copy shifted the layout on load (CLS 0.072). | The copy is revealed once it is placed (CLS 0.000), with a 1.5 s CSS fallback. |
 
 Audit false positives, checked and dismissed:
 - **"Clipped" buttons and cards:** the decorative hover sheen and glow pseudo-elements count as overflow.
@@ -96,11 +98,12 @@ None of these is a front-end code defect. They need access or decisions outside 
 | Not pushed | Git | `git status` | Commits are local on `updates` | Pushed for a Vercel preview | — | User go-ahead |
 
 ## 5. Severity breakdown
-**Critical: 0 · Major: 4 fixed + 2 external (headers, inquiry backend) · Minor: 9 fixed + 3 external.**
+**Critical: 0 · Major: 4 fixed + 2 external (headers, inquiry backend) · Minor: 11 fixed + 3 external.**
 
 ## 6. UI/UX improvements implemented this pass
 - **Glass cards** (heroes, homepage sardine card, world card, packing card): one frosted-glass language, matched to the client's reference. There's a denser frost where the photo behind is dark, and a halo on the letters for legibility.
 - **Organic image shapes:** one site-wide system of oversized soft corners in four families (wide, landscape, portrait, square), with continuous "squircle" curvature where supported. Applied to all 16 in-content image contexts. Overlays inside the images were moved clear of the curves.
+- **Content (client edits):** the grade disclaimer was removed everywhere, and «درجة البروتين التجارية» became «درجة البروتين». The homepage fish meal section has a new title and copy, with the title on one line and the photo aligned to the text column.
 - **Homepage:**
   - hero title on one line;
   - hero copy block centred on the ship's mirror point;
@@ -127,7 +130,30 @@ None of these is a front-end code defect. They need access or decisions outside 
 - The INP column is a proxy: the slowest event in a scripted set of real clicks and taps. It is not field data.
 - Headless Chromium renders WebGL in software, so absolute interaction times are pessimistic compared with real GPUs.
 
-PERF_TABLE
+| Profile | Page | LCP before → after | CLS before → after | INP proxy before → after | Transfer after |
+|---|---|---|---|---|---|
+| Mobile | Home EN | **3.67 s → 1.62 s** | 0.016 → 0.016 | 360 → 208 ms | 1187 KB |
+| Mobile | Home AR | 2.21 s → 1.60 s | 0.016 → 0.016 | 336 → 88 ms | 1188 KB |
+| Mobile | Products | 1.55 s → 1.21 s | 0 → 0 | 296 → 112 ms | 384 KB |
+| Mobile | About AR | 1.96 s → 1.92 s | 0 → 0 | 104 → 88 ms | 369 KB |
+| Mobile | Manufacturing | 1.76 s → 1.88 s | 0 → 0 | 48 → 48 ms | 402 KB |
+| Mobile | Raw materials AR | 2.24 s → 1.83 s | 0 → 0 | 56 → 32 ms | 406 KB |
+| Mobile | Contact | 1.63 s → 1.57 s | 0 → 0 | 120 → 64 ms | 305 KB |
+| Mobile | Fish meal 62 % | 1.27 s → 1.42 s | 0 → 0 | 80 → 96 ms | 257 KB |
+| Desktop | Home EN / AR | 0.80 / 0.64 s → 0.76 / 0.39 s | ≤ 0.017 → 0.003 | 64 / 104 → 456 / 176 ms | 1437 KB |
+| Desktop | Products | 0.58 s → 0.32 s | 0 → 0.023 | 680 → 736 ms | 465 KB |
+| Desktop | Other pages (5) | 0.44–0.68 s → 0.23–0.52 s | 0 → ≤ 0.010 | ≤ 184 → ≤ 128 ms | 324–815 KB |
+
+**Core Web Vitals verdict (lab)**
+- **LCP:** under 2.5 s on every measured page and profile. The worst case is now 1.92 s; before the fixes it was 3.67 s.
+- **CLS:** under 0.1 everywhere, with a maximum of 0.023. A hero shift introduced during this pass (0.072) was found and fixed back to 0.000.
+- **TTFB:** 7–23 ms (local server). FCP: 0.23–0.76 s on desktop and 0.88–1.37 s on mobile.
+- **INP proxy:** ≤ 208 ms on every mobile page.
+
+**Exceptions: the desktop interaction proxy on Home EN (456 ms) and on Products (736 ms)**
+- These are frame-presentation times, not script time; handlers run in 0–3 ms.
+- Headless Chromium paints the WebGL hero scene and the frosted (`backdrop-filter`) drawer with a software rasteriser, so these lab figures overstate what a GPU-equipped browser shows. On the homepage the figure also varies a lot between runs (64 → 456 ms with no change to that code).
+- **Recommended next step:** confirm with field data (Vercel Speed Insights or Chrome UX Report) once the preview is live. The room's camera move is already on its own compositor layer.
 
 **Assets**
 - HTML 29–41 KB gzipped, with critical CSS inlined.
