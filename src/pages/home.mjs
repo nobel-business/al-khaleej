@@ -29,7 +29,7 @@ export const home = (lang) => {
       <span class="dv-spacer" aria-hidden="true"></span>
     </div>
     </div>
-    <div class="dv-next"><div class="dv-card">${kicker(ar ? "تحت السطح" : "Beneath the surface")}<h2 class="h2">${ar ? "ثروة البحر، أساس صناعتنا." : "The sea’s wealth, the foundation of our industry."}</h2><p>${ar ? "من مياه البحر الأبيض المتوسط والبحر الأحمر والخليج العربي، نستمد خاماتنا من الأسماك البحرية الكاملة، عبر منظومة توريد متكاملة تجمع بين الصيد المباشر والمصادر البحرية المتنوعة." : "From the waters of the Mediterranean, the Red Sea and the Arabian Gulf, we source our raw material from whole marine fish, through an integrated supply system that combines direct fishing with diverse marine sources."}</p><div class="actions"><a class="link" href="${href(lang, "raw")}">${ar ? "اكتشف موادنا الخام" : "Discover our raw materials"} ${arr}</a></div></div></div>
+    <div class="dv-next"><div class="dv-card">${kicker(ar ? "تحت السطح" : "Beneath the surface")}<h2 class="h2 sea-h"><span class="sea-a">${ar ? "ثروة البحر،" : "The sea’s wealth,"}</span> <span class="sea-b">${ar ? "أساس صناعتنا." : "the foundation of our industry."}</span></h2><p>${ar ? "من مياه البحر الأبيض المتوسط والبحر الأحمر والخليج العربي، نستمد خاماتنا من الأسماك البحرية الكاملة، عبر منظومة توريد متكاملة تجمع بين الصيد المباشر والمصادر البحرية المتنوعة." : "From the waters of the Mediterranean, the Red Sea and the Arabian Gulf, we source our raw material from whole marine fish, through an integrated supply system that combines direct fishing with diverse marine sources."}</p><div class="actions"><a class="sea-btn" href="${href(lang, "raw")}">${ar ? "اكتشف موادنا الخام" : "Discover our raw materials"} ${arr}</a></div></div></div>
   </div>
 </section>
 

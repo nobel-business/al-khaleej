@@ -92,10 +92,10 @@
   let schoolOn = false;
   if (dive && !RM) scene(dive, (p) => {
     if (!WIDE()) return;
-    const t = clamp(p / 0.34), s = clamp(p / 0.62), w = 1 - clamp((p - 0.2) / 0.42), q = clamp((p - 0.6) / 0.22);
+    const t = clamp(p / 0.34), s = clamp(p / 0.62), w = 1 - clamp((p - 0.2) / 0.42), q = clamp((p - 0.6) / 0.14), x = clamp((p - 0.9) / 0.1);   // q: text arrives · x: text leaves before the scene ends
     stage.style.setProperty("--t", t.toFixed(4)); stage.style.setProperty("--s", s.toFixed(4));
-    stage.style.setProperty("--w", w.toFixed(4)); stage.style.setProperty("--q", q.toFixed(4));
-    next.classList.toggle("live", q > 0.5);
+    stage.style.setProperty("--w", w.toFixed(4)); stage.style.setProperty("--q", q.toFixed(4)); stage.style.setProperty("--x", x.toFixed(4));
+    next.classList.toggle("live", q > 0.5 && x < 0.5);
     schoolOn = q > 0.02;
     if (schoolOn) school.start();
   });
