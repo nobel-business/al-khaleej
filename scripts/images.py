@@ -41,12 +41,10 @@ SPEC = {
     "rw-sardine":     ("ai/rw-sardine.jpg",        [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials — sardine
     "rw-pelagic":     ("ai/rw-pelagic.jpg",        [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials — pelagic school
     "rw-other":       ("ai/rw-other.jpg",          [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials — other species
+    "rw-j1":          ("ai/rw-j1.jpg",           [640, 1024, 1280],                 "50% 45%", "ai", None),   # Raw Materials journey — fishing and collection (client-supplied)
+    "rw-j2":          ("ai/rw-j2.jpg",           [640, 1024, 1280],                 "50% 60%", "ai", None),   # Raw Materials journey — preservation and cooling (client-supplied)
+    "rw-j3":          ("ai/rw-j3.jpg",           [640, 1024, 1280],                 "40% 55%", "ai", None),   # Raw Materials journey — transport and receiving (client-supplied)
     "rw-illus":       ("ai/rw-illus.jpg",          [640, 1024, 1600, 2400, 3072],     "50% 50%", "ai", None),   # Raw Materials — sardine illustration (nutrition)
-    "rw-s1":          ("ai/rw-s1.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — the haul
-    "rw-s2":          ("ai/rw-s2.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — the harbour
-    "rw-s3":          ("ai/rw-s3.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — cold storage
-    "rw-s4":          ("ai/rw-s4.jpg",             [640, 1024, 1600],                 "50% 60%", "ai", None),   # Raw Materials journey — chilled transport
-    "rw-s5":          ("ai/rw-s5.jpg",             [640, 1024, 1600],                 "50% 55%", "ai", None),   # Raw Materials journey — receiving
     "ab-sea":         ("ai/ab-sea.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — sea at first light
     "ab-ind":         ("ai/ab-ind.jpg",         [640, 1024, 1600, 2400, 3072],            "50% 55%", "ai", None),   # About hero — processing hall
     "ab-site":        ("ai/ab-site.jpg",        [640, 1024, 1280],                        "62% 55%", "ai", None),   # About — plant by the harbour (client-supplied)

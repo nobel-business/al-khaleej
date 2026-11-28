@@ -271,3 +271,8 @@
   .rw-sp-item:not(.is-lead){grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
   [dir=rtl] .rw-sp-item:not(.is-lead) .rw-sp-txt h3{white-space:nowrap;font-size:clamp(16px,1.75vw,28px)}
 }
+
+/* sourcing journey — three merged stages with landscape photos */
+.rw-frame{flex-basis:clamp(320px,38vw,620px)}
+@media (max-width:899px){.rw-frame-img{aspect-ratio:16/10}}
+@media (min-width:600px) and (max-width:899px){.rw-track{display:flex}.rw-frame-img{aspect-ratio:16/10}}

@@ -35,10 +35,9 @@ const C = {
     src: { eye: "من البحر إلى المصنع", h: "العناية بالخامات تبدأ قبل التصنيع.", p: [
       "تبدأ العملية الصناعية قبل وصول الأسماك إلى المصنع، من خلال اختيار مصادر الخامات والتعامل معها خلال مراحل الصيد والتجميع والنقل والحفظ.",
       "وتعتمد منظومة توفير الخامات البحرية على مجموعة من المصادر والقنوات التي تتيح التعامل مع اختلاف مواسم الصيد وتنوع الموارد البحرية ومتطلبات الإنتاج."],
-      seq: ["الصيد", "التجميع", "الحفظ والتبريد", "النقل", "الاستقبال"],
-      items: [["الصيد المباشر", "الاستفادة من الأسماك البحرية التي يتم الحصول عليها من خلال مراكب الصيد التابعة للمصنع، بما يعزز ارتباط العملية الصناعية بمصادر الخامات."],
-        ["موانئ الصيد", "الحصول على الخامات البحرية من مصادر الصيد والتجميع، وفق توافر الأسماك وملاءمتها للتصنيع."],
-        ["مصادر الحفظ والتبريد", "الاستفادة من الخامات البحرية المحفوظة والمبردة، وفق حالتها وخصائصها ومدى ملاءمتها لمتطلبات الإنتاج."],
+      seq: ["الصيد والتجميع", "الحفظ والتبريد", "النقل والاستقبال"],
+      items: [["الصيد والتجميع", "الاستفادة من الأسماك البحرية التي يتم الحصول عليها من خلال مراكب الصيد التابعة للمصنع، ومن مصادر الصيد والتجميع وفق توافر الأسماك وملاءمتها للتصنيع، بما يعزز ارتباط العملية الصناعية بمصادر الخامات."],
+        ["الحفظ والتبريد", "الاستفادة من الخامات البحرية المحفوظة والمبردة، وفق حالتها وخصائصها ومدى ملاءمتها لمتطلبات الإنتاج."],
         ["النقل والاستقبال", "الاهتمام بظروف نقل الخامات وتداولها واستقبالها داخل المصنع، باعتبارها عوامل مؤثرة في خصائص المادة الخام وجودة المنتج النهائي."]] },
     nu: { eye: "القيمة الكامنة في الخامات", h: "أكثر من مجرد مادة خام.", p: [
       "تحتوي الأسماك البحرية على عناصر غذائية تمنحها أهمية خاصة في صناعة الأعلاف والأغذية.",
@@ -96,10 +95,9 @@ const C = {
     src: { eye: "From the sea to the plant", h: "Care for raw materials begins before manufacturing.", p: [
       "The industrial process begins before the fish reach the plant, through the choice of raw-material sources and their handling during fishing, collection, transport and preservation.",
       "Our marine raw-material supply relies on a range of sources and channels that let us respond to changing fishing seasons, diverse marine resources and production requirements."],
-      seq: ["Fishing", "Collection", "Preservation and cooling", "Transport", "Receiving"],
-      items: [["Direct fishing", "Marine fish obtained through the plant’s own fishing vessels, strengthening the link between the industrial process and its raw-material sources."],
-        ["Fishing ports", "Marine raw materials obtained from fishing and collection sources, according to fish availability and suitability for processing."],
-        ["Preservation and cold sources", "Preserved and chilled marine raw materials, used according to their condition, properties and suitability for production."],
+      seq: ["Fishing and collection", "Preservation and cooling", "Transport and receiving"],
+      items: [["Fishing and collection", "Marine fish obtained through the plant’s own fishing vessels and from fishing and collection sources, according to fish availability and suitability for processing, strengthening the link between the industrial process and its raw-material sources."],
+        ["Preservation and cooling", "Preserved and chilled marine raw materials, used according to their condition, properties and suitability for production."],
         ["Transport and receiving", "Attention to how raw materials are transported, handled and received at the plant, as factors that shape the raw material and the quality of the final product."]] },
     nu: { eye: "The value within the raw material", h: "More than a raw material.", p: [
       "Marine fish contain nutrients that give them particular importance in the feed and food industries.",
@@ -218,7 +216,7 @@ export const raw = (lang) => {
     </div>
     <ol class="wrap rw-seq" aria-label="${ar ? "رحلة الخامات" : "The raw-material journey"}">${c.src.seq.map((t, i) => `<li data-i="${i}"><i></i><span>${t}</span></li>`).join("")}</ol>
     <div class="rw-track-win"><div class="rw-track">${c.src.items.map(([t, d], i) => `<article class="rw-frame" data-i="${i}">
-        <div class="rw-frame-img">${pic(lang, ["rw-s1", "rw-s2", "rw-s3", "rw-s5"][i], { col: 30, mcol: 82, box: 0.86 })}${i === 3 ? `<div class="rw-frame-inset">${pic(lang, "rw-s4", { col: 12, mcol: 34, box: 1 })}</div>` : ""}</div>
+        <div class="rw-frame-img">${pic(lang, ["rw-j1", "rw-j2", "rw-j3"][i], { col: 40, mcol: 100, box: 1.6 })}</div>
         <div class="rw-frame-txt"><span class="rw-n">0${i + 1}</span><h3>${t}</h3><p>${d}</p></div></article>`).join("")}</div></div>
   </div>
 </section>
